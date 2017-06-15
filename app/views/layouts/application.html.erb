@@ -27,14 +27,20 @@
               <li><a href="questions/index.html">Questions</a></li>
             </ul>
             <ul class="navbar-form navbar-right">
-              <%= link_to (button_tag "Sign up", type: 'button', :class => 'btn btn-default'), { controller: :users, action: :new } %>
-              <%= link_to (button_tag "Sign in", type: 'button', :class => 'btn btn-default'), { controller: :users, action: :new } %>
+              <%= link_to (button_tag "Sign up", type: 'button', :class => 'btn btn-default'), new_user_registration_path %>
+              <%= link_to (button_tag "Sign in", type: 'button', :class => 'btn btn-default'), new_user_session_path %>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
     </header>
     <div class="container">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
       <%= yield %>
     </div>
   </body>
