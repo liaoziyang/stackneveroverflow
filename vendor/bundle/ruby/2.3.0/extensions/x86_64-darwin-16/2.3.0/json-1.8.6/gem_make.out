@@ -1,0 +1,13 @@
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/json-1.8.6/ext/json
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20170615-29352-14d2nz.rb extconf.rb
+creating Makefile
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/json-1.8.6/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/json-1.8.6/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/json-1.8.6/ext/json
+make "DESTDIR=" install

@@ -1,0 +1,8 @@
+*.gem
+.bundle
+*.lock
+pkg/*
+*.log
+tmp/*
+test/dummy_app/tmp/cache/assets/*
+gemfiles/*.gemfile

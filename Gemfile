@@ -37,6 +37,11 @@ gem 'execjs'
 
 # Twitter社が提供しているCSSとJavaScriptのフレームワーク
 gem 'twitter-bootstrap-rails'
+gem 'uglifier', '>= 1.3.0'
+gem 'therubyracer', platforms: :ruby
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'devise'
+gem 'rails_admin'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

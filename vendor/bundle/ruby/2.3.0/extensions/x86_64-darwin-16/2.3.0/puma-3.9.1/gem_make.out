@@ -1,0 +1,42 @@
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/puma-3.9.1/ext/puma_http11
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20170615-29352-1glok8c.rb extconf.rb
+checking for BIO_read() in -lcrypto... yes
+checking for SSL_CTX_new() in -lssl... yes
+checking for openssl/bio.h... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0/puma-3.9.1/mkmf.log
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/puma-3.9.1/ext/puma_http11
+make "DESTDIR=" clean
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/puma-3.9.1/ext/puma_http11
+make "DESTDIR="
+compiling http11_parser.c
+ext/puma_http11/http11_parser.rl:111:17: warning: comparison of integers of different signs: 'long' and 'unsigned long' [-Wsign-compare]
+  assert(pe - p == len - off && "pointers aren't same distance");
+         ~~~~~~ ^  ~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+ext/puma_http11/http11_parser.c:43:18: warning: unused variable 'puma_parser_en_main' [-Wunused-const-variable]
+static const int puma_parser_en_main = 1;
+                 ^
+2 warnings generated.
+compiling io_buffer.c
+compiling mini_ssl.c
+mini_ssl.c:247:20: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+  int verify_err = SSL_get_verify_result(ssl);
+      ~~~~~~~~~~   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+mini_ssl.c:260:13: warning: implicit conversion loses integer precision: 'unsigned long' to 'int' [-Wshorten-64-to-32]
+      err = ERR_get_error();
+          ~ ^~~~~~~~~~~~~~~
+2 warnings generated.
+compiling puma_http11.c
+linking shared-object puma/puma_http11.bundle
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/puma-3.9.1/ext/puma_http11
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 puma_http11.bundle ./.gem.20170615-29352-c7yr3f/puma

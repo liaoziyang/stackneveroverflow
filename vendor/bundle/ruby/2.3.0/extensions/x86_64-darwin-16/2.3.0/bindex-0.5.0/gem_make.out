@@ -1,0 +1,15 @@
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20170615-29352-19v4shv.rb extconf.rb
+creating Makefile
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.bundle
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20170615-29352-1c4pdb0/bindex

@@ -1,0 +1,283 @@
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20170615-29352-10nhylg.rb extconf.rb
+checking for unistd.h... yes
+checking for sys/select.h... yes
+checking for poll.h... yes
+checking for sys/epoll.h... no
+checking for sys/event.h... yes
+checking for sys/queue.h... yes
+checking for port.h... no
+checking for sys/resource.h... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0/nio4r-2.1.0/mkmf.log
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
+make "DESTDIR=" clean
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
+make "DESTDIR="
+compiling bytebuffer.c
+compiling monitor.c
+compiling nio4r_ext.c
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:488:48: warning: '/*' within block comment [-Wcomment]
+/*#define MIN_INTERVAL  0.00000095367431640625 /* 1/2**20, good till 2200 */
+                                               ^
+./../libev/ev.c:1068:26: warning: implicit conversion loses integer precision: 'uint64_t' (aka 'unsigned long long') to 'unsigned int' [-Wshorten-64-to-32]
+  return ecb_popcount32 (x) + ecb_popcount32 (x >> 32);
+         ~~~~~~~~~~~~~~~~^~
+./../libev/ev.c:930:49: note: expanded from macro 'ecb_popcount32'
+  #define ecb_popcount32(x) __builtin_popcount (x)
+                            ~~~~~~~~~~~~~~~~~~  ^
+./../libev/ev.c:1274:13: warning: comparison of integers of different signs: 'unsigned int' and 'int' [-Wsign-compare]
+      if (e < (14 - 24)) /* might not be sharp, but is good enough */
+          ~ ^  ~~~~~~~
+./../libev/ev.c:1836:31: warning: 'extern' variable has an initializer [-Wextern-initializer]
+  EV_API_DECL struct ev_loop *ev_default_loop_ptr = 0; /* needs to be initialised to make it a definition despite extern */
+                              ^
+./../libev/ev.c:1923:7: warning: implicit conversion loses integer precision: 'long' to '__darwin_suseconds_t' (aka 'int') [-Wshorten-64-to-32]
+      EV_TV_SET (tv, delay);
+      ^~~~~~~~~~~~~~~~~~~~~
+./../libev/ev.c:493:64: note: expanded from macro 'EV_TV_SET'
+#define EV_TV_SET(tv,t) do { tv.tv_sec = (long)t; tv.tv_usec = (long)((t - tv.tv_sec) * 1e6); } while (0)
+                                                             ~ ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./../libev/ev.c:1945:19: warning: comparison of integers of different signs: 'int' and 'unsigned long' [-Wsign-compare]
+  if (elem * ncur > MALLOC_ROUND - sizeof (void *) * 4)
+      ~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./../libev/ev.c:2294:18: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+      k = minpos - heap;
+        ~ ~~~~~~~^~~~~~
+In file included from nio4r_ext.c:7:
+In file included from ./../libev/ev.c:2704:
+./../libev/ev_kqueue.c:116:34: warning: implicit conversion loses integer precision: 'uintptr_t' (aka 'unsigned long') to 'int' [-Wshorten-64-to-32]
+      int fd = kqueue_events [i].ident;
+          ~~   ~~~~~~~~~~~~~~~~~~^~~~~
+./../libev/ev_kqueue.c:120:39: warning: implicit conversion loses integer precision: 'intptr_t' (aka 'long') to 'int' [-Wshorten-64-to-32]
+          int err = kqueue_events [i].data;
+              ~~~   ~~~~~~~~~~~~~~~~~~^~~~
+In file included from nio4r_ext.c:7:
+In file included from ./../libev/ev.c:2710:
+./../libev/ev_poll.c:111:18: warning: expression result unused [-Wunused-value]
+        assert (("libev: poll() returned illegal result, broken BSD kernel?", p < polls + pollcnt));
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+In file included from ./../libev/ev.c:2713:
+./../libev/ev_select.c:109:24: warning: implicit conversion loses integer precision: 'unsigned long' to 'fd_mask' (aka 'int') [-Wshorten-64-to-32]
+    fd_mask mask = 1UL << (fd % NFDBITS);
+            ~~~~   ~~~~^~~~~~~~~~~~~~~~~
+./../libev/ev_select.c:147:3: warning: implicit conversion loses integer precision: 'long' to '__darwin_suseconds_t' (aka 'int') [-Wshorten-64-to-32]
+  EV_TV_SET (tv, timeout);
+  ^~~~~~~~~~~~~~~~~~~~~~~
+./../libev/ev.c:493:64: note: expanded from macro 'EV_TV_SET'
+#define EV_TV_SET(tv,t) do { tv.tv_sec = (long)t; tv.tv_usec = (long)((t - tv.tv_sec) * 1e6); } while (0)
+                                                             ~ ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from nio4r_ext.c:7:
+In file included from ./../libev/ev.c:2713:
+./../libev/ev_select.c:259:34: warning: implicit conversion loses integer precision: 'unsigned long' to 'fd_mask' (aka 'int') [-Wshorten-64-to-32]
+              fd_mask mask = 1UL << bit;
+                      ~~~~   ~~~~^~~~~~
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3123:12: warning: expression result unused [-Wunused-value]
+  assert (("libev: watcher has invalid priority", ABSPRI (w) >= 0 && ABSPRI (w) < NUMPRI));
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3126:14: warning: expression result unused [-Wunused-value]
+    assert (("libev: pending watcher not on pending queue", pendings [ABSPRI (w)][w->pending - 1].w == w));
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3137:16: warning: expression result unused [-Wunused-value]
+      assert (("libev: active index mismatch in heap", ev_active (ANHE_w (heap [i])) == i));
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3138:16: warning: expression result unused [-Wunused-value]
+      assert (("libev: heap condition violated", i == HEAP0 || ANHE_at (heap [HPARENT (i)]) <= ANHE_at (heap [i])));
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3139:16: warning: expression result unused [-Wunused-value]
+      assert (("libev: heap at cache mismatch", ANHE_at (heap [i]) == ev_at (ANHE_w (heap [i]))));
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3151:16: warning: expression result unused [-Wunused-value]
+      assert (("libev: active index mismatch", ev_active (ws [cnt]) == cnt + 1));
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3169:14: warning: expression result unused [-Wunused-value]
+    assert (("libev: negative fd in fdchanges", fdchanges [i] >= 0));
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3182:24: warning: expression result unused [-Wunused-value]
+              assert (("libev: io watcher list contains a loop", w != w2));
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3186:20: warning: expression result unused [-Wunused-value]
+          assert (("libev: inactive fd watcher on anfd list", ev_active (w) == 1));
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3187:20: warning: expression result unused [-Wunused-value]
+          assert (("libev: fd mismatch between watcher and anfd", ((ev_io *)w)->fd == i));
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3371:24: warning: expression result unused [-Wunused-value]
+              assert (("libev: negative ev_timer repeat value found while processing timers", w->repeat > 0.));
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3434:24: warning: expression result unused [-Wunused-value]
+              assert (("libev: ev_periodic reschedule callback returned time in the past", ev_at (w) >= ev_rt_now));
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3580:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+./../libev/ev.c:3594:12: warning: expression result unused [-Wunused-value]
+  assert (("libev: ev_loop recursion during release detected", loop_done != EVBREAK_RECURSE));
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3750:36: warning: incompatible pointer types passing 'VALUE (void *)' (aka 'unsigned long (void *)') to parameter of type 'void *(*)(void *)' [-Wincompatible-pointer-types]
+        rb_thread_call_without_gvl(ev_backend_poll, (void *)&poll_args, RUBY_UBF_IO, 0);
+                                   ^~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/thread.h:28:42: note: passing argument to parameter 'func' here
+void *rb_thread_call_without_gvl(void *(*func)(void *), void *data1,
+                                         ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3762:22: warning: expression result unused [-Wunused-value]
+            assert (("libev: pipe_w not active, but pipe not written", ev_is_active (&pipe_w)));
+                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3937:12: warning: expression result unused [-Wunused-value]
+  assert (("libev: ev_io_start called with negative fd", fd >= 0));
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3938:12: warning: expression result unused [-Wunused-value]
+  assert (("libev: ev_io_start called with illegal event mask", !(w->events & ~(EV__IOFDSET | EV_READ | EV_WRITE))));
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3947:12: warning: expression result unused [-Wunused-value]
+  assert (("libev: ev_io_start called with corrupted watcher", ((WL)w)->next != (WL)w));
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3963:12: warning: expression result unused [-Wunused-value]
+  assert (("libev: ev_io_stop called with illegal fd (must stay constant after start!)", w->fd >= 0 && w->fd < anfdmax));
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:3984:12: warning: expression result unused [-Wunused-value]
+  assert (("libev: ev_timer_start called with negative timer repeat value", w->repeat >= 0.));
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:4013:14: warning: expression result unused [-Wunused-value]
+    assert (("libev: internal timer heap corruption", ANHE_w (timers [active]) == (WT)w));
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:4077:16: warning: expression result unused [-Wunused-value]
+      assert (("libev: ev_periodic_start called with negative interval value", w->interval >= 0.));
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:4110:14: warning: expression result unused [-Wunused-value]
+    assert (("libev: internal periodic heap corruption", ANHE_w (periodics [active]) == (WT)w));
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:4149:12: warning: expression result unused [-Wunused-value]
+  assert (("libev: ev_signal_start called with illegal signal number", w->signum > 0 && w->signum < EV_NSIG));
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:4152:12: warning: expression result unused [-Wunused-value]
+  assert (("libev: a signal must not be attached to two different loops",
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:4271:12: warning: expression result unused [-Wunused-value]
+  assert (("libev: child watchers are only supported in the default loop", loop == ev_default_loop_ptr));
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from nio4r_ext.c:7:
+./../libev/ev.c:4856:14: warning: expression result unused [-Wunused-value]
+    assert (("libev: loop to be embedded is not embeddable", backend & ev_embeddable_backends ()));
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+41 warnings generated.
+compiling selector.c
+linking shared-object nio4r_ext.bundle
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 nio4r_ext.bundle ./.gem.20170615-29352-axtdq0

@@ -1,0 +1,201 @@
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/ext/nokogiri
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20170615-29352-4abuvs.rb extconf.rb
+checking if the C compiler accepts ... yes
+checking if the C compiler accepts -Wno-error=unused-command-line-argument-hard-error-in-future... no
+Building nokogiri using packaged libraries.
+Using mini_portile version 2.2.0
+checking for iconv.h... yes
+checking for gzdopen() in -lz... yes
+checking for iconv using --with-opt-* flags... yes
+************************************************************************
+IMPORTANT NOTICE:
+
+Building Nokogiri with a packaged version of libxml2-2.9.4
+with the following patches applied:
+	- 0001-Fix-comparison-with-root-node-in-xmlXPathCmpNodes.patch
+	- 0002-Fix-XPointer-paths-beginning-with-range-to.patch
+	- 0003-Disallow-namespace-nodes-in-XPointer-ranges.patch
+
+Team Nokogiri will keep on doing their best to provide security
+updates in a timely manner, but if this is a concern for you and want
+to use the system library instead; abort this installation process and
+reinstall nokogiri as follows:
+
+    gem install nokogiri -- --use-system-libraries
+        [--with-xml2-config=/path/to/xml2-config]
+        [--with-xslt-config=/path/to/xslt-config]
+
+If you are using Bundler, tell it to use the option:
+
+    bundle config build.nokogiri --use-system-libraries
+    bundle install
+
+Note, however, that nokogiri is not fully compatible with arbitrary
+versions of libxml2 provided by OS/package vendors.
+************************************************************************
+Extracting libxml2-2.9.4.tar.gz into tmp/x86_64-apple-darwin16.1.0/ports/libxml2/2.9.4... OK
+Running git apply with /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/patches/libxml2/0001-Fix-comparison-with-root-node-in-xmlXPathCmpNodes.patch... OK
+Running git apply with /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/patches/libxml2/0002-Fix-XPointer-paths-beginning-with-range-to.patch... OK
+Running git apply with /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/patches/libxml2/0003-Disallow-namespace-nodes-in-XPointer-ranges.patch... OK
+Running 'configure' for libxml2 2.9.4... OK
+Running 'compile' for libxml2 2.9.4... OK
+Running 'install' for libxml2 2.9.4... OK
+Activating libxml2 2.9.4 (from /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/ports/x86_64-apple-darwin16.1.0/libxml2/2.9.4)...
+************************************************************************
+IMPORTANT NOTICE:
+
+Building Nokogiri with a packaged version of libxslt-1.1.29
+with the following patches applied:
+	- 0001-Fix-heap-overread-in-xsltFormatNumberConversion.patch
+	- 0002-Check-for-integer-overflow-in-xsltAddTextString.patch
+
+Team Nokogiri will keep on doing their best to provide security
+updates in a timely manner, but if this is a concern for you and want
+to use the system library instead; abort this installation process and
+reinstall nokogiri as follows:
+
+    gem install nokogiri -- --use-system-libraries
+        [--with-xml2-config=/path/to/xml2-config]
+        [--with-xslt-config=/path/to/xslt-config]
+
+If you are using Bundler, tell it to use the option:
+
+    bundle config build.nokogiri --use-system-libraries
+    bundle install
+************************************************************************
+Extracting libxslt-1.1.29.tar.gz into tmp/x86_64-apple-darwin16.1.0/ports/libxslt/1.1.29... OK
+Running git apply with /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/patches/libxslt/0001-Fix-heap-overread-in-xsltFormatNumberConversion.patch... OK
+Running git apply with /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/patches/libxslt/0002-Check-for-integer-overflow-in-xsltAddTextString.patch... OK
+Running 'configure' for libxslt 1.1.29... OK
+Running 'compile' for libxslt 1.1.29... OK
+Running 'install' for libxslt 1.1.29... OK
+Activating libxslt 1.1.29 (from /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/ports/x86_64-apple-darwin16.1.0/libxslt/1.1.29)...
+checking for main() in -llzma... yes
+checking for xmlParseDoc() in libxml/parser.h... yes
+checking for xsltParseStylesheetDoc() in libxslt/xslt.h... yes
+checking for exsltFuncRegister() in libexslt/exslt.h... yes
+checking for xmlHasFeature()... yes
+checking for xmlFirstElementChild()... yes
+checking for xmlRelaxNGSetParserStructuredErrors()... yes
+checking for xmlRelaxNGSetParserStructuredErrors()... yes
+checking for xmlRelaxNGSetValidStructuredErrors()... yes
+checking for xmlSchemaSetValidStructuredErrors()... yes
+checking for xmlSchemaSetParserStructuredErrors()... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0/nokogiri-1.8.0/mkmf.log
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/ext/nokogiri
+make "DESTDIR=" clean
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/ext/nokogiri
+make "DESTDIR="
+compiling html_document.c
+compiling html_element_description.c
+html_element_description.c:252:48: warning: cast from 'const struct _htmlElemDesc *' to 'void *' drops const qualifier [-Wcast-qual]
+  return Data_Wrap_Struct(klass, 0, 0, (void *)description);
+                                               ^
+1 warning generated.
+compiling html_entity_lookup.c
+compiling html_sax_parser_context.c
+compiling html_sax_push_parser.c
+compiling nokogiri.c
+compiling xml_attr.c
+compiling xml_attribute_decl.c
+compiling xml_cdata.c
+compiling xml_comment.c
+compiling xml_document.c
+xml_document.c:182:21: warning: cast from 'const unsigned char *' to 'char *' drops const qualifier [-Wcast-qual]
+      free((char *) doc->encoding); /* this may produce a gcc cast warning */
+                    ^
+xml_document.c:535:26: warning: cast from 'const char *' to 'unsigned char *' drops const qualifier [-Wcast-qual]
+      ns[i] = (xmlChar*) ptr;
+                         ^
+2 warnings generated.
+compiling xml_document_fragment.c
+compiling xml_dtd.c
+compiling xml_element_content.c
+compiling xml_element_decl.c
+compiling xml_encoding_handler.c
+compiling xml_entity_decl.c
+compiling xml_entity_reference.c
+compiling xml_io.c
+compiling xml_libxml2_hacks.c
+compiling xml_namespace.c
+xml_namespace.c:17:24: warning: cast from 'const unsigned char *' to 'unsigned char *' drops const qualifier [-Wcast-qual]
+    xmlFree((xmlChar *)ns->href);
+                       ^
+xml_namespace.c:20:24: warning: cast from 'const unsigned char *' to 'unsigned char *' drops const qualifier [-Wcast-qual]
+    xmlFree((xmlChar *)ns->prefix);
+                       ^
+xml_namespace.c:67:49: warning: incompatible pointer types passing 'struct _xmlNs *' to parameter of type 'xmlNodePtr' (aka 'struct _xmlNode *') [-Wincompatible-pointer-types]
+  return (node->next && ! Nokogiri_namespace_eh(node->next));
+                                                ^~~~~~~~~~
+xml_namespace.c:27:38: note: passing argument to parameter 'node' here
+int Nokogiri_namespace_eh(xmlNodePtr node)
+                                     ^
+3 warnings generated.
+compiling xml_node.c
+xml_node.c:170:15: warning: 14 enumeration values not handled in switch: 'XML_ATTRIBUTE_NODE', 'XML_ENTITY_NODE', 'XML_DOCUMENT_NODE'... [-Wswitch]
+      switch (reparentee->type) {
+              ^
+xml_node.c:188:15: warning: 15 enumeration values not handled in switch: 'XML_ATTRIBUTE_NODE', 'XML_ENTITY_NODE', 'XML_DOCUMENT_NODE'... [-Wswitch]
+      switch (reparentee->type) {
+              ^
+xml_node.c:199:15: warning: 19 enumeration values not handled in switch: 'XML_ELEMENT_NODE', 'XML_ATTRIBUTE_NODE', 'XML_CDATA_SECTION_NODE'... [-Wswitch]
+      switch (reparentee->type) {
+              ^
+xml_node.c:167:13: warning: 14 enumeration values not handled in switch: 'XML_CDATA_SECTION_NODE', 'XML_ENTITY_NODE', 'XML_PI_NODE'... [-Wswitch]
+    switch (parent->type) {
+            ^
+xml_node.c:847:22: warning: cast from 'const unsigned char *' to 'unsigned char *' drops const qualifier [-Wcast-qual]
+  colon = (xmlChar *)xmlStrchr(attribute, (const xmlChar)':');
+                     ^
+xml_node.c:865:19: warning: cast from 'const unsigned char *' to 'void *' drops const qualifier [-Wcast-qual]
+  xmlFree((void *)attribute);
+                  ^
+xml_node.c:869:19: warning: cast from 'const unsigned char *' to 'void *' drops const qualifier [-Wcast-qual]
+  xmlFree((void *)value);
+                  ^
+7 warnings generated.
+compiling xml_node_set.c
+compiling xml_processing_instruction.c
+compiling xml_reader.c
+compiling xml_relax_ng.c
+compiling xml_sax_parser.c
+compiling xml_sax_parser_context.c
+compiling xml_sax_push_parser.c
+compiling xml_schema.c
+compiling xml_syntax_error.c
+compiling xml_text.c
+compiling xml_xpath_context.c
+compiling xslt_stylesheet.c
+xslt_stylesheet.c:217:21: warning: incompatible pointer to integer conversion passing 'void *' to parameter of type 'VALUE' (aka 'unsigned long') [-Wint-conversion]
+    Data_Get_Struct(ctxt->style->_private, nokogiriXsltStylesheetTuple,
+                    ^~~~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:1198:41: note: expanded from macro 'Data_Get_Struct'
+    ((sval) = (type*)rb_data_object_get(obj))
+                                        ^~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:1390:26: note: passing argument to parameter 'obj' here
+rb_data_object_get(VALUE obj)
+                         ^
+xslt_stylesheet.c:230:21: warning: incompatible pointer to integer conversion passing 'void *' to parameter of type 'VALUE' (aka 'unsigned long') [-Wint-conversion]
+    Data_Get_Struct(ctxt->style->_private, nokogiriXsltStylesheetTuple,
+                    ^~~~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:1198:41: note: expanded from macro 'Data_Get_Struct'
+    ((sval) = (type*)rb_data_object_get(obj))
+                                        ^~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:1390:26: note: passing argument to parameter 'obj' here
+rb_data_object_get(VALUE obj)
+                         ^
+2 warnings generated.
+linking shared-object nokogiri/nokogiri.bundle
+Cleaning files only used during build.
+rm -rf /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/ext/nokogiri/tmp/x86_64-apple-darwin16.1.0/ports
+rm -rf /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/ports
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/ext/nokogiri
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 nokogiri.bundle ./.gem.20170615-29352-8v27pt/nokogiri

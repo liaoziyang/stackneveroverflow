@@ -1,0 +1,90 @@
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/therubyracer-0.12.3/ext/v8
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20170615-29352-1o5z9xy.rb extconf.rb
+checking for main() in -lpthread... yes
+checking for main() in -lobjc... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0/therubyracer-0.12.3/mkmf.log
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/therubyracer-0.12.3/ext/v8
+make "DESTDIR=" clean
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/therubyracer-0.12.3/ext/v8
+make "DESTDIR="
+compiling accessor.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling array.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling backref.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling constants.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling constraints.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling context.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling date.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling exception.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling external.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling function.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling gc.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling handles.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling heap.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling init.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+init.cc:11:20: warning: empty parentheses interpreted as a function declaration [-Wvexing-parse]
+    v8::Locker lock();
+                   ^~
+init.cc:11:20: note: remove parentheses to declare a variable
+    v8::Locker lock();
+                   ^~
+init.cc:11:16: warning: 'lock' has C-linkage specified, but returns user-defined type 'v8::Locker' which is incompatible with C [-Wreturn-type-c-linkage]
+    v8::Locker lock();
+               ^
+2 warnings generated.
+compiling invocation.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling locker.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling message.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling object.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling primitive.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling rr.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling script.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+script.cc:82:23: warning: implicit conversion loses integer precision: 'long' to 'useconds_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  usleep(data->timeout*1000);
+  ~~~~~~ ~~~~~~~~~~~~~^~~~~
+1 warning generated.
+compiling signature.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling stack.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling string.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling template.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling trycatch.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling v8.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling value.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+linking shared-object v8/init.bundle
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/therubyracer-0.12.3/ext/v8
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 init.bundle ./.gem.20170615-29352-15lgw7n/v8
