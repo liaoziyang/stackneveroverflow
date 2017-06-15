@@ -16,13 +16,6 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :name, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:name) %>
-  </div>
-  <div class="form-group">
     <%= f.label :email, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :email, :class => 'form-control' %>
@@ -30,11 +23,60 @@
     <%=f.error_span(:email) %>
   </div>
   <div class="form-group">
-    <%= f.label :password_digest, :class => 'control-label col-lg-2' %>
+    <%= f.label :encrypted_password, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :password_digest, :class => 'form-control' %>
+      <%= f.text_field :encrypted_password, :class => 'form-control' %>
     </div>
-    <%=f.error_span(:password_digest) %>
+    <%=f.error_span(:encrypted_password) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :reset_password_token, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :reset_password_token, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:reset_password_token) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :reset_password_sent_at, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :reset_password_sent_at, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:reset_password_sent_at) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :remember_created_at, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :remember_created_at, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:remember_created_at) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :current_sign_in_at, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :current_sign_in_at, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:current_sign_in_at) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_sign_in_at, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :last_sign_in_at, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:last_sign_in_at) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :current_sign_in_ip, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :current_sign_in_ip, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:current_sign_in_ip) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_sign_in_ip, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :last_sign_in_ip, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:last_sign_in_ip) %>
   </div>
 
   <div class="form-group">
