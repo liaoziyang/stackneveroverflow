@@ -7,4 +7,9 @@ module ApplicationHelper
     "#{base_title} | #{page_title}"
   end
  end
+
+ def qiita_markdown(markdown)
+    processor = Qiita::Markdown::Processor.new(hostname: "kyomo.heroku.com")
+    processor.call(markdown)[:output].to_s.html_safe
+  end
 end

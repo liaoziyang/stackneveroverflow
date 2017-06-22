@@ -7,7 +7,7 @@
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @question.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
-  <dd><%= @question.content %></dd>
+  <dd><%= qiita_markdown(@question.content) %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
