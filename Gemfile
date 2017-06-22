@@ -47,8 +47,6 @@ gem 'therubyracer', platforms: :ruby
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'rails_admin'
-gem 'omniauth-twitter'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
