@@ -1,0 +1,67 @@
+ar:
+  activerecord:
+    attributes:
+      user:
+        current_password: "كلمة المرور الحالية"
+        email: "البريد الإلكتروني"
+        password: "كلمة المرود"
+        password_confirmation: "تأكيد كلمة المرور"
+        remember_me: "تذكرني"
+    models:
+      user: "المستخدم"
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: "أعدْ إرسال تعليمات التأكيد"
+    mailer:
+      confirmation_instructions:
+        action: "أكّد حسابي"
+        greeting: "مرحبا %{recipient}"
+        instruction: "يمكن تأكيد حساب بريدك الإلكتروني من خلال الرابط التّالي:"
+      reset_password_instructions:
+        action: "غيّر كلمة السر"
+        greeting: "مرحبا %{recipient}"
+        instruction: "طلب أحدهم رابطًا لتغيير كلمة السر الخاصة بك، ويُمكن عمل ذلك من خلال الرابط التالي."
+        instruction_2: "إن لم تكن أنت من طلب هذا، من فضلك تجاهل هذه الرسالة."
+        instruction_3: "لن تتغيّر كلمة السر الخاصة بك حتى تتبع الرابط السابق وتُنشئ كلمة سر جديدة."
+      unlock_instructions:
+        action: "أزلْ الحظر عن حسابي"
+        greeting: "مرحبًا %{recipient}"
+        instruction: "انقرْ الرابط على الرابط التالي لفك الحظر عن حسابك:"
+        message: "قُفل حسابك بسبب المحاولات الفاشلة في تسجيل الدخول."
+    passwords:
+      edit:
+        change_my_password: "غيّر كلمة المرور خاصتي"
+        change_your_password: "غيّر كلمة المرور الخاصة بك"
+        confirm_new_password: "أكّد كلمة السر الجديدة"
+        new_password: "كلمة سر جديدة"
+      new:
+        forgot_your_password: "هل نسيت كلمة المرور؟"
+        send_me_reset_password_instructions: "أرسلْ لي تعليمات تصفير كلمة المرور"
+    registrations:
+      edit:
+        are_you_sure: "هل أنت متأكّد؟"
+        cancel_my_account: "ألغِ حسابي"
+        currently_waiting_confirmation_for_email: "في انتظار تفعيل البريد الإلكتروني %{email}"
+        leave_blank_if_you_don_t_want_to_change_it: "أبقه فارغًا إن كنت لا ترغب في تغييره"
+        title: "تعديل %{resource}"
+        unhappy: "غير راضٍ؟"
+        update: "تحديث"
+        we_need_your_current_password_to_confirm_your_changes: "نحتاج كلمة المرور الحالية خاصتك لتأكيد تغيراتك"
+      new:
+        sign_up: "سجّلْ"
+    sessions:
+      new:
+        sign_in: "سجّلْ الدخول"
+    shared:
+      links:
+        back: "عودة"
+        didn_t_receive_confirmation_instructions: "ألم تستلم تعليمات التأكيد؟"
+        didn_t_receive_unlock_instructions: "ألم تستلم تعليمات فك الحظر؟"
+        forgot_your_password: "هل نسيت كلمة المرور؟"
+        sign_in: "سجّلْ الدخول"
+        sign_in_with_provider: "سجّلْ الدخول عن طريق %{provider}"
+        sign_up: "سجّلْ"
+    unlocks:
+      new:
+        resend_unlock_instructions: "أعدْ إرسال تعليمات فك الحظر"

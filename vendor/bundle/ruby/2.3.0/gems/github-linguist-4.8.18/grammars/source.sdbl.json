@@ -1,0 +1,97 @@
+{
+  "name": "1C (Query)",
+  "scopeName": "source.sdbl",
+  "firstLineMatch": "(?i)Выбрать|Select(\\s+Разрешенные|Allowed)?(\\s+Различные|Distinct)?(\\s+Первые|Top)?.*",
+  "uuid": "d94265d3-2270-4ff2-ba36-649fbb4160df",
+  "patterns": [
+    {
+      "name": "comment.line.double-slash.sdbl",
+      "match": "(^\\s*//.*$)"
+    },
+    {
+      "name": "comment.line.double-slash.sdbl",
+      "begin": "//",
+      "end": "$"
+    },
+    {
+      "name": "string.quoted.double.sdbl",
+      "begin": "\\\"",
+      "end": "\\\"(?![\\\"])",
+      "patterns": [
+        {
+          "name": "constant.character.escape.sdbl",
+          "match": "\\\"\\\""
+        },
+        {
+          "name": "comment.line.double-slash.sdbl",
+          "match": "(^\\s*//.*$)"
+        }
+      ]
+    },
+    {
+      "name": "constant.language.sdbl",
+      "match": "(?i)(?<=[^\\wа-яё\\.]|^)(Неопределено|Undefined|Истина|True|Ложь|False|NULL)(?=[^\\wа-яё\\.]|$)"
+    },
+    {
+      "name": "constant.numeric.sdbl",
+      "match": "(?<=[^\\wа-яё\\.]|^)(\\d+\\.?\\d*)(?=[^\\wа-яё\\.]|$)"
+    },
+    {
+      "name": "keyword.control.conditional.sdbl",
+      "match": "(?i)(?<=[^\\wа-яё\\.]|^)(Выбор|Case|Когда|When|Тогда|Then|Иначе|Else|Конец|End)(?=[^\\wа-яё\\.]|$)"
+    },
+    {
+      "name": "keyword.operator.logical.sdbl",
+      "match": "(?i)(?<!КАК\\s|AS\\s)(?<=[^\\wа-яё\\.]|^)(НЕ|NOT|И|AND|ИЛИ|OR|В\\s+ИЕРАРХИИ|IN\\s+HIERARCHY|В|In|Между|Between|Есть\\sNULL|Is\\s+NULL|Ссылка|Refs|Подобно|Like)(?=[^\\wа-яё\\.]|$)"
+    },
+    {
+      "name": "keyword.operator.comparison.sdbl",
+      "match": "<=|>=|=|<|>"
+    },
+    {
+      "name": "keyword.operator.arithmetic.sdbl",
+      "match": "(\\+|-|\\*|/|%)"
+    },
+    {
+      "name": "keyword.operator.sdbl",
+      "match": "(,|;)"
+    },
+    {
+      "name": "keyword.control.sdbl",
+      "match": "(?i)(?<=[^\\wа-яё\\.]|^)(Выбрать|Select|Разрешенные|Allowed|Различные|Distinct|Первые|Top|Как|As|ПустаяТаблица|EpmtyTable|Поместить|Into|Уничтожить|Drop|Из|From|((Левое|Left|Правое|Right|Полное|Full)\\s+(Внешнее\\s+|Outer\\s+)?Соединение|Join)|((Внутреннее\\s+|Inner\\s+)?Соединение|Join)|Где|Where|(Сгруппировать\\s+По)|(Group\\s+By)|Имеющие|Having|Объединить(\\s+Все)?|Union(\\s+All)?|(Упорядочить\\s+По)|(Order\\s+By)|Автоупорядочивание|Autoorder|Итоги|Totals|По(\\s+Общие)?|By(\\s+Overall)|(Только\\s+)?Иерархия|(Only\\s+)Hierarchy|Периодами|Periods|Индексировать|Index|Выразить|Cast|Возр|Asc|Убыв|Desc|Для\\s+Изменения|(For\\sUpdate(\\s+Of)?)|Спецсимвол|Escape)(?=[^\\wа-яё\\.]|$)"
+    },
+    {
+      "comment": "Функции языка запросов",
+      "name": "support.function.sdbl",
+      "match": "(?i)(?<=[^\\wа-яё\\.]|^)(Значение|Value|ДатаВремя|DateTime|Тип|Type)(?=\\()"
+    },
+    {
+      "comment": "Функции работы со строками",
+      "name": "support.function.sdbl",
+      "match": "(?i)(?<=[^\\wа-яё\\.]|^)(Подстрока|Substring)(?=\\()"
+    },
+    {
+      "comment": "Функции работы с датами",
+      "name": "support.function.sdbl",
+      "match": "(?i)(?<=[^\\wа-яё\\.]|^)(Год|Year|Квартал|Quarter|Месяц|Month|ДеньГода|DayOfYear|День|Day|Неделя|Week|ДеньНедели|Weekday|Час|Hour|Минута|Minute|Секунда|Second|НачалоПериода|BeginOfPeriod|КонецПериода|EndOfPeriod|ДобавитьКДате|DateAdd|РазностьДат|DateDiff)(?=\\()"
+    },
+    {
+      "comment": "Агрегатные функции",
+      "name": "support.function.sdbl",
+      "match": "(?i)(?<=[^\\wа-яё\\.]|^)(Сумма|Sum|Среднее|Avg|Минимум|Min|Максимум|Max|Количество|Count)(?=\\()"
+    },
+    {
+      "comment": "Прочие функции",
+      "name": "support.function.sdbl",
+      "match": "(?i)(?<=[^\\wа-яё\\.]|^)(ЕстьNULL|IsNULL|Представление|Presentation|ПредставлениеСсылки|RefPresentation|ТипЗначения|ValueType)(?=\\()"
+    },
+    {
+      "name": "support.type.sdbl",
+      "match": "(?i)(?<=[^\\wа-яё\\.])(Число|Number|Строка|String|Дата|Date)(?=[^\\wа-яё\\.]|$)"
+    },
+    {
+      "name": "variable.parameter.sdbl",
+      "match": "(&[\\wа-яё]+)"
+    }
+  ]
+}

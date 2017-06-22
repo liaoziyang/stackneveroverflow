@@ -1,0 +1,99 @@
+{
+  "fileTypes": [
+    "changes",
+    "Changelog",
+    "CHANGES",
+    "CHANGELOG"
+  ],
+  "foldingStartMarker": "(:?^[-]{30}|[ \\t]*\\*",
+  "foldingStopMarker": "(^$)",
+  "name": "ChangeLogs",
+  "patterns": [
+    {
+      "match": "^[*+=-]{30}[+==-]*",
+      "name": "entity.section.name.changelogs"
+    },
+    {
+      "match": "^[ \\t]*- (.+)",
+      "captures": {
+        "1": {
+          "name": "comment.changelogs"
+        }
+      }
+    },
+    {
+      "match": "^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+ \\d+:\\d+:\\d+ [A-Z]+ \\d{4}) - (.*) (<.*@.*>) ([#_a-zA-Z0-9.-]+)$",
+      "captures": {
+        "1": {
+          "name": "constant.changelogs"
+        },
+        "2": {
+          "name": "entity.name.changelogs"
+        },
+        "3": {
+          "name": "variable.other.changelogs"
+        },
+        "4": {
+          "name": "constant.numeric.changelogs"
+        }
+      }
+    },
+    {
+      "match": "^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]+)? \\d{4}) (.*) (<.+@.+>)(?: -)? ([#a-zA-Z0-9.-]+)?$",
+      "captures": {
+        "1": {
+          "name": "constant.changelogs"
+        },
+        "2": {
+          "name": "entity.name.changelogs"
+        },
+        "3": {
+          "name": "variable.other.changelogs"
+        },
+        "4": {
+          "name": "constant.numeric.changelogs"
+        }
+      }
+    },
+    {
+      "match": "^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]+)? \\d{4}) (.*) (<.*@.*>)(?: -) (.*)$",
+      "captures": {
+        "1": {
+          "name": "constant.changelogs"
+        },
+        "2": {
+          "name": "entity.name.changelogs"
+        },
+        "3": {
+          "name": "variable.other.changelogs"
+        },
+        "4": {
+          "name": "constant.numeric.changelogs"
+        }
+      }
+    },
+    {
+      "match": "^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]+)? \\d{4})(?: -) (.+@.+)$",
+      "captures": {
+        "1": {
+          "name": "constant.changelogs"
+        },
+        "2": {
+          "name": "variable.other.changelogs"
+        }
+      }
+    },
+    {
+      "match": "^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]+[ ]+\\d+ \\d{4}) (.+@.+)$",
+      "captures": {
+        "1": {
+          "name": "constant.changelogs"
+        },
+        "2": {
+          "name": "variable.other.changelogs"
+        }
+      }
+    }
+  ],
+  "scopeName": "source.changelogs.rpm-spec"
+}

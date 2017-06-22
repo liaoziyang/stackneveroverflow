@@ -1,0 +1,65 @@
+{
+  "scopeName": "source.csound-score",
+  "fileTypes": [
+    "sco"
+  ],
+  "name": "Csound Score",
+  "patterns": [
+    {
+      "include": "source.csound#preprocessorDirectives"
+    },
+    {
+      "include": "source.csound#commentsAndMacroCalls"
+    },
+    {
+      "name": "meta.statement.csound-score",
+      "begin": "([abefimq-tv-z]|[nN][pP]?)|([{}])",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.csound-score"
+        },
+        "2": {
+          "name": "punctuation.csound-score"
+        }
+      },
+      "end": "\\n",
+      "patterns": [
+        {
+          "include": "source.csound#commentsAndMacroCalls"
+        },
+        {
+          "include": "#partialExpressions"
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "partialExpressions": {
+      "patterns": [
+        {
+          "include": "source.csound#numbers"
+        },
+        {
+          "name": "string.quoted.csound-score",
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.csound-score"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.csound-score"
+            }
+          },
+          "patterns": [
+            {
+              "include": "source.csound#macroCalls"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

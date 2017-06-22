@@ -1,0 +1,67 @@
+fi:
+  activerecord:
+    attributes:
+      user:
+        current_password: 
+        email: 
+        password: 
+        password_confirmation: 
+        remember_me: 
+    models:
+      user: 
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: Uudelleenlähetä vahvistusohjeet
+    mailer:
+      confirmation_instructions:
+        action: Vahvista tilini
+        greeting: Tervetuloa, %{recipient}!
+        instruction: 'Vahvista sähköpostisi painamalla alla olevaa linkkiä:'
+      reset_password_instructions:
+        action: Vaihda salasanani
+        greeting: Hei, %{recipient}!
+        instruction: Joku on pyytänyt tilisi salasanan vaihtoa. Tämä voidaan suorittaa painamalla linkkiä alla.
+        instruction_2: Jos et pyytänyt tätä, älä huomioi tätä sähköpostia.
+        instruction_3: Salasanaasi ei vaihdeta ennen kuin painat yllä olevaa linkkiä ja syötät uuden salasanan.
+      unlock_instructions:
+        action: Poista tilini lukitus
+        greeting: Hei, %{recipient}!
+        instruction: 'Paina alla olevaa linkkiä poistaaksesi lukituksen:'
+        message: Tilisi on lukittu johtuen liian useasta epäonnistuneesta kirjautumisyrityksestä.
+    passwords:
+      edit:
+        change_my_password: 
+        change_your_password: 
+        confirm_new_password: 
+        new_password: 
+      new:
+        forgot_your_password: Unohditko salasanasi?
+        send_me_reset_password_instructions: Lähetä minulle salasanan vaihto-ohjeet
+    registrations:
+      edit:
+        are_you_sure: Oletko varma?
+        cancel_my_account: Poista tilini
+        currently_waiting_confirmation_for_email: 
+        leave_blank_if_you_don_t_want_to_change_it: jätä tämä tyhjäksi, mikäli et halua vaihtaa
+        title: Muokkaa %{resource}
+        unhappy: 
+        update: 
+        we_need_your_current_password_to_confirm_your_changes: syötä nykyinen salasanasi
+      new:
+        sign_up: Rekisteröidy
+    sessions:
+      new:
+        sign_in: Kirjaudu sisään
+    shared:
+      links:
+        back: 
+        didn_t_receive_confirmation_instructions: Vahvistusviesti ei saapunut perille?
+        didn_t_receive_unlock_instructions: Salasanan vaihto -ohjeet eivät saapuneet perille?
+        forgot_your_password: Unohditko salasanasi?
+        sign_in: Kirjaudu sisään
+        sign_in_with_provider: Kirjaudu sisään (%{provider})
+        sign_up: Rekisteröidy
+    unlocks:
+      new:
+        resend_unlock_instructions: Uudelleen lähetä lukituksen poisto -ohjeet

@@ -1,0 +1,623 @@
+{
+  "comment": "\n\t\tThis bundle is, as can easily be seen, far from complete,\n\t\tbut it should still be as useful as the Lilypond.app pyobjc\n\t\tapplication, which has no syntax coloring, no way to do\n\t\tsnippets, and pretty much no interesting functionality at\n\t\tall, other than a \"Run\" menu option. :)\n\t",
+  "fileTypes": [
+    "ly",
+    "lily",
+    "ily"
+  ],
+  "keyEquivalent": "^~L",
+  "name": "LilyPond",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#g_header"
+    },
+    {
+      "include": "#groupings"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#scheme"
+    },
+    {
+      "include": "#functions"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "begin": "%{",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.lilypond"
+            }
+          },
+          "end": "%}",
+          "name": "comment.block.lilypond"
+        },
+        {
+          "begin": "(^[ \\t]+)?(?=%)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.lilypond"
+            }
+          },
+          "end": "(?!\\G)",
+          "patterns": [
+            {
+              "begin": "%",
+              "beginCaptures": {
+                "0": {
+                  "name": "punctuation.definition.comment.lilypond"
+                }
+              },
+              "end": "\\n",
+              "name": "comment.line.percentage.lilypond"
+            }
+          ]
+        }
+      ]
+    },
+    "f_clef": {
+      "captures": {
+        "1": {
+          "name": "support.function.element.lilypond"
+        },
+        "2": {
+          "name": "punctuation.definition.function.lilypond"
+        },
+        "3": {
+          "name": "punctuation.definition.string.lilypond"
+        },
+        "4": {
+          "name": "constant.language.clef-name.lilypond"
+        },
+        "5": {
+          "name": "constant.other.modifier.clef.lilypond"
+        },
+        "6": {
+          "name": "meta.fixme.unknown-clef-name.lilypond"
+        },
+        "7": {
+          "name": "constant.other.modifier.clef.lilypond"
+        },
+        "8": {
+          "name": "punctuation.definition.string.lilypond"
+        }
+      },
+      "comment": "\n\t\t\t\tThis looks something like:   \\clef mezzosoprano_8\n\t\t\t\tOr maybe:                    \\clef neomensural-c3^15\n\t\t\t",
+      "match": "(?x)\n\t\t\t\t((\\\\) clef) \\s+  # backslash + \"clef\" + spaces (groups 1-2)\n\t\t\t\t(?:\n\t\t\t\t  (\"?)\t# beginning quotes (group 3)\n\t\t\t\t  (?:\n\t\t\t\t\t  ( (?: # group 4\n\t\t\t\t\t\t  treble | violin | G | french |                    # G clefs\n\t\t\t\t\t      alto | C | tenor | (?:mezzo)?soprano | baritone | # C clefs\n\t\t\t\t\t      (?:sub)?bass | F | varbaritone |                  # F clefs\n\t\t\t\t\t      percussion | tab | # percussion / tablature clefs\n                      \n\t\t\t\t          (?:neo)?mensural-c[1-4] | mensural-[fg] | \t\t# Ancient clefs\n\t\t\t\t\t      petrucci-(?: [fg] | c[1-5] ) |\n\t\t\t\t\t      (?: vaticana | medicaea | hufnagel ) - (?: do[1-3] | fa[12] ) |\n\t\t\t\t\t      hufnagel-do-fa\n\t\t\t\t\t    )\n\t\t\t\t\t    ([_^](?:8|15)?)? # optionally shift 1-2 octaves ↑/↓ (group 5)\n\t\t\t\t\t  ) |\n\t\t\t\t\t  ( (?:\\w+) ([_^](?:8|15))? ) # unknown clef name (groups 6-7)\n\t\t\t\t  )\n\t\t\t\t  (\\3) # closing quotes (group 8)\n\t\t\t\t)?\n\t\t\t",
+      "name": "meta.element.clef.lilypond"
+    },
+    "f_generic": {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.function.lilypond"
+        }
+      },
+      "match": "(\\\\)[a-zA-Z-]+\\b",
+      "name": "support.function.general.lilypond"
+    },
+    "f_key-signature": {
+      "comment": "FIXME",
+      "name": "meta.element.key-signature.lilypond"
+    },
+    "f_keywords": {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.function.lilypond"
+        }
+      },
+      "match": "(?x)\n\t\t\t\t(?: (\\\\)\n\t\t\t\t    (?: set | new | override | revert)\\b\n\t\t\t\t)\n\t\t\t",
+      "name": "keyword.control.lilypond"
+    },
+    "f_time-signature": {
+      "captures": {
+        "1": {
+          "name": "support.function.element.lilypond"
+        },
+        "2": {
+          "name": "punctuation.definition.function.lilypond"
+        },
+        "3": {
+          "name": "constant.numeric.time-signature.lilypond"
+        }
+      },
+      "match": "(?x)\n\t\t\t\t((\\\\) time) \\s+ # backslash + \"time\" + spaces (groups 1-2)\n\t\t\t\t([1-9][0-9]*/[1-9][0-9]*)?\n\t\t\t",
+      "name": "meta.element.time-signature.lilypond"
+    },
+    "functions": {
+      "patterns": [
+        {
+          "include": "#f_clef"
+        },
+        {
+          "include": "#f_time-signature"
+        },
+        {
+          "include": "#f_key-signature"
+        },
+        {
+          "include": "#f_keywords"
+        },
+        {
+          "include": "#f_generic"
+        }
+      ]
+    },
+    "g_header": {
+      "begin": "((\\\\)header)\\s*({)",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.section.header.lilypond"
+        },
+        "2": {
+          "name": "punctuation.definition.function.lilypond"
+        },
+        "3": {
+          "name": "punctuation.section.group.begin.lilypond"
+        }
+      },
+      "end": "}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.group.end.lilypond"
+        }
+      },
+      "name": "meta.header.lilypond",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#scheme"
+        },
+        {
+          "include": "#g_markup"
+        },
+        {
+          "match": "=",
+          "name": "punctuation.separator.key-value.lilypond"
+        },
+        {
+          "match": "(?x)\n\t\t\t\t\t\tdedication | title | subtitle | subsubtitle | poet |\n\t\t\t\t\t\tcomposer | meter | opus | arranger | instrument |\n\t\t\t\t\t\tpiece | breakbefore | copyright | tagline | enteredby\n\t\t\t\t\t",
+          "name": "support.constant.header.lilypond"
+        },
+        {
+          "match": "(?x)\n\t\t\t\t\t\tmutopiatitle | mutopiacomposer | mutopiapoet |\n\t\t\t\t\t\tmutopiaopus | mutopiainstrument | date | source |\n\t\t\t\t\t\tstyle | maintainer | maintainerEmail |\n\t\t\t\t\t\tmaintainerWeb | lastupdated\n\t\t\t\t\t",
+          "name": "support.constant.header.mutopia.lilypond"
+        }
+      ]
+    },
+    "g_m_group": {
+      "begin": "{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.group.begin.lilypond"
+        }
+      },
+      "end": "}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.group.end.lilypond"
+        }
+      },
+      "name": "meta.group.lilypond",
+      "patterns": [
+        {
+          "include": "#f_generic"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#scheme"
+        },
+        {
+          "include": "#g_m_group"
+        }
+      ]
+    },
+    "g_markup": {
+      "begin": "(?x)\n\t\t\t\t((\\\\) markup) \\s+ # backslash + \"markup\" + spaces\n\t\t\t\t(?={)\n\t\t\t",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.element.markup.lilypond"
+        },
+        "2": {
+          "name": "punctuation.definition.function.markup"
+        }
+      },
+      "end": "(?<=})",
+      "name": "meta.element.markup.lilypond",
+      "patterns": [
+        {
+          "include": "#g_m_group"
+        }
+      ]
+    },
+    "g_relative": {
+      "begin": "((\\\\)relative)\\s*(?:([a-h][',]*)\\s*)?(?={)",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.section.lilypond"
+        },
+        "2": {
+          "name": "punctuation.definition.function.lilypond"
+        },
+        "3": {
+          "name": "storage.type.pitch.lilypond"
+        }
+      },
+      "end": "(?<=})",
+      "patterns": [
+        {
+          "include": "#group"
+        }
+      ]
+    },
+    "g_system": {
+      "begin": "<<",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.system.begin.lilypond"
+        }
+      },
+      "end": ">>",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.system.end.lilypond"
+        }
+      },
+      "name": "meta.system.lilypond",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "g_times": {
+      "begin": "((\\\\)times)\\s*(?:([1-9][0-9]*/[1-9][0-9])\\s*)(?={)",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.section.lilypond"
+        },
+        "2": {
+          "name": "punctuation.definition.function.lilypond"
+        },
+        "3": {
+          "name": "constant.numeric.fraction.lilypond"
+        }
+      },
+      "end": "(?<=})",
+      "patterns": [
+        {
+          "include": "#group"
+        }
+      ]
+    },
+    "group": {
+      "begin": "{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.group.begin.lilypond"
+        }
+      },
+      "end": "}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.group.end.lilypond"
+        }
+      },
+      "name": "meta.music-expression.lilypond",
+      "patterns": [
+        {
+          "include": "#music-expr"
+        }
+      ]
+    },
+    "groupings": {
+      "patterns": [
+        {
+          "include": "#g_system"
+        },
+        {
+          "include": "#g_relative"
+        },
+        {
+          "include": "#g_times"
+        },
+        {
+          "include": "#group"
+        }
+      ]
+    },
+    "music-expr": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#groupings"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "#scheme"
+        },
+        {
+          "include": "#notes"
+        }
+      ]
+    },
+    "n_articulations": {
+      "patterns": [
+        {
+          "match": "(?x)\n\t\t\t\t\t\t([_^-])\n\t\t\t\t\t\t(?:[.>^+|_-])\n\t\t\t\t\t",
+          "name": "storage.modifier.articulation.accent.lilypond"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.function.lilypond"
+            }
+          },
+          "match": "(?x)\n\t\t\t\t\t\t(\\\\)\n\t\t\t\t\t\t(?: accent | markato | staccatissimo |\t\t       # basic accents\n\t\t\t\t\t\t\tespressivo | staccato | tenuto | portato | \n\t\t\t\t\t\t\t(?:up|down)bow | flageolet | thumb |\n\t\t\t\t\t\t\t[lr](?:heel|toe) | open | stopped |\n\t\t\t\t\t\t\t(?:reverse)?turn | trill |\n\t\t\t\t\t\t\tprall(?: prall | mordent | down | up)? |       # pralls\n\t\t\t\t\t\t\t(?: up | down | line ) prall |                 # and\n\t\t\t\t\t\t\t(?: up | down )? mordent |                     # mordents\n\t\t\t\t\t\t\tsignumcongruentiae |\n\t\t\t\t\t\t\t(?: (?:very)? long | short)?fermata(Markup)? | # fermatas\n\t\t\t\t\t\t\tsegno | (?:var)?coda \n\t\t\t\t\t\t)\n\t\t\t\t\t",
+          "name": "storage.modifier.articulation.named.lilypond"
+        },
+        {
+          "match": "(?x)\n\t\t\t\t\t\t(\\\\) # backslash\n\t\t\t\t\t\t(?:\n\t\t\t\t\t\t    p{1,5} | m[pf] | f{1,4} | fp | # forte, piano, etc.\n    \t\t\t\t\t\t[sr]fz | sff? | spp? | \n    \t\t\t\t\t\t< | > | ! | espressivo         # (de)crescendo\n\t\t\t\t\t\t)\n\t\t\t\t\t",
+          "name": "storage.modifier.articulation.dynamics.lilypond"
+        },
+        {
+          "match": "\\[|\\]",
+          "name": "storage.modifier.beam.lilypond"
+        },
+        {
+          "match": "\\(|\\)",
+          "name": "storage.modifier.slur.lilypond"
+        },
+        {
+          "match": "\\\\\\(|\\\\\\)",
+          "name": "storage.modifier.slur.phrasing.lilypond"
+        }
+      ]
+    },
+    "notes": {
+      "comment": "\n\t\t\t\tThis section includes the rules for notes, rests, and chords\n\t\t\t",
+      "patterns": [
+        {
+          "begin": "(?x)\\b\n\t\t\t\t\t    (\t\t\t\t\t\t  # (group 1)\n\t\t\t\t\t\t  ( [a-h]                 # Pitch (group 2)\n\t\t\t\t\t\t    ( (?:i[sh]){1,2} |    #   - sharp (group 3)\n\t\t\t\t\t\t      (?:e[sh]|s){1,2}    #   - flat\n\t\t\t\t\t\t    )?\n\t\t\t\t\t        (?:(\\!)|(\\?))?               # Cautionary accidental (groups 4-5)\n\t\t\t\t\t        ('+|,+)?             # Octave (group 6)\n\t\t\t\t\t\t  )\n\t\t\t\t\t\t  ( ( ((\\\\)breve)|        # Duration (groups 7-10)\n\t\t\t\t\t\t      64|32|16|8|4|2|1\n\t\t\t\t\t\t    )\n\t\t\t\t\t\t    (\\.+)?                 # Augmentation dot (group 11)\n\t\t\t\t\t\t\t((?:(\\*)(\\d+(?:/\\d+)?))*) # Scaling duration (groups 12-14)\n\t\t\t\t\t\t  )?\n\t\t\t\t\t\t)(?![a-z])\t# do not follow a note with a letter\n\t\t\t\t\t",
+          "beginCaptures": {
+            "10": {
+              "name": "punctuation.definition.function.lilypond"
+            },
+            "13": {
+              "name": "keyword.operator.duration-scale.lilypond"
+            },
+            "14": {
+              "name": "constant.numeric.fraction.lilypond"
+            },
+            "2": {
+              "name": "storage.type.pitch.lilypond"
+            },
+            "4": {
+              "name": "meta.note-modifier.accidental.reminder.lilypond"
+            },
+            "5": {
+              "name": "meta.note-modifier.accidental.cautionary.lilypond"
+            },
+            "6": {
+              "name": "meta.note-modifier.octave.lilypond"
+            },
+            "7": {
+              "name": "storage.type.duration.lilypond"
+            }
+          },
+          "comment": "\n\t\t\t\t\t\tThis rule handles notes, including the pitch, the\n\t\t\t\t\t\tduration, and any articulations drawn along with\n\t\t\t\t\t\tthe note.\n\t\t\t\t\t\t\n\t\t\t\t\t\tThis rule gets a whole lot uglier if we want to\n\t\t\t\t\t\tsupport multilingual note names.  If so, the rule\n\t\t\t\t\t\tgoes something like:\n\t\t\t\t\t\t\n\t\t\t\t\t\t(?x)\n\t\t\t\t\t\t\t\\b( # Basic Pitches\n\t\t\t\t\t\t\t  [a-h]  # Dutch/English/etc.                         \n\t\t\t\t\t\t\t  (?: (iss?|s|sharp|x)(iss?|s|sharp|x|ih) | # sharp / flat\n\t\t\t\t\t\t\t\t  (ess?|s|flat|f)(ess?|s|flat|f|eh)\n\t\t\t\t\t\t\t  )? |\n\t\t\t\t\t\t\t  (?: do|re|mi|fa|sol|la|si) # Italian/Spanish\n\t\t\t\t\t\t\t  (?: ss?|dd?bb?) # sharp/flat\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t...\n\t\t\t\t\t",
+          "end": "(?x)\n\t\t\t\t\t\t(?= [\\s}~a-z] |$) # End when we encounter a space or } or end of line\n\t\t\t\t\t",
+          "name": "meta.element.note.lilypond",
+          "patterns": [
+            {
+              "include": "#n_articulations"
+            }
+          ]
+        },
+        {
+          "begin": "(?x)\\b\n\t\t\t\t\t\t(?:(r)|(R)) # (groups 1-2)\n\t\t\t\t\t\t( ( (\\\\)breve|       # Duration (groups 3-5)\n\t\t\t\t\t\t    64|32|16|8|4|2|1\n\t\t\t\t\t\t  )\n\t\t\t\t\t\t  (\\.+)?                 # Augmentation dot (group 6)\n\t\t\t\t\t\t  ((?:(\\*)(\\d+(?:/\\d+)?))*) # Scaling duration (groups 7-9)\n\t\t\t\t\t\t\n\t\t\t\t\t\t)?\n\t\t\t\t\t\t(?![a-z])\t# do not follow a note with a letter\n\t\t\t\t\t",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.pause.rest.lilypond"
+            },
+            "2": {
+              "name": "storage.type.pause.rest.multi-measure.lilypond"
+            },
+            "3": {
+              "name": "storage.type.duration.lilypond"
+            },
+            "5": {
+              "name": "punctuation.definition.function.lilypond"
+            },
+            "7": {
+              "name": "keyword.operator.duration-scale.lilypond"
+            },
+            "9": {
+              "name": "constant.numeric.fraction.lilypond"
+            }
+          },
+          "end": "(?=[\\s}~a-z])",
+          "name": "meta.element.pause.rest.lilypond",
+          "patterns": [
+            {
+              "include": "#n_articulations"
+            }
+          ]
+        },
+        {
+          "begin": "(?x)\\b\n\t\t\t\t\t\t(s) # (group 1)\n\t\t\t\t\t\t( ( (\\\\)breve|       # Duration (groups 2-4)\n\t\t\t\t\t\t    64|32|16|8|4|2|1\n\t\t\t\t\t\t  )\n\t\t\t\t\t\t  (\\.+)?                 # Augmentation dot (group 5)\n\t\t\t\t\t\t  ((?:(\\*)(\\d+(?:/\\d+)?))*) # Scaling duration (groups 6-8)\n\t\t\t\t\t\t\n\t\t\t\t\t\t)?\n\t\t\t\t\t\t(?![a-z])\t# do not follow a note with a letter\n\t\t\t\t\t",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.pause.skip.lilypond"
+            },
+            "2": {
+              "name": "storage.type.duration.lilypond"
+            },
+            "4": {
+              "name": "punctuation.definition.function.lilypond"
+            },
+            "6": {
+              "name": "keyword.operator.duration-scale.lilypond"
+            },
+            "8": {
+              "name": "constant.numeric.fraction.lilypond"
+            }
+          },
+          "end": "(?=[\\s}~a-z]|$)",
+          "name": "meta.element.pause.skip.lilypond",
+          "patterns": [
+            {
+              "include": "#n_articulations"
+            }
+          ]
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "storage.type.pause.skip.lilypond"
+            },
+            "2": {
+              "name": "punctuation.definition.function.lilypond"
+            },
+            "3": {
+              "name": "storage.type.duration.lilypond"
+            }
+          },
+          "match": "((\\\\)skip)\\s+(64|32|16|8|4|2|1)",
+          "name": "meta.element.pause.skip.lilypond"
+        },
+        {
+          "begin": "<",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.chord.lilypond"
+            }
+          },
+          "comment": "\n\t\t\t\t\t\tLilypond chords look like:    < a b c >\n\t\t\t\t\t",
+          "end": ">",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.chord.lilypond"
+            }
+          },
+          "name": "meta.element.chord.lilypond",
+          "patterns": [
+            {
+              "captures": {
+                "1": {
+                  "name": "storage.type.pitch.lilypond"
+                },
+                "3": {
+                  "name": "meta.note-modifier.accidental.reminder.lilypond"
+                },
+                "4": {
+                  "name": "meta.note-modifier.accidental.cautionary.lilypond"
+                },
+                "5": {
+                  "name": "meta.note-modifier.octave.lilypond"
+                }
+              },
+              "match": "(?x)\\b\n\t\t\t\t\t\t\t\t  ( [a-h]                 # Pitch (group 1)\n\t\t\t\t\t\t\t\t    ( (?:i[sh]){1,2} |    #   - sharp (group 2)\n\t\t\t\t\t\t\t\t      (?:e[sh]|s){1,2}    #   - flat\n\t\t\t\t\t\t\t\t    )?\n\t\t\t\t\t\t\t        (?:(\\!)|(\\?))?       # Reminder/cautionary accidental (groups 3-4)\n\t\t\t\t\t\t\t        ('+|,+)?             # Octave (group 5)\n\t\t\t\t\t\t\t\t  )\n\t\t\t\t\t\t\t"
+            }
+          ]
+        },
+        {
+          "begin": "(?x)\n\t\t\t\t\t    (?<!-)\n\t\t\t\t\t    (?<=>)\n\t\t\t\t\t\t(\n\t\t\t\t\t\t\t( ( ((\\\\)breve)|        # Duration (groups 1-4)\n\t\t\t\t\t\t\t    64|32|16|8|4|2|1\n\t\t\t\t\t\t\t  )\n\t\t\t\t\t\t\t  (\\.+)?                  # Augmentation dot (group 5)\n\t\t\t\t\t\t\t) |\n\t\t\t\t\t\t\t(?![\\s}~a-z]|$)\n\t\t\t\t\t\t)\n\t\t\t\t\t",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.duration.lilypond"
+            },
+            "4": {
+              "name": "punctuation.definition.function.lilypond"
+            }
+          },
+          "comment": "\n\t\t\t\t\t\tThis rule attaches stuff to the end of a chord\n\t\t\t\t\t\t\n\t\t\t\t\t\tTherefore it begins after the > which ends a chord,\n\t\t\t\t\t\tand does not end after a > which ends a chord.\n\t\t\t\t\t\t(to avoid infinite loops)\n\t\t\t\t\t",
+          "end": "(?=[\\s}~a-z]|$)(?<![^-]>)",
+          "name": "meta.element.chord.lilypond",
+          "patterns": [
+            {
+              "include": "#n_articulations"
+            }
+          ]
+        },
+        {
+          "match": "~",
+          "name": "storage.type.tie.lilypond"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.function.lilypond"
+            }
+          },
+          "match": "(\\\\)breathe",
+          "name": "storage.type.breath-mark.lilypond"
+        }
+      ]
+    },
+    "scheme": {
+      "begin": "(^[ \\t])?(?=#)",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.leading.scheme"
+        }
+      },
+      "end": "(?!\\G)",
+      "patterns": [
+        {
+          "begin": "#",
+          "contentName": "source.scheme",
+          "end": "(?=[\\s%])|(?<=\\n)",
+          "name": "meta.embedded.line.scheme",
+          "patterns": [
+            {
+              "include": "source.scheme"
+            }
+          ]
+        }
+      ]
+    },
+    "strings": {
+      "begin": "\"",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.string.lilypond"
+        }
+      },
+      "end": "\"",
+      "name": "string.quoted.double.lilypond",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.lilypond"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.lilypond",
+  "uuid": "F25B30BE-0526-4D92-806C-F0D678DDF669"
+}

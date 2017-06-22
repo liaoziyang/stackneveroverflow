@@ -1,0 +1,10 @@
+{
+  "scopeName": "source.js.embedded.html",
+  "name": "Embedded JavaScript",
+  "injectionSelector": "L:source.js.embedded.html, L:source.js.embedded.xml",
+  "patterns": [
+    {
+      "match": "(?=</(?i:script)\\s*>)"
+    }
+  ]
+}

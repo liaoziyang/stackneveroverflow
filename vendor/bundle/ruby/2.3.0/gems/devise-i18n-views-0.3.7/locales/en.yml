@@ -1,0 +1,67 @@
+en:
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: "Resend confirmation instructions"
+    mailer:
+      confirmation_instructions:
+        action: "Confirm my account"
+        greeting: "Welcome %{recipient}!"
+        instruction: "You can confirm your account email through the link below:"
+      reset_password_instructions:
+        action: "Change my password"
+        greeting: "Hello %{recipient}!"
+        instruction: "Someone has requested a link to change your password, and you can do this through the link below."
+        instruction_2: "If you didn't request this, please ignore this email."
+        instruction_3: "Your password won't change until you access the link above and create a new one."
+      unlock_instructions:
+        action: "Unlock my account"
+        greeting: "Hello %{recipient}!"
+        instruction: "Click the link below to unlock your account:"
+        message: "Your account has been locked due to an excessive amount of unsuccessful sign in attempts."
+    passwords:
+      new:
+        forgot_your_password: "Forgot your password?"
+        send_me_reset_password_instructions: "Send me reset password instructions"
+      edit:
+        change_your_password: "Change your password"
+        new_password: "New password"
+        confirm_new_password: "Confirm new password"
+        change_my_password: "Change my password"
+    registrations:
+      edit:
+        are_you_sure: "Are you sure?"
+        cancel_my_account: "Cancel my account"
+        leave_blank_if_you_don_t_want_to_change_it: "leave blank if you don't want to change it"
+        currently_waiting_confirmation_for_email: "Currently waiting confirmation for: %{email}"
+        title: "Edit %{resource}"
+        we_need_your_current_password_to_confirm_your_changes: "we need your current password to confirm your changes"
+        update: "Update"
+        unhappy: "Unhappy"
+      new:
+        sign_up: "Sign up"
+    sessions:
+      new:
+        sign_in: "Sign in"
+    shared:
+      links:
+        back: "Back"
+        didn_t_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+        didn_t_receive_unlock_instructions: "Didn't receive unlock instructions?"
+        forgot_your_password: "Forgot your password?"
+        sign_in: "Sign in"
+        sign_in_with_provider: "Sign in with %{provider}"
+        sign_up: "Sign up"
+    unlocks:
+      new:
+        resend_unlock_instructions: "Resend unlock instructions"
+  activerecord:
+    models:
+      user: "User"
+    attributes:
+      user:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        current_password: "Current password"
+        remember_me: "Remember me"

@@ -1,0 +1,49 @@
+{
+  "fileTypes": [
+    "jcl"
+  ],
+  "name": "jcl",
+  "patterns": [
+    {
+      "match": "^//\\*.*$",
+      "name": "comment.line.jcl"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.jcl"
+        },
+        "2": {
+          "name": "keyword.other.jcl"
+        },
+        "3": {
+          "name": "variable.other.jcl"
+        }
+      },
+      "match": "(//[A-Za-z0-9\\$\\#@]*)\\s*(COMMAND|CNTL|DD|ENCNTL|EXEC|IF|THEN|ELSE|ENDIF|INCLUDE|JCLIB|JOB|OUTPUT|PEND|PROC|SET|XMIT)"
+    },
+    {
+      "match": "'.*'",
+      "name": "string.quoted.single.jcl"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "variable.dd.language.jcl"
+        }
+      },
+      "match": "(?i:DSN|DISP|DCB|UNIT|VOL|SYSOUT|SPACE|RECFM|LRECL)=",
+      "name": "variable.language.jcl"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "variable.exec.language.jcl"
+        }
+      },
+      "match": "(?i:PGM|PROC|PARM|ADDRSPC|ACCT|TIME|REGION|COND|DSNME|DATAC)=",
+      "name": "variable.language.jcl"
+    }
+  ],
+  "scopeName": "source.jcl"
+}

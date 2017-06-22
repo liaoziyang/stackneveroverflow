@@ -1,0 +1,173 @@
+{
+  "comment": "\n\t This grammar is written by non-textmate users; mainly in order to push the \n\t grammar to the linguist repository. This is to enable highlighting of SMT code\n\t on GitHub.\n\t\n\t Any improvements are welcome. We are confirmed novices.\n\t\tiam@csl.sri.com\n\t\tbruno@csl.sri.com\n\t",
+  "fileTypes": [
+    "smt2",
+    "smt"
+  ],
+  "name": "smt",
+  "patterns": [
+    {
+      "begin": "(^[ \\t]+)?(?=;)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.whitespace.comment.leading.smt"
+        }
+      },
+      "end": "(?!\\G)",
+      "patterns": [
+        {
+          "begin": ";",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.smt"
+            }
+          },
+          "end": "\\n",
+          "name": "comment.line.semicolon.smt"
+        }
+      ]
+    },
+    {
+      "captures": {
+        "2": {
+          "name": "storage.type.function-type.smt"
+        },
+        "4": {
+          "name": "entity.name.function.smt"
+        }
+      },
+      "comment": "define-fun\n                       define-fun-rec\n                       define-sort\n\t\t\t\n\t\t\t\tOur notion of symbol is currently wrong. Here is what the standard says:\n\n\t\t\t\t<simple_symbol> ::= non-empty sequence of letters, digits and the characters\n\t\t\t\t+ - / * = % ? ! . $ _  ̃ & ˆ <> @\n\t\t\t\tthat does not start with a digit (or . and @ )\n\t\t\t\n                <symbol> ::= <simple_symbol>  |\n                             a sequence of whitespace and printable characters that\n                             starts and ends with | and does not otherwise include | or /\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t",
+      "match": "(?x)                                                  (?# multiline mode )\n\t\t\t         (\\b(?i:(define-fun|define-fun-rec|define-sort))\\b)\n\t\t\t\t\t (\\s+)\n\t\t\t\t\t ((\\w|\\.|\\||_|@|%|\\-|\\!|\\?)*)",
+      "name": "meta.function.define.smt"
+    },
+    {
+      "captures": {
+        "2": {
+          "name": "storage.type.function-type.smt"
+        },
+        "4": {
+          "name": "entity.name.function.smt"
+        }
+      },
+      "comment": "declare-const\n                       declare-fun\n                       declare-sort",
+      "match": "(\\b(?i:(declare-sort|declare-fun|declare-const))\\b)(\\s+)((\\w|\\.|\\||_|@|%|\\-|\\!|\\?)*)",
+      "name": "meta.function.declare.smt"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.constant.smt"
+        }
+      },
+      "match": "(#|\\?)(\\w|[\\\\+-=<>'\"&#])+",
+      "name": "constant.character.smt"
+    },
+    {
+      "comment": "! ( FIXME  ! currently lives down with the symbols in keyword.operator.logical.smt)\n                     _\n                     as\n                     exists\n                     forall\n                     let\n                     par",
+      "match": "\\b(?i:as|let|exists|forall|par|_)\\b",
+      "name": "keyword.control.smt"
+    },
+    {
+      "comment": "\n\t\t\t\t(FIXME word boundaries are needed here.)\n\t\t\t          :all-statistics              \n                      :assertion-stack-levels\n                      :authors\n                      :chainable\n                      :definition\n                      :diagnostic-output-channel\n                      :error-behavior\n                      :extensions\n                      :funs\n                      :funs-description\n                      :global-declarations\n                      :interactive-mode\n                      :language\n                      :left-assoc\n                      :name\n                      :named\n                      :notes\n                      :pattern\n                      :print-success\n                      :produce-assignments\n                      :produce-models\n                      :produce-proofs\n                      :produce-unsat-assumptions\n                      :produce-unsat-cores\n                      :random-seed\n                      :reason-unknown\n                      :regular-output-channel\n                      :reproducible-resource-limit\n                      :right-assoc\n                      :sorts\n                      :sorts-description\n                      :status\n                      :theories\n                      :values\n                      :verbosity\n                      :version",
+      "match": "(?x)(\\:)(assertion-stack-levels|authors|chainable|definition|diagnostic-output-channel\n                      |error-behavior|extensions|funs|funs-description|global-declarations|interactive-mode\n                      |language|left-assoc|name|named|notes|pattern|print-success|produce-assignments\n                      |produce-models|produce-proofs|produce-unsat-assumptions|produce-unsat-cores\n                      |random-seed|reason-unknown|regular-output-channel|reproducible-resource-limit|right-assoc\n                      |sorts|sorts-description|status|theories|values|verbosity|version)",
+      "name": "keyword.other.predefined.smt"
+    },
+    {
+      "comment": "assert\n                     check-sat\n                     check-sat-assuming\n                     echo\n                     exit\n                     get-assertions\n                     get-assignment\n                     get-info\n                     get-model\n                     get-option\n                     get-proof\n                     get-unsat-assumptions\n                     get-unsat-core\n                     get-value\n                     pop\n                     push\n                     reset\n                     reset-assertions\n                     set-info\n                     set-logic\n                     set-option",
+      "match": "(?x)\\b(?i:assert|check-sat|check-sat-assuming|echo|exit\n                     |get-assertions|get-assignment|get-info|get-model|get-option\n                     |get-proof|get-unsat-assumptions|get-unsat-core|get-value\n\t\t\t\t\t |pop|push|reset|reset-assertions|set-info|set-logic|set-option)\\b",
+      "name": "keyword.control.commands.smt"
+    },
+    {
+      "match": "\\b(?i:ite|not|or|and|xor|distinct)\\b",
+      "name": "keyword.operator.core.smt"
+    },
+    {
+      "match": "\\b(?i:array|select|store)\\b",
+      "name": "keyword.operator.array.smt"
+    },
+    {
+      "comment": "OK so there are theories, and there are logics. Seems like a lot of the\n\t\t\t bitvector operations are defined not in the bitvector theory, but rather in the\n\t\t\t QF_BV logic. We shall try to be systematic. Sooooooo:\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t",
+      "match": "(?x)\n\t\t\t\t\t \\b(BitVec|concat|extract|bvnot|bvneg|bvand|bvor|bvadd|bvmul|bvudiv|bvurem|bvshl|bvlshr|bvult   (?#  FixedSizeBitVectors )\n\t\t\t\t\t |bvnand|bvnor|bvxor|bvxnor|bvcomp|bvsub|bvsdiv|bvsrem|bvsmod|bvashr|repeat|zero_extend         (?#  QF_BV)\n\t\t\t\t\t |sign_extend|rotate_left|rotate_right|bvule|bvugt|bvuge|bvslt|bvsle|bvsgt|bvsge|bv[0-9]+       (?#  QF_BV)\n\t\t\t\t \t)\\b",
+      "name": "keyword.operator.bitvector.smt"
+    },
+    {
+      "match": "\\b(Int|div|mod|abs)\\b",
+      "name": "keyword.operator.ints.smt"
+    },
+    {
+      "comment": "\n\t\t\t    roundNearestTiesToEven RNE \n                roundNearestTiesToAway RNA \n                roundTowardPositive    RTP \n                roundTowardNegative    RTN \n                roundTowardZero        RTZ \n               \n\t\t\t    Float16 Float32 Float64 Float128\n\t\t\t \n\t\t\t    +oo  \n\t\t\t\t-oo\n\t\t\t  \n\t\t\t    +zero\n\t\t\t    -zero\n",
+      "match": "\\b(RoundingMode|FloatingPoint|Nan|div|mod|abs)\\b",
+      "name": "keyword.operator.floatingpoint.smt"
+    },
+    {
+      "match": "\\b(Real)\\b",
+      "name": "keyword.operator.reals.smt"
+    },
+    {
+      "match": "\\b(divisible|to_real|to_int|is_int)\\b",
+      "name": "keyword.operator.reals_ints.smt"
+    },
+    {
+      "match": "\\b(?i:eq|neq|and|or)\\b",
+      "name": "keyword.operator.smt"
+    },
+    {
+      "comment": "Bool\n                     continued-execution\n                     error\n                     false\n                     immediate-exit\n                     incomplete\n                     logic\n                     memout\n                     sat\n                     success\n                     theory\n                     true\n                     unknown\n                     unsupported\n                     unsat\n\t\t\t",
+      "match": "(?x)\\b(Bool|continued-execution|error|false|immediate-exit|incomplete|logic\n                    \t|memout|sat|success|theory|true|unknown|unsupported|unsat)\\b",
+      "name": "constant.language.smt"
+    },
+    {
+      "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\\b",
+      "name": "constant.numeric.smt"
+    },
+    {
+      "comment": "\n\t\t\t\tThe symbols (always quirky in regex).\n\t\t\t",
+      "match": "(?x)\n\t\t\t\t(?<=(\\s|\\()) # preceded by space or (\n\t\t\t\t( > | < | >= | <= | => | = | ! | [*/+-] )\n\t\t\t\t(?=(\\s|\\()) # followed by space or (\n\t\t\t\t",
+      "name": "keyword.operator.logical.smt"
+    },
+    {
+      "begin": "\\|",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.symbol.begin.smt"
+        }
+      },
+      "end": "\\|",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.symbol.end.smt"
+        }
+      },
+      "name": "variable.parameter.symbol.smt",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.smt"
+        }
+      ]
+    },
+    {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.smt"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.smt"
+        }
+      },
+      "name": "string.quoted.double.smt",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.smt"
+        }
+      ]
+    }
+  ],
+  "scopeName": "source.smt",
+  "uuid": "347F9A84-DA5E-4A31-8EDB-7F354E784B67"
+}

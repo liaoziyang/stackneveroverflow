@@ -1,0 +1,274 @@
+{
+  "fileTypes": [
+    "steps.rb"
+  ],
+  "foldingStartMarker": "^\\s*\\b(Given|When|Then|def)",
+  "foldingStopMarker": "^\\s*(end)$",
+  "keyEquivalent": "^~C",
+  "name": "Cucumber Steps",
+  "patterns": [
+    {
+      "match": "\\b(GivenScenario|Given|When|Then)\\b",
+      "name": "keyword.other.step.cucumber"
+    },
+    {
+      "begin": "\\b(?<=GivenScenario|Given|When|Then) (\")",
+      "captures": {
+        "1": {
+          "name": "string.quoted.double.ruby"
+        },
+        "2": {
+          "name": "punctuation.definition.string.ruby"
+        }
+      },
+      "comment": "string after a Cucumber keyword",
+      "contentName": "string.quoted.step.cucumber.classic.ruby",
+      "end": "((\\1))",
+      "patterns": [
+        {
+          "include": "#interpolated_ruby"
+        },
+        {
+          "include": "#regex_sub"
+        }
+      ]
+    },
+    {
+      "begin": "\\b(?<=GivenScenario|Given|When|Then) (')",
+      "captures": {
+        "1": {
+          "name": "string.quoted.single.ruby"
+        },
+        "2": {
+          "name": "punctuation.definition.string.ruby"
+        }
+      },
+      "comment": "string after a Cucumber keyword",
+      "contentName": "string.quoted.step.cucumber.classic.ruby",
+      "end": "((\\1))",
+      "patterns": [
+        {
+          "include": "#regex_sub"
+        },
+        {
+          "include": "#interpolated_ruby"
+        }
+      ]
+    },
+    {
+      "begin": "\\b(?<=GivenScenario|Given|When|Then) (/)",
+      "captures": {
+        "1": {
+          "name": "string.regexp.classic.ruby"
+        },
+        "2": {
+          "name": "punctuation.definition.string.ruby"
+        }
+      },
+      "comment": "regular expression after a Cucumber keyword",
+      "contentName": "string.regexp.step.cucumber.classic.ruby",
+      "end": "((/[eimnosux]*))",
+      "patterns": [
+        {
+          "include": "#regex_sub"
+        }
+      ]
+    },
+    {
+      "begin": "\\b(?<=GivenScenario|Given|When|Then) (%r{)",
+      "captures": {
+        "1": {
+          "name": "string.regexp.mod-r.ruby"
+        },
+        "2": {
+          "name": "punctuation.definition.string.ruby"
+        }
+      },
+      "comment": "regular expression after a Cucumber keyword",
+      "contentName": "string.regexp.step.cucumber.mod-r.ruby",
+      "end": "((}[eimnosux]*))",
+      "patterns": [
+        {
+          "include": "#regex_sub"
+        }
+      ]
+    },
+    {
+      "begin": "(?><<-CUCUMBER\\b)",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.ruby"
+        }
+      },
+      "comment": "embedded Cucumber feature",
+      "contentName": "text.cucumber.embedded.ruby",
+      "end": "\\s*CUCUMBER$",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.ruby"
+        }
+      },
+      "name": "string.unquoted.embedded.cucumber.feature",
+      "patterns": [
+        {
+          "include": "text.gherkin.feature"
+        }
+      ]
+    },
+    {
+      "include": "source.ruby"
+    }
+  ],
+  "repository": {
+    "escaped_char": {
+      "match": "\\\\(?:[0-7]{1,3}|x[\\da-fA-F]{1,2}|.)",
+      "name": "constant.character.escape.ruby"
+    },
+    "interpolated_ruby": {
+      "patterns": [
+        {
+          "captures": {
+            "0": {
+              "name": "punctuation.section.embedded.ruby"
+            },
+            "1": {
+              "name": "source.ruby.embedded.source.empty"
+            }
+          },
+          "match": "#\\{(\\})",
+          "name": "source.ruby.embedded.source"
+        },
+        {
+          "begin": "#\\{",
+          "captures": {
+            "0": {
+              "name": "punctuation.section.embedded.ruby"
+            }
+          },
+          "end": "\\}",
+          "name": "source.ruby.embedded.source",
+          "patterns": [
+            {
+              "include": "#nest_curly_and_self"
+            },
+            {
+              "include": "source.ruby"
+            }
+          ]
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.ruby"
+            }
+          },
+          "match": "(#@)[a-zA-Z_]\\w*",
+          "name": "variable.other.readwrite.instance.ruby"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.ruby"
+            }
+          },
+          "match": "(#@@)[a-zA-Z_]\\w*",
+          "name": "variable.other.readwrite.class.ruby"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.ruby"
+            }
+          },
+          "match": "(#\\$)[a-zA-Z_]\\w*",
+          "name": "variable.other.readwrite.global.ruby"
+        }
+      ]
+    },
+    "nest_curly_and_self": {
+      "patterns": [
+        {
+          "begin": "\\{",
+          "captures": {
+            "0": {
+              "name": "punctuation.section.scope.ruby"
+            }
+          },
+          "end": "\\}",
+          "patterns": [
+            {
+              "include": "#nest_curly_and_self"
+            }
+          ]
+        },
+        {
+          "include": "source.ruby"
+        }
+      ]
+    },
+    "regex_sub": {
+      "patterns": [
+        {
+          "include": "#interpolated_ruby"
+        },
+        {
+          "include": "#escaped_char"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.arbitrary-repitition.ruby"
+            },
+            "3": {
+              "name": "punctuation.definition.arbitrary-repitition.ruby"
+            }
+          },
+          "match": "(\\{)\\d+(,\\d+)?(\\})",
+          "name": "string.regexp.arbitrary-repitition.ruby"
+        },
+        {
+          "begin": "\\[(?:\\^?\\])?",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.character-class.ruby"
+            }
+          },
+          "end": "\\]",
+          "name": "string.regexp.character-class.ruby",
+          "patterns": [
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "\\(",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.group.ruby"
+            }
+          },
+          "end": "\\)",
+          "name": "string.regexp.group.ruby",
+          "patterns": [
+            {
+              "include": "#regex_sub"
+            }
+          ]
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.comment.ruby"
+            }
+          },
+          "comment": "We are restrictive in what we allow to go after the comment character to avoid false positives, since the availability of comments depend on regexp flags.",
+          "match": "(?<=^|\\s)(#)\\s[[a-zA-Z0-9,. \\t?!-][^\\x{00}-\\x{7F}]]*$",
+          "name": "comment.line.number-sign.ruby"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.ruby.rspec.cucumber.steps",
+  "uuid": "B269B8F3-3A6D-4169-9E70-DD89A679416A"
+}

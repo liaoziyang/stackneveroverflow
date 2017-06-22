@@ -1,0 +1,679 @@
+{
+  "name": "Grace",
+  "scopeName": "source.grace",
+  "fileTypes": [
+    "grace"
+  ],
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#comma"
+    },
+    {
+      "name": "meta.import.grace",
+      "match": "(import)\\s*(\".*\")\\s*(as)\\s+([A-z][A-z\\d']*)",
+      "captures": {
+        "1": {
+          "name": "keyword.import.grace"
+        },
+        "2": {
+          "name": "string.path.grace"
+        },
+        "3": {
+          "name": "keyword.as.grace"
+        },
+        "4": {
+          "name": "entity.identifier.grace"
+        }
+      }
+    },
+    {
+      "name": "meta.type.literal.grace",
+      "begin": "(?:(?<![A-z\\d'])(type)|(=))\\s*\\{",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.type.grace"
+        },
+        "2": {
+          "name": "keyword.operator.grace"
+        }
+      },
+      "end": "\\}",
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#signature"
+        },
+        {
+          "include": "#bad_names"
+        },
+        {
+          "name": "entity.function.grace",
+          "match": "[A-z][A-z\\d']*|[-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]*"
+        }
+      ]
+    },
+    {
+      "name": "meta.type.grace",
+      "begin": "(?<![A-z\\d'])(type)(?![A-z\\d'])(?!\\s*\\{)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.type.grace"
+        }
+      },
+      "end": "(?==)",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.operator.grace"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "name": "meta.type.generic.grace",
+          "begin": "([A-z][A-z\\d']*)(<)",
+          "end": "(>)",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.type.grace"
+            },
+            "2": {
+              "name": "keyword.operator.grace"
+            }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "keyword.type.generic.grace"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#comment"
+            },
+            {
+              "include": "#bad_names"
+            },
+            {
+              "include": "#bad_operators"
+            },
+            {
+              "include": "#comma"
+            },
+            {
+              "name": "entity.type.generic.grace",
+              "match": "[A-z][A-z\\d']*"
+            }
+          ]
+        },
+        {
+          "begin": "(?<![A-z\\d'])(is)(?![A-z\\d'])",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.grace"
+            }
+          },
+          "end": "(?==)",
+          "patterns": [
+            {
+              "include": "$self"
+            },
+            {
+              "name": "support.type.annotation.grace",
+              "match": "[A-z][A-z\\d']*"
+            }
+          ]
+        },
+        {
+          "include": "#bad_names"
+        },
+        {
+          "name": "entity.type.grace",
+          "match": "[A-z][A-z\\d']*"
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "name": "meta.method.grace",
+      "begin": "(?<![A-z\\d'])(method)(?![A-z\\d'])",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.grace"
+        }
+      },
+      "end": "(?=\\{)",
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#signature"
+        },
+        {
+          "name": "entity.function.grace",
+          "match": "[A-z][A-z\\d']*|[-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]*"
+        }
+      ]
+    },
+    {
+      "name": "meta.class.grace",
+      "begin": "\\b(class)(?![A-z\\d'])",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.class.grace"
+        }
+      },
+      "end": "(?=\\{)",
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#signature"
+        },
+        {
+          "name": "keyword.operator.class.grace",
+          "match": "\\."
+        },
+        {
+          "name": "meta.name.class.grace",
+          "match": "(?<=class)\\s*([A-z][A-z\\d']*)\\s*(\\.)",
+          "captures": {
+            "1": {
+              "name": "entity.class.grace"
+            },
+            "2": {
+              "name": "keyword.operator.grace"
+            }
+          }
+        },
+        {
+          "name": "entity.class.grace",
+          "match": "[A-z][A-z\\d']*|[-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]*"
+        }
+      ]
+    },
+    {
+      "name": "meta.definition.grace",
+      "begin": "(?<![A-z\\d'])(def)(?![A-z\\d'])",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.definition.grace"
+        }
+      },
+      "end": "(?<![^\\w\\d'\\s])(?:(=)|(:=))(?![^\\w\\s])|$",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.operator.grace"
+        },
+        "2": {
+          "name": "invalid.illegal.grace"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#signature_args"
+        },
+        {
+          "begin": "(?<![A-z\\d'])(is)(?![A-z\\d'])",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.grace"
+            }
+          },
+          "end": "(?=(?<![^\\w\\d'\\s])(?:(=)|(:=))(?![^\\w\\d'\\s]))|$",
+          "patterns": [
+            {
+              "include": "$self"
+            },
+            {
+              "name": "support.type.annotation.grace",
+              "match": "[A-z][A-z\\d']*"
+            }
+          ]
+        },
+        {
+          "include": "#bad_names"
+        },
+        {
+          "name": "entity.definition.grace",
+          "match": "\\b_\\b|[A-z][A-z\\d']*"
+        }
+      ]
+    },
+    {
+      "name": "meta.variable.grace",
+      "begin": "(?<![A-z\\d'])(var)(?![A-z\\d'])",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.variable.grace"
+        }
+      },
+      "end": "(?<![^\\w\\d'\\s])(?:(:=)|(=))(?![^\\w\\d'\\s])|$",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.operator.grace"
+        },
+        "2": {
+          "name": "invalid.illegal.grace"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "begin": "(?<![^\\w\\d'\\s\\(,])(:)(?![^\\w\\d'\\s\\),])",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.operator.grace"
+            }
+          },
+          "end": "(?=$|,|\\)|(?<=[^-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]|^)(:|=|:=|->)(?=[^-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]|$))",
+          "patterns": [
+            {
+              "include": "$self"
+            },
+            {
+              "include": "#type"
+            }
+          ]
+        },
+        {
+          "begin": "(?<![A-z\\d'])(is)(?![A-z\\d'])",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.grace"
+            }
+          },
+          "end": "(?=(?<![^\\w\\d'\\s])(?:(=)|(:=))(?![^\\w\\d'\\s]))|$",
+          "patterns": [
+            {
+              "include": "$self"
+            },
+            {
+              "name": "support.type.annotation.grace",
+              "match": "[A-z][A-z\\d']*"
+            }
+          ]
+        },
+        {
+          "include": "#bad_names"
+        },
+        {
+          "include": "#bad_operators"
+        },
+        {
+          "name": "entity.variable.grace",
+          "match": "\\b_\\b|[A-z][A-z\\d']*"
+        }
+      ]
+    },
+    {
+      "name": "meta.block.grace",
+      "begin": "\\{",
+      "end": "\\}",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "name": "meta.parameters.block.grace",
+      "begin": "(?<=\\{)(?=[^{}]*[^-|@#!%$?&=:\\.\\*~+\\</>\\\\}]->[^-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^])",
+      "end": "(->)",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.operator.grace"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#signature_args"
+        },
+        {
+          "include": "#comma"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#bad_names"
+        },
+        {
+          "include": "#bad_operators"
+        },
+        {
+          "match": "[A-z][A-z\\d']*",
+          "name": "entity.parameter.grace"
+        }
+      ]
+    },
+    {
+      "include": "#string"
+    },
+    {
+      "include": "#generic"
+    },
+    {
+      "name": "keyword.control.grace",
+      "match": "(?<![A-z\\d'])(return)(?![A-z\\d'])"
+    },
+    {
+      "name": "keyword.operator.grace",
+      "match": "(?<=[^-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]|^)(:|=|:=|\\.|->)(?=[^-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]|$)"
+    },
+    {
+      "name": "support.function.operator.grace",
+      "match": "[-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]*"
+    },
+    {
+      "name": "keyword.grace",
+      "match": "(?<![A-z\\d'])(dialect|import|as|object|method|class|type|def|var|where|is|inherits)(?![A-z\\d'])"
+    },
+    {
+      "include": "#number"
+    },
+    {
+      "name": "variable.language.self.grace",
+      "match": "(?<![A-z\\d'])(super|self|outer)(?![A-z\\d'])"
+    },
+    {
+      "name": "constant.language.boolean.true.grace",
+      "match": "(?<![A-z\\d'])true(?![A-z\\d'])"
+    },
+    {
+      "name": "constant.language.boolean.false.grace",
+      "match": "(?<![A-z\\d'])false(?![A-z\\d'])"
+    },
+    {
+      "name": "support.type.grace",
+      "match": "(?<![A-z\\d'])[A-Z][A-z\\d']*(?![A-z\\d']|\\s*\\.\\s*[A-z])"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "match": "//.*$",
+      "name": "comment.line.grace"
+    },
+    "comma": {
+      "name": "keyword.grace",
+      "match": ","
+    },
+    "number": {
+      "name": "constant.numeric.grace",
+      "match": "\\b((0(x|X)[0-9a-fA-F]+)|([0-9]+(\\.[0-9]+)?))\\b"
+    },
+    "string": {
+      "name": "string.quoted.double.grace",
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.grace"
+        }
+      },
+      "end": "(\")|(\\n)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.grace"
+        },
+        "2": {
+          "name": "invalid.illegal.grace"
+        }
+      },
+      "patterns": [
+        {
+          "match": "\\\\(x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)",
+          "name": "constant.character.escape.grace"
+        },
+        {
+          "name": "source.embedded.grace",
+          "begin": "\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "keyword.interpolation.begin.grace"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "keyword.interpolation.end.grace"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "bad_names": {
+      "name": "invalid.illegal.grace",
+      "match": "(?<![A-z\\d'])(dialect|import|as|object|method|class|type|def|var|where|is|inherits|self|super|outer)(?![A-z\\d'])"
+    },
+    "bad_operators": {
+      "name": "invalid.illegal.grace",
+      "match": "[-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]+"
+    },
+    "generic": {
+      "name": "meta.type.generic.grace",
+      "begin": "(?:([A-Z][A-z\\d']*)|[a-z][A-z\\d']*)(<)(?![-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^])",
+      "end": "(>)",
+      "beginCaptures": {
+        "1": {
+          "name": "support.type.grace"
+        },
+        "2": {
+          "name": "keyword.operator.grace"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.operator.grace"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#generic"
+        },
+        {
+          "include": "$self"
+        },
+        {
+          "include": "#type"
+        }
+      ]
+    },
+    "type": {
+      "name": "support.type.grace",
+      "match": "[A-z][A-z\\d']*(?![A-z\\d']|\\s*\\.\\s*[A-z])"
+    },
+    "signature_args": {
+      "name": "meta.signature.grace",
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "match": "\\*",
+          "name": "keyword.variadic.grace"
+        },
+        {
+          "begin": "(?<![^\\w\\d'\\s\\(,])(:)(?![^\\w\\d'\\s\\),])",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.operator.grace"
+            }
+          },
+          "end": "(?=,|\\)|(?<=[^-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]|^)(:|=|:=|->)(?=[^-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]|$))",
+          "patterns": [
+            {
+              "include": "$self"
+            },
+            {
+              "include": "#type"
+            }
+          ]
+        },
+        {
+          "match": "[A-z][A-z\\d']*(?=\\s*[,\\:\\)])",
+          "name": "entity.function.grace"
+        },
+        {
+          "include": "#comma"
+        }
+      ]
+    },
+    "signature": {
+      "name": "meta.signature.grace",
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "begin": "(?<=[^-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]|^)(->)(?=[^-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]|$)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.operator.grace"
+            }
+          },
+          "end": "(?=(?<![A-z\\d'])is(?![A-z\\d'])|\\{|\\}|(?<=[A-z\\d'\">)])(?<!->)\\s+$)",
+          "patterns": [
+            {
+              "include": "$self"
+            },
+            {
+              "include": "#type"
+            }
+          ]
+        },
+        {
+          "name": "meta.signature.prefix.grace",
+          "match": "(prefix)\\s*(?:(:(?:=?)(?=[^-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]))|([-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]*))",
+          "captures": {
+            "1": {
+              "name": "keyword.grace"
+            },
+            "2": {
+              "name": "invalid.illegal.grace"
+            },
+            "3": {
+              "name": "entity.function.grace"
+            }
+          }
+        },
+        {
+          "name": "meta.signature.assign.grace",
+          "match": "([A-z][A-z0-9']*)\\s*(:=)\\s*(?=\\()",
+          "captures": {
+            "1": {
+              "name": "entity.function.grace"
+            },
+            "2": {
+              "name": "keyword.operator.grace"
+            }
+          }
+        },
+        {
+          "name": "meta.signature.binary.grace",
+          "match": "(?:(:(?:=?))|([-|@#!%$?&=:\\.\\*~+\\</>\\\\\\^]+))\\s*(?=\\()",
+          "captures": {
+            "1": {
+              "name": "invalid.illegal.grace"
+            },
+            "2": {
+              "name": "entity.function.grace"
+            }
+          }
+        },
+        {
+          "begin": "(?<![A-z\\d'])(is)(?![A-z\\d'])",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.grace"
+            }
+          },
+          "end": "(?=\\{|\\}|(?<=[A-z\\d'\">)])(?<!is)\\s+$)",
+          "patterns": [
+            {
+              "include": "$self"
+            },
+            {
+              "name": "support.annotation.grace",
+              "match": "[A-z][A-z\\d']*"
+            }
+          ]
+        },
+        {
+          "name": "meta.signature.parameters.grace",
+          "begin": "\\(",
+          "end": "\\)",
+          "patterns": [
+            {
+              "include": "#signature_args"
+            }
+          ]
+        },
+        {
+          "begin": "(?<=\\w)(<)",
+          "end": "(>)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.generic.grace"
+            }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "keyword.generic.grace"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#comment"
+            },
+            {
+              "include": "#comma"
+            },
+            {
+              "name": "support.type.grace",
+              "match": "[A-z][A-z0-9']*"
+            }
+          ]
+        },
+        {
+          "include": "#bad_names"
+        },
+        {
+          "include": "#bad_operators"
+        },
+        {
+          "match": "[A-z][A-z\\d']*(?=\\s*[,\\:\\)])",
+          "name": "entity.function.grace"
+        }
+      ]
+    }
+  },
+  "uuid": "ca03e751-04ef-4330-9a6b-9b99aae1c419"
+}

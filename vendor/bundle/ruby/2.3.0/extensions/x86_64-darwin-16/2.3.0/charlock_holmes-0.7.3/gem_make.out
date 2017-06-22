@@ -1,0 +1,111 @@
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/charlock_holmes-0.7.3/ext/charlock_holmes
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20170622-13762-1dtcyt0.rb extconf.rb
+checking for main() in -licui18n... no
+checking for main() in -licui18n... yes
+checking for unicode/ucnv.h... yes
+checking for main() in -lz... yes
+checking for main() in -licuuc... yes
+checking for main() in -licudata... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0/charlock_holmes-0.7.3/mkmf.log
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/charlock_holmes-0.7.3/ext/charlock_holmes
+make "DESTDIR=" clean
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/charlock_holmes-0.7.3/ext/charlock_holmes
+make "DESTDIR="
+compiling converter.c
+converter.c:23:12: warning: implicit conversion loses integer precision: 'long' to 'int32_t' (aka 'int') [-Wshorten-64-to-32]
+        src_len = RSTRING_LEN(rb_txt);
+                ~ ^~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:991:6: note: expanded from macro 'RSTRING_LEN'
+     RSTRING_EMBED_LEN(str) : \
+     ^~~~~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:987:6: note: expanded from macro 'RSTRING_EMBED_LEN'
+     (long)((RBASIC(str)->flags >> RSTRING_EMBED_LEN_SHIFT) & \
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+converter.c:23:12: warning: implicit conversion loses integer precision: 'long' to 'int32_t' (aka 'int') [-Wshorten-64-to-32]
+        src_len = RSTRING_LEN(rb_txt);
+                ~ ^~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:992:28: note: expanded from macro 'RSTRING_LEN'
+     RSTRING(str)->as.heap.len)
+     ~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from converter.c:2:
+./common.h:23:14: warning: unused function 'charlock_new_str' [-Wunused-function]
+static VALUE charlock_new_str(const char *str, size_t len)
+             ^
+./common.h:32:14: warning: unused function 'charlock_new_str2' [-Wunused-function]
+static VALUE charlock_new_str2(const char *str)
+             ^
+4 warnings generated.
+compiling encoding_detector.c
+encoding_detector.c:166:71: warning: implicit conversion loses integer precision: 'long' to 'int32_t' (aka 'int') [-Wshorten-64-to-32]
+                ucsdet_setDeclaredEncoding(detector->csd, RSTRING_PTR(rb_enc_hint), RSTRING_LEN(rb_enc_hint), &status);
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~                                          ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:991:6: note: expanded from macro 'RSTRING_LEN'
+     RSTRING_EMBED_LEN(str) : \
+     ^~~~~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:987:6: note: expanded from macro 'RSTRING_EMBED_LEN'
+     (long)((RBASIC(str)->flags >> RSTRING_EMBED_LEN_SHIFT) & \
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+encoding_detector.c:166:71: warning: implicit conversion loses integer precision: 'long' to 'int32_t' (aka 'int') [-Wshorten-64-to-32]
+                ucsdet_setDeclaredEncoding(detector->csd, RSTRING_PTR(rb_enc_hint), RSTRING_LEN(rb_enc_hint), &status);
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~                                          ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:992:28: note: expanded from macro 'RSTRING_LEN'
+     RSTRING(str)->as.heap.len)
+     ~~~~~~~~~~~~~~~~~~~~~~^~~
+encoding_detector.c:215:71: warning: implicit conversion loses integer precision: 'long' to 'int32_t' (aka 'int') [-Wshorten-64-to-32]
+                ucsdet_setDeclaredEncoding(detector->csd, RSTRING_PTR(rb_enc_hint), RSTRING_LEN(rb_enc_hint), &status);
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~                                          ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:991:6: note: expanded from macro 'RSTRING_LEN'
+     RSTRING_EMBED_LEN(str) : \
+     ^~~~~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:987:6: note: expanded from macro 'RSTRING_EMBED_LEN'
+     (long)((RBASIC(str)->flags >> RSTRING_EMBED_LEN_SHIFT) & \
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+encoding_detector.c:215:71: warning: implicit conversion loses integer precision: 'long' to 'int32_t' (aka 'int') [-Wshorten-64-to-32]
+                ucsdet_setDeclaredEncoding(detector->csd, RSTRING_PTR(rb_enc_hint), RSTRING_LEN(rb_enc_hint), &status);
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~                                          ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:992:28: note: expanded from macro 'RSTRING_LEN'
+     RSTRING(str)->as.heap.len)
+     ~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from encoding_detector.c:2:
+./common.h:14:14: warning: unused function 'charlock_new_enc_str' [-Wunused-function]
+static VALUE charlock_new_enc_str(const char *str, size_t len, void *encoding)
+             ^
+5 warnings generated.
+compiling ext.c
+In file included from ext.c:1:
+./common.h:14:14: warning: unused function 'charlock_new_enc_str' [-Wunused-function]
+static VALUE charlock_new_enc_str(const char *str, size_t len, void *encoding)
+             ^
+./common.h:23:14: warning: unused function 'charlock_new_str' [-Wunused-function]
+static VALUE charlock_new_str(const char *str, size_t len)
+             ^
+./common.h:32:14: warning: unused function 'charlock_new_str2' [-Wunused-function]
+static VALUE charlock_new_str2(const char *str)
+             ^
+3 warnings generated.
+compiling transliterator.cpp
+transliterator.cpp:101:60: warning: implicit conversion loses integer precision: 'size_t' (aka 'unsigned long') to 'int32_t' (aka 'int') [-Wshorten-64-to-32]
+  trans = Transliterator::createInstance(UnicodeString(id, id_len), UTRANS_FORWARD, p_error, status);
+                                         ~~~~~~~~~~~~~     ^~~~~~
+transliterator.cpp:106:34: warning: implicit conversion loses integer precision: 'size_t' (aka 'unsigned long') to 'int32_t' (aka 'int') [-Wshorten-64-to-32]
+  u_txt = new UnicodeString(txt, txt_len);
+              ~~~~~~~~~~~~~      ^~~~~~~
+In file included from transliterator.cpp:1:
+./common.h:14:14: warning: unused function 'charlock_new_enc_str' [-Wunused-function]
+static VALUE charlock_new_enc_str(const char *str, size_t len, void *encoding)
+             ^
+./common.h:32:14: warning: unused function 'charlock_new_str2' [-Wunused-function]
+static VALUE charlock_new_str2(const char *str)
+             ^
+4 warnings generated.
+linking shared-object charlock_holmes/charlock_holmes.bundle
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/charlock_holmes-0.7.3/ext/charlock_holmes
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 charlock_holmes.bundle ./.gem.20170622-13762-1fan6dj/charlock_holmes

@@ -1,0 +1,70 @@
+{
+  "fileTypes": [
+    "MOD"
+  ],
+  "name": "Kuka (MOD)",
+  "patterns": [
+    {
+      "captures": {
+        "1": {
+          "name": "support.constant.MOD"
+        }
+      },
+      "comment": "",
+      "match": "((wob|z)([A-Za-z0-9_]))",
+      "name": "support.constant.MOD"
+    },
+    {
+      "comment": "Number",
+      "match": "((-)?(\\d+)((.|,)\\d)?(%)?)",
+      "name": "constant.numeric.MOD"
+    },
+    {
+      "comment": "Number",
+      "match": "([9])([E]\\+)([0-9]+)",
+      "name": "constant.numeric.MOD"
+    },
+    {
+      "comment": "Comment",
+      "match": "(!.*$)",
+      "name": "comment.number-sign.MOD"
+    },
+    {
+      "comment": "t",
+      "match": "(PROC|ENDMODULE|MODULE|ENDPROC)\\s",
+      "name": "keyword.MOD"
+    },
+    {
+      "comment": "Actions",
+      "match": "\\s(MoveJ|MoveL|MoveAbsJ)\\s",
+      "name": "keyword.MOD"
+    },
+    {
+      "comment": "Actions",
+      "match": "(tl_|Wobj|fine)",
+      "name": "keyword.MOD"
+    },
+    {
+      "comment": "Motion",
+      "match": "\\s(IF|THEN|RETURN|PROC)\\s",
+      "name": "keyword.MOD"
+    },
+    {
+      "comment": "Data types",
+      "match": "\\s?(ARRAY|BOOLEAN|BYTE|CONFIG|DISP_DAT_T|FILE|GROUP_ASSOC|INTEGER|JOINTPOS|PATH|POSITION|QUEUE_TYPE|REAL|SHORT|STD_PTH_NODE|STRING|VECTOR|XYZWPR|XYZWPREXT)\\s",
+      "name": "entity.name.type.MOD"
+    },
+    {
+      "comment": "String",
+      "match": "\".*?\"",
+      "name": "string.quoted.double.MOD"
+    },
+    {
+      "comment": "String",
+      "match": "\\'.*?\\'",
+      "name": "string.quoted.single.MOD"
+    }
+  ],
+  "scopeName": "source.MOD",
+  "uuid": "9c3dc42b-dead-404c-a841-1560e73bbf0e"
+}

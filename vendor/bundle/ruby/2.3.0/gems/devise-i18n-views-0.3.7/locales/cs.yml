@@ -1,0 +1,67 @@
+cs:
+  activerecord:
+    attributes:
+      user:
+        current_password: Současné heslo
+        email: Email
+        password: Heslo
+        password_confirmation: Potvrzení hesla
+        remember_me: Zapamatuj si mě
+    models:
+      user: Uživatel
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: Opět poslat instrukce pro potvrzení
+    mailer:
+      confirmation_instructions:
+        action: Potvrdit můj účet
+        greeting: Vítejte, %{recipient}!
+        instruction: Můžete potvrdit svůj účet pomocí odkazu níže
+      reset_password_instructions:
+        action: Změnit mé heslo
+        greeting: Ahoj %{recipient}!
+        instruction: Někdo si vyžádal odkaz pro změnu vašeho hesla, to můžete udělat pomocí odkazu níže.
+        instruction_2: Pokud jste si toto nevyžádali, můžete tento e-mail ignorovat.
+        instruction_3: Vaše heslo se nezmění dokud nepřejdete na výše uvedený odkaz a nevytvoříte nové heslo
+      unlock_instructions:
+        action: Odblokovat můj účet
+        greeting: Ahoj %{recipient}!
+        instruction: 'Přejděte na odkaz níže pro odblokování účtu:'
+        message: Váš účet byl zablokován pro nadměrný počet neúspěšných pokusů o přihlášení.
+    passwords:
+      edit:
+        change_my_password: Změnit mé heslo
+        change_your_password: Změnit mé heslo
+        confirm_new_password: Potvrdit nové heslo
+        new_password: Nové heslo
+      new:
+        forgot_your_password: Zapomněl jste své heslo?
+        send_me_reset_password_instructions: Poslat instrukce pro obnovení hesla
+    registrations:
+      edit:
+        are_you_sure: Jste si jistý?
+        cancel_my_account: Zrušit můj účet
+        currently_waiting_confirmation_for_email: 'Momentálně čekám na potvrzení pro: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: nech prázdné, pokud to nechceš měnit
+        title: Upravit %{resource}
+        unhappy: Nešťastný
+        update: Aktualizovat
+        we_need_your_current_password_to_confirm_your_changes: Potřebujeme vaše současné heslo pro potvrzení změn
+      new:
+        sign_up: Registrovat
+    sessions:
+      new:
+        sign_in: Přihlásit
+    shared:
+      links:
+        back: Zpět
+        didn_t_receive_confirmation_instructions: Nedostali jste informace pro potvrzení?
+        didn_t_receive_unlock_instructions: Nedostali jste instrukce pro odblokování?
+        forgot_your_password: Zapomněli jste heslo?
+        sign_in: Přihlásit
+        sign_in_with_provider: Přihlásit se s %{provider}
+        sign_up: Registrovat
+    unlocks:
+      new:
+        resend_unlock_instructions: Znovu odeslat instrukce pro odblokování

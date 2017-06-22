@@ -1,0 +1,187 @@
+{
+  "scopeName": "source.inform7",
+  "fileTypes": [
+    "ni",
+    "i7x"
+  ],
+  "name": "Inform 7",
+  "repository": {
+    "string": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.inform7",
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.inform7"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.inform7"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#substitution"
+            }
+          ]
+        }
+      ]
+    },
+    "substitution": {
+      "patterns": [
+        {
+          "name": "keyword.control",
+          "begin": "\\[",
+          "beginCaptures": {
+            "0": {
+              "name": "keyword.control.begin.inform7"
+            }
+          },
+          "end": "\\]",
+          "endCaptures": {
+            "0": {
+              "name": "keyword.control.end.inform7"
+            }
+          }
+        }
+      ]
+    },
+    "nestedcomment": {
+      "patterns": [
+        {
+          "begin": "\\[",
+          "end": "\\]",
+          "patterns": [
+            {
+              "include": "#nestedcomment"
+            }
+          ]
+        }
+      ]
+    },
+    "i6comment": {
+      "patterns": [
+        {
+          "name": "comment.line.bang.inform6.inform7",
+          "match": "!.*$"
+        }
+      ]
+    },
+    "i6string": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.inform6.inform7",
+          "begin": "\"",
+          "end": "\""
+        }
+      ]
+    },
+    "i6dictword": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.inform6.inform7",
+          "begin": "'",
+          "end": "'"
+        }
+      ]
+    },
+    "doccomment": {
+      "patterns": [
+        {
+          "name": "comment.block.documentation.inform7",
+          "match": "^[^\t].*$"
+        }
+      ]
+    }
+  },
+  "patterns": [
+    {
+      "include": "#string"
+    },
+    {
+      "name": "comment.block.inform7",
+      "begin": "\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.begin.inform7"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.end.inform7"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#nestedcomment"
+        }
+      ]
+    },
+    {
+      "name": "entity.name.inform7",
+      "match": "(?i)^\\s*(volume|book|part|chapter|section)[ \t]+(.*)$",
+      "captures": {
+        "1": {
+          "name": "entity.type.section.inform7"
+        },
+        "2": {
+          "name": "entity.name.section.inform7"
+        }
+      }
+    },
+    {
+      "contentName": "support.other.inform6.inform7",
+      "begin": "\\(-",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.inform6.begin.inform7"
+        }
+      },
+      "end": "-\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.inform6.end.inform7"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#i6comment"
+        },
+        {
+          "include": "#i6string"
+        },
+        {
+          "include": "#i6dictword"
+        }
+      ]
+    },
+    {
+      "contentName": "meta.documentation.inform7",
+      "begin": "(?i)^\\s*(----[ \t]+(documentation)[ \t]+----)(.*)$",
+      "end": "$ENDOFDOC",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.inform7"
+        },
+        "2": {
+          "name": "entity.type.section.inform7"
+        },
+        "3": {
+          "name": "comment.block.documentation.inform7"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#doccomment"
+        },
+        {
+          "include": "#string"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "scopeName": "source.regexp.perl6fe",
+  "name": "Regular Expressions (Perl 6)",
+  "fileTypes": [
+
+  ],
+  "patterns": [
+    {
+      "include": "#regexp"
+    }
+  ],
+  "repository": {
+    "regexp": {
+      "patterns": [
+        {
+          "begin": "(^[ \\t]+)?(?=#)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.perl6fe"
+            }
+          },
+          "end": "(?!\\G)",
+          "patterns": [
+            {
+              "begin": "#",
+              "beginCaptures": {
+                "0": {
+                  "name": "punctuation.definition.comment.perl6fe"
+                }
+              },
+              "end": "\\n",
+              "name": "comment.line.number-sign.perl6fe"
+            }
+          ]
+        },
+        {
+          "include": "#re_strings"
+        },
+        {
+          "match": "\\\\[dDhHnNsStTvVwW]",
+          "name": "constant.character.escape.class.regexp.perl6fe"
+        },
+        {
+          "match": ":\\w+",
+          "name": "entity.name.section.adverb.perl6fe"
+        },
+        {
+          "match": "\\^\\^|(?<!\\.)\\^(?!\\.)|\\$\\$|\\$(?!\\d|<)|<<|>>",
+          "name": "entity.name.section.boundary.regexp.perl6fe"
+        },
+        {
+          "match": "(?<!\\\\)\\$\\d",
+          "name": "keyword.other.special-method.match.variable.numbered.perlt6e"
+        },
+        {
+          "match": "(\\$)(\\<)(\\w+)(\\>)\\s*(=)",
+          "captures": {
+            "1": {
+              "name": "variable.other.identifier.sigil.regexp.perl6"
+            },
+            "2": {
+              "name": "support.class.match.name.delimiter.regexp.perl6fe"
+            },
+            "3": {
+              "name": "variable.other.identifier.regexp.perl6"
+            },
+            "4": {
+              "name": "support.class.match.name.delimiter.regexp.perl6fe"
+            },
+            "5": {
+              "name": "storage.modifier.match.assignment.regexp.perl6fe"
+            }
+          },
+          "name": "meta.match.variable.perl6fe"
+        },
+        {
+          "begin": "(\\<(?:\\?|\\!)\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.section.embedded.begin.perl6fe"
+            }
+          },
+          "end": "(\\}\\>)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.section.embedded.end.perl6fe"
+            }
+          },
+          "patterns": [
+            {
+              "include": "source.perl6fe"
+            }
+          ],
+          "name": "meta.interpolation.perl6fe"
+        },
+        {
+          "begin": "(?!\\\\)<",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.delimiter.property.regexp.perl6fe"
+            }
+          },
+          "end": ">",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.delimiter.property.regexp.perl6fe"
+            }
+          },
+          "name": "meta.property.regexp.perl6fe",
+          "patterns": [
+            {
+              "include": "#re_strings"
+            },
+            {
+              "begin": "(\\?|\\!)(before|after)\\s+",
+              "beginCaptures": {
+                "1": {
+                  "name": "keyword.operator.negativity.perl6fe"
+                },
+                "2": {
+                  "name": "entity.name.section.assertion.perl6fe"
+                }
+              },
+              "end": "(?=>)",
+              "name": "meta.assertion.lookaround.perl6fe",
+              "patterns": [
+                {
+                  "include": "#regexp"
+                }
+              ]
+            },
+            {
+              "match": "(\\w+)(=)",
+              "captures": {
+                "1": {
+                  "name": "entity.name.function.capturename.perl6fe"
+                },
+                "2": {
+                  "name": "storage.modifier.capture.assignment.perl6fe"
+                }
+              },
+              "name": "meta.capture.assignment.perl6fe"
+            },
+            {
+              "match": "(:)(\\w+)",
+              "captures": {
+                "1": {
+                  "name": "punctuation.definition.property.regexp.perl6fe"
+                },
+                "2": {
+                  "name": "variable.other.identifier.property.regexp.perl6fe"
+                }
+              },
+              "name": "meta.property.name.regexp.perl6fe"
+            },
+            {
+              "match": "[+|&\\-^]",
+              "name": "keyword.operator.property.regexp.perl6fe"
+            },
+            {
+              "begin": "\\[",
+              "end": "\\]",
+              "contentName": "constant.character.custom.property.regexp.perl6fe",
+              "patterns": [
+                {
+                  "match": "(?<!\\\\)\\\\\\]",
+                  "name": "constant.character.custom.property.regexp.perl6fe"
+                }
+              ]
+            },
+            {
+              "match": "\\.\\w+\\b",
+              "name": "comment.suppressed.capture.property.regexp.perl6fe"
+            },
+            {
+              "match": "\\b\\w+\\b",
+              "name": "variable.other.identifier.regexname.perl6fe"
+            },
+            {
+              "begin": "(?<=\\w)\\(",
+              "end": "\\)",
+              "name": "meta.rule.signature.perl6fe",
+              "patterns": [
+                {
+                  "include": "source.perl6fe"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "match": "(?<=\\.\\.)\\*",
+          "name": "variable.other.identifier.whatever.regexp.perl6fe"
+        },
+        {
+          "match": "\\+|\\*\\*|\\*|\\?|%|\\.\\.|\\.|(?<=\\.\\.|\\s|\\d)\\^",
+          "name": "keyword.operator.quantifiers.regexp.perl6fe"
+        },
+        {
+          "match": "(?<!\\\\)\\|{1,2}",
+          "name": "support.function.alternation.regexp.perl6fe"
+        }
+      ]
+    },
+    "re_strings": {
+      "patterns": [
+        {
+          "begin": "(?<!\\\\)\\'",
+          "end": "(?<=\\\\\\\\)\\'|(?<!\\\\)\\'",
+          "name": "string.literal.perl6fe"
+        },
+        {
+          "begin": "(?<!\\\\)\\\"",
+          "end": "(?<=\\\\\\\\)\\\"|(?<!\\\\)\\\"",
+          "name": "string.literal.perl6fe"
+        }
+      ]
+    }
+  }
+}

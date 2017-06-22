@@ -1,0 +1,67 @@
+da-DK:
+  activerecord:
+    attributes:
+      user:
+        current_password: 
+        email: 
+        password: 
+        password_confirmation: 
+        remember_me: 
+    models:
+      user: 
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: Få tilsendt bekræftelses-instruktioner
+    mailer:
+      confirmation_instructions:
+        action: Bekræft min konto
+        greeting: Velkommen %{recipient}!
+        instruction: 'Du kan bekræfte din email-konto igennem linket herunder:'
+      reset_password_instructions:
+        action: "Ændre mit kodeord"
+        greeting: Hej %{recipient}!
+        instruction: Der er blevet anmodet om, at få tilsendt et link til ændring af dit kodeord. Det kan gøres ved hjælp af linket herunder.
+        instruction_2: Hvis du ikke har anmodet om dette, så se venligst bort fra denne email.
+        instruction_3: Dit kodeord forbliver uændret indtil du laver et nyt, ved hjælp af linket foroven.
+      unlock_instructions:
+        action: Aktivér min konto
+        greeting: Hej %{recipient}!
+        instruction: 'Klik på linket herunder for at aktivere din konto:'
+        message: Din konto er blevet låst efter for mange forkerte log-ind forsøg.
+    passwords:
+      edit:
+        change_my_password: 
+        change_your_password: 
+        confirm_new_password: 
+        new_password: 
+      new:
+        forgot_your_password: Glemt kodeord?
+        send_me_reset_password_instructions: Send mig instruktioner til gendannelse af password
+    registrations:
+      edit:
+        are_you_sure: Er du sikker?
+        cancel_my_account: Slet min konto
+        currently_waiting_confirmation_for_email: 
+        leave_blank_if_you_don_t_want_to_change_it: 'efterlades blankt hvis det ikke ønskes ændret '
+        title: Rediger %{resource}
+        unhappy: 
+        update: 
+        we_need_your_current_password_to_confirm_your_changes: vi skal bruge dit nuværende kodeord for at bekræfte ændringerne.
+      new:
+        sign_up: Registrer
+    sessions:
+      new:
+        sign_in: Log-ind
+    shared:
+      links:
+        back: 
+        didn_t_receive_confirmation_instructions: Har du ikke modtaget bekræftelses-instruktioner?
+        didn_t_receive_unlock_instructions: Har du ikke modtaget aktiverings-instruktioner?
+        forgot_your_password: Glemt kodeord?
+        sign_in: Log-ind
+        sign_in_with_provider: Log-ind med %{provider}
+        sign_up: Registrer
+    unlocks:
+      new:
+        resend_unlock_instructions: Få tilsendt aktiverings-instruktioner

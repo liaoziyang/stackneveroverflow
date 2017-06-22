@@ -1,0 +1,407 @@
+{
+  "comment": "\n\tTODO:\n\t* syntax types, tuple types, union\n\t* take out ::Type\n\t",
+  "fileTypes": [
+    "jl"
+  ],
+  "firstLineMatch": "^#!.*\\bjulia\\s*$",
+  "keyEquivalent": "^~J",
+  "name": "Julia",
+  "patterns": [
+    {
+      "include": "#symbol"
+    },
+    {
+      "include": "#operator"
+    },
+    {
+      "include": "#array"
+    },
+    {
+      "include": "#string"
+    },
+    {
+      "include": "#bracket"
+    },
+    {
+      "include": "#type_decl"
+    },
+    {
+      "include": "#function_decl"
+    },
+    {
+      "include": "#function_call"
+    },
+    {
+      "include": "#keyword"
+    },
+    {
+      "include": "#number"
+    },
+    {
+      "include": "#comment"
+    }
+  ],
+  "repository": {
+    "array": {
+      "patterns": [
+        {
+          "begin": "\\[",
+          "end": "\\]((\\.)?'*)",
+          "endCaptures": {
+            "1": {
+              "name": "keyword.operator.transpose.julia"
+            }
+          },
+          "name": "meta.array.julia",
+          "patterns": [
+            {
+              "match": "\\bend\\b",
+              "name": "constant.numeric.julia"
+            },
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "bracket": {
+      "patterns": [
+        {
+          "match": "(?:\\(|\\)|\\[|\\]|\\{|\\}|,)(?!('|(?:\\.'))*\\.?')",
+          "name": "meta.bracket.julia"
+        }
+      ]
+    },
+    "comment": {
+      "patterns": [
+        {
+          "begin": "#=",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.begin.julia"
+            }
+          },
+          "end": "=#",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.end.julia"
+            }
+          },
+          "name": "comment.block.number-sign-equals.julia"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.comment.julia"
+            }
+          },
+          "match": "(?<!\\$)(#)(?!\\{).*$\\n?",
+          "name": "comment.line.number-sign.julia"
+        }
+      ]
+    },
+    "function_call": {
+      "patterns": [
+        {
+          "begin": "([a-zA-Z0-9_]+!?)\\w*\\(",
+          "beginCaptures": {
+            "1": {
+              "name": "support.function.julia"
+            }
+          },
+          "end": "\\)(('|(\\.'))*\\.?')?",
+          "endCaptures": {
+            "1": {
+              "name": "keyword.operator.transposed-func.julia"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "function_decl": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "entity.name.function.julia"
+            },
+            "2": {
+              "name": "support.type.julia"
+            }
+          },
+          "match": "([\\w.!]+)({[^}]*})?\\((?=.*\\)\\s*=(?!=))"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.other.julia"
+            },
+            "2": {
+              "name": "entity.name.function.julia"
+            },
+            "3": {
+              "name": "support.type.julia"
+            }
+          },
+          "match": "\\b(function|stagedfunction|macro)\\s+([\\w.!]+)({[^}]*})?\\("
+        }
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "match": "\\b(?:function|stagedfunction|type|immutable|macro|quote|abstract|bitstype|typealias|module|baremodule|new)\\b",
+          "name": "keyword.other.julia"
+        },
+        {
+          "match": "\\b(?:if|else|elseif|while|for|in|begin|let|end|do|try|catch|finally|return|break|continue)\\b",
+          "name": "keyword.control.julia"
+        },
+        {
+          "match": "\\b(?:global|local|const|export|import|importall|using)\\b",
+          "name": "storage.modifier.variable.julia"
+        },
+        {
+          "match": "@\\w+\\b",
+          "name": "support.function.macro.julia"
+        }
+      ]
+    },
+    "number": {
+      "patterns": [
+        {
+          "match": "((\\b0(x|X)[0-9a-fA-F](_?[0-9a-fA-F])*)|(\\b0o[0-7](_?[0-7])*)|(\\b0b[0-1](_?[0-1])*)|((\\b[0-9](_?[0-9])*\\.?(_?[0-9]*))|(\\.[0-9](_?[0-9])*))((e|E)(\\+|-)?(_?[0-9])*)?(im)?|\\bInf(32)?\\b|\\bNaN(32)?\\b)",
+          "name": "constant.numeric.julia"
+        },
+        {
+          "match": "\\btrue\\b|\\bfalse\\b|\\bnothing\\b",
+          "name": "constant.language.julia"
+        }
+      ]
+    },
+    "operator": {
+      "patterns": [
+        {
+          "match": "(?:=|:=|\\+=|-=|\\*=|/=|//=|\\.//=|\\.\\*=|\\\\=|\\.\\\\=|^=|\\.^=|%=|\\|=|&=|\\$=|<<=|>>=)",
+          "name": "keyword.operator.update.julia"
+        },
+        {
+          "match": "(?:::(?:(?:Union)?\\([^)]*\\)|\\w+(?:{[^}]*})?))(?:\\.\\.\\.)?",
+          "name": "support.type.julia"
+        },
+        {
+          "match": "(?:\\?|:)",
+          "name": "keyword.operator.ternary.julia"
+        },
+        {
+          "match": "(?:\\|\\||&&|!)",
+          "name": "keyword.operator.boolean.julia"
+        },
+        {
+          "match": "(?:->|<-|-->)",
+          "name": "keyword.operator.arrow.julia"
+        },
+        {
+          "match": "(?:>|<|>=|<=|==|!=|\\.>|\\.<|\\.>=|\\.>=|\\.==|\\.!=|\\.=|\\.!|<:|:>)",
+          "name": "keyword.operator.relation.julia"
+        },
+        {
+          "match": "(?::)",
+          "name": "keyword.operator.range.julia"
+        },
+        {
+          "match": "(?:<<|>>)",
+          "name": "keyword.operator.shift.julia"
+        },
+        {
+          "match": "(?:\\||\\&|~)",
+          "name": "keyword.operator.bitwise.julia"
+        },
+        {
+          "match": "(?:\\+|-|\\*|\\.\\*|/|\\./|//|\\.//|%|\\.%|\\\\|\\.\\\\|\\^|\\.\\^)",
+          "name": "keyword.operator.arithmetic.julia"
+        },
+        {
+          "match": "(?:::)",
+          "name": "keyword.operator.isa.julia"
+        },
+        {
+          "match": "(?:\\.(?=[a-zA-Z])|\\.\\.+)",
+          "name": "keyword.operator.dots.julia"
+        },
+        {
+          "match": "(?:\\$(?=.+))",
+          "name": "keyword.operator.interpolation.julia"
+        },
+        {
+          "captures": {
+            "2": {
+              "name": "keyword.operator.transposed-variable.julia"
+            }
+          },
+          "match": "(\\w+)(('|(\\.'))*\\.?')"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.bracket.end.julia"
+            },
+            "2": {
+              "name": "keyword.operator.transposed-matrix.julia"
+            }
+          },
+          "match": "(\\])((?:'|(?:\\.'))*\\.?')"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.bracket.end.julia"
+            },
+            "2": {
+              "name": "keyword.operator.transposed-parens.julia"
+            }
+          },
+          "match": "(\\))((?:'|(?:\\.'))*\\.?')"
+        }
+      ]
+    },
+    "string": {
+      "patterns": [
+        {
+          "begin": "'",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.julia"
+            }
+          },
+          "end": "'",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.julia"
+            }
+          },
+          "name": "string.quoted.single.julia",
+          "patterns": [
+            {
+              "include": "#string_escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.julia"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.julia"
+            }
+          },
+          "name": "string.quoted.double.julia",
+          "patterns": [
+            {
+              "include": "#string_escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "\\b\\w+\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.julia"
+            }
+          },
+          "end": "\"\\w*",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.julia"
+            }
+          },
+          "name": "string.quoted.other.julia",
+          "patterns": [
+            {
+              "include": "#string_custom_escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "`",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.julia"
+            }
+          },
+          "end": "`",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.julia"
+            }
+          },
+          "name": "string.interpolated.julia",
+          "patterns": [
+            {
+              "include": "#string_escaped_char"
+            }
+          ]
+        }
+      ]
+    },
+    "string_custom_escaped_char": {
+      "patterns": [
+        {
+          "match": "\\\\\"",
+          "name": "constant.character.escape.julia"
+        }
+      ]
+    },
+    "string_escaped_char": {
+      "patterns": [
+        {
+          "match": "\\\\(\\\\|[0-3]\\d{0,2}|[4-7]\\d?|x[a-fA-F0-9]{0,2}|u[a-fA-F0-9]{0,4}|U[a-fA-F0-9]{0,8}|.)",
+          "name": "constant.character.escape.julia"
+        }
+      ]
+    },
+    "symbol": {
+      "patterns": [
+        {
+          "match": "(?<![a-zA-Z0-9:<]:):[a-zA-Z_][a-zA-Z0-9_]*\\b",
+          "name": "constant.other.symbol.julia"
+        }
+      ]
+    },
+    "type_decl": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.control.type.julia"
+            },
+            "2": {
+              "name": "entity.name.type.julia"
+            },
+            "3": {
+              "name": "entity.other.inherited-class.julia"
+            },
+            "4": {
+              "name": "punctuation.separator.inheritance.julia"
+            }
+          },
+          "match": "(type|immutable)\\s+(\\w+)(\\s*(<:)\\s*\\w+(?:{.*})?)?",
+          "name": "meta.type.julia"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.julia",
+  "uuid": "F5D95417-DF9F-48AD-92DF-21CE62F7C31B"
+}

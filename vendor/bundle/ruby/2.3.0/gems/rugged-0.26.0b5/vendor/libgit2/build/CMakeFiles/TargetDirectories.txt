@@ -1,0 +1,7 @@
+/Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/rugged-0.26.0b5/vendor/libgit2/build/CMakeFiles/install/local.dir
+/Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/rugged-0.26.0b5/vendor/libgit2/build/CMakeFiles/rebuild_cache.dir
+/Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/rugged-0.26.0b5/vendor/libgit2/build/CMakeFiles/edit_cache.dir
+/Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/rugged-0.26.0b5/vendor/libgit2/build/CMakeFiles/install/strip.dir
+/Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/rugged-0.26.0b5/vendor/libgit2/build/CMakeFiles/install.dir
+/Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/rugged-0.26.0b5/vendor/libgit2/build/CMakeFiles/list_install_components.dir
+/Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/rugged-0.26.0b5/vendor/libgit2/build/CMakeFiles/git2.dir

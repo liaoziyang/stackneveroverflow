@@ -1,0 +1,66 @@
+{
+  "fileTypes": [
+    "cirru",
+    "cr"
+  ],
+  "name": "Cirru",
+  "patterns": [
+    {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.cirru",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.cirru"
+        }
+      ]
+    },
+    {
+      "match": "\\b\\d\\S*\\b",
+      "name": "constant.numeric.cirru"
+    },
+    {
+      "match": "(?=^)\\s*\\,",
+      "name": "keyword.operator.cirru"
+    },
+    {
+      "match": "(?=^)\\s*[^\\(\\)\\s\\$][^\\(\\)\\s]*",
+      "name": "support.function.cirru"
+    },
+    {
+      "match": "(?<=\\()[^\\(\\)\\s\\$][^\\(\\)\\s]*",
+      "name": "support.function.cirru"
+    },
+    {
+      "match": "(?=\\$\\s+)[^\\(\\)\\s\\$][^\\(\\)\\s]*",
+      "name": "support.function.cirru"
+    },
+    {
+      "match": "\\s\\$\\s*$",
+      "name": "keyword.operator.cirru"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.operator.cirru"
+        },
+        "3": {
+          "name": "support.function.cirru"
+        }
+      },
+      "match": "\\s+((\\$\\s+)+)([^\\(\\)\\s\\$][^\\(\\)\\s]*)",
+      "name": "entity.cirru"
+    },
+    {
+      "match": "[\\)\\(]",
+      "name": "keyword.operator.cirru"
+    },
+    {
+      "match": "(?!=($\\s+))[^\\(\\)\\s\\$][^\\(\\)\\s]*",
+      "name": "variable.parameter.cirru"
+    }
+  ],
+  "scopeName": "source.cirru",
+  "uuid": "43471e40-4ccc-45e8-b003-29a2b4f7c191"
+}

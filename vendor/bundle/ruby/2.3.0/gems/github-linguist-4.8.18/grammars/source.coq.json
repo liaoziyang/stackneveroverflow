@@ -1,0 +1,62 @@
+{
+  "fileTypes": [
+    "v"
+  ],
+  "name": "Coq",
+  "patterns": [
+    {
+      "include": "#multilinecomment"
+    },
+    {
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.coq"
+        }
+      },
+      "begin": "\\b(Proof)\\.",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.coq"
+        }
+      },
+      "end": "\\b(Qed|Defined|Abort|Admitted|Abort All)\\.",
+      "name": "proof.coq"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "variable.coq"
+        }
+      },
+      "match": "\\b(Axiom|Conjecture|Parameter|Parameters|Variable|Variables|Hypothesis|Hypotheses|Definition|Let|Fixpoint|CoFixpoint|Inductive|CoInductive|Remark|Fact|Corollary|Proposition|Example|Module|Theorem|Lemma)\\b"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.coq"
+        }
+      },
+      "match": "\\b(Require|Proof|Qed|Type|Admitted|match|with|end|Eval|in|Check|End|Notation|forall|as|Defined|Set|fun|at|cofix|else|exists|exists2|fix|for|if|IF|let|mod|Prop|return|then|using|where|Abort)\\b"
+    },
+    {
+      "match": ":.*?[,.]",
+      "name": "type.coq"
+    }
+  ],
+  "repository": {
+    "multilinecomment": {
+      "begin": "\\(\\*",
+      "name": "comment.coq",
+      "end": "\\*\\)",
+      "contentName": "comment.coq",
+      "patterns": [
+        {
+          "include": "#multilinecomment",
+          "name": "comment.coq"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.coq",
+  "uuid": "f3924813-f5ba-4ccf-b76f-f9bff62c5180"
+}

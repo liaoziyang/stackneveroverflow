@@ -1,0 +1,135 @@
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogumbo-1.4.13/ext/nokogumboc
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20170622-11687-izsmp.rb extconf.rb
+checking for xmlNewDoc() in -lxml2... yes
+checking for nokogiri.h in /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/ext/nokogiri... yes
+checking for nokogiri.h in /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/ext/nokogiri... yes
+checking for gumbo_parse() in -lgumbo... no
+checking for GumboErrorType with error.h... not found
+checking for GumboInsertionMode with insertion_mode.h... not found
+checking for GumboParser with parser.h... not found
+checking for GumboStringBuffer with string_buffer.h... not found
+checking for GumboTokenType with token_type.h... not found
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0/nokogumbo-1.4.13/mkmf.log
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogumbo-1.4.13/ext/nokogumboc
+make "DESTDIR=" clean
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogumbo-1.4.13/ext/nokogumboc
+make "DESTDIR="
+compiling attribute.c
+compiling char_ref.c
+char_ref.rl:2496:18: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+    int len = te - start;
+        ~~~   ~~~^~~~~~~
+1 warning generated.
+compiling error.c
+error.c:36:45: warning: implicit conversion loses integer precision: 'unsigned long' to 'int' [-Wshorten-64-to-32]
+  int remaining_capacity = output->capacity - output->length;
+      ~~~~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+error.c:65:43: warning: implicit conversion loses integer precision: 'unsigned long' to 'int' [-Wshorten-64-to-32]
+    remaining_capacity = output->capacity - output->length;
+                       ~ ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+2 warnings generated.
+compiling nokogumbo.c
+In file included from nokogumbo.c:31:
+/Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.0/ext/nokogiri/nokogiri.h:13:9: warning: '_GNU_SOURCE' macro redefined [-Wmacro-redefined]
+#define _GNU_SOURCE
+        ^
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/x86_64-darwin16/ruby/config.h:17:9: note: previous definition is here
+#define _GNU_SOURCE 1
+        ^
+nokogumbo.c:121:12: warning: assigning to 'char *' from 'const char [7]' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+        ns = "xlink:";
+           ^ ~~~~~~~~
+nokogumbo.c:125:12: warning: assigning to 'char *' from 'const char [5]' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+        ns = "xml:";
+           ^ ~~~~~~
+nokogumbo.c:129:12: warning: assigning to 'char *' from 'const char [7]' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+        ns = "xmlns:";
+           ^ ~~~~~~~~
+nokogumbo.c:116:19: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
+  for (int i=0; i < attrs->length; i++) {
+                ~ ^ ~~~~~~~~~~~~~
+nokogumbo.c:138:47: warning: comparison of integers of different signs: 'unsigned long' and 'int' [-Wsign-compare]
+      if (strlen(ns) + strlen(attr->name) + 1 > namelen) {
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~
+nokogumbo.c:144:51: warning: implicit conversion loses integer precision: 'unsigned long' to 'int' [-Wshorten-64-to-32]
+        namelen = strlen(ns) + strlen(attr->name) + 1;
+                ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+nokogumbo.c:159:19: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
+  for (int i=0; i < children->length; i++) {
+                ~ ^ ~~~~~~~~~~~~~~~~
+nokogumbo.c:206:19: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
+  for (int i=0; i < children->length; i++) {
+                ~ ^ ~~~~~~~~~~~~~~~~
+nokogumbo.c:227:21: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
+    for (int i=0; i < errors->length; i++) {
+                  ~ ^ ~~~~~~~~~~~~~~
+10 warnings generated.
+compiling parser.c
+parser.c:815:32: warning: implicit conversion loses integer precision: 'size_t' (aka 'unsigned long') to 'int' [-Wshorten-64-to-32]
+    retval.index = last_table->index_within_parent;
+                 ~ ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+parser.c:828:36: warning: comparison of integers of different signs: 'size_t' (aka 'unsigned long') and 'int' [-Wsign-compare]
+  assert(node->index_within_parent == -1);
+         ~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+parser.c:849:36: warning: comparison of integers of different signs: 'size_t' (aka 'unsigned long') and 'int' [-Wsign-compare]
+  assert(node->index_within_parent == -1);
+         ~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+parser.c:2848:32: warning: implicit conversion loses integer precision: 'unsigned long' to 'int' [-Wshorten-64-to-32]
+      int prompt_attr_length = strlen(prompt_attr->value);
+          ~~~~~~~~~~~~~~~~~~   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+4 warnings generated.
+compiling string_buffer.c
+compiling string_piece.c
+compiling tag.c
+tag.c:94:35: warning: implicit conversion loses integer precision: 'unsigned long' to 'unsigned int' [-Wshorten-64-to-32]
+  return gumbo_tagn_enum(tagname, strlen(tagname));
+         ~~~~~~~~~~~~~~~          ^~~~~~~~~~~~~~~
+1 warning generated.
+compiling tokenizer.c
+tokenizer.c:380:18: warning: implicit conversion loses integer precision: 'unsigned long' to 'int' [-Wshorten-64-to-32]
+  int text_len = strlen(text);
+      ~~~~~~~~   ^~~~~~~~~~~~
+tokenizer.c:381:19: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
+  return text_len == buffer->length &&
+         ~~~~~~~~ ^  ~~~~~~~~~~~~~~
+tokenizer.c:754:67: warning: implicit conversion loses integer precision: 'size_t' (aka 'unsigned long') to 'unsigned int' [-Wshorten-64-to-32]
+      gumbo_tagn_enum(tag_state->_buffer.data, tag_state->_buffer.length);
+      ~~~~~~~~~~~~~~~                          ~~~~~~~~~~~~~~~~~~~^~~~~~
+tokenizer.c:842:63: warning: implicit conversion loses integer precision: 'size_t' (aka 'unsigned long') to 'unsigned int' [-Wshorten-64-to-32]
+                                           tag_state->_buffer.length);
+                                           ~~~~~~~~~~~~~~~~~~~^~~~~~
+4 warnings generated.
+compiling utf8.c
+utf8.c:140:39: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+      iter->_width = c - iter->_start + 1;
+                   ~ ~~~~~~~~~~~~~~~~~^~~
+utf8.c:167:39: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+      iter->_width = c - iter->_start + (c == iter->_start);
+                   ~ ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+utf8.c:179:29: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+  iter->_width = iter->_end - iter->_start;
+               ~ ~~~~~~~~~~~^~~~~~~~~~~~~~
+3 warnings generated.
+compiling util.c
+compiling vector.c
+vector.c:33:22: warning: implicit conversion loses integer precision: 'size_t' (aka 'unsigned long') to 'unsigned int' [-Wshorten-64-to-32]
+  vector->capacity = initial_capacity;
+                   ~ ^~~~~~~~~~~~~~~~
+1 warning generated.
+linking shared-object nokogumboc.bundle
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/nokogumbo-1.4.13/ext/nokogumboc
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 nokogumboc.bundle ./.gem.20170622-11687-gxsh4o

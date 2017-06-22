@@ -1,0 +1,287 @@
+{
+  "fileTypes": [
+    "httpspec"
+  ],
+  "name": "HTTP Spec",
+  "patterns": [
+    {
+      "name": "meta.request.httpspec",
+      "patterns": [
+        {
+          "include": "#request"
+        },
+        {
+          "match": "^$"
+        },
+        {
+          "include": "#response"
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "ampersand": {
+      "patterns": [
+        {
+          "match": "(?<!\\&)\\&(?!\\&)",
+          "name": "support.function.ampersand.httpspec"
+        }
+      ]
+    },
+    "closingbracket": {
+      "patterns": [
+        {
+          "name": "keyword.other.multiplexend.httpspec"
+        },
+        {
+          "match": "\\]"
+        }
+      ]
+    },
+    "comma": {
+      "patterns": [
+        {
+          "match": "\\,",
+          "name": "keyword.other.comma.httpspec.test"
+        }
+      ]
+    },
+    "emptyline": {
+      "patterns": [
+        {
+          "match": "^\\s*$"
+        }
+      ]
+    },
+    "equals": {
+      "patterns": [
+        {
+          "match": "\\=",
+          "name": "support.function.keyvaluepairseparator.httpspec"
+        }
+      ]
+    },
+    "header": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "variable.parameter.headername.httpspec"
+            }
+          },
+          "match": "^([a-zA-Z\\-_]+\\:)\\s(.*)$",
+          "name": "string.unquoted.uri.httpspec"
+        }
+      ]
+    },
+    "invalidcomma": {
+      "patterns": [
+        {
+          "match": "^\\,|\\,(?=\\s)",
+          "name": "invalid.illegal.comma.httpspec"
+        }
+      ]
+    },
+    "jsonblock": {
+      "patterns": [
+        {
+          "include": "source.json"
+        }
+      ]
+    },
+    "methodlist": {
+      "patterns": [
+        {
+          "include": "#methodname"
+        },
+        {
+          "include": "#invalidcomma"
+        },
+        {
+          "include": "#comma"
+        }
+      ]
+    },
+    "methodname": {
+      "patterns": [
+        {
+          "match": "(?:\\b)(OPTIONS|HEAD|GET|DELETE|PUT|PATCH|POST)",
+          "name": "keyword.other.method.httpspec"
+        }
+      ]
+    },
+    "multiplex": {
+      "begin": "(\\[)",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.other"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "keyword.other"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#uripart"
+        },
+        {
+          "include": "#comma"
+        }
+      ]
+    },
+    "namevaluepair": {
+      "patterns": [
+        {
+          "include": "#uriqueryname"
+        },
+        {
+          "include": "#equals"
+        },
+        {
+          "include": "#uriqueryvalue"
+        }
+      ]
+    },
+    "openingbracket": {
+      "patterns": [
+        {
+          "match": "\\[",
+          "name": "keyword.other.multiplexstart.httpspec"
+        }
+      ]
+    },
+    "questionmark": {
+      "patterns": [
+        {
+          "match": "\\?",
+          "name": "support.function.queryseparator.httpspec"
+        }
+      ]
+    },
+    "request": {
+      "patterns": [
+        {
+          "begin": "^(?=OPTIONS|HEAD|GET|DELETE|PUT|PATCH|POST)",
+          "end": "^(?=\\d\\d\\d)",
+          "patterns": [
+            {
+              "include": "#requestline"
+            },
+            {
+              "include": "#header"
+            },
+            {
+              "include": "#jsonblock"
+            }
+          ]
+        }
+      ]
+    },
+    "requestline": {
+      "patterns": [
+        {
+          "include": "#methodlist"
+        },
+        {
+          "include": "#uri"
+        }
+      ]
+    },
+    "response": {
+      "patterns": [
+        {
+          "include": "#statusline"
+        },
+        {
+          "include": "#header"
+        },
+        {
+          "include": "#jsonblock"
+        }
+      ]
+    },
+    "statusline": {
+      "patterns": [
+        {
+          "captures": {
+            "0": {
+              "name": "constant.language.statustext.httpspec"
+            }
+          },
+          "match": "^(\\d\\d\\d)\\s(.*)$"
+        }
+      ]
+    },
+    "uri": {
+      "patterns": [
+        {
+          "include": "#uripath"
+        },
+        {
+          "include": "#multiplex"
+        },
+        {
+          "include": "#questionmark"
+        },
+        {
+          "include": "#uriquery"
+        }
+      ]
+    },
+    "uripart": {
+      "patterns": [
+        {
+          "match": "([a-bA-B0-9\\-_/]+)"
+        }
+      ]
+    },
+    "uripath": {
+      "patterns": [
+        {
+          "begin": "(?:\\s)\\/",
+          "end": "(?:$)",
+          "name": "support.function.httpspec",
+          "patterns": [
+            {
+              "include": "#uripart"
+            },
+            {
+              "include": "#multiplex"
+            }
+          ]
+        }
+      ]
+    },
+    "uriquery": {
+      "patterns": [
+        {
+          "include": "#namevaluepair"
+        },
+        {
+          "include": "#ampersand"
+        }
+      ]
+    },
+    "uriqueryname": {
+      "patterns": [
+        {
+          "match": "(?<=[?&])([^=&])+",
+          "name": "support.function.uriqueryname.httpspec"
+        }
+      ]
+    },
+    "uriqueryvalue": {
+      "patterns": [
+        {
+          "match": "(?<=\\=)([^=&]+)",
+          "name": "support.function.uriqueryvalue.httpspec"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.httpspec",
+  "uuid": "7bb6ff35-8b8a-4480-91ec-20f2d3fcba9a"
+}

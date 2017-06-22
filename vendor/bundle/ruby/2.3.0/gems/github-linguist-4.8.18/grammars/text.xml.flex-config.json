@@ -1,0 +1,2632 @@
+{
+  "comment": "The majority of items in the language repository are automatically generated and may not be complete.\n\t\t\t  Please post to the TM list if you spot anything thats missing.",
+  "firstLineMatch": "flex-config",
+  "keyEquivalent": "^~X",
+  "name": "Flex Config",
+  "patterns": [
+    {
+      "include": "#flex-config"
+    },
+    {
+      "include": "text.xml"
+    }
+  ],
+  "repository": {
+    "accessible": {
+      "begin": "<accessible>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.accessible"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.accessible",
+      "end": "</accessible>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "actionscript-file-encoding": {
+      "begin": "<actionscript-file-encoding>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.actionscript-file-encoding"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.actionscript-file-encoding",
+      "end": "</actionscript-file-encoding>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "advanced-anti-aliasing": {
+      "begin": "<advanced-anti-aliasing>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.fonts.advanced-anti-aliasing"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.fonts.advanced-anti-aliasing",
+      "end": "</advanced-anti-aliasing>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "allow-source-path-overlap": {
+      "begin": "<allow-source-path-overlap>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.allow-source-path-overlap"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.allow-source-path-overlap",
+      "end": "</allow-source-path-overlap>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "appendable": {
+      "match": " (append)=\"(true|false)\"",
+      "name": "entity.other.attribute.xml.flex-config"
+    },
+    "as-three": {
+      "begin": "<as3>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.as3"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.as3",
+      "end": "</as3>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "benchmark": {
+      "begin": "<benchmark>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.benchmark"
+        }
+      },
+      "contentName": "meta.scope.flex-config.benchmark",
+      "end": "</benchmark>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "bundle": {
+      "begin": "<bundle>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.include-resource-bundles.bundle"
+        }
+      },
+      "contentName": "meta.scope.flex-config.include-resource-bundles.bundle",
+      "end": "</bundle>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "classname": {
+      "begin": "<classname>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.frames.frame.classname"
+        }
+      },
+      "contentName": "meta.scope.flex-config.frames.frame.classname",
+      "end": "</classname>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "comments": {
+      "begin": "<[!%]--",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.xml.flex-config"
+        }
+      },
+      "end": "--%?>",
+      "name": "comment.block.xml.flex-config"
+    },
+    "compatibility-version": {
+      "begin": "<compatibility-version>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.mxml.compatibility-version"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.mxml.compatibility-version",
+      "end": "</compatibility-version>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "compiler": {
+      "begin": "<compiler>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler",
+      "end": "</compiler>",
+      "patterns": [
+        {
+          "include": "#accessible"
+        },
+        {
+          "include": "#actionscript-file-encoding"
+        },
+        {
+          "include": "#allow-source-path-overlap"
+        },
+        {
+          "include": "#as-three"
+        },
+        {
+          "include": "#context-root"
+        },
+        {
+          "include": "#debug"
+        },
+        {
+          "include": "#defaults-css-files"
+        },
+        {
+          "include": "#defaults-css-url"
+        },
+        {
+          "include": "#define"
+        },
+        {
+          "include": "#es"
+        },
+        {
+          "include": "#external-library-path"
+        },
+        {
+          "include": "#fonts"
+        },
+        {
+          "include": "#headless-server"
+        },
+        {
+          "include": "#include-libraries"
+        },
+        {
+          "include": "#incremental"
+        },
+        {
+          "include": "#keep-all-type-selectors"
+        },
+        {
+          "include": "#keep-as-three-metadata"
+        },
+        {
+          "include": "#keep-generated-actionscript"
+        },
+        {
+          "include": "#library-path"
+        },
+        {
+          "include": "#locale"
+        },
+        {
+          "include": "#mxml"
+        },
+        {
+          "include": "#namespaces"
+        },
+        {
+          "include": "#optimize"
+        },
+        {
+          "include": "#services"
+        },
+        {
+          "include": "#show-actionscript-warnings"
+        },
+        {
+          "include": "#show-binding-warnings"
+        },
+        {
+          "include": "#show-shadowed-device-font-warnings"
+        },
+        {
+          "include": "#show-unused-type-selector-warnings"
+        },
+        {
+          "include": "#source-path"
+        },
+        {
+          "include": "#strict"
+        },
+        {
+          "include": "#theme"
+        },
+        {
+          "include": "#use-resource-bundle-metadata"
+        },
+        {
+          "include": "#verbose-stacktraces"
+        },
+        {
+          "include": "#warn-array-tostring-changes"
+        },
+        {
+          "include": "#warn-assignment-within-conditional"
+        },
+        {
+          "include": "#warn-bad-array-cast"
+        },
+        {
+          "include": "#warn-bad-bool-assignment"
+        },
+        {
+          "include": "#warn-bad-date-cast"
+        },
+        {
+          "include": "#warn-bad-es-three-type-method"
+        },
+        {
+          "include": "#warn-bad-es-three-type-prop"
+        },
+        {
+          "include": "#warn-bad-nan-comparison"
+        },
+        {
+          "include": "#warn-bad-null-assignment"
+        },
+        {
+          "include": "#warn-bad-null-comparison"
+        },
+        {
+          "include": "#warn-bad-undefined-comparison"
+        },
+        {
+          "include": "#warn-boolean-constructor-with-no-args"
+        },
+        {
+          "include": "#warn-changes-in-resolve"
+        },
+        {
+          "include": "#warn-class-is-sealed"
+        },
+        {
+          "include": "#warn-const-not-initialized"
+        },
+        {
+          "include": "#warn-constructor-returns-value"
+        },
+        {
+          "include": "#warn-deprecated-event-handler-error"
+        },
+        {
+          "include": "#warn-deprecated-function-error"
+        },
+        {
+          "include": "#warn-deprecated-property-error"
+        },
+        {
+          "include": "#warn-duplicate-argument-names"
+        },
+        {
+          "include": "#warn-duplicate-variable-def"
+        },
+        {
+          "include": "#warn-for-var-in-changes"
+        },
+        {
+          "include": "#warn-import-hides-class"
+        },
+        {
+          "include": "#warn-instance-of-changes"
+        },
+        {
+          "include": "#warn-internal-error"
+        },
+        {
+          "include": "#warn-level-not-supported"
+        },
+        {
+          "include": "#warn-missing-namespace-decl"
+        },
+        {
+          "include": "#warn-negative-uint-literal"
+        },
+        {
+          "include": "#warn-no-constructor"
+        },
+        {
+          "include": "#warn-no-explicit-super-call-in-constructor"
+        },
+        {
+          "include": "#warn-no-type-decl"
+        },
+        {
+          "include": "#warn-number-from-string-changes"
+        },
+        {
+          "include": "#warn-scoping-change-in-this"
+        },
+        {
+          "include": "#warn-slow-text-field-addition"
+        },
+        {
+          "include": "#warn-unlikely-function-value"
+        },
+        {
+          "include": "#warn-xml-class-has-changed"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "context-root": {
+      "begin": "<context-root>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.context-root"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.context-root",
+      "end": "</context-root>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "contributor": {
+      "begin": "<contributor>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata.contributor"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata.contributor",
+      "end": "</contributor>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "creator": {
+      "begin": "<creator>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata.creator"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata.creator",
+      "end": "</creator>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "date": {
+      "begin": "<date>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata.date"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata.date",
+      "end": "</date>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "debug": {
+      "begin": "<debug>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.debug"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.debug",
+      "end": "</debug>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "debug-password": {
+      "begin": "<debug-password>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.debug-password"
+        }
+      },
+      "contentName": "meta.scope.flex-config.debug-password",
+      "end": "</debug-password>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "default-background-color": {
+      "begin": "<default-background-color>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.default-background-color"
+        }
+      },
+      "contentName": "meta.scope.flex-config.default-background-color",
+      "end": "</default-background-color>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "default-frame-rate": {
+      "begin": "<default-frame-rate>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.default-frame-rate"
+        }
+      },
+      "contentName": "meta.scope.flex-config.default-frame-rate",
+      "end": "</default-frame-rate>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "default-script-limits": {
+      "begin": "<default-script-limits>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.default-script-limits"
+        }
+      },
+      "contentName": "meta.scope.flex-config.default-script-limits",
+      "end": "</default-script-limits>",
+      "patterns": [
+        {
+          "include": "#max-recursion-depth"
+        },
+        {
+          "include": "#max-execution-time"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "default-size": {
+      "begin": "<default-size>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.default-size"
+        }
+      },
+      "contentName": "meta.scope.flex-config.default-size",
+      "end": "</default-size>",
+      "patterns": [
+        {
+          "include": "#width"
+        },
+        {
+          "include": "#height"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "defaults-css-files": {
+      "begin": "<defaults-css-files>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.defaults-css-files"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.defaults-css-files",
+      "end": "</defaults-css-files>",
+      "patterns": [
+        {
+          "include": "#filename"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "defaults-css-url": {
+      "begin": "<defaults-css-url>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.defaults-css-url"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.defaults-css-url",
+      "end": "</defaults-css-url>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "define": {
+      "begin": "<define>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.define"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.define",
+      "end": "</define>",
+      "patterns": [
+        {
+          "include": "#name"
+        },
+        {
+          "include": "#value"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "description": {
+      "begin": "<description>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata.description"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata.description",
+      "end": "</description>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "doublequotedString": {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.xml.flex-config"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.xml.flex-config"
+        }
+      },
+      "name": "string.quoted.double.xml.flex-config"
+    },
+    "errors": {
+      "begin": "(</?)(?:([-_a-zA-Z0-9]+)((:)))?([-_a-zA-Z0-9:]+)",
+      "end": "(/?>)",
+      "name": "invalid.illegal.directive.flex-config"
+    },
+    "es": {
+      "begin": "<es>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.es"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.es",
+      "end": "</es>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "etc": {
+      "patterns": [
+        {
+          "include": "#directives"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#errors"
+        },
+        {
+          "include": "text.xml"
+        }
+      ]
+    },
+    "external-library-path": {
+      "begin": "<external-library-path( append=\"true\")?>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.external-library-path"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.external-library-path",
+      "end": "</external-library-path>",
+      "patterns": [
+        {
+          "include": "#path-element"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "externs": {
+      "begin": "<externs( append=\"true\")?>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.externs"
+        }
+      },
+      "contentName": "meta.scope.flex-config.externs",
+      "end": "</externs>",
+      "patterns": [
+        {
+          "include": "#symbol"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "filename": {
+      "begin": "<filename>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.theme.filename"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.theme.filename",
+      "end": "</filename>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "flash-type": {
+      "begin": "<flash-type>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.fonts.flash-type"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.fonts.flash-type",
+      "end": "</flash-type>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "flex-config": {
+      "begin": "<flex-config>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config"
+        }
+      },
+      "contentName": "meta.scope.flex-config",
+      "end": "</flex-config>",
+      "patterns": [
+        {
+          "include": "#benchmark"
+        },
+        {
+          "include": "#compiler"
+        },
+        {
+          "include": "#debug-password"
+        },
+        {
+          "include": "#default-background-color"
+        },
+        {
+          "include": "#default-frame-rate"
+        },
+        {
+          "include": "#default-script-limits"
+        },
+        {
+          "include": "#default-size"
+        },
+        {
+          "include": "#externs"
+        },
+        {
+          "include": "#frames"
+        },
+        {
+          "include": "#include-resource-bundles"
+        },
+        {
+          "include": "#includes"
+        },
+        {
+          "include": "#link-report"
+        },
+        {
+          "include": "#load-config"
+        },
+        {
+          "include": "#load-externs"
+        },
+        {
+          "include": "#metadata"
+        },
+        {
+          "include": "#output"
+        },
+        {
+          "include": "#raw-metadata"
+        },
+        {
+          "include": "#resource-bundle-list"
+        },
+        {
+          "include": "#runtime-shared-libraries"
+        },
+        {
+          "include": "#runtime-shared-library-path"
+        },
+        {
+          "include": "#static-link-runtime-shared-libraries"
+        },
+        {
+          "include": "#static-rsls"
+        },
+        {
+          "include": "#target-player"
+        },
+        {
+          "include": "#use-network"
+        },
+        {
+          "include": "#verify-digests"
+        },
+        {
+          "include": "#version"
+        },
+        {
+          "include": "#warnings"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "fonts": {
+      "begin": "<fonts>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.fonts"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.fonts",
+      "end": "</fonts>",
+      "patterns": [
+        {
+          "include": "#advanced-anti-aliasing"
+        },
+        {
+          "include": "#flash-type"
+        },
+        {
+          "include": "#languages"
+        },
+        {
+          "include": "#local-fonts-snapshot"
+        },
+        {
+          "include": "#managers"
+        },
+        {
+          "include": "#max-cached-fonts"
+        },
+        {
+          "include": "#max-glyphs-per-face"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "frame": {
+      "begin": "<frame>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.frames.frame"
+        }
+      },
+      "contentName": "meta.scope.flex-config.frames.frame",
+      "end": "</frame>",
+      "patterns": [
+        {
+          "include": "#label"
+        },
+        {
+          "include": "#classname"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "frames": {
+      "begin": "<frames>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.frames"
+        }
+      },
+      "contentName": "meta.scope.flex-config.frames",
+      "end": "</frames>",
+      "patterns": [
+        {
+          "include": "#frame"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "headless-server": {
+      "begin": "<headless-server>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.headless-server"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.headless-server",
+      "end": "</headless-server>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "height": {
+      "begin": "<height>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.default-size.height"
+        }
+      },
+      "contentName": "meta.scope.flex-config.default-size.height",
+      "end": "</height>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "include-libraries": {
+      "begin": "<include-libraries( append=\"true\")?>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.include-libraries"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.include-libraries",
+      "end": "</include-libraries>",
+      "patterns": [
+        {
+          "include": "#library"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "include-resource-bundles": {
+      "begin": "<include-resource-bundles( append=\"true\")?>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.include-resource-bundles"
+        }
+      },
+      "contentName": "meta.scope.flex-config.include-resource-bundles",
+      "end": "</include-resource-bundles>",
+      "patterns": [
+        {
+          "include": "#bundle"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "includes": {
+      "begin": "<includes( append=\"true\")?>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.includes"
+        }
+      },
+      "contentName": "meta.scope.flex-config.includes",
+      "end": "</includes>",
+      "patterns": [
+        {
+          "include": "#symbol"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "incremental": {
+      "begin": "<incremental>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.incremental"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.incremental",
+      "end": "</incremental>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "keep-all-type-selectors": {
+      "begin": "<keep-all-type-selectors>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.keep-all-type-selectors"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.keep-all-type-selectors",
+      "end": "</keep-all-type-selectors>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "keep-as-three-metadata": {
+      "begin": "<keep-as3-metadata( append=\"true\")?>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.keep-as3-metadata"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.keep-as3-metadata",
+      "end": "</keep-as3-metadata>",
+      "patterns": [
+        {
+          "include": "#name"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "keep-generated-actionscript": {
+      "begin": "<keep-generated-actionscript>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.keep-generated-actionscript"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.keep-generated-actionscript",
+      "end": "</keep-generated-actionscript>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "label": {
+      "begin": "<label>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.frames.frame.label"
+        }
+      },
+      "contentName": "meta.scope.flex-config.frames.frame.label",
+      "end": "</label>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "lang": {
+      "begin": "<lang>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata.localized-title.lang"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata.localized-title.lang",
+      "end": "</lang>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "language": {
+      "begin": "<language>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata.language"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata.language",
+      "end": "</language>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "language-range": {
+      "begin": "<language-range>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.fonts.languages.language-range"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.fonts.languages.language-range",
+      "end": "</language-range>",
+      "patterns": [
+        {
+          "include": "#lang"
+        },
+        {
+          "include": "#range"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "languages": {
+      "begin": "<languages>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.fonts.languages"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.fonts.languages",
+      "end": "</languages>",
+      "patterns": [
+        {
+          "include": "#language-range"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "library": {
+      "begin": "<library>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.include-libraries.library"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.include-libraries.library",
+      "end": "</library>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "library-path": {
+      "begin": "<library-path( append=\"true\")?>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.library-path"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.library-path",
+      "end": "</library-path>",
+      "patterns": [
+        {
+          "include": "#path-element"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "link-report": {
+      "begin": "<link-report>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.link-report"
+        }
+      },
+      "contentName": "meta.scope.flex-config.link-report",
+      "end": "</link-report>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "load-config": {
+      "begin": "<load-config>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.load-config"
+        }
+      },
+      "contentName": "meta.scope.flex-config.load-config",
+      "end": "</load-config>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "load-externs": {
+      "begin": "<load-externs>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.load-externs"
+        }
+      },
+      "contentName": "meta.scope.flex-config.load-externs",
+      "end": "</load-externs>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "local-fonts-snapshot": {
+      "begin": "<local-fonts-snapshot>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.fonts.local-fonts-snapshot"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.fonts.local-fonts-snapshot",
+      "end": "</local-fonts-snapshot>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "locale": {
+      "begin": "<locale>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.locale"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.locale",
+      "end": "</locale>",
+      "patterns": [
+        {
+          "include": "#locale-element"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "locale-element": {
+      "begin": "<locale-element>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.locale.locale-element"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.locale.locale-element",
+      "end": "</locale-element>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "localized-description": {
+      "begin": "<localized-description>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata.localized-description"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata.localized-description",
+      "end": "</localized-description>",
+      "patterns": [
+        {
+          "include": "#text"
+        },
+        {
+          "include": "#lang"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "localized-title": {
+      "begin": "<localized-title>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata.localized-title"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata.localized-title",
+      "end": "</localized-title>",
+      "patterns": [
+        {
+          "include": "#title"
+        },
+        {
+          "include": "#lang"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "manager-class": {
+      "begin": "<manager-class>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.fonts.managers.manager-class"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.fonts.managers.manager-class",
+      "end": "</manager-class>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "managers": {
+      "begin": "<managers>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.fonts.managers"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.fonts.managers",
+      "end": "</managers>",
+      "patterns": [
+        {
+          "include": "#manager-class"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "manifest": {
+      "begin": "<manifest>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.namespaces.namespace.manifest"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.namespaces.namespace.manifest",
+      "end": "</manifest>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "max-cached-fonts": {
+      "begin": "<max-cached-fonts>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.fonts.max-cached-fonts"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.fonts.max-cached-fonts",
+      "end": "</max-cached-fonts>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "max-execution-time": {
+      "begin": "<max-execution-time>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.default-script-limits.max-execution-time"
+        }
+      },
+      "contentName": "meta.scope.flex-config.default-script-limits.max-execution-time",
+      "end": "</max-execution-time>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "max-glyphs-per-face": {
+      "begin": "<max-glyphs-per-face>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.fonts.max-glyphs-per-face"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.fonts.max-glyphs-per-face",
+      "end": "</max-glyphs-per-face>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "max-recursion-depth": {
+      "begin": "<max-recursion-depth>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.default-script-limits.max-recursion-depth"
+        }
+      },
+      "contentName": "meta.scope.flex-config.default-script-limits.max-recursion-depth",
+      "end": "</max-recursion-depth>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "metadata": {
+      "begin": "<metadata>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata",
+      "end": "</metadata>",
+      "patterns": [
+        {
+          "include": "#contributor"
+        },
+        {
+          "include": "#creator"
+        },
+        {
+          "include": "#date"
+        },
+        {
+          "include": "#description"
+        },
+        {
+          "include": "#language"
+        },
+        {
+          "include": "#localized-description"
+        },
+        {
+          "include": "#localized-title"
+        },
+        {
+          "include": "#publisher"
+        },
+        {
+          "include": "#title"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "mxml": {
+      "begin": "<mxml>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.mxml"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.mxml",
+      "end": "</mxml>",
+      "patterns": [
+        {
+          "include": "#compatibility-version"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "name": {
+      "begin": "<name>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.keep-as3-metadata.name"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.keep-as3-metadata.name",
+      "end": "</name>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "namespace": {
+      "begin": "<namespace>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.namespaces.namespace"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.namespaces.namespace",
+      "end": "</namespace>",
+      "patterns": [
+        {
+          "include": "#uri"
+        },
+        {
+          "include": "#manifest"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "namespaces": {
+      "begin": "<namespaces>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.namespaces"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.namespaces",
+      "end": "</namespaces>",
+      "patterns": [
+        {
+          "include": "#namespace"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "optimize": {
+      "begin": "<optimize>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.optimize"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.optimize",
+      "end": "</optimize>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "output": {
+      "begin": "<output>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.output"
+        }
+      },
+      "contentName": "meta.scope.flex-config.output",
+      "end": "</output>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "path-element": {
+      "begin": "<path-element>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.runtime-shared-library-path.path-element"
+        }
+      },
+      "contentName": "meta.scope.flex-config.runtime-shared-library-path.path-element",
+      "end": "</path-element>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "policy-file-url": {
+      "begin": "<policy-file-url>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.runtime-shared-library-path.policy-file-url"
+        }
+      },
+      "contentName": "meta.scope.flex-config.runtime-shared-library-path.policy-file-url",
+      "end": "</policy-file-url>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "publisher": {
+      "begin": "<publisher>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata.publisher"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata.publisher",
+      "end": "</publisher>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "range": {
+      "begin": "<range>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.fonts.languages.language-range.range"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.fonts.languages.language-range.range",
+      "end": "</range>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "raw-metadata": {
+      "begin": "<raw-metadata>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.raw-metadata"
+        }
+      },
+      "contentName": "meta.scope.flex-config.raw-metadata",
+      "end": "</raw-metadata>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "resource-bundle-list": {
+      "begin": "<resource-bundle-list>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.resource-bundle-list"
+        }
+      },
+      "contentName": "meta.scope.flex-config.resource-bundle-list",
+      "end": "</resource-bundle-list>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "rsl-url": {
+      "begin": "<rsl-url>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.runtime-shared-library-path.rsl-url"
+        }
+      },
+      "contentName": "meta.scope.flex-config.runtime-shared-library-path.rsl-url",
+      "end": "</rsl-url>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "runtime-shared-libraries": {
+      "begin": "<runtime-shared-libraries( append=\"true\")?>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.runtime-shared-libraries"
+        }
+      },
+      "contentName": "meta.scope.flex-config.runtime-shared-libraries",
+      "end": "</runtime-shared-libraries>",
+      "patterns": [
+        {
+          "include": "#url"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "runtime-shared-library-path": {
+      "begin": "<runtime-shared-library-path>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.runtime-shared-library-path"
+        }
+      },
+      "contentName": "meta.scope.flex-config.runtime-shared-library-path",
+      "end": "</runtime-shared-library-path>",
+      "patterns": [
+        {
+          "include": "#path-element"
+        },
+        {
+          "include": "#rsl-url"
+        },
+        {
+          "include": "#policy-file-url"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "services": {
+      "begin": "<services>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.services"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.services",
+      "end": "</services>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "show-actionscript-warnings": {
+      "begin": "<show-actionscript-warnings>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.show-actionscript-warnings"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.show-actionscript-warnings",
+      "end": "</show-actionscript-warnings>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "show-binding-warnings": {
+      "begin": "<show-binding-warnings>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.show-binding-warnings"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.show-binding-warnings",
+      "end": "</show-binding-warnings>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "show-shadowed-device-font-warnings": {
+      "begin": "<show-shadowed-device-font-warnings>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.show-shadowed-device-font-warnings"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.show-shadowed-device-font-warnings",
+      "end": "</show-shadowed-device-font-warnings>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "show-unused-type-selector-warnings": {
+      "begin": "<show-unused-type-selector-warnings>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.show-unused-type-selector-warnings"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.show-unused-type-selector-warnings",
+      "end": "</show-unused-type-selector-warnings>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "singlequotedString": {
+      "begin": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.xml.flex-config"
+        }
+      },
+      "end": "'",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.xml.flex-config"
+        }
+      },
+      "name": "string.quoted.single.flex-config",
+      "patterns": [
+        {
+          "include": "#javaProperties"
+        }
+      ]
+    },
+    "source-path": {
+      "begin": "<source-path( append=\"true\")?>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.source-path"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.source-path",
+      "end": "</source-path>",
+      "patterns": [
+        {
+          "include": "#path-element"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "static-link-runtime-shared-libraries": {
+      "begin": "<static-link-runtime-shared-libraries>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.static-link-runtime-shared-libraries"
+        }
+      },
+      "contentName": "meta.scope.flex-config.static-link-runtime-shared-libraries",
+      "end": "</static-link-runtime-shared-libraries>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "static-rsls": {
+      "begin": "<static-rsls>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.static-rsls"
+        }
+      },
+      "contentName": "meta.scope.flex-config.static-rsls",
+      "end": "</static-rsls>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "strict": {
+      "begin": "<strict>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.strict"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.strict",
+      "end": "</strict>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "symbol": {
+      "begin": "<symbol>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.includes.symbol"
+        }
+      },
+      "contentName": "meta.scope.flex-config.includes.symbol",
+      "end": "</symbol>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "target-player": {
+      "begin": "<target-player>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.target-player"
+        }
+      },
+      "contentName": "meta.scope.flex-config.target-player",
+      "end": "</target-player>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "text": {
+      "begin": "<text>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata.localized-description.text"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata.localized-description.text",
+      "end": "</text>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "theme": {
+      "begin": "<theme( append=\"true\")?>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.theme"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.theme",
+      "end": "</theme>",
+      "patterns": [
+        {
+          "include": "#filename"
+        },
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "title": {
+      "begin": "<title>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.metadata.title"
+        }
+      },
+      "contentName": "meta.scope.flex-config.metadata.title",
+      "end": "</title>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "uri": {
+      "begin": "<uri>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.namespaces.namespace.uri"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.namespaces.namespace.uri",
+      "end": "</uri>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "url": {
+      "begin": "<url>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.runtime-shared-libraries.url"
+        }
+      },
+      "contentName": "meta.scope.flex-config.runtime-shared-libraries.url",
+      "end": "</url>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "use-network": {
+      "begin": "<use-network>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.use-network"
+        }
+      },
+      "contentName": "meta.scope.flex-config.use-network",
+      "end": "</use-network>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "use-resource-bundle-metadata": {
+      "begin": "<use-resource-bundle-metadata>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.use-resource-bundle-metadata"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.use-resource-bundle-metadata",
+      "end": "</use-resource-bundle-metadata>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "value": {
+      "begin": "<value>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.define.value"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.define.value",
+      "end": "</value>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "verbose-stacktraces": {
+      "begin": "<verbose-stacktraces>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.verbose-stacktraces"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.verbose-stacktraces",
+      "end": "</verbose-stacktraces>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "verify-digests": {
+      "begin": "<verify-digests>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.verify-digests"
+        }
+      },
+      "contentName": "meta.scope.flex-config.verify-digests",
+      "end": "</verify-digests>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "version": {
+      "begin": "<version>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.version"
+        }
+      },
+      "contentName": "meta.scope.flex-config.version",
+      "end": "</version>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-array-tostring-changes": {
+      "begin": "<warn-array-tostring-changes>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-array-tostring-changes"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-array-tostring-changes",
+      "end": "</warn-array-tostring-changes>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-assignment-within-conditional": {
+      "begin": "<warn-assignment-within-conditional>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-assignment-within-conditional"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-assignment-within-conditional",
+      "end": "</warn-assignment-within-conditional>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-bad-array-cast": {
+      "begin": "<warn-bad-array-cast>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-bad-array-cast"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-bad-array-cast",
+      "end": "</warn-bad-array-cast>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-bad-bool-assignment": {
+      "begin": "<warn-bad-bool-assignment>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-bad-bool-assignment"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-bad-bool-assignment",
+      "end": "</warn-bad-bool-assignment>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-bad-date-cast": {
+      "begin": "<warn-bad-date-cast>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-bad-date-cast"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-bad-date-cast",
+      "end": "</warn-bad-date-cast>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-bad-es-three-type-method": {
+      "begin": "<warn-bad-es3-type-method>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-bad-es3-type-method"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-bad-es3-type-method",
+      "end": "</warn-bad-es3-type-method>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-bad-es-three-type-prop": {
+      "begin": "<warn-bad-es3-type-prop>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-bad-es3-type-prop"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-bad-es3-type-prop",
+      "end": "</warn-bad-es3-type-prop>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-bad-nan-comparison": {
+      "begin": "<warn-bad-nan-comparison>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-bad-nan-comparison"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-bad-nan-comparison",
+      "end": "</warn-bad-nan-comparison>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-bad-null-assignment": {
+      "begin": "<warn-bad-null-assignment>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-bad-null-assignment"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-bad-null-assignment",
+      "end": "</warn-bad-null-assignment>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-bad-null-comparison": {
+      "begin": "<warn-bad-null-comparison>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-bad-null-comparison"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-bad-null-comparison",
+      "end": "</warn-bad-null-comparison>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-bad-undefined-comparison": {
+      "begin": "<warn-bad-undefined-comparison>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-bad-undefined-comparison"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-bad-undefined-comparison",
+      "end": "</warn-bad-undefined-comparison>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-boolean-constructor-with-no-args": {
+      "begin": "<warn-boolean-constructor-with-no-args>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-boolean-constructor-with-no-args"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-boolean-constructor-with-no-args",
+      "end": "</warn-boolean-constructor-with-no-args>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-changes-in-resolve": {
+      "begin": "<warn-changes-in-resolve>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-changes-in-resolve"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-changes-in-resolve",
+      "end": "</warn-changes-in-resolve>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-class-is-sealed": {
+      "begin": "<warn-class-is-sealed>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-class-is-sealed"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-class-is-sealed",
+      "end": "</warn-class-is-sealed>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-const-not-initialized": {
+      "begin": "<warn-const-not-initialized>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-const-not-initialized"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-const-not-initialized",
+      "end": "</warn-const-not-initialized>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-constructor-returns-value": {
+      "begin": "<warn-constructor-returns-value>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-constructor-returns-value"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-constructor-returns-value",
+      "end": "</warn-constructor-returns-value>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-deprecated-event-handler-error": {
+      "begin": "<warn-deprecated-event-handler-error>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-deprecated-event-handler-error"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-deprecated-event-handler-error",
+      "end": "</warn-deprecated-event-handler-error>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-deprecated-function-error": {
+      "begin": "<warn-deprecated-function-error>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-deprecated-function-error"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-deprecated-function-error",
+      "end": "</warn-deprecated-function-error>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-deprecated-property-error": {
+      "begin": "<warn-deprecated-property-error>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-deprecated-property-error"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-deprecated-property-error",
+      "end": "</warn-deprecated-property-error>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-duplicate-argument-names": {
+      "begin": "<warn-duplicate-argument-names>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-duplicate-argument-names"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-duplicate-argument-names",
+      "end": "</warn-duplicate-argument-names>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-duplicate-variable-def": {
+      "begin": "<warn-duplicate-variable-def>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-duplicate-variable-def"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-duplicate-variable-def",
+      "end": "</warn-duplicate-variable-def>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-for-var-in-changes": {
+      "begin": "<warn-for-var-in-changes>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-for-var-in-changes"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-for-var-in-changes",
+      "end": "</warn-for-var-in-changes>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-import-hides-class": {
+      "begin": "<warn-import-hides-class>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-import-hides-class"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-import-hides-class",
+      "end": "</warn-import-hides-class>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-instance-of-changes": {
+      "begin": "<warn-instance-of-changes>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-instance-of-changes"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-instance-of-changes",
+      "end": "</warn-instance-of-changes>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-internal-error": {
+      "begin": "<warn-internal-error>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-internal-error"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-internal-error",
+      "end": "</warn-internal-error>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-level-not-supported": {
+      "begin": "<warn-level-not-supported>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-level-not-supported"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-level-not-supported",
+      "end": "</warn-level-not-supported>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-missing-namespace-decl": {
+      "begin": "<warn-missing-namespace-decl>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-missing-namespace-decl"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-missing-namespace-decl",
+      "end": "</warn-missing-namespace-decl>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-negative-uint-literal": {
+      "begin": "<warn-negative-uint-literal>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-negative-uint-literal"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-negative-uint-literal",
+      "end": "</warn-negative-uint-literal>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-no-constructor": {
+      "begin": "<warn-no-constructor>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-no-constructor"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-no-constructor",
+      "end": "</warn-no-constructor>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-no-explicit-super-call-in-constructor": {
+      "begin": "<warn-no-explicit-super-call-in-constructor>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-no-explicit-super-call-in-constructor"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-no-explicit-super-call-in-constructor",
+      "end": "</warn-no-explicit-super-call-in-constructor>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-no-type-decl": {
+      "begin": "<warn-no-type-decl>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-no-type-decl"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-no-type-decl",
+      "end": "</warn-no-type-decl>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-number-from-string-changes": {
+      "begin": "<warn-number-from-string-changes>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-number-from-string-changes"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-number-from-string-changes",
+      "end": "</warn-number-from-string-changes>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-scoping-change-in-this": {
+      "begin": "<warn-scoping-change-in-this>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-scoping-change-in-this"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-scoping-change-in-this",
+      "end": "</warn-scoping-change-in-this>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-slow-text-field-addition": {
+      "begin": "<warn-slow-text-field-addition>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-slow-text-field-addition"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-slow-text-field-addition",
+      "end": "</warn-slow-text-field-addition>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-unlikely-function-value": {
+      "begin": "<warn-unlikely-function-value>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-unlikely-function-value"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-unlikely-function-value",
+      "end": "</warn-unlikely-function-value>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warn-xml-class-has-changed": {
+      "begin": "<warn-xml-class-has-changed>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.compiler.warn-xml-class-has-changed"
+        }
+      },
+      "contentName": "meta.scope.flex-config.compiler.warn-xml-class-has-changed",
+      "end": "</warn-xml-class-has-changed>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "warnings": {
+      "begin": "<warnings>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.warnings"
+        }
+      },
+      "contentName": "meta.scope.flex-config.warnings",
+      "end": "</warnings>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    },
+    "width": {
+      "begin": "<width>",
+      "captures": {
+        "0": {
+          "name": "meta.tag.xml.flex-config.default-size.width"
+        }
+      },
+      "contentName": "meta.scope.flex-config.default-size.width",
+      "end": "</width>",
+      "patterns": [
+        {
+          "include": "#etc"
+        }
+      ]
+    }
+  },
+  "scopeName": "text.xml.flex-config",
+  "uuid": "5032E3E5-E59B-43B9-97EA-154331CB057A"
+}

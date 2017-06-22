@@ -1,0 +1,25 @@
+{
+  "fileTypes": [
+    "log"
+  ],
+  "name": "SAS Log",
+  "patterns": [
+    {
+      "comment": "Note line",
+      "match": "^NOTE:.*",
+      "name": "keyword.source.SASLog"
+    },
+    {
+      "comment": "Error line",
+      "match": "(^(ERROR|WARNING)|Uninitialized| remerg|invalid).*",
+      "name": "invalid.source.SASLog"
+    },
+    {
+      "comment": "Info message",
+      "match": "^INFO.*",
+      "name": "entity.name.function.source.SASLog"
+    }
+  ],
+  "scopeName": "source.SASLog",
+  "uuid": "4f05f7b5-30a7-43d7-9410-1bb65ce2b3b3"
+}

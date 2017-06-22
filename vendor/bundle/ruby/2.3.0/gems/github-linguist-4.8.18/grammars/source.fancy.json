@@ -1,0 +1,270 @@
+{
+  "fileTypes": [
+    "fy",
+    "fancypack",
+    "Fakefile"
+  ],
+  "firstLineMatch": "^#!/.*\\bfancy\\b",
+  "foldingStartMarker": "/\\*\\*|\\{\\s*$",
+  "foldingStopMarker": "\\*\\*/|^\\s*\\}",
+  "keyEquivalent": "^~F",
+  "name": "Fancy",
+  "patterns": [
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.control.class.fancy"
+        },
+        "2": {
+          "name": "variable.other.constant.fancy"
+        },
+        "4": {
+          "name": "entity.other.inherited-class.fancy"
+        },
+        "5": {
+          "name": "punctuation.separator.inheritance.fancy"
+        },
+        "6": {
+          "name": "variable.other.object.fancy"
+        }
+      },
+      "match": "^\\s*(class)\\s+(([.a-zA-Z0-9_:]+(\\s*(:)\\s*[.a-zA-Z0-9_:\\s]+)?))",
+      "name": "meta.class.fancy"
+    },
+    {
+      "begin": "(?x)\n              (?=def\\b)                                                     # an optimization to help Oniguruma fail fast\n            (?<=^|\\s)(def)\\s+                                            # the def keyword\n            (self)\\s+                                                       # a method definition prefix in this case self\n            (([a-z]?\\w+[?!]?:?)\n            |===|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\]|=\\?)\\s+       # the method name\n              ",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.def.fancy"
+        },
+        "2": {
+          "name": "variable.language.fancy"
+        },
+        "3": {
+          "name": "entity.name.function.fancy"
+        }
+      },
+      "comment": "fancy method definition, with self as prefix, this rule must be here",
+      "end": "$",
+      "name": "meta.function.method.fancy.self",
+      "patterns": [
+        {
+          "include": "$self"
+        },
+        {
+          "include": "#arg_name"
+        }
+      ]
+    },
+    {
+      "begin": "(?x)\n              (?=def\\b)                                     # an optimization to help Oniguruma fail fast\n              (?<=^|\\s)(def)\\s+                          # the def keyword\n              (((?>[A-Z_-]\\w*(?>\\s+))?)+)              # a method definition prefix\n              (([a-z]?\\w+[?!]?:?)\n              |===|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\]|=\\?)\\s+   # the method name\n              ",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.def.fancy"
+        },
+        "2": {
+          "name": "variable.other.constant.fancy"
+        },
+        "4": {
+          "name": "entity.name.function.fancy"
+        }
+      },
+      "comment": "same as the previous, but with other prefixes class and variable names",
+      "end": "$",
+      "name": "meta.function.method.fancy",
+      "patterns": [
+        {
+          "include": "$self"
+        },
+        {
+          "include": "#arg_name"
+        }
+      ]
+    },
+    {
+      "begin": "\\b(require:)",
+      "captures": {
+        "1": {
+          "name": "keyword.other.special-method.fancy"
+        }
+      },
+      "end": "$|(?=#)",
+      "name": "meta.require.fancy",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "begin": "\\b(include:)",
+      "captures": {
+        "1": {
+          "name": "keyword.other.special-method.fancy"
+        }
+      },
+      "end": "$|(?=#)",
+      "name": "meta.include.fancy",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "comment": "Control flow keywords that aren't regular messages.",
+      "match": "\\b(return|return_local|match|case|try|catch|finally|retry)\\b:?",
+      "name": "keyword.control.fancy"
+    },
+    {
+      "captures": {
+        "0": {
+          "name": "entity.name.function.fancy"
+        }
+      },
+      "match": "([a-z_-]\\w*[?!]?:)",
+      "name": "meta.message.fancy"
+    },
+    {
+      "match": "\\b(false|nil|true)\\b(?![?!])",
+      "name": "constant.language.fancy"
+    },
+    {
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.constant.fancy"
+        }
+      },
+      "comment": "Symbol literals",
+      "match": "'([^'\\s\\[\\]\\(\\)\\{\\},]+|\\[\\])",
+      "name": "constant.other.symbol.fancy"
+    },
+    {
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.constant.fancy"
+        }
+      },
+      "comment": "Dynamic variable literals",
+      "match": "\\*[a-zA-Z0-9_-]+\\*",
+      "name": "constant.other.dynvar.fancy"
+    },
+    {
+      "comment": "Pseudo variables",
+      "match": "\\b(__(FILE|LINE)__|self|super)\\b(?![?!])",
+      "name": "constant.language.fancy"
+    },
+    {
+      "comment": "Constant names like class names, constants",
+      "match": "\\b[A-Z]\\w*\\b",
+      "name": "variable.other.constant.fancy"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.variable.fancy"
+        }
+      },
+      "comment": "Instance variables",
+      "match": "(@)[a-zA-Z_]\\w*",
+      "name": "variable.other.readwrite.instance.fancy"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.variable.fancy"
+        }
+      },
+      "comment": "Class variables",
+      "match": "(@@)[a-zA-Z_]\\w*",
+      "name": "variable.other.readwrite.class.fancy"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.section.array.fancy"
+        }
+      },
+      "comment": "Hash literals, this should be here to take precedence over <> operators",
+      "match": "(<\\[|\\]>)",
+      "name": "punctuation.section.hash.fancy"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "string.regexp.classic.fancy"
+        }
+      },
+      "comment": "Regexp literals",
+      "match": "(/[^/]*/)",
+      "name": "string.regexp.classic.fancy"
+    },
+    {
+      "comment": "Assingnment operators",
+      "match": "<<=|%=|&=|\\*=|\\*\\*=|\\+=|\\-=|\\^=|\\|{1,2}=|<<",
+      "name": "keyword.operator.assignment.augmented.fancy"
+    },
+    {
+      "comment": "Comparison operators",
+      "match": "<=>|<(?!<|=)|>(?!<|=|>)|<=|>=|===|==|=~|!=|!~|(?<=[ \\t])\\?",
+      "name": "keyword.operator.comparison.fancy"
+    },
+    {
+      "comment": "Logical operators",
+      "match": "\\b(not|and|or)\\b:|(?<=[ \\t])!+|&&|\\|\\||\\^",
+      "name": "keyword.operator.logical.fancy"
+    },
+    {
+      "comment": "Arithmetic operators",
+      "match": "(%|&|\\*\\*|\\*|\\+|\\-|/)",
+      "name": "keyword.operator.arithmetic.fancy"
+    },
+    {
+      "match": "=",
+      "name": "keyword.operator.assignment.fancy"
+    },
+    {
+      "match": "\\;",
+      "name": "punctuation.separator.statement.fancy"
+    },
+    {
+      "match": ",",
+      "name": "punctuation.separator.object.fancy"
+    },
+    {
+      "match": "\\s",
+      "name": "punctuation.separator.method.ruby"
+    },
+    {
+      "match": "\\[|\\]",
+      "name": "punctuation.section.array.fancy"
+    },
+    {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.fancy",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.fancy"
+        }
+      ]
+    },
+    {
+      "match": "(?:^[ \\t]+)?(#).*$\\n?",
+      "name": "comment.line.number-sign.fancy"
+    },
+    {
+      "match": "\\b(0[xX]\\h(?>_?\\h)*|\\d(?>_?\\d)*(\\.(?![^[:space:][:digit:]])(?>_?\\d)*)?([eE][-+]?\\d(?>_?\\d)*)?|0[bB][01]+)\\b",
+      "name": "constant.numeric.fancy"
+    }
+  ],
+  "repository": {
+    "arg_name": {
+      "match": "([a-z_-]\\w*:)",
+      "name": "entity.name.function.fancy"
+    }
+  },
+  "scopeName": "source.fancy",
+  "uuid": "866B0ECA-ACF9-480B-A724-F20E966AA3BF"
+}

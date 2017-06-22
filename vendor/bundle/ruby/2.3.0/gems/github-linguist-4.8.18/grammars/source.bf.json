@@ -1,0 +1,36 @@
+{
+  "fileTypes": [
+    "bf"
+  ],
+  "foldingStartMarker": "\\[",
+  "foldingStopMarker": "\\]",
+  "name": "Brainfuck",
+  "patterns": [
+    {
+      "name": "constant.character.modify-value.bf",
+      "match": "[+-]"
+    },
+    {
+      "name": "keyword.operator.modify-pointer.bf",
+      "match": "[<>]"
+    },
+    {
+      "name": "entity.name.function.io.bf",
+      "match": "[.,]"
+    },
+    {
+      "name": "punctuation.definition.tag.begin.bf",
+      "match": "\\["
+    },
+    {
+      "name": "punctuation.definition.tag.end.bf",
+      "match": "\\]"
+    },
+    {
+      "name": "comment.block.bf",
+      "match": "[^-.,+<>\\[\\]]"
+    }
+  ],
+  "scopeName": "source.bf",
+  "uuid": "6D766F27-DE38-44E5-962E-E6B3F159A314"
+}

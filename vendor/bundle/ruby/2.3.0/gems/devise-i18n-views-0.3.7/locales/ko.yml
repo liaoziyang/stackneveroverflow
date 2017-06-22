@@ -1,0 +1,67 @@
+ko:
+  activerecord:
+    attributes:
+      user:
+        current_password: "현재 비밀번호"
+        email: "이메일"
+        password: "비밀번호"
+        password_confirmation: "비밀번호 확인"
+        remember_me: "로그인 정보를 기억합니다"
+    models:
+      user: "사용자"
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: "인증 지침 재발송"
+    mailer:
+      confirmation_instructions:
+        action: "본인 계정 인증"
+        greeting: "%{recipient}님 환영합니다!"
+        instruction: "아래의 링크를 클릭하시면 이메일 인증이 완료됩니다:"
+      reset_password_instructions:
+        action: "비밀번호 변경"
+        greeting: "%{recipient}님 안녕하세요!"
+        instruction: "누군가 당신의 비밀번호를 변경하는 링크를 요청했으며, 다음의 링크에서 비밀번호 변경이 가능합니다."
+        instruction_2: "이를 요청하지 않으셨다면, 이 메일을 무시하십시오."
+        instruction_3: "위 링크에 접속하여 새로운 비밀번호를 생성하기 전까지, 귀하의 비밀번호는 변경되지 않습니다."
+      unlock_instructions:
+        action: "본인 계정 잠금 해제"
+        greeting: "%{recipient}님 안녕하세요!"
+        instruction: "계정 잠금을 해제하려면 아래 링크를 클릭하세요."
+        message: "로그인 실패 횟수 초과로 귀하의 계정이 잠금 처리되었습니다."
+    passwords:
+      edit:
+        change_my_password: "내 비밀번호를 변경합니다"
+        change_your_password: "비밀번호 변경"
+        confirm_new_password: "새 비밀번호 확인"
+        new_password: "새 비밀번호"
+      new:
+        forgot_your_password: "비밀번호를 잊으셨나요?"
+        send_me_reset_password_instructions: "비밀번호 재설정 지침을 요청합니다"
+    registrations:
+      edit:
+        are_you_sure: "정말로 탈퇴하시겠습니까?"
+        cancel_my_account: "회원 탈퇴"
+        currently_waiting_confirmation_for_email: "현재 다음 이메일 인증 대기중입니다: %{email}"
+        leave_blank_if_you_don_t_want_to_change_it: "변경을 원하지 않으시면 빈 칸으로 남겨주세요"
+        title: "%{resource} 정보 수정"
+        unhappy: "회원 탈퇴를 하시겠습니까?"
+        update: "변경"
+        we_need_your_current_password_to_confirm_your_changes: "변경 사항을 반영하려면 현재의 비밀번호를 입력하세요"
+      new:
+        sign_up: "회원 가입"
+    sessions:
+      new:
+        sign_in: "로그인"
+    shared:
+      links:
+        back: "돌아가기"
+        didn_t_receive_confirmation_instructions: "인증 이메일을 못받으셨나요?"
+        didn_t_receive_unlock_instructions: "잠금 해제 이메일을 못받으셨나요?"
+        forgot_your_password: "비밀번호를 잊으셨나요?"
+        sign_in: "로그인"
+        sign_in_with_provider: "%{provider}(으)로 로그인"
+        sign_up: "회원 가입"
+    unlocks:
+      new:
+        resend_unlock_instructions: "계정 잠금 해제 재요청"

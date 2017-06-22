@@ -1,0 +1,1557 @@
+{
+  "name": "Turing",
+  "scopeName": "source.turing",
+  "fileTypes": [
+    "t",
+    "tu"
+  ],
+  "patterns": [
+    {
+      "include": "#main"
+    }
+  ],
+  "repository": {
+    "main": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#boolean"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#numbers"
+        },
+        {
+          "include": "#for"
+        },
+        {
+          "include": "#cc"
+        },
+        {
+          "include": "#case"
+        },
+        {
+          "include": "#types"
+        },
+        {
+          "include": "#function"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#modifiers"
+        },
+        {
+          "include": "#variables"
+        },
+        {
+          "include": "#punctuation"
+        },
+        {
+          "include": "#forward"
+        },
+        {
+          "include": "#procedure"
+        },
+        {
+          "include": "#process"
+        },
+        {
+          "include": "#handler"
+        },
+        {
+          "include": "#class"
+        },
+        {
+          "include": "#type"
+        },
+        {
+          "include": "#record"
+        },
+        {
+          "include": "#union"
+        },
+        {
+          "include": "#function-call"
+        },
+        {
+          "include": "#stdlib"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.percentage.turing",
+          "begin": "%",
+          "end": "$",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.turing"
+            }
+          }
+        },
+        {
+          "name": "comment.block.bracketed.turing",
+          "begin": "/\\*",
+          "end": "\\*/",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.turing"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.turing"
+            }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.turing",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "include": "#escapes"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.turing",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "include": "#escapes"
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.base-16.hex.turing",
+          "match": "16#[A-Fa-f0-9]+"
+        },
+        {
+          "name": "constant.numeric.base-$1.turing",
+          "match": "(\\d+)#\\d+"
+        },
+        {
+          "name": "constant.numeric.float.turing",
+          "match": "\\b\\d+\\.\\d+(?:[Ee][\\+\\-]?\\d+)?\\b"
+        },
+        {
+          "name": "constant.numeric.int.turing",
+          "match": "\\b\\d+\\b"
+        }
+      ]
+    },
+    "list": {
+      "patterns": [
+        {
+          "match": "\\w+",
+          "name": "variable.name.turing"
+        },
+        {
+          "match": ",",
+          "name": "meta.delimiter.object.comma.turing"
+        }
+      ]
+    },
+    "escapes": {
+      "patterns": [
+        {
+          "match": "\\\\\"",
+          "name": "constant.character.escape.double-quote.turing"
+        },
+        {
+          "match": "\\\\'",
+          "name": "constant.character.escape.single-quote.turing"
+        },
+        {
+          "match": "\\\\[nN]",
+          "name": "constant.character.escape.newline.turing"
+        },
+        {
+          "match": "\\\\[tT]",
+          "name": "constant.character.escape.tab.turing"
+        },
+        {
+          "match": "\\\\[fF]",
+          "name": "constant.character.escape.form-feed.turing"
+        },
+        {
+          "match": "\\\\[rR]",
+          "name": "constant.character.escape.return.turing"
+        },
+        {
+          "match": "\\\\[bB]",
+          "name": "constant.character.escape.backspace.turing"
+        },
+        {
+          "match": "\\\\[eE]",
+          "name": "constant.character.escape.esc.turing"
+        },
+        {
+          "match": "\\\\\\\\",
+          "name": "constant.character.escape.backslash.turing"
+        }
+      ]
+    },
+    "function": {
+      "name": "meta.function.turing",
+      "begin": "(?x)\n\\b\n(?:\n\t(body)          # 1: storage.modifier.body.turing\n\t\\s+\n)?\n(function|fcn)      # 2: storage.type.turing\n(?:\n\t\\s+\n\t(pervasive|\\*) # 3: storage.modifier.pervasive.turing\n)?\n\\s+\n(\\w+)              # 4: entity.name.function.turing\n\\s*\n(                   # 5: meta.function.parameters.turing\n\t(\\()           # 6: punctuation.definition.parameters.begin.turing\n\t(.*)            # 7: include: “#param-declarations”\n\t(\\))           # 8: punctuation.definition.parameters.end.turing\n)\n\\s*\n(:)                 # 9: punctuation.separator.key-value.turing\n\\s*\n(\\w+)              # 10: storage.type.type-spec.turing",
+      "end": "\\b(end)\\s+(\\4)",
+      "patterns": [
+        {
+          "name": "meta.$1-function.turing",
+          "begin": "^\\s*(pre|init|post)(?=\\s|$)",
+          "end": "$",
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.function.$1.turing"
+            }
+          }
+        },
+        {
+          "include": "$self"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.body.turing"
+        },
+        "2": {
+          "name": "storage.type.turing"
+        },
+        "3": {
+          "name": "storage.modifier.pervasive.turing"
+        },
+        "4": {
+          "name": "entity.name.function.turing"
+        },
+        "5": {
+          "name": "meta.function.parameters.turing"
+        },
+        "6": {
+          "name": "punctuation.definition.parameters.begin.turing"
+        },
+        "7": {
+          "patterns": [
+            {
+              "include": "#param-declarations"
+            }
+          ]
+        },
+        "8": {
+          "name": "punctuation.definition.parameters.end.turing"
+        },
+        "9": {
+          "name": "punctuation.separator.key-value.turing"
+        },
+        "10": {
+          "name": "storage.type.type-spec.turing"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.end.turing"
+        },
+        "2": {
+          "name": "entity.name.function.turing"
+        }
+      }
+    },
+    "param-declarations": {
+      "match": "\\b(\\w+)\\s+(:)\\s+((\\w+))",
+      "captures": {
+        "1": {
+          "name": "variable.parameter.function.turing"
+        },
+        "2": {
+          "name": "storage.type.turing"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "#types"
+            }
+          ]
+        }
+      }
+    },
+    "function-call": {
+      "patterns": [
+        {
+          "name": "meta.function-call.turing",
+          "begin": "(([\\w.]+))\\s*(\\()",
+          "end": "\\)",
+          "contentName": "meta.function-call.arguments.turing",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.function.name.turing"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "#function-name"
+                }
+              ]
+            },
+            "3": {
+              "name": "punctuation.definition.arguments.begin.turing"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.arguments.end.turing"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "meta.function-call.turing",
+          "match": "^\\s*(([\\w.]+))\\s*(?=$|%|/\\*)",
+          "captures": {
+            "1": {
+              "name": "entity.function.name.turing"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "#function-name"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "function-name": {
+      "patterns": [
+        {
+          "include": "#stdlib"
+        },
+        {
+          "match": "\\.",
+          "name": "punctuation.separator.method.turing"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "\\b((?:end\\s+)?if|then|elsif|else|(?:end\\s+)?loop|exit|when|include|in)\\b",
+          "name": "keyword.control.$1.turing"
+        },
+        {
+          "match": "\\b(and|not|x?or)\\b",
+          "name": "keyword.operator.logical.$1.turing"
+        },
+        {
+          "match": "\\b(all|bits|div|lower|mod|nil|rem|shl|shr|unit|upper)\\b",
+          "name": "keyword.operator.$1.turing"
+        },
+        {
+          "match": "\\b(assert|begin|break|close|exit|fork|free|get|init|invariant|new|objectclass|open|pause|put|quit|read|result|return|seek|signal|tag|tell|wait|write)\\b",
+          "name": "keyword.other.statement.$1.turing"
+        },
+        {
+          "match": "\\b(char)\\s*(\\()(\\d+)(\\))",
+          "name": "storage.type.$3-char.turing",
+          "captures": {
+            "2": {
+              "name": "punctuation.definition.arguments.begin.turing"
+            },
+            "4": {
+              "name": "punctuation.definition.arguments.end.turing"
+            }
+          }
+        },
+        {
+          "match": "(?x)\\b\n(black|blue|brightblue|brightcyan|brightgreen|brightmagenta|brightpurple|brightred\n|brightwhite|brown|colou?r[bf]g|cyan|darkgr[ae]y|gr[ae]y|green|magenta|purple|red\n|white|yellow)\\b",
+          "name": "constant.other.colour.turing"
+        },
+        {
+          "match": "\\b(skip|self)\\b",
+          "name": "constant.language.$1.turing"
+        }
+      ]
+    },
+    "modifiers": {
+      "patterns": [
+        {
+          "match": "\\b(unchecked|checked)\\b",
+          "name": "storage.modifier.$1.compiler-directive.oot.turing"
+        },
+        {
+          "match": "\\b(unqualified|~\\.)\\b",
+          "name": "storage.modifier.unqualified.turing"
+        },
+        {
+          "match": "\\b(external|flexible|opaque|register)\\b",
+          "name": "storage.modifier.$1.turing"
+        }
+      ]
+    },
+    "types": {
+      "match": "\\b(addressint|array|boolean|char|collection|enum|int[124]?|nat[124]?|real[48]?|pointer\\s+to|set\\s+of|string)\\b",
+      "name": "storage.type.$1-type.turing"
+    },
+    "cc": {
+      "name": "meta.preprocessor.$3.turing",
+      "match": "^\\s*((#)((?:end\\s+)?if|elsif|else))",
+      "captures": {
+        "1": {
+          "name": "keyword.control.directive.conditional.turing"
+        },
+        "2": {
+          "name": "punctuation.definition.directive.turing"
+        }
+      }
+    },
+    "for": {
+      "name": "meta.for-loop.turing",
+      "begin": "\\b(for)\\b(?:\\s+(decreasing)\\b)?",
+      "end": "\\b(end)\\s+(for)",
+      "patterns": [
+        {
+          "match": "\\G(.*?)\\b(by)\\b",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            "2": {
+              "name": "keyword.control.by.turing"
+            }
+          }
+        },
+        {
+          "include": "$self"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.for.turing"
+        },
+        "2": {
+          "name": "keyword.operator.decreasing.turing"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.end.turing"
+        },
+        "2": {
+          "name": "keyword.control.for.turing"
+        }
+      }
+    },
+    "case": {
+      "name": "meta.scope.case-block.turing",
+      "begin": "\\b(case)\\s+(\\w+)\\s+(of)\\b",
+      "end": "\\b(end\\s+case)\\b",
+      "patterns": [
+        {
+          "include": "#label"
+        },
+        {
+          "include": "$self"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.case.turing"
+        },
+        "2": {
+          "name": "variable.parameter.turing"
+        },
+        "3": {
+          "name": "keyword.operator.of.turing"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.end.case.turing"
+        }
+      }
+    },
+    "label": {
+      "name": "meta.label.turing",
+      "begin": "\\b(label)\\b",
+      "end": ":",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.statement.label.turing"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.separator.key-value.turing"
+        }
+      },
+      "patterns": [
+        {
+          "include": "$self"
+        },
+        {
+          "include": "#list"
+        }
+      ]
+    },
+    "forward": {
+      "patterns": [
+        {
+          "name": "meta.$1.procedure.turing",
+          "begin": "\\b(deferred|forward)\\s+(procedure|proc)\\s+(\\w+)",
+          "end": "(?=$|%|/\\*)",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.modifier.$1.turing"
+            },
+            "2": {
+              "name": "storage.type.function.turing"
+            },
+            "3": {
+              "name": "entity.name.function.turing"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#parameters"
+            },
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "meta.$1.function.turing",
+          "begin": "\\b(deferred|forward)\\s+(function|fcn)\\s+(\\w+)",
+          "end": "(?=$|%|/\\*)",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.modifier.$1.turing"
+            },
+            "2": {
+              "name": "storage.type.function.turing"
+            },
+            "3": {
+              "name": "entity.name.function.turing"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#parameters"
+            },
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "procedure": {
+      "name": "meta.scope.$1.procedure.turing",
+      "begin": "\\b(?:(body)\\s+)?(procedure|proc)\\s+(\\w+)",
+      "end": "\\b(end)\\s+(\\3)",
+      "patterns": [
+        {
+          "include": "#parameters"
+        },
+        {
+          "include": "$self"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.$1.turing"
+        },
+        "2": {
+          "name": "storage.type.function.turing"
+        },
+        "3": {
+          "name": "entity.name.function.turing"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.end.turing"
+        },
+        "2": {
+          "name": "entity.name.function.turing"
+        }
+      }
+    },
+    "process": {
+      "name": "meta.scope.process.turing",
+      "begin": "\\b(process)(?:\\s+(pervasive|\\*)(?=\\s))?\\s+(\\w+)",
+      "end": "\\b(end)\\s+(\\3)",
+      "patterns": [
+        {
+          "include": "#parameters"
+        },
+        {
+          "include": "$self"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.function.turing"
+        },
+        "2": {
+          "name": "storage.modifier.pervasive.turing"
+        },
+        "3": {
+          "name": "entity.name.function.turing"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.end.turing"
+        },
+        "2": {
+          "name": "entity.name.function.turing"
+        }
+      }
+    },
+    "parameters": {
+      "name": "meta.function.parameters.turing",
+      "begin": "\\G\\s*(\\()",
+      "end": "\\)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.arguments.begin.turing"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.arguments.end.turing"
+        }
+      },
+      "patterns": [
+        {
+          "include": "$self"
+        },
+        {
+          "match": "\\w+",
+          "name": "variable.parameter.function.turing"
+        }
+      ]
+    },
+    "handler": {
+      "name": "meta.scope.handler.turing",
+      "begin": "\\b(handler)\\s*(\\()\\s*(\\w+)\\s*(\\))",
+      "end": "\\b(end)\\s+(handler)\\b",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.handler.turing"
+        },
+        "2": {
+          "name": "punctuation.definition.arguments.begin.turing"
+        },
+        "3": {
+          "name": "variable.parameter.handler.turing"
+        },
+        "4": {
+          "name": "punctuation.definition.arguments.end.turing"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.end.turing"
+        },
+        "2": {
+          "name": "storage.type.handler.turing"
+        }
+      }
+    },
+    "class": {
+      "name": "meta.scope.$1-block.turing",
+      "begin": "^\\s*(class|module|monitor)\\s+(\\w+)",
+      "end": "\\b(end)\\s+(\\2)",
+      "patterns": [
+        {
+          "include": "#class-innards"
+        },
+        {
+          "include": "$self"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.$1.turing"
+        },
+        "2": {
+          "name": "entity.name.type.class.turing"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.end.turing"
+        },
+        "2": {
+          "name": "entity.name.type.class.turing"
+        }
+      }
+    },
+    "class-innards": {
+      "patterns": [
+        {
+          "begin": "\\b(import|export)\\b",
+          "end": "(?=$|%|/\\*)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.$1.turing"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#list"
+            },
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "meta.other.inherited-class.turing",
+          "begin": "\\b(inherit)\\b",
+          "end": "\\w+",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.modifier.inherit.turing"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "entity.other.inherited-class.turing"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "meta.other.$1.turing",
+          "begin": "\\b(implement(?:\\s+by)?)\\b",
+          "end": "\\w+",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.modifier.implements.turing"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "entity.other.inherited-class.turing"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "meta.variable-declaration.turing",
+          "begin": "\\b(var|const)\\s+",
+          "end": "(:=?)\\s*((?!\\d)((?:\\w+(?:\\s+to)?)(?:\\s*\\(\\s*\\d+\\s*\\))?))?\\s*(:=)?",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.$1.turing"
+            }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.separator.key-value.turing"
+            },
+            "2": {
+              "name": "storage.type.type-spec.turing"
+            },
+            "3": {
+              "patterns": [
+                {
+                  "include": "#types"
+                }
+              ]
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.turing"
+            }
+          },
+          "patterns": [
+            {
+              "match": "\\G(?:\\s*(pervasive|\\*)(?=\\s))?\\s*(register)(?=\\s)",
+              "captures": {
+                "1": {
+                  "name": "storage.modifier.pervasive.oot.turing"
+                },
+                "2": {
+                  "name": "storage.modifier.register.oot.turing"
+                }
+              }
+            },
+            {
+              "include": "#types"
+            },
+            {
+              "include": "#list"
+            }
+          ]
+        },
+        {
+          "name": "meta.variable-assignment.turing",
+          "begin": "(\\w+)\\s*(:=)",
+          "end": "(?=\\S)",
+          "beginCaptures": {
+            "1": {
+              "name": "variable.name.turing"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.turing"
+            }
+          }
+        },
+        {
+          "name": "meta.binding.turing",
+          "begin": "\\b(bind)\\b",
+          "end": "(?=$|%|/\\*)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.operator.bind.turing"
+            }
+          },
+          "patterns": [
+            {
+              "begin": "\\b(var)\\b",
+              "end": "\\b(to)\\b",
+              "patterns": [
+                {
+                  "include": "#list"
+                }
+              ],
+              "beginCaptures": {
+                "1": {
+                  "name": "storage.type.$1.turing"
+                }
+              },
+              "endCaptures": {
+                "1": {
+                  "name": "keyword.operator.to.turing"
+                }
+              }
+            },
+            {
+              "include": "#list"
+            }
+          ]
+        }
+      ]
+    },
+    "boolean": {
+      "name": "constant.language.boolean.$1.turing",
+      "match": "\\b(true|false)\\b"
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "match": "\\.\\.",
+          "name": "punctuation.definition.range.turing"
+        },
+        {
+          "match": ":=",
+          "name": "punctuation.separator.key-value.assignment.turing"
+        },
+        {
+          "match": "->",
+          "name": "punctuation.separator.class.accessor.turing"
+        },
+        {
+          "match": "\\+",
+          "name": "keyword.operator.arithmetic.add.turing"
+        },
+        {
+          "match": "-",
+          "name": "keyword.operator.arithmetic.subtract.turing"
+        },
+        {
+          "match": "\\*",
+          "name": "keyword.operator.arithmetic.multiply.turing"
+        },
+        {
+          "match": "\\/",
+          "name": "keyword.operator.arithmetic.divide.turing"
+        },
+        {
+          "match": "<=",
+          "name": "keyword.operator.logical.equal-or-less.subset.turing"
+        },
+        {
+          "match": ">=",
+          "name": "keyword.operator.logical.equal-or-greater.superset.turing"
+        },
+        {
+          "match": "<",
+          "name": "keyword.operator.logical.less.turing"
+        },
+        {
+          "match": ">",
+          "name": "keyword.operator.logical.greater.turing"
+        },
+        {
+          "match": "=",
+          "name": "keyword.operator.logical.equal.turing"
+        },
+        {
+          "match": "not=|~=",
+          "name": "keyword.operator.logical.not.turing"
+        },
+        {
+          "match": "\\^",
+          "name": "keyword.operator.pointer-following.turing"
+        },
+        {
+          "match": "#",
+          "name": "keyword.operator.type-cheat.turing"
+        },
+        {
+          "match": "@",
+          "name": "keyword.operator.indirection.turing"
+        },
+        {
+          "match": ":",
+          "name": "punctuation.separator.key-value.turing"
+        },
+        {
+          "match": "\\(",
+          "name": "punctuation.definition.arguments.begin.turing"
+        },
+        {
+          "match": "\\)",
+          "name": "punctuation.definition.arguments.end.turing"
+        }
+      ]
+    },
+    "type": {
+      "match": "\\b(type)(?:\\s+(pervasive|\\*)(?=\\s))?\\s+(\\w+)",
+      "captures": {
+        "1": {
+          "name": "storage.type.turing"
+        },
+        "2": {
+          "name": "storage.modifier.pervasive.turing"
+        },
+        "3": {
+          "name": "entity.name.type.turing"
+        }
+      }
+    },
+    "record": {
+      "name": "meta.scope.record-block.turing",
+      "begin": "(?:^|\\s+)(record)(?:$|\\s+)",
+      "end": "\\b(end)\\s+(record)\\b",
+      "patterns": [
+        {
+          "match": "((\\s*\\w+\\s*,?)+)(:)",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#list"
+                }
+              ]
+            },
+            "3": {
+              "name": "punctuation.separator.record.key-value.turing"
+            }
+          }
+        },
+        {
+          "include": "$self"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.record.turing"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.end.turing"
+        },
+        "2": {
+          "name": "storage.type.record.turing"
+        }
+      }
+    },
+    "union": {
+      "name": "meta.scope.union.turing",
+      "begin": "\\b(union)\\s+(\\w+)\\s*(:)(.*)\\b(of)\\b",
+      "end": "\\b(end)\\s+(union)\\b",
+      "patterns": [
+        {
+          "include": "#label"
+        },
+        {
+          "include": "$self"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.union.turing"
+        },
+        "2": {
+          "name": "entity.name.union.turing"
+        },
+        "3": {
+          "name": "punctuation.separator.key-value.turing"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        "5": {
+          "name": "keyword.operator.of.turing"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.end.turing"
+        },
+        "2": {
+          "name": "storage.type.union.turing"
+        }
+      }
+    },
+    "stdlib": {
+      "patterns": [
+        {
+          "include": "#modules"
+        },
+        {
+          "include": "#stdproc"
+        },
+        {
+          "match": "\\b(anyclass)\\b",
+          "name": "support.class.anyclass.turing"
+        },
+        {
+          "include": "#keyboard-constants"
+        },
+        {
+          "include": "#math-routines"
+        },
+        {
+          "include": "#str-routines"
+        },
+        {
+          "include": "#typeconv-routines"
+        }
+      ]
+    },
+    "stdproc": {
+      "name": "support.function.${1:/downcase}.turing",
+      "match": "(?x)\\b\n(addr|buttonchoose|buttonmoved|buttonwait|clock|cls|colou?r|colou?rback|date|delay|drawarc|drawbox|drawdot\n|drawfill|drawfillarc|drawfillbox|drawfillmapleleaf|drawfilloval|drawfillpolygon|drawfillstar|drawline\n|drawmapleleaf|drawoval|drawpic|drawpolygon|drawstar|empty|eof|fetcharg|getch|getchar|getenv|getpid\n|getpriority|hasch|locate|locatexy|maxcol|maxcolou?r|maxint|maxnat|maxrow|maxx|maxy|minint|minnat\n|mousewhere|nargs|parallelget|parallelput|play|playdone|pred|rand|randint|randnext|randomize\n|randseed|setpriority|setscreen|simutime|sizeof|sizepic|sound|succ|sysclock|takepic|time|wallclock\n|whatcol|whatcolou?r|whatcolou?rback|whatdotcolou?r|whatrow)\\b"
+    },
+    "keyboard-constants": {
+      "name": "support.constant.keyboard.turing",
+      "match": "(?x)\\b(?:\n(?:KEY|ORD)_(?:\n\tF1[0-2]|F[1-9]|CTRL_[A-Z]|ALT_[A-Z0-9]|(?:CTRL|ALT|SHIFT)_(?:F1[0-2]|F[1-9])|\n\tALT(?:_EQUALS|_MINUS)?|BACK_TAB|BACKSPACE|CTRL|DELETE|END|ENTER|ESC|HOME|INSERT|KEYPAD_5|PGDN|PGUP|SHIFT|SHIFT_TAB|TAB|\n\tCTRL_(?:BACKSLASH|BACKSPACE|CARET|(?:UP|RIGHT|LEFT|DOWN)_ARROW|CLOSE_BRACKET|DELETE|END|HOME|INSERT|OPEN_BRACKET|PGDN|PGUP|UNDERSCORE)|\n\t(?:UP|RIGHT|LEFT|DOWN)_ARROW)\n|\nORD_(?:\n\tAMPERSAND|APOSTROPHE|ASTERISK|BACKSLASH|BAR|CARET|COLON|COMMA|DOT|EQUALS|(?:GREATER|LESS)_THAN|\n\t(?:CLOSE|OPEN)_(?:BRACE|BRACKET|PARENTHESIS)|(?:EXCALAMATION|HAS|QUESTION|QUOTATION)_MARK|MINUS|\n\t(?:AT|DOLLAR|PERCENT)_SIGN|PERIOD|PLUS|SEMICOLON|SINGLE_QUOTE|SLASH|SPACE|TILDE|UNDERSCORE|[A-Z0-9]|LOWER_[A-Z])\n)\\b"
+    },
+    "math-routines": {
+      "name": "support.function.${1:/downcase}.turing",
+      "match": "\\b(abs|arccos|arccosd|arcsin|arcsind|arctan|arctand|cos|cosd|exp|ln|max|min|sign|sin|sind|tan|tand|sqrt)\\b"
+    },
+    "str-routines": {
+      "name": "support.function.${1:/downcase}.turing",
+      "match": "\\b(Lower|Upper|Trim|index|length|repeat)\\b"
+    },
+    "typeconv-routines": {
+      "name": "support.function.${1:/downcase}.turing",
+      "match": "\\b(ceil|chr|erealstr|floor|frealstr|intreal|intstr|natreal|natstr|ord|realstr|round|strint|strintok|strnat|strnatok|strreal|strrealok)\\b"
+    },
+    "modules": {
+      "patterns": [
+        {
+          "match": "\\b(Concurrency)\\b(?:(\\.)(empty|[gs]etpriority|simutime)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.$3.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Config)\\b(?:(\\.)(Display|Lang|Machine)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Dir)\\b(?:(\\.)(Change|Close|Create|Current|Delete|Get|GetLong|Open)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Draw)\\b(?:(\\.)(Arc|Box|Cls|Dot|Fill|FillArc|FillBox|FillMapleLeaf|FillOval|FillPolygon|FillStar|Line|MapleLeaf|Oval|Polygon|Star|Text)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Error)\\b(?:(\\.)(Last|LastMsg|LastStr|Msg|Str|Trip)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(ErrorNum|Exceptions)\\b(?:(\\.)(\\w+)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(File)\\b(?:(\\.)(Copy|Delete|DiskFree|Exists|Rename|Status)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Font)\\b(?:(\\.)(Draw|Free|GetName|GetSize|GetStyle|Name|New|Sizes|StartName|StartSize|Width)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "(?x)\\b(GUI)\\b(?:(\\.)\n(AddLine|AddText|Alert|Alert2|Alert3|AlertFull|Choose|ChooseFull|ClearText|CloseWindow|CreateButton|CreateButtonFull\n|CreateCanvas|CreateCanvasFull|CreateCheckBox|CreateCheckBoxFull|CreateFrame|CreateHorizontalScrollBar|CreateHorizontalScrollBarFull\n|CreateHorizontalSlider|CreateLabel|CreateLabelFull|CreateLabelledFrame|CreateLine|CreateMenu|CreateMenuItem|CreateMenuItemFull\n|CreatePicture|CreatePictureButton|CreatePictureButtonFull|CreatePictureRadioButton|CreatePictureRadioButtonFull|CreateRadioButton\n|CreateRadioButtonFull|CreateTextBox|CreateTextBoxFull|CreateTextField|CreateTextFieldFull|CreateVerticalScrollBar|CreateVerticalScrollBarFull\n|CreateVerticalSlider|Disable|Dispose|DrawArc|DrawBox|DrawCls|DrawDot|DrawFill|DrawFillArc|DrawFillBox|DrawFillMapleLeaf|DrawFillOval\n|DrawFillPolygon|DrawFillStar|DrawLine|DrawMapleLeaf|DrawOval|DrawPolygon|DrawStar|DrawText|Enable|FontDraw|GetCheckBox|GetEventTime\n|GetEventWidgetID|GetEventWindow|GetHeight|GetMenuBarHeight|GetScrollBarWidth|GetSliderValue|GetText|GetVersion|GetWidth|GetX|GetY|Hide\n|HideMenuBar|OpenFile|OpenFileFull|PicDraw|PicNew|PicScreenLoad|PicScreenSave|ProcessEvent|Quit|Refresh|SaveFile|SaveFileFull|SelectRadio\n|SetActive|SetBackgroundColor|SetBackgroundColour|SetCheckBox|SetDefault|SetDisplayWhenCreated|SetKeyEventHandler|SetLabel|SetMouseEventHandler\n|SetNullEventHandler|SetPosition|SetPositionAndSize|SetScrollAmount|SetSelection|SetSize|SetSliderMinMax|SetSliderReverse|SetSliderSize\n|SetSliderValue|SetText|SetXOR|Show|ShowMenuBar)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Input)\\b(?:(\\.)(getch|getchar|hasch|KeyDown|Pause)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Joystick)\\b(?:(\\.)(GetInfo)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Keyboard)\\b(?:(\\.)(\\w+)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "patterns": [
+                {
+                  "include": "#keyboard-constants"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "\\b(Limits)\\b(?:(\\.)(DefaultFW|DefaultEW|minint|maxint|minnat|maxnat)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "(?x)\\b(Math)\\b(?:(\\.)(?:(PI|E)|(Distance|DistancePointLine)|(\\w+))?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.constant.${3:/downcase}.turing"
+            },
+            "4": {
+              "name": "support.function.${4:/downcase}.turing"
+            },
+            "5": {
+              "patterns": [
+                {
+                  "include": "#math-routines"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "\\b(Mouse)\\b(?:(\\.)(ButtonChoose|ButtonMoved|ButtonWait|Where)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Music)\\b(?:(\\.)(Play|PlayFile|PlayFileStop|Sound|SoundOff)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "(?x)\n\\b(Net)\\b(?:(\\.)\n(BytesAvailable|CharAvailable|CloseConnection|HostAddressFromName|HostNameFromAddress\n|LineAvailable|LocalAddress|LocalName|OpenConnection|OpenURLConnection|TokenAvailable\n|WaitForConnection)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(PC)\\b(?:(\\.)(ParallelGet|ParallelPut)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "(?x)\n\\b(Pic)\\b(?:(\\.)\n(Blend|Blur|Draw|DrawFrames|DrawFramesBack|DrawSpecial|DrawSpecialBack|FileNew\n|FileNewFrames|Flip|Frames|Free|Height|Mirror|New|Rotate|Save|Scale|ScreenLoad\n|ScreenSave|SetTransparentColou?r|Width)?\n\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Rand)\\b(?:(\\.)(Int|Next|Real|Reset|Seed|Set)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(RGB)\\b(?:(\\.)(AddColou?r|[GS]etColou?r|maxcolou?r)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Sprite)\\b(?:(\\.)(Animate|ChangePic|Free|Hide|New|SetFrameRate|SetHeight|SetPosition|Show)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Stream)\\b(?:(\\.)(eof|Flush|FlushAll)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Str)\\b(?:(\\.)(\\w+)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "patterns": [
+                {
+                  "include": "#str-routines"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "\\b(Sys)\\b(?:(\\.)(Exec|FetchArg|GetComputerName|GetEnv|GetPid|GetUserName|Nargs)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Text)\\b(?:(\\.)(Cls|Colou?r|Colou?rBack|Locate|LocateXY|maxcol|maxrow|WhatCol|WhatColou?r|WhatColou?rBack|WhatRow)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Time)\\b(?:(\\.)(Date|DateSec|Delay|Elapsed|ElapsedCPU|PartsSec|Sec|SecDate|SecParts)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(TypeConv)\\b(?:(\\.)(\\w+)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "patterns": [
+                {
+                  "include": "#typeconv-routines"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "\\b(View)\\b(?:(\\.)(ClipAdd|ClipOff|ClipSet|maxcolou?r|maxx|maxy|Set|Update|WhatDotColou?r)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        },
+        {
+          "match": "\\b(Window)\\b(?:(\\.)(Close|GetActive|GetPosition|GetSelect|Hide|Open|Select|Set|SetActive|SetPosition|Show|Update)?\\b)?",
+          "captures": {
+            "1": {
+              "name": "support.class.${1:/downcase}.turing"
+            },
+            "2": {
+              "name": "meta.delimiter.property.period.turing"
+            },
+            "3": {
+              "name": "support.function.${3:/downcase}.turing"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

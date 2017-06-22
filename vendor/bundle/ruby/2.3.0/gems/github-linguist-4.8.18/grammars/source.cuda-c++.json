@@ -1,0 +1,137 @@
+{
+  "fileTypes": [
+    "cu",
+    "cuh",
+    "h"
+  ],
+  "firstLineMatch": "-\\*- C\\+\\+ -\\*-",
+  "foldingStartMarker": "(?x)\n\t\t /\\*\\*(?!\\*)\n\t\t|^(?![^{]*?//|[^{]*?/\\*(?!.*?\\*/.*?\\{)).*?\\{\\s*($|//|/\\*(?!.*?\\*/.*\\S))\n\t",
+  "foldingStopMarker": "(?<!\\*)\\*\\*/|^\\s*\\}",
+  "keyEquivalent": "^~C",
+  "name": "CUDA C++",
+  "patterns": [
+    {
+      "include": "source.c++"
+    },
+    {
+      "comment": "B.1 FUNCTION TYPE QUALIFIERS",
+      "match": "\\b__(global|device|host|noinline|forceinline)__\\b",
+      "name": "keyword.function.qualifier.cuda-c++"
+    },
+    {
+      "comment": "B.2 VARIABLE TYPE QUALIFIERS",
+      "match": "\\b__(device|constant|managed|shared|restrict)__\\b",
+      "name": "storage.modifier.cuda-c++"
+    },
+    {
+      "comment": "B.3 BUILT-IN VECTOR TYPES",
+      "match": "\\b(dim3|char[1-4]|uchar[1-4]|short[1-4]|ushort[1-4]|int[1-4]|uint[1-4]|long[1-4]|ulong[1-4]|longlong[1-4]|ulonglong[1-4]|float[1-4]|double[1-4])\\b",
+      "name": "support.type.cuda-c++"
+    },
+    {
+      "comment": "B.4 BUILT-IN VARIABLES",
+      "match": "\\b(gridDim|blockIdx|blockDim|threadIdx|warpSize)\\b",
+      "name": "variable.language.cuda-c++"
+    },
+    {
+      "comment": "B.5 MEMORY FENCE FUNCTIONS",
+      "match": "\\b__(threadfence_system|threadfence_block|threadfence)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.6 SYNCHRONIZATION FUNCTIONS",
+      "match": "\\b__(syncthreads_count|syncthreads_and|syncthreads_or|syncthreads)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.8 TEXTURE FUNCTIONS",
+      "match": "\\b(texCubemapLayered|tex1Dlayered|tex2Dlayered|tex2Dgather|tex1Dfetch|texCubemap|tex1D|tex2D|tex3D)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.9 SURFACE FUNCTIONS",
+      "match": "\\b(surfCubemapLayeredwrite|surfCubemapLayeredread|surf1DLayeredwrite|surf2DLayeredwrite|surf1DLayeredread|surf2DLayeredread|surfCubemapwrite|surfCubemapread|surf1Dwrite|surf2Dwrite|surf3Dwrite|surf1Dread|surf2Dread|surf3Dread)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.10 READ-ONLY DATA CACHE LOAD FUNCTION",
+      "match": "\\b__ldg\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.11 TIME FUNCTION",
+      "match": "\\b(clock|clock64)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.12 ATOMIC FUNCTIONS",
+      "match": "\\b(atomicExch|atomicAdd|atomicSub|atomicMin|atomicMax|atomicInc|atomicDec|atomicCAS|atomicAnd|atomicXor|atomicOr)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.13 WARP VOTE FUNCTIONS",
+      "match": "\\b__(ballot|all|any)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.14 WARP SHUFFLE FUNCTIONS",
+      "match": "\\b__(shfl_down|shfl_xor|shfl_up|shfl)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.15 PROFILER COUNTER FUNCTION",
+      "match": "\\b__(prof_trigger)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.16 ASSERTION",
+      "match": "\\bassert\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.17 FORMATTED OUTPUT",
+      "match": "\\printf\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "B.18 DYNAMIC GLOBAL MEMORY ALLOCATION AND OPERATIONS",
+      "match": "\\b(malloc|free|memcpy|memset)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "begin": "(<<<)",
+      "comment": "B.19 EXECUTION CONFIGURATION",
+      "end": "(>>>)",
+      "name": "keyword.operator.cuda-c++",
+      "patterns": [
+        {
+          "include": "$base"
+        }
+      ]
+    },
+    {
+      "comment": "B.20 LAUNCH BOUNDS",
+      "match": "\\b__launch_bounds__\\b",
+      "name": "support.function.qualifier.cuda-c++"
+    },
+    {
+      "comment": "D.2 INTRINSIC FUNCTIONS Table 8",
+      "match": "\\b__(fdividef|sincosf|log10f|exp10f|log2f|logf|expf|powf|sinf|cosf|tanf)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "D.2 INTRINSIC FUNCTIONS Table 9",
+      "match": "\\b__((fsqrt|frcp|fadd|fsub|fmul|fmaf|fdiv)_(rn|rz|ru|rd)|frsqrt_rn)\\b",
+      "name": "support.function.cuda-c++"
+    },
+    {
+      "comment": "D.2 INTRINSIC FUNCTIONS Table 10",
+      "match": "\\b__(dsqrt|dadd|dsub|dmul|ddiv|drcp|fma)_(rn|rz|ru|rd)\\b",
+      "name": "support.function.cuda-c++"
+    }
+  ],
+  "repository": {
+  },
+  "scopeName": "source.cuda-c++",
+  "uuid": "e498cb33-bf6f-487b-8c77-02576bcb76dc"
+}

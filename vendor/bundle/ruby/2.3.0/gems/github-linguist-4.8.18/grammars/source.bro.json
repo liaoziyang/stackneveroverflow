@@ -1,0 +1,409 @@
+{
+  "fileTypes": [
+    "bro"
+  ],
+  "foldingStartMarker": "\\{\\s*$",
+  "foldingStopMarker": "^\\s*\\}",
+  "name": "Bro",
+  "patterns": [
+    {
+      "include": "#directives"
+    },
+    {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.bro"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.bro"
+        }
+      },
+      "name": "string.quoted.double.bro",
+      "patterns": [
+        {
+          "include": "#string_escaped_char"
+        },
+        {
+          "include": "#string_placeholder"
+        }
+      ]
+    },
+    {
+      "begin": "(?<=in|\\=|,|\\()\\s*(/)",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.bro"
+        }
+      },
+      "end": "(?<!\\\\)/",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.bro"
+        }
+      },
+      "name": "string.quoted.regexp.bro",
+      "patterns": [
+        {
+          "include": "#string_escaped_char"
+        },
+        {
+          "include": "#string_placeholder"
+        }
+      ]
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "storage.type.function.bro"
+        },
+        "2": {
+          "name": "entity.name.function.bro"
+        },
+        "3": {
+          "name": "variable.parameter.bro"
+        },
+        "4": {
+          "name": "storage.type.bro"
+        }
+      },
+      "match": "^\\s*(function|hook|event)\\s+((?:(?:[a-zA-Z_][0-9a-zA-Z_]*)(?:::))?[0-9a-zA-Z_]+)\\s+\\((?:([a-zA-Z0-9_]+), ([a-zA-Z0-9_]+))*\\)(?:\\s*:\\s*([a-zA-Z0-9_]+))",
+      "name": "meta.function.bro",
+      "patterns": [
+        {
+          "include": "#types"
+        },
+        {
+          "include": "#attributes"
+        },
+        {
+          "include": "#operator"
+        },
+        {
+          "include": "#constants"
+        }
+      ]
+    },
+    {
+      "begin": "#",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.bro"
+        }
+      },
+      "end": "$",
+      "name": "comment.line.number-sign.bro"
+    },
+    {
+      "include": "#builtin-functions"
+    },
+    {
+      "include": "#statements"
+    },
+    {
+      "include": "#declarations"
+    },
+    {
+      "include": "#attributes"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#operator"
+    }
+  ],
+  "repository": {
+    "attributes": {
+      "patterns": [
+        {
+          "match": "&(redef|priority|log|optional|default|add_func|delete_func|expire_func|read_expire|write_expire|create_expire|synchronized|persistent|rotate_interval|rotate_size|encrypt|raw_output|mergeable|group|error_handler|type_column)",
+          "name": "storage.modifier.bro"
+        }
+      ]
+    },
+    "builtin-functions": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "support.function.builtin.bro"
+            }
+          },
+          "match": "(?<!\\$)\\b(active_file|addr_to_counts|addr_to_ptr_name|all_set|anonymize_addr|any_set|bro_is_terminating|bro_version|bytestring_to_count|bytestring_to_double|bytestring_to_hexstr|calc_next_rotate|capture_events|capture_state_updates|cat|cat_sep|checkpoint_state|clear_table|close|complete_handshake|connect|connection_exists|continue_processing|convert_for_pattern|count_to_port|count_to_v4_addr|counts_to_v4_addr|counts_to_addr|current_analyzer|current_time|decode_base64|decode_base64_custom|disable_analyzer|disable_print_hook|disconnect|do_profiling|double_to_count|double_to_interval|double_to_time|dump_current_packet|dump_packet|dump_rule_stats|enable_communication|enable_raw_output|encode_base64|encode_base64_custom|entropy_test_add|entropy_test_finish|entropy_test_init|enum_to_int|exit|exp|file_magic|file_mode|file_size|find_entropy|floor|flush_all|fmt|get_conn_transport_proto|get_current_packet|get_event_peer|get_file_name|get_local_event_peer|get_matcher_stats|get_port_transport_proto|getenv|gethostname|getpid|global_ids|global_sizes|hexstr_to_bytestring|identify_data|install_dst_addr_filter|install_dst_net_filter|install_pcap_filter|install_src_addr_filter|install_src_net_filter|int_to_count|interval_to_double|interval_to_int|is_external_connection|is_icmp_port|is_local_interface|is_remote_event|is_tcp_port|is_udp_port|is_v4_addr|is_v6_addr|listen|ln|log10|lookup_ID|lookup_addr|lookup_asn|lookup_connection|lookup_hostname|lookup_hostname_txt|lookup_location|mask_addr|match_signatures|md5_hash|md5_hash_finish|md5_hash_init|md5_hash_update|md5_hmac|merge_pattern|mkdir|net_stats|network_time|open|open_for_append|order|pcap_error|piped_exec|port_to_count|precompile_pcap_filter|preserve_prefix|preserve_subnet|ptr_name_to_addr|rand|raw_bytes_to_v4_addr|reading_live_traffic|record_fields|record_type_to_vector|remask_addr|request_remote_events|request_remote_logs|request_remote_sync|rescan_state|resize|resource_usage|resume_state_updates|rotate_file|rotate_file_by_name|routing0_data_to_addrs|same_object|send_capture_filter|send_current_packet|send_id|send_ping|send_state|set_accept_state|set_buf|set_compression_level|set_inactivity_timeout|set_record_packets|setenv|sha1_hash|sha1_hash_finish|sha1_hash_init|sha1_hash_update|sha256_hash|sha256_hash_finish|sha256_hash_init|sha256_hash_update|skip_further_processing|sort|sqrt|srand|strftime|string_to_pattern|strptime|suspend_processing|suspend_state_updates|syslog|system|system_env|terminate|terminate_communication|time_to_double|to_addr|to_count|to_double|to_int|to_port|to_subnet|type_name|uninstall_dst_addr_filter|uninstall_dst_net_filter|uninstall_src_addr_filter|uninstall_src_net_filter|unique_id|unique_id_from|uuid_to_string|val_size|write_file)\\s*(?=\\()",
+          "name": "meta.function-call.bro.bif.bro"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "support.function.builtin.bro"
+            }
+          },
+          "match": "(?<!\\$)\\b(cat_string_array|cat_string_array_n|clean|edit|escape_string|find_all|find_last|gsub|hexdump|is_ascii|join_string_array|join_string_vec|levenshtein_distance|reverse|sort_string_array|split|split1|split_all|split_n|str_shell_escape|str_smith_waterman|str_split|strcmp|string_cat|string_fill|string_to_ascii_hex|strip|strstr|sub|sub_bytes|subst_string|to_lower|to_string_literal|to_upper)(?=\\()",
+          "name": "meta.function-call.strings.bif.bro"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "support.function.builtin.bro"
+            }
+          },
+          "match": "(?<!\\$)\\b(Reporter::(?:error|fatal|info|warning))(?=\\()",
+          "name": "meta.function-call.reporter.bif.bro"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "support.function.builtin.bro"
+            }
+          },
+          "match": "(?<!\\$)\\b(OS_version_found|ack_above_hole|bro_done|bro_init|bro_script_loaded|conn_stats|conn_weird|connection_external|connection_flow_label_changed|connection_reused|connection_state_remove|connection_status_update|connection_timeout|content_gap|dns_mapping_altered|dns_mapping_lost_name|dns_mapping_new_name|dns_mapping_unverified|dns_mapping_valid|esp_packet|event_queue__flush_point|file_gap|file_new|file_opened|file_over_new_connection|file_state_remove|file_timeout|finished_send_state|flow_weird|gap_report|get_file_handle|ipv6_ext_headers|load_sample|mobile_ipv6_message|net_weird|new_connection|new_event|new_packet|packet_contents|profiling_update|protocol_confirmation|protocol_violation|remote_capture_filter|remote_connection_closed|remote_connection_error|remote_connection_established|remote_connection_handshake_done|remote_event_registered|remote_log|remote_log_peer|remote_pong|remote_state_access_performed|remote_state_inconsistency|reporter_error|reporter_info|reporter_warning|rexmit_inconsistency|scheduled_analyzer_applied|signature_match|software_parse_error|software_unparsed_version_found|software_version_found|tunnel_changed|udp_session_done)\\s*(?=\\()",
+          "name": "meta.event-call.event.bif.bro"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "invalid.deprecated.bro"
+            }
+          },
+          "match": "(?<!\\$)\\b(anonymization_mapping|gaobot_signature_found|kazaa_signature_found|napster_signature_found|print_hook|root_backdoor_signature_found|rotate_interval|rotate_size)(?=\\()",
+          "name": "meta.event-call.deprecated.bro"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "match": "\\b((25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])/(3[0-2]|[1-2]?[0-9])\\b",
+          "name": "constant.other.subnet.bro"
+        },
+        {
+          "match": "\\[(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]/(12[0-8]|1[0-1][0-9]|[1-2]?[0-9]|[0-9][0-9])",
+          "name": "constant.other.subnet6.bro"
+        },
+        {
+          "match": "(?<!::)\\b((25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\\b(?!/)",
+          "name": "constant.other.ip.bro"
+        },
+        {
+          "match": "\\[(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\](?!/)",
+          "name": "constant.other.ip6.bro"
+        },
+        {
+          "match": "\\b((6[0-5]{2}[0-3][0-5]|[1-5]?[0-9]{1,4})/(tcp|udp|icmp))\\b",
+          "name": "constant.other.port.bro"
+        },
+        {
+          "match": "\\b((\\s*-?)([0-9]+)\\s?((sec|min|hr|day)s?))\\b",
+          "name": "constant.other.interval.bro"
+        },
+        {
+          "match": "(?<![0-9])(\\s*-?)\\.\\b([0-9]*)\\b(?!\\.)|(?<!\\.)(\\s*-?)\\b([0-9]+\\.[0-9]+)\\b(?!\\.)",
+          "name": "constant.numeric.double.bro"
+        },
+        {
+          "match": "\\b(0(x|X)[0-9a-fA-F]+)\\b",
+          "name": "constant.numeric.integer.hexadecimal.bro"
+        },
+        {
+          "match": "(?<!\\.|:)(\\s*-?)\\b([0-9]+)\\b(?!\\.|:|/|\\s((sec|min|day)s?))",
+          "name": "constant.numeric.integer.decimal.bro"
+        },
+        {
+          "match": "\\b(T|F)\\b",
+          "name": "constant.language.boolean.bro"
+        }
+      ]
+    },
+    "declarations": {
+      "patterns": [
+        {
+          "captures": {
+            "2": {
+              "name": "storage.modifier.namespace.bro"
+            }
+          },
+          "match": "^\\s*(module)\\s+([a-zA-Z_][0-9a-zA-Z_-]*)",
+          "name": "keyword.control.import.bro"
+        },
+        {
+          "match": "\\b(export)\\b",
+          "name": "keyword.control.export.bro"
+        },
+        {
+          "match": "\\b(type|const|global|local|redef|function|event|hook)\\b",
+          "name": "storage.modifier.declaration.bro"
+        }
+      ]
+    },
+    "directives": {
+      "patterns": [
+        {
+          "begin": "^\\s*(\\@(?:load|load-sigs|unload))\\s+(.*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.import.bro"
+            },
+            "2": {
+              "name": "meta.definition.bro"
+            }
+          },
+          "end": "$",
+          "name": "meta.preprocessor.bro"
+        },
+        {
+          "begin": "^\\s*(\\@prefixes)\\s+(=|\\+=)\\s+([a-zA-Z_][0-9a-zA-Z_-]+)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.def.bro"
+            },
+            "2": {
+              "name": "keyword.operator.assignment.bro"
+            },
+            "3": {
+              "name": "text.plain.bro"
+            }
+          },
+          "end": "$",
+          "name": "meta.preprocessor.bro"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.other.directive.bro"
+            },
+            "2": {
+              "name": "keyword.control.directive.bro"
+            }
+          },
+          "match": "^\\s*(\\@)(if|ifdef|ifndef|else|endif)\\b",
+          "name": "meta.preprocessor.bro"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "constant.other.placeholder.bro"
+            }
+          },
+          "match": "(\\@DEBUG|\\@DIR|\\@FILENAME)",
+          "name": "meta.preprocessor.bro"
+        }
+      ]
+    },
+    "generic_names": {
+      "match": "[A-Za-z_][A-Za-z0-9_]*"
+    },
+    "illegal_names": {
+      "patterns": [
+        {
+          "match": "(bool|int|count|double|time|interval|string|pattern|enum|port|addr|subnet|any|table|set|vector|record|opaque|file|function|event|hook)",
+          "name": "invalid.illegal.name.type.bro"
+        }
+      ]
+    },
+    "operator": {
+      "patterns": [
+        {
+          "match": "\\b(of)\\b",
+          "name": "keyword.operator.bro"
+        },
+        {
+          "match": "(\\!|&&|\\|\\||\\b(in)\\b)",
+          "name": "keyword.operator.logical.bro"
+        },
+        {
+          "match": "(<|<\\=|>\\=|>|\\=\\=|\\!\\=)",
+          "name": "keyword.operator.comparison.bro"
+        },
+        {
+          "match": "(\\+\\=|-\\=|\\*\\=|/\\=)",
+          "name": "keyword.operator.assignment.augmented.bro"
+        },
+        {
+          "match": "(\\+\\+|\\-\\-)",
+          "name": "keyword.operator.increment-decrement.bro"
+        },
+        {
+          "match": "(\\+|\\-|\\*|/|%)(?!\\+|\\-)",
+          "name": "keyword.operator.arithmetic.bro"
+        },
+        {
+          "match": "(\\=)",
+          "name": "keyword.operator.assignment.bro"
+        },
+        {
+          "match": "(?<!\\|)(\\|)(?!\\|)",
+          "name": "keyword.operator.length.bro"
+        }
+      ]
+    },
+    "statements": {
+      "patterns": [
+        {
+          "match": "\\b(add|delete|print|for|next|break|if|else|switch|case|default|break|fallthrough|when|timeout|schedule|return)\\b",
+          "name": "keyword.control.flow.bro"
+        }
+      ]
+    },
+    "string_escaped_char": {
+      "patterns": [
+        {
+          "match": "\\\\(\\\\|[abefnprtv'\"?]|[0-3]\\d{0,2}|[4-7]\\d?|x[a-fA-F0-9]{0,2})",
+          "name": "constant.character.escape.bro"
+        },
+        {
+          "match": "\\\\(\\\\|[/\\^\\$\\{\\}\\[\\]\\(\\)\\.\\*\\+\\?\\|\\-])",
+          "name": "constant.character.escape.bro"
+        },
+        {
+          "match": "\\\\.",
+          "name": "invalid.illegal.unknown-escape.bro"
+        }
+      ]
+    },
+    "string_placeholder": {
+      "patterns": [
+        {
+          "match": "(?x)%\n\t\t\t\t\t\t(\\d+\\$)?                             # field (argument #)\n\t\t\t\t\t\t[#0\\- +']*                           # flags\n\t\t\t\t\t\t[,;:_]?                              # separator character (AltiVec)\n\t\t\t\t\t\t((-?\\d+)|\\*(-?\\d+\\$)?)?              # minimum field width\n\t\t\t\t\t\t(\\.((-?\\d+)|\\*(-?\\d+\\$)?)?)?         # precision\n\t\t\t\t\t\t(hh|h|ll|l|j|t|z|q|L|vh|vl|v|hv|hl)? # length modifier\n\t\t\t\t\t\t[diouxXDOUeEfFgGaACcSspn%]           # conversion type\n\t\t\t\t\t",
+          "name": "constant.other.placeholder.bro"
+        },
+        {
+          "match": "%",
+          "name": "invalid.illegal.placeholder.bro"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "match": "\\b(bool|count|int|double|time|interval|string|pattern|port|addr|subnet|time|enum|record|function|event|hook|file|opaque|any)\\b",
+          "name": "storage.type.bro"
+        },
+        {
+          "match": "\\b(addr_set|addr_vec|any_vec|count_set|id_table|index_vec|record_field_table|string_array|string_set|string_vec|sw_substring_vec|table_string_of_string)\\b",
+          "name": "invalid.deprecated.type.bro"
+        },
+        {
+          "match": "\\bset\\s*\\[\\s*[a-zA-Z_][0-9a-zA-Z_-]+\\s*\\]",
+          "name": "storage.type.bro"
+        },
+        {
+          "match": "\\b(table|set)\\s*\\[\\s*[a-zA-Z_][0-9a-zA-Z_-]+\\s*\\]\\s+of\\s+",
+          "name": "storage.type.bro"
+        },
+        {
+          "match": "\\b(opaque|vector)\\s+of\\s+[a-zA-Z_][0-9a-zA-Z_-]+\\s*",
+          "name": "storage.type.bro"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.bro",
+  "uuid": "d301f32f-e93c-4f8f-9da6-b87926f53d4f"
+}

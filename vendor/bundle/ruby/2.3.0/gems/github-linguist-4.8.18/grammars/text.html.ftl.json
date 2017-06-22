@@ -1,0 +1,85 @@
+{
+  "fileTypes": [
+    "ftl",
+    "ftlx",
+    "ftlh"
+  ],
+  "foldingStartMarker": "(?x)\n\t\t(<(?i:head|body|table|thead|tbody|tfoot|tr|div|nav|section|aside|header|select|fieldset|style|script|ul|ol|form|dl)\\b.*?>\n\t\t|<!--(?!.*-->)\n\t\t|\\{\\s*($|\\?>\\s*$|//|/\\*(.*\\*/\\s*$|(?!.*?\\*/)))\n\t\t|(\\[|<)(\\#|@)\\w+.*\\(\\]|>)\n\t\t)",
+  "foldingStopMarker": "(?x)\n\t\t(</(?i:head|body|table|thead|tbody|tfoot|tr|div|nav|section|aside|header|select|fieldset|style|script|ul|ol|form|dl)>\n\t\t|^\\s*-->\n\t\t|(^|\\s)\\}\n\t\t|(\\[|<)/(\\#|@)\\w+.*(\\]|>)\n\t\t)",
+  "keyEquivalent": "^~F",
+  "name": "FreeMarker",
+  "patterns": [
+    {
+      "begin": "[<\\[]#--",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.ftl"
+        }
+      },
+      "end": "--[>\\]]",
+      "name": "comment.block.ftl"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.function.ftl"
+        },
+        "2": {
+          "name": "punctuation.definition.function.ftl"
+        },
+        "3": {
+          "name": "entity.name.function.ftl"
+        },
+        "5": {
+          "name": "variable.parameter.function.ftl"
+        },
+        "8": {
+          "name": "entity.name.function.ftl"
+        },
+        "9": {
+          "name": "punctuation.definition.function.ftl"
+        }
+      },
+      "match": "([<\\[](#|@))(\\w+(\\.\\w+)*)((\\s+[^>\\]]+)*?)\\s*((\\/)?([>\\]]))",
+      "name": "meta.function.ftl"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.function.ftl"
+        },
+        "2": {
+          "name": "punctuation.definition.function.ftl"
+        },
+        "3": {
+          "name": "entity.name.function.ftl"
+        },
+        "5": {
+          "name": "punctuation.definition.function.ftl"
+        }
+      },
+      "match": "([<\\[]\\/(#|@))(\\w+(\\.\\w+)*)\\s*([>\\]])",
+      "name": "meta.function.ftl"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.variable.ftl"
+        },
+        "3": {
+          "name": "entity.name.function.ftl"
+        },
+        "4": {
+          "name": "punctuation.definition.variable.ftl"
+        }
+      },
+      "match": "(\\$\\{)\\.?[a-zA-Z_\\(][\\w\\(\\)+-\\/\\*]+(\\.?[\\w\\(\\)+-\\/\\*]+)*(.*?|\\?\\?|\\!)?(\\})",
+      "name": "variable.other.readwrite.local.ftl"
+    },
+    {
+      "include": "text.html.basic"
+    }
+  ],
+  "scopeName": "text.html.ftl",
+  "uuid": "C011BB07-875D-4DEB-9582-0E1FEC0D1E4E"
+}

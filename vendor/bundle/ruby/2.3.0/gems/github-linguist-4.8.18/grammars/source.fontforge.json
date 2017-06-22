@@ -1,0 +1,359 @@
+{
+  "name": "FontForge Script",
+  "scopeName": "source.fontforge",
+  "fileTypes": [
+    "pe"
+  ],
+  "firstLineMatch": "/#!\\bfontforge\\b",
+  "patterns": [
+    {
+      "include": "#main"
+    }
+  ],
+  "repository": {
+    "main": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#codepoint"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#control"
+        },
+        {
+          "include": "#real"
+        },
+        {
+          "include": "#integer"
+        },
+        {
+          "include": "#operators"
+        },
+        {
+          "include": "#procedureCall"
+        },
+        {
+          "include": "#punctuation"
+        },
+        {
+          "include": "#variables"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.fontforge",
+          "begin": "#",
+          "end": "$",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.fontforge"
+            }
+          }
+        },
+        {
+          "name": "comment.block.fontforge",
+          "begin": "/\\*",
+          "end": "\\*/",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.begin.fontforge"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.end.fontforge"
+            }
+          }
+        },
+        {
+          "name": "comment.line.double-slash",
+          "begin": "//",
+          "end": "$",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.fontforge"
+            }
+          }
+        }
+      ]
+    },
+    "shared": {
+      "patterns": [
+        {
+          "include": "#codepoint"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#real"
+        },
+        {
+          "include": "#integer"
+        },
+        {
+          "include": "#punctuation"
+        },
+        {
+          "include": "#operators"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.double.quoted.fontforge",
+          "begin": "\"",
+          "end": "\"|$",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.fontforge"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.fontforge"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#stringEscapes"
+            }
+          ]
+        },
+        {
+          "name": "string.single.quoted.fontforge",
+          "begin": "'",
+          "end": "'|$",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.fontforge"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.fontforge"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#stringEscapes"
+            }
+          ]
+        }
+      ]
+    },
+    "stringEscapes": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.newline.fontforge",
+          "match": "\\\\n"
+        }
+      ]
+    },
+    "control": {
+      "name": "keyword.control.$1.fontforge",
+      "match": "\\b(if|elseif|else|endif|while|endloop|foreach|break|return|shift)\\b"
+    },
+    "operators": {
+      "patterns": [
+        {
+          "match": "==|!=|>=|<=|>|<",
+          "name": "keyword.operator.comparison.fontforge"
+        },
+        {
+          "match": "=|[-+*/%]=",
+          "name": "keyword.operator.assignment.compound.fontforge"
+        },
+        {
+          "match": "--",
+          "name": "keyword.operator.decrement.fontforge"
+        },
+        {
+          "match": "\\+{2}",
+          "name": "keyword.operator.increment.fontforge"
+        },
+        {
+          "match": "[-+/*~!]",
+          "name": "keyword.operator.arithmetic.fontforge"
+        },
+        {
+          "match": "&&|\\|\\|",
+          "name": "keyword.operator.logical.fontforge"
+        },
+        {
+          "match": "&|\\||\\\\\\^",
+          "name": "keyword.operator.bitwise.fontforge"
+        },
+        {
+          "match": ":[htre]",
+          "name": "keyword.operator.pathspec.fontforge",
+          "captures": {
+            "0": {
+              "patterns": [
+                {
+                  "include": "#punctuation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "procedureCall": {
+      "name": "meta.function-call.fontforge",
+      "begin": "(\\w+)\\s*(\\()",
+      "end": "\\)",
+      "contentName": "meta.function-call.arguments.fontforge",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.fontforge"
+        },
+        "2": {
+          "name": "punctuation.definition.arguments.begin.bracket.round.fontforge"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.arguments.end.bracket.round.fontforge"
+        }
+      },
+      "patterns": [
+        {
+          "include": "$base"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "match": ",",
+          "name": "punctuation.separator.comma.fontforge"
+        },
+        {
+          "match": ";",
+          "name": "punctuation.terminator.statement.fontforge"
+        },
+        {
+          "match": ":",
+          "name": "punctuation.delimiter.colon.fontforge"
+        },
+        {
+          "name": "meta.expression.chained.fontforge",
+          "begin": "\\[",
+          "end": "\\]",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.bracket.begin.square.fontforge"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.bracket.end.square.fontforge"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$base"
+            }
+          ]
+        },
+        {
+          "name": "meta.expression.fontforge",
+          "begin": "\\(",
+          "end": "\\)",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.bracket.begin.round.fontforge"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.bracket.end.round.fontforge"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$base"
+            }
+          ]
+        }
+      ]
+    },
+    "codepoint": {
+      "name": "constant.numeric.other.codepoint.fontforge",
+      "match": "o[uU][A-Fa-f0-9]+"
+    },
+    "real": {
+      "name": "constant.numeric.float.fontforge",
+      "match": "(?<!\\w)[-+]?\\d*\\.\\d+"
+    },
+    "integer": {
+      "patterns": [
+        {
+          "match": "(?<!\\w)[-+]?0[Xx][A-Fa-f0-9]+",
+          "name": "constant.numeric.integer.hexadecimal.fontforge"
+        },
+        {
+          "match": "(?<!\\w)[-+]?(?=0)\\d+",
+          "name": "constant.numeric.integer.octal.fontforge"
+        },
+        {
+          "match": "(?<!\\w)[-+]?\\d+",
+          "name": "constant.numeric.integer.decimal.fontforge"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.language.readonly.positional.fontforge",
+          "match": "(\\$)\\d+(?=\\W)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.fontforge"
+            }
+          }
+        },
+        {
+          "name": "variable.language.readonly.fontforge",
+          "match": "(\\$)\\w+",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.fontforge"
+            }
+          }
+        },
+        {
+          "name": "variable.other.global.fontforge",
+          "match": "(_)\\w+",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.fontforge"
+            }
+          }
+        },
+        {
+          "name": "variable.other.font.fontforge",
+          "match": "(@)\\w+",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.fontforge"
+            }
+          }
+        },
+        {
+          "name": "variable.other.local.fontforge",
+          "match": "(?=[A-Za-z])\\w+"
+        }
+      ]
+    }
+  }
+}

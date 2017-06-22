@@ -1,0 +1,450 @@
+{
+  "name": "harbour",
+  "scopeName": "source.harbour",
+  "fileTypes": [
+    "prg",
+    "ch",
+    "hb"
+  ],
+  "repository": {
+    "block_doc_comment": {
+      "comment": "Block documentation comment",
+      "name": "comment.block.documentation.harbour",
+      "begin": "/\\*[!\\*][^\\*]",
+      "end": "\\*/",
+      "patterns": [
+        {
+          "include": "#block_doc_comment"
+        },
+        {
+          "include": "#block_comment"
+        }
+      ]
+    },
+    "block_comment": {
+      "comment": "Block comment",
+      "name": "comment.block.harbour",
+      "begin": "/\\*",
+      "end": "\\*/",
+      "patterns": [
+        {
+          "include": "#block_doc_comment"
+        },
+        {
+          "include": "#block_comment"
+        }
+      ]
+    },
+    "line_doc_comment": {
+      "comment": "Single-line documentation comment",
+      "name": "comment.line.documentation.harbour",
+      "match": "//[!/][^/].*$"
+    },
+    "line_comment": {
+      "comment": "Single-line comment",
+      "name": "comment.line.double-slash.harbour",
+      "match": "//.*$"
+    },
+    "escaped_character": {
+      "name": "constant.character.escape.harbour",
+      "match": "\\\\(x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)"
+    },
+    "sigils": {
+      "comment": "Sigil",
+      "name": "keyword.operator.sigil.harbou",
+      "match": "[@]|[:]{2}|[+]{2}(?=[a-zA-Z0-9_\\(\\[\\|\\\"]+)"
+    },
+    "string_literal": {
+      "comment": "Double-quote string",
+      "name": "string.quoted.double.harbour",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "include": "#escaped_character"
+        }
+      ]
+    },
+    "std_types": {
+      "comment": "Standard library type",
+      "name": "support.class.std.harbour",
+      "match": "\\b(Vec|StrBuf|Path|Option|Result|Reader|Writer|Stream|Seek|Buffer|IoError|IoResult|Sender|SyncSender|Receiver|Cell|RefCell|Any)\\b"
+    },
+    "self": {
+      "comment": "Self variable",
+      "name": "variable.self.language.harbour",
+      "match": "\\b(Self|SELF|self)\\b"
+    },
+    "nil": {
+      "comment": "Nil variable",
+      "name": "variable.nil.language.harbour",
+      "match": "\\b(NIL|nil)\\b"
+    },
+    "type_params": {
+      "comment": "Type parameters",
+      "name": "meta.type_params.harbour",
+      "begin": "<",
+      "end": ">",
+      "patterns": [
+        {
+          "include": "#block_comment"
+        },
+        {
+          "include": "#line_comment"
+        },
+        {
+          "include": "#sigils"
+        },
+        {
+          "include": "#types"
+        },
+        {
+          "include": "#std_types"
+        },
+        {
+          "include": "#lifetime"
+        },
+        {
+          "include": "#type_params"
+        }
+      ]
+    }
+  },
+  "patterns": [
+    {
+      "include": "#block_doc_comment"
+    },
+    {
+      "include": "#block_comment"
+    },
+    {
+      "include": "#line_doc_comment"
+    },
+    {
+      "include": "#line_comment"
+    },
+    {
+      "include": "#sigils"
+    },
+    {
+      "comment": "Attribute",
+      "name": "meta.attribute.harbour",
+      "begin": "#\\!?\\[",
+      "end": "\\]",
+      "patterns": [
+        {
+          "include": "#string_literal"
+        }
+      ]
+    },
+    {
+      "comment": "Single-quote string (character literal)",
+      "name": "string.quoted.single.harbour",
+      "match": "'([^'\\\\]|\\\\(x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))'"
+    },
+    {
+      "include": "#string_literal"
+    },
+    {
+      "comment": "Floating point number (fraction)",
+      "name": "constant.numeric.float.harbour",
+      "match": "\\b[0-9][0-9_]*\\.[0-9][0-9_]*([eE][+-][0-9_]+)?(f32|f64)?\\b"
+    },
+    {
+      "comment": "Floating point number (exponent)",
+      "name": "constant.numeric.float.harbour",
+      "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?[eE][+-][0-9_]+(f32|f64)?\\b"
+    },
+    {
+      "comment": "Floating point number (typed)",
+      "name": "constant.numeric.float.harbour",
+      "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?([eE][+-][0-9_]+)?(f32|f64)\\b"
+    },
+    {
+      "comment": "Integer number (decimal)",
+      "name": "constant.numeric.integer.decimal.harbour",
+      "match": "\\b[0-9][0-9_]*([ui](8|16|32|64)?)?\\b"
+    },
+    {
+      "comment": "Integer number (hexadecimal)",
+      "name": "constant.numeric.integer.hexadecimal.harbour",
+      "match": "\\b0x[a-fA-F0-9_]+([ui](8|16|32|64)?)?\\b"
+    },
+    {
+      "comment": "Integer number (octal)",
+      "name": "constant.numeric.integer.octal.harbour",
+      "match": "\\b0o[0-7_]+([ui](8|16|32|64)?)?\\b"
+    },
+    {
+      "comment": "Integer number (binary)",
+      "name": "constant.numeric.integer.binary.harbour",
+      "match": "\\b0b[01_]+([ui](8|16|32|64)?)?\\b"
+    },
+    {
+      "comment": "Static storage modifier",
+      "name": "storage.modifier.static.harbour",
+      "match": "\\b(static|STATIC|THREAD STATIC)\\b"
+    },
+    {
+      "comment": "Boolean constant",
+      "name": "constant.language.boolean.harbour",
+      "match": "(TRUE|FALSE|\\.T\\.|\\.F\\.)"
+    },
+    {
+      "comment": "Keyboard harbour constants",
+      "name": "constant.language.keyboard.harbour",
+      "match": "(K_DOWN|K_PGDN|K_CTRL_PGDN|K_UP|K_PGUP|K_CTRL_PGUP|K_RIGHT|K_LEFT|K_HOME|K_END|K_CTRL_LEFT|K_CTRL_RIGHT|K_CTRL_HOME|K_CTRL_END)"
+    },
+    {
+      "comment": "variable name hungary notation",
+      "name": "variable.name.hungary.harbour",
+      "match": "\\b(s_)?(mtx)?[a,b,c,d,h,l,n,o,u,x][A-Z][A-Za-z0-9_]*\\b"
+    },
+    {
+      "comment": "variable name",
+      "name": "variable.name.special.harbour",
+      "match": "\\b_[a-z][A-Za-z0-9_]*|\\s(i|j)\\s\\b"
+    },
+    {
+      "comment": "Control keyword",
+      "name": "keyword.control.harbour",
+      "match": "\\b(EXIT|ELSEIF|ELSE|IF|ENDIF|FOR|EACH|IN|TO|STEP|DESCEND|NEXT|LOOP|DO CASE|ENDCASE|SWITCH|CASE|OTHERWISE|ENDSWITCH|RETURN|ENDCLASS|VAR|DATA|INIT|WHILE|DO WHILE|ENDDO|BEGIN SEQUENCE|END SEQUENCE|RECOVER USING|WITH|BREAK|PARAMETERS|END|REQUEST|ANNOUNCE)\\b"
+    },
+    {
+      "comment": "xBase keywords",
+      "name": "keyword.command.xbase.harbour",
+      "match": "\\b(GO TOP|SELECT|SAY|GET|PICTURE|SEEK|REPLACE|APPEND BLANK|USE|INDEX ON|TAG)\\b"
+    },
+    {
+      "comment": "xBase keywords",
+      "name": "keyword.command.xbase.harbour",
+      "match": "\\b(HSEEK|RREPLACE|START PRINT|ENDPRINT)\\b"
+    },
+    {
+      "comment": "Keyword",
+      "name": "keyword.other.harbour",
+      "match": "\\b(LOCAL|PRIVATE|PROTECTED|PUBLIC|FIELD|field|MEMVAR)\\b"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#std_types"
+    },
+    {
+      "include": "#self"
+    },
+    {
+      "include": "#nil"
+    },
+    {
+      "include": "#lifetime"
+    },
+    {
+      "include": "#ref_lifetime"
+    },
+    {
+      "begin": "^\\s*#\\s*(error|warning|stdout)\\b",
+      "captures": {
+        "1": {
+          "name": "keyword.control.import.error.harbour"
+        }
+      },
+      "end": "(?<!\\\\)(?=\\n)",
+      "name": "meta.preprocessor.diagnostic.harbour",
+      "patterns": [
+        {
+          "match": "(?>\\\\\\s*\\n)",
+          "name": "punctuation.separator.continuation.harbour"
+        }
+      ]
+    },
+    {
+      "begin": "^\\s*#\\s*(include|require)\\b\\s+",
+      "captures": {
+        "1": {
+          "name": "keyword.control.import.include.harbour"
+        }
+      },
+      "end": "(?=(?://|/\\*))|(?<!\\\\)(?=\\n)",
+      "name": "meta.preprocessor.harbour.include",
+      "patterns": [
+        {
+          "match": "(?>\\\\\\s*\\n)",
+          "name": "punctuation.separator.continuation.harbour"
+        },
+        {
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.harbour"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.harbour"
+            }
+          },
+          "name": "string.quoted.double.include.harbour"
+        },
+        {
+          "begin": "<",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.harbour"
+            }
+          },
+          "end": ">",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.harbour"
+            }
+          },
+          "name": "string.quoted.other.lt-gt.include.harbour"
+        }
+      ]
+    },
+    {
+      "begin": "^\\s*#\\s*(define|defined|elif|else|if|ifdef|ifndef|endif|line|pragma|undef|command|xcommand|translate|xtranslate)\\b",
+      "captures": {
+        "1": {
+          "name": "keyword.control.import.harbour"
+        }
+      },
+      "end": "(?=(?://|/\\*))|(?<!\\\\)(?=\\n)",
+      "name": "meta.preprocessor.harbour",
+      "patterns": [
+        {
+          "match": "(?>\\\\\\s*\\n)",
+          "name": "punctuation.separator.continuation.harbour"
+        }
+      ]
+    },
+    {
+      "match": "(:=|->|\\+=|-=)",
+      "name": "keyword.operator.assignment.harbour"
+    },
+    {
+      "match": "(\\<=|>=|==|!=|!|\\<>|\\<|>|\\$|\\s\\.OR\\.\\s|\\s\\.AND\\.\\s|\\s\\.NOT\\.\\s)",
+      "name": "keyword.operator.comparison.harbour"
+    },
+    {
+      "comment": "Standard library macro",
+      "name": "support.function.std.harbour",
+      "match": "\\b(log_write|pp|to_str|RTrim|TRIM|Trim|PadR|Padr|PADR|PadC|PadL)!"
+    },
+    {
+      "comment": "Function call",
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
+      "captures": {
+        "1": {
+          "name": "entity.name.function.harbour"
+        }
+      }
+    },
+    {
+      "comment": "Method call",
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*):([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
+      "captures": {
+        "1": {
+          "name": "entity.name.method.harbour"
+        }
+      }
+    },
+    {
+      "comment": "Class variable usage",
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*):([a-zA-Z_][a-zA-Z0-9_]*)",
+      "captures": {
+        "1": {
+          "name": "variable.name.object.harbour"
+        },
+        "2": {
+          "name": "variable.name.member.harbour"
+        }
+      }
+    },
+    {
+      "comment": "Function definition",
+      "begin": "\\b(FUNCTION|STATIC FUNCTION|PROCEDURE|STATIC PROCEDURE|INIT PROCEDURE|EXIT PROCEDURE)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+      "end": "[\\n]",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.fn.harbour"
+        },
+        "2": {
+          "name": "entity.name.function.harbour"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#type_params"
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "comment": "CLASS definition",
+      "begin": "\\b((?:CREATE\\s+)?(?:CLASS))\\s+([a-zA-Z_][a-zA-Z0-9_]*)(?:\\s+(INHERIT)\\s+([a-zA-Z_][a-zA-Z0-9_]*))?",
+      "end": "[\\n]",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.class.harbour"
+        },
+        "2": {
+          "name": "entity.name.class.harbour"
+        },
+        "3": {
+          "name": "keyword.class.inherit.harbour"
+        },
+        "4": {
+          "name": "entity.name.parent.class.harbour"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#type_params"
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "comment": "Method definition",
+      "begin": "\\b(METHOD|STATIC METHOD|METHOD PROCEDURE)\\s+((?:(?:[a-zA-Z_][a-zA-Z0-9_]*):)?(?:[a-zA-Z_][a-zA-Z0-9_]*))",
+      "end": "[\\n]",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.method.fn.harbour"
+        },
+        "2": {
+          "name": "entity.name.method.harbour"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#type_params"
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "comment": "Variable declaration",
+      "begin": ":",
+      "end": "[=;,\\)\\|]",
+      "patterns": [
+        {
+          "include": "#type_params"
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    }
+  ]
+}

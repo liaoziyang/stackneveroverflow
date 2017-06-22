@@ -1,0 +1,49 @@
+{
+  "fileTypes": [
+    "ssp"
+  ],
+  "foldingStartMarker": "(?x)\n\t\t(<(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl)\\b.*?>\n\t\t|<!--(?!.*-->)\n\t\t|\\{\\s*($|\\?>\\s*$|//|/\\*(.*\\*/\\s*$|(?!.*?\\*/)))\n\t\t)",
+  "foldingStopMarker": "(?x)\n\t\t(</(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl)>\n\t\t|^\\s*-->\n\t\t|(^|\\s)\\}\n\t\t)",
+  "name": "Ssp (Scalate)",
+  "patterns": [
+    {
+      "begin": "<%+#",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.ssp"
+        }
+      },
+      "end": "%>",
+      "name": "comment.block.ssp"
+    },
+    {
+      "begin": "<%+(?!>)[-=]?",
+      "captures": {
+        "0": {
+          "name": "punctuation.section.embedded.scala"
+        }
+      },
+      "end": "-?%>",
+      "name": "source.scala.embedded.html",
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.comment.scala"
+            }
+          },
+          "match": "(#).*?(?=-?%>)",
+          "name": "comment.line.number-sign.scala"
+        },
+        {
+          "include": "source.scala"
+        }
+      ]
+    },
+    {
+      "include": "text.html.basic"
+    }
+  ],
+  "scopeName": "text.html.ssp",
+  "uuid": "1869C69F-D37C-4F69-86F3-9D7213CB57C7"
+}

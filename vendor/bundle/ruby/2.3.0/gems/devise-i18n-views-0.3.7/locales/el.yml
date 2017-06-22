@@ -1,0 +1,67 @@
+el:
+  activerecord:
+    attributes:
+      user:
+        current_password: "Τρέχων κωδικός πρόσβασης"
+        email: "Ηλεκτρονική διεύθυνση"
+        password: "Κωδικός πρόσβασης"
+        password_confirmation: "Επιβεβαίωση κωδικού πρόσβασης"
+        remember_me: "Απομνημόνευση"
+    models:
+      user: "Χρήστης"
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: "Επανάληψη αποστολής οδηγιών επιβεβαίωσης"
+    mailer:
+      confirmation_instructions:
+        action: "Επιβεβαίωση του λογαριασμού μου"
+        greeting: "Καλώς ήρθατε %{recipient}!"
+        instruction: "Μπορείτε να επιβεβαιώσετε τον λογαριασμό σας μέσω του συνδέσμου παρακάτω:"
+      reset_password_instructions:
+        action: "Αλλαγή του κωδικού πρόσβασης"
+        greeting: "Γεια σας %{recipient}!"
+        instruction: "Κάποις έχει αιτηθεί ένα σύνδεσμο για αλλαγή του κωδικού πρόσβασής σας και εσείς μπορείτε να το κάνετε αυτό μέσω του συνδέσμου παρακάτω."
+        instruction_2: "Αν δεν κάνατε εσείς αυτή την αίτηση, αγνοήστε αυτή την ηλεκτρονική επιστολή."
+        instruction_3: "Ο κωδικός πρόσβασης δεν θα αλλάξει μέχρι να χρησιμοποιήσετε αυτό το σύνδεσμο παραπάνω και δημιουργήσετε ένα νέο."
+      unlock_instructions:
+        action: "Ξεκλείδωμα του λογαριασμού μου"
+        greeting: "Γεια σας %{recipient}!"
+        instruction: "Πατήστε το σύνδεσμο παρακάτω για ξεκλείδωμα του λογαριασμού σας:"
+        message: "Ο λογαριασμός σας έχει κλειδώσει λόγω μεγάλου αριθμού ανεπιτυχών προσθαθειών σύνδεσης."
+    passwords:
+      edit:
+        change_my_password: "Αλλαγή του κωδικού πρόσβασής μου"
+        change_your_password: "Αλλάξτε τον κωδικό πρόσβασής σας"
+        confirm_new_password: "Επιβεβαίωση νέου κωδικού πρόσβασης"
+        new_password: "Νέος κωδικός πρόσβασης"
+      new:
+        forgot_your_password: "Ξεχάσατε τον κωδικό σας;"
+        send_me_reset_password_instructions: "Στείλτε μου οδηγίες επαναφοράς κωδικού πρόσβασης"
+    registrations:
+      edit:
+        are_you_sure: "Είστε σίγουρος/η;"
+        cancel_my_account: "Ακύρωση του λογαρισμού μου"
+        currently_waiting_confirmation_for_email: "Αναμένεται επιβεβαίωση για: %{email}"
+        leave_blank_if_you_don_t_want_to_change_it: "αφήστε το κενό, αν δεν θέλετε να το αλλάξετε"
+        title: "Επεξεργασία %{resource}"
+        unhappy: "Δυστυχής"
+        update: "Ενημέρωση"
+        we_need_your_current_password_to_confirm_your_changes: "χρειαζόμαστε τον τρέχων κωδικό πρόσβασής σας για να επιβεβαιώσουμε τις αλλαγές σας"
+      new:
+        sign_up: "Εγγραφή"
+    sessions:
+      new:
+        sign_in: "Σύνδεση"
+    shared:
+      links:
+        back: "Πίσω"
+        didn_t_receive_confirmation_instructions: "Δεν λάβατε οδηγίες επιβεβαίωσης;"
+        didn_t_receive_unlock_instructions: "Δεν λάβατε οδηγίες ξεκλειδώματος;"
+        forgot_your_password: "Ξεχάσατε τον κωδικό πρόσβασης;"
+        sign_in: "Σύνδεση"
+        sign_in_with_provider: "Σύνδεση με τον πάροχο %{provider}"
+        sign_up: "Εγγραφή"
+    unlocks:
+      new:
+        resend_unlock_instructions: "Επανάληψη αποστολής οδηγιών ξεκλειδώματος"

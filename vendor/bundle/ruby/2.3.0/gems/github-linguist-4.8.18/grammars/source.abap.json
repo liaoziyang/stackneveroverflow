@@ -1,0 +1,176 @@
+{
+  "fileTypes": [
+    "abap",
+    "ABAP"
+  ],
+  "foldingStartMarker": "/\\*\\*|\\{\\s*$",
+  "foldingStopMarker": "\\*\\*/|^\\s*\\}",
+  "keyEquivalent": "^~A",
+  "name": "ABAP",
+  "patterns": [
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.abap"
+        }
+      },
+      "match": "^\\*.*\\n?",
+      "name": "comment.line.full.abap"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.abap"
+        }
+      },
+      "match": "\".*\\n?",
+      "name": "comment.line.partial.abap"
+    },
+    {
+      "begin": "'",
+      "end": "'",
+      "name": "string.quoted.single.abap",
+      "patterns": [
+        {
+          "match": "''",
+          "name": "constant.character.escape.abap"
+        }
+      ]
+    },
+    {
+      "begin": "(?i)^\\s*(class|method|form)\\s+(?=[a-z_][a-z_0-9])",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.block.abap"
+        }
+      },
+      "end": "\\s*\\.\\s*\\n?",
+      "name": "meta.block.begin.implementation.abap",
+      "patterns": [
+        {
+          "begin": "(?=[A-Za-z_][A-Za-z0-9_]*)",
+          "contentName": "entity.name.type.block.abap",
+          "end": "(?![A-Za-z0-9_])",
+          "patterns": [
+            {
+              "include": "#generic_names"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "(?i)(endclass|endmethod|endform)",
+      "name": "storage.type.block.end.abap"
+    },
+    {
+      "match": "(?i)(<[A-Za-z_][A-Za-z0-9_]*>)",
+      "name": "meta.variable.other.field.symbol.abap"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#abap_constants"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#abaptypes"
+    }
+  ],
+  "repository": {
+    "abap_constants": {
+      "match": "(?ix)\\s(initial|null|space|abap_true|abap_false)\\s",
+      "name": "constant.language.abap"
+    },
+    "abaptypes": {
+      "match": "(?ix)\\s(string|xstring|any|clike|csequence|numeric|xsequence|c|n|i|p|f|d|t|x)(?=\\s|\\.)",
+      "name": "support.type.abap"
+    },
+    "arithmetic_operator": {
+      "match": "\\s(\\+|\\-|\\*|\\*\\*|/|%)\\s",
+      "name": "keyword.operator.arithmetic.abap"
+    },
+    "comparison_operator": {
+      "match": "(?i)\\s(<|>|<\\=|>\\=|\\=|<>|eq|ne|lt|le|gt|ge|cs)\\s",
+      "name": "keyword.operator.comparison.abap"
+    },
+    "control_keywords": {
+      "match": "(?ix)(^|\\s)(\n\t        at|case|catch|continue|do|elseif|else|endat|endcase|enddo|endif|\n\t        endloop|endon|if|loop|on|raise|try\n\t        )(?=\\s|\\.|:)",
+      "name": "keyword.control.flow.abap"
+    },
+    "generic_names": {
+      "match": "[A-Za-z_][A-Za-z0-9_]*"
+    },
+    "hyphenated_keywords": {
+      "match": "(?ix)(^|\\s)(add-corresponding|\n\t         authority-check|\n\t         break-point|\n\t         class-data|\n\t         class-method|\n\t         class-methods|\n\t         divide-corresponding|\n\t         display-mode|\n\t         editor-call|\n\t         end-of-definition|\n\t         end-of-page|\n\t         end-of-selection|\n\t         field-groups|\n\t         field-symbols|\n\t         function-pool|\n\t         left-justified|\n\t         line-count|\n\t         line-size|\n\t         message-id|\n\t         move-corresponding|\n\t         multiply-corresponding|\n\t         new-line|\n\t         new-page|\n\t         new-section|\n                 no-gap|\n                 no-sign|\n                 no-zero|\n\t         print-control|\n\t         read-only|\n\t         right-justified|\n\t         rp-provide-from-last|\n\t         select-options|\n\t         selection-screen|\n\t         start-of-selection|\n\t         subtract-corresponding|\n\t         syntax-check|\n\t         syntax-trace|\n\t         system-call|\n\t         top-of-page|\n\t         type-pool|\n\t         type-pools\n\t         )(?=\\s|\\.|:)",
+      "name": "keyword.control.hyphenated.abap"
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "include": "#hyphenated_keywords"
+        },
+        {
+          "include": "#main_keywords"
+        },
+        {
+          "include": "#control_keywords"
+        },
+        {
+          "include": "#short_keywords"
+        }
+      ]
+    },
+    "logical_operator": {
+      "match": "(?i)\\s(is|not|or|and)\\s",
+      "name": "keyword.operator.arithmetic.abap"
+    },
+    "main_keywords": {
+      "match": "(?ix)(^|\\s)(\n\t        alias|aliases|append|ascending|assert|assign|assigning|\n\t        back|begin|binary|bound|byte|\n\t        call|changing|check|clear|close|cnt|collect|commit|character|\n\t        corresponding|communication|component|compute|concatenate|condense|constants|\n\t        controls|convert|create|currency|\n\t        data|descending|default|define|definition|deferred|delete|describe|detail|divide|\n\t        deleting|\n\t        end|endexec|endfunction|\n\t        endinterface|endmodule|\n\t        endprovide|endselect|endtry|endwhile|event|events|exec|exit|export|\n\t        exporting|extract|exception|exceptions|\n\t        fetch|fields|format|free|from|function|find|\n\t        generate|\n\t        hide|\n\t        import|importing|index|infotypes|initial|initialization|\n\t        interface|interfaces|input|insert|implementation|into|\n\t        leave|like|line|load|local|length|left|leading|\n\t        method|message|methods|modify|module|move|multiply|match|\n\t        object|obligatory|overlay|optional|others|occurrences|occurs|offset|\n\t        pack|parameters|perform|position|private|program|protected|provide|public|\n\t        radiobutton|raising|ranges|receive|receiving|redefinition|reference|refresh|regex|reject|results|\n\t        replace|report|reserve|restore|return|returning|rollback|read|\n\t        scan|scroll|search|select|separated|shift|single|skip|sort|sorted|split|standard| \n\t        statics|step|stop|structure|submatches|submit|subtract|summary|suppress|section|\n\t        tables|table|times|titlebar|transfer|transformation|translate|types|type|\n\t        unassign|uline|unpack|update|using|\n\t        value|\n\t        when|while|window|write|where|with\n\t        )(?=\\s|\\.|:)",
+      "name": "keyword.control.simple.abap"
+    },
+    "math_operators": {
+      "match": "(?ix)\\s(abs|sign|ceil|floor|trunc|frac|acos|asin|\n\t                atan|cos|sin|tan|cosh|sinh|tanh|exp|log|log10|sqrt)\\(",
+      "name": "keyword.operator.math.abap"
+    },
+    "operators": {
+      "patterns": [
+        {
+          "include": "#other_operator"
+        },
+        {
+          "include": "#math_operators"
+        },
+        {
+          "include": "#string_operators"
+        },
+        {
+          "include": "#arithmetic_operator"
+        },
+        {
+          "include": "#comparison_operator"
+        },
+        {
+          "include": "#logical_operator"
+        }
+      ]
+    },
+    "other_operator": {
+      "match": "\\s(&&|\\?\\=)\\s",
+      "name": "keyword.operator.other.abap"
+    },
+    "short_keywords": {
+      "match": "(?i)\\s(add|all|in|get|of|put|ref|set|sum|to)(?=\\s|\\.|:)",
+      "name": "keyword.control.short.abap"
+    },
+    "string_operators": {
+      "match": "(?ix)\\s(strlen|xstrlen|charlen|lines|numofchar|dbmaxlen)\\(",
+      "name": "keyword.operator.string.abap"
+    }
+  },
+  "scopeName": "source.abap",
+  "uuid": "0357FFB4-EFFF-4DE9-8371-B0F9C8DF1B21"
+}

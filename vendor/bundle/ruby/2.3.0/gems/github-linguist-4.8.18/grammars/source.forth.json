@@ -1,0 +1,99 @@
+{
+  "fileTypes": [
+    "frt",
+    "fs"
+  ],
+  "keyEquivalent": "^~F",
+  "name": "Forth",
+  "patterns": [
+    {
+      "match": "(?i:(?<=^|\\s)(TRUE|FALSE|BL|PI|CELL|C/L|R/O|W/O|R/W)(?=\\s))",
+      "name": "constant.language.forth"
+    },
+    {
+      "match": "(?<=^|\\s)([$#%]?[-+]?[0-9]+(\\.[0-9]*e(-?[0-9]+)|\\.?[0-9a-fA-F]*))(?=\\s)",
+      "name": "constant.numeric.forth"
+    },
+    {
+      "match": "(?<=^|\\s)(([&^]\\S)|((\"|')\\S(\"|')))(?=\\s)",
+      "name": "constant.character.forth"
+    },
+    {
+      "comment": "line comments for iForth",
+      "match": "(?<=^|\\s)(-- .*$)",
+      "name": "comment.line.double-dash.forth"
+    },
+    {
+      "comment": "ANSI line comment",
+      "match": "(?<=^|\\s)(\\\\ .*$)",
+      "name": "comment.line.backslash.forth"
+    },
+    {
+      "comment": "gForth line comment",
+      "match": "(?<=^|\\s)(\\\\[Gg] .*$)",
+      "name": "comment.line.backslash-g.forth"
+    },
+    {
+      "begin": "(?<=^|\\s)(\\(\\*)(?=\\s)",
+      "comment": "multiline comments for iForth",
+      "end": "(?<=^|\\s)(\\*\\))(?=\\s)",
+      "name": "comment.block.forth"
+    },
+    {
+      "begin": "\\b(?i:DOC)\\b",
+      "comment": "documentation comments for iForth",
+      "end": "\\b(?i:ENDDOC)\\b",
+      "name": "comment.block.documentation.forth"
+    },
+    {
+      "comment": "ANSI line comment",
+      "match": "(?<=^|\\s)(\\.?\\( [^)]*\\))",
+      "name": "comment.line.parentheses.forth"
+    },
+    {
+      "comment": "",
+      "match": "(?i:((?<=ABORT\" )|(?<=BREAK\" )|(?<=\\.\" )|(C\" )|(S\\\\?\" )))[^\"]+\"",
+      "name": "string.quoted.double.forth"
+    },
+    {
+      "comment": "",
+      "match": "(?i:((?<=INCLUDE)|(?<=NEEDS)|(?<=REQUIRE)|(?<=USE)))[ ]\\S+(?=\\s)",
+      "name": "string.unquoted.forth"
+    },
+    {
+      "match": "(?<=^|\\s)\\[(?i:(\\?DO|\\+LOOP|AGAIN|BEGIN|DO|ELSE|ENDIF|FOR|IF|IFDEF|IFUNDEF|LOOP|NEXT|REPEAT|THEN|UNTIL|WHILE))\\](?=\\s)",
+      "name": "keyword.control.immediate.forth"
+    },
+    {
+      "match": "(?<=^|\\s)(?i:(COMPILE-ONLY|IMMEDIATE|IS|RESTRICT|TO|WHAT'S))(?=\\s)",
+      "name": "keyword.other.immediate.forth"
+    },
+    {
+      "match": "(?<=^|\\s)(?i:(-DO|\\-LOOP|\\?DO|\\?LEAVE|\\+DO|\\+LOOP|ABORT\\\"|AGAIN|AHEAD|BEGIN|CASE|DO|ELSE|ENDCASE|ENDIF|ENDOF|ENDTRY\\-IFERROR|ENDTRY|FOR|IF|IFERROR|LEAVE|LOOP|NEXT|RECOVER|REPEAT|RESTORE|THEN|TRY|U\\-DO|U\\+DO|UNTIL|WHILE))(?=\\s)",
+      "name": "keyword.control.compile-only.forth"
+    },
+    {
+      "match": "(?<=^|\\s)(?i:(\\?DUP-0=-IF|\\?DUP-IF|\\)|\\['\\]|\\[CHAR\\]|\\[COMPILE\\]|\\[IS\\]|\\[TO\\]|<COMPILATION|<INTERPRETATION|ASSERT\\(|ASSERT0\\(|ASSERT1\\(|ASSERT2\\(|ASSERT3\\(|COMPILATION>|DEFERS|DOES>|INTERPRETATION>|OF|POSTPONE))(?=\\s)",
+      "name": "keyword.other.compile-only.forth"
+    },
+    {
+      "match": "(?<=^|\\s)(?i:('|<IS>|<TO>|CHAR|END-STRUCT|INCLUDE[D]?|LOAD|NEEDS|REQUIRE[D]?|REVISION|SEE|STRUCT|THRU|USE))(?=\\s)",
+      "name": "keyword.other.non-immediate.forth"
+    },
+    {
+      "match": "(?<=^|\\s)(?i:(~~|BREAK:|BREAK\"|DBG))(?=\\s)",
+      "name": "keyword.other.warning.forth"
+    },
+    {
+      "match": "\\b(?i:I|J)\\b",
+      "name": "variable.language.forth"
+    },
+    {
+      "comment": "",
+      "match": "(?<=^|\\s)(?i:(2CONSTANT|2VARIABLE|ALIAS|CONSTANT|CREATE-INTERPRET/COMPILE[:]?|CREATE|DEFER|FCONSTANT|FIELD|FVARIABLE|USER|VALUE|VARIABLE|VOCABULARY))(?=\\s)",
+      "name": "storage.type.forth"
+    }
+  ],
+  "scopeName": "source.forth",
+  "uuid": "0AAA4CFD-D621-4B33-BB76-E5D9EDE64E84"
+}

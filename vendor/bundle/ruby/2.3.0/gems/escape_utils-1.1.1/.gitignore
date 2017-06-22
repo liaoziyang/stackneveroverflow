@@ -1,0 +1,10 @@
+Makefile
+*.o
+*.bundle
+pkg/*
+doc/*
+*.rbc
+tmp/
+Gemfile.lock
+vendor/*
+bin/

@@ -1,0 +1,839 @@
+{
+  "name": "Emacs Lisp",
+  "scopeName": "source.emacs.lisp",
+  "fileTypes": [
+    "el",
+    "elc",
+    "eld",
+    "spacemacs",
+    "_emacs",
+    "emacs",
+    "emacs.desktop",
+    "abbrev_defs",
+    "Project.ede",
+    "gnus",
+    "viper"
+  ],
+  "firstLineMatch": "(?x)\n# Hashbang\n^\\#!.*(?:\\s|\\/|(?<=!)\\b)\n\temacs\n(?:$|\\s)\n|\n# Modeline\n(?i:\n\t# Emacs\n\t-\\*-(?:\\s*(?=[^:;\\s]+\\s*-\\*-)|(?:.*?[;\\s]|(?<=-\\*-))mode\\s*:\\s*)\n\t\temacs-lisp\n\t(?=[\\s;]|(?<![-*])-\\*-).*?-\\*-\n\t|\n\t# Vim\n\t(?:(?:\\s|^)vi(?:m[<=>]?\\d+|m)?|\\sex)(?=:(?=\\s*set?\\s[^\\n:]+:)|:(?!\\s*set?\\s))(?:(?:\\s|\\s*:\\s*)\\w*(?:\\s*=(?:[^\\n\\\\\\s]|\\\\.)*)?)*[\\s:](?:filetype|ft|syntax)\\s*=\n\t\t(?:emacs-lisp|elisp)\n\t(?=\\s|:|$)\n)",
+  "patterns": [
+    {
+      "include": "#main"
+    }
+  ],
+  "repository": {
+    "main": {
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#lambda"
+        },
+        {
+          "include": "#loop"
+        },
+        {
+          "include": "#escapes"
+        },
+        {
+          "include": "#definition"
+        },
+        {
+          "include": "#formatting"
+        },
+        {
+          "include": "#face-innards"
+        },
+        {
+          "include": "#expression"
+        },
+        {
+          "include": "#operators"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "#binding"
+        },
+        {
+          "include": "#keyword"
+        },
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#quote"
+        },
+        {
+          "include": "#symbols"
+        },
+        {
+          "include": "#vectors"
+        },
+        {
+          "include": "#arg-values"
+        },
+        {
+          "include": "#boolean"
+        },
+        {
+          "include": "#stdlib"
+        }
+      ]
+    },
+    "arg-values": {
+      "patterns": [
+        {
+          "name": "constant.language.$1.arguments.emacs.lisp",
+          "match": "&(optional|rest)(?=\\s|\\))"
+        }
+      ]
+    },
+    "binding": {
+      "name": "storage.binding.emacs.lisp",
+      "match": "\\b(?<=[\\s()\\[]|^)(let\\*?|set[fq]?)(?=[\\s()]|$)"
+    },
+    "boolean": {
+      "patterns": [
+        {
+          "name": "constant.boolean.true.emacs.lisp",
+          "match": "\\b(?<=[\\s()\\[]|^)t(?=[\\s()]|$)\\b"
+        },
+        {
+          "name": "constant.language.nil.emacs.lisp",
+          "match": "\\b(?<=[\\s()\\[]|^)(nil)(?=[\\s()]|$)\\b"
+        }
+      ]
+    },
+    "comment": {
+      "name": "comment.line.semicolon.emacs.lisp",
+      "begin": ";",
+      "end": "$",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.emacs.lisp"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#modeline"
+        }
+      ]
+    },
+    "definition": {
+      "patterns": [
+        {
+          "name": "meta.function.definition.emacs.lisp",
+          "begin": "(\\()(defun|defmacro|defsubst)(?!-)\\b(?:\\s*(?![-+\\d])([-+=*/\\w~!@$%^&:<>{}?]+))?",
+          "end": "\\)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.section.expression.begin.emacs.lisp"
+            },
+            "2": {
+              "name": "storage.type.$2.function.emacs.lisp"
+            },
+            "3": {
+              "name": "entity.function.name.emacs.lisp"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.expression.end.emacs.lisp"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#defun-innards"
+            }
+          ]
+        },
+        {
+          "name": "storage.type.function.emacs.lisp",
+          "match": "\\b(?<=[\\s()\\[]|^)defun(?=[\\s()]|$)"
+        },
+        {
+          "name": "meta.$3.definition.emacs.lisp",
+          "begin": "(?x) (?<=\\s|^) (\\()\n(def(advice|class|const|custom|face|image|group|package|struct|subst|theme|type|var))\n(?:\\s+([-+=*/\\w~!@$%^&:<>{}?]+))?\n(?=[\\s()]|$)",
+          "end": "\\)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.section.expression.begin.emacs.lisp"
+            },
+            "2": {
+              "name": "storage.type.$3.emacs.lisp"
+            },
+            "4": {
+              "name": "entity.name.$3.emacs.lisp"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.expression.end.emacs.lisp"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "storage.type.$1.emacs.lisp",
+          "match": "\\b(?<=[\\s()\\[]|^)(define-(?:condition|widget))(?=[\\s()]|$)\\b"
+        }
+      ]
+    },
+    "defun-innards": {
+      "patterns": [
+        {
+          "name": "meta.argument-list.expression.emacs.lisp",
+          "begin": "\\G\\s*(\\()",
+          "end": "\\)",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.expression.begin.emacs.lisp"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.expression.end.emacs.lisp"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#arg-keywords"
+            },
+            {
+              "name": "variable.parameter.emacs.lisp",
+              "match": "(?![-+\\d:&'#])([-+=*/\\w~!@$%^&:<>{}?]+)"
+            },
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "escapes": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.hex.emacs.lisp",
+          "match": "(\\?)\\\\u[A-Fa-f0-9]{4}|(\\?)\\\\U00[A-Fa-f0-9]{6}",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.codepoint.emacs.lisp"
+            },
+            "2": {
+              "name": "punctuation.definition.codepoint.emacs.lisp"
+            }
+          }
+        },
+        {
+          "name": "constant.character.escape.hex.emacs.lisp",
+          "match": "(\\?)\\\\x[A-Fa-f0-9]+",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.codepoint.emacs.lisp"
+            }
+          }
+        },
+        {
+          "name": "constant.character.escape.octal.emacs.lisp",
+          "match": "(\\?)\\\\[0-7]{1,3}",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.codepoint.emacs.lisp"
+            }
+          }
+        },
+        {
+          "name": "constant.numeric.codepoint.emacs.lisp",
+          "match": "(\\?)(?:[^\\\\]|(\\\\).)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.codepoint.emacs.lisp"
+            },
+            "2": {
+              "name": "punctuation.definition.backslash.emacs.lisp"
+            }
+          }
+        },
+        {
+          "name": "constant.character.escape.emacs.lisp",
+          "match": "(\\\\).",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.backslash.emacs.lisp"
+            }
+          }
+        }
+      ]
+    },
+    "expression": {
+      "patterns": [
+        {
+          "name": "meta.expression.emacs.lisp",
+          "begin": "\\(",
+          "end": "\\)",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.expression.begin.emacs.lisp"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.expression.end.emacs.lisp"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "meta.quoted.expression.emacs.lisp",
+          "begin": "(\\')(\\()",
+          "end": "\\)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.symbol.emacs.lisp"
+            },
+            "2": {
+              "name": "punctuation.section.quoted.expression.begin.emacs.lisp"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.quoted.expression.end.emacs.lisp"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "meta.backquoted.expression.emacs.lisp",
+          "begin": "(\\`)(\\()",
+          "end": "\\)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.symbol.emacs.lisp"
+            },
+            "2": {
+              "name": "punctuation.section.backquoted.expression.begin.emacs.lisp"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.backquoted.expression.end.emacs.lisp"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "meta.interpolated.expression.emacs.lisp",
+          "begin": "(,@)(\\()",
+          "end": "\\)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.symbol.emacs.lisp"
+            },
+            "2": {
+              "name": "punctuation.section.interpolated.expression.begin.emacs.lisp"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.interpolated.expression.end.emacs.lisp"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "face-innards": {
+      "patterns": [
+        {
+          "name": "meta.expression.display-type.emacs.lisp",
+          "match": "(\\()(type)\\s+(graphic|x|pc|w32|tty)(\\))",
+          "captures": {
+            "1": {
+              "name": "punctuation.section.expression.begin.emacs.lisp"
+            },
+            "2": {
+              "name": "variable.language.display.type.emacs.lisp"
+            },
+            "3": {
+              "name": "support.constant.display.type.emacs.lisp"
+            },
+            "4": {
+              "name": "punctuation.section.expression.end.emacs.lisp"
+            }
+          }
+        },
+        {
+          "name": "meta.expression.display-class.emacs.lisp",
+          "match": "(\\()(class)\\s+(color|grayscale|mono)(\\))",
+          "captures": {
+            "1": {
+              "name": "punctuation.section.expression.begin.emacs.lisp"
+            },
+            "2": {
+              "name": "variable.language.display.class.emacs.lisp"
+            },
+            "3": {
+              "name": "support.constant.display.class.emacs.lisp"
+            },
+            "4": {
+              "name": "punctuation.section.expression.end.emacs.lisp"
+            }
+          }
+        },
+        {
+          "name": "meta.expression.background-type.emacs.lisp",
+          "match": "(\\()(background)\\s+(light|dark)(\\))",
+          "captures": {
+            "1": {
+              "name": "punctuation.section.expression.begin.emacs.lisp"
+            },
+            "2": {
+              "name": "variable.language.background-type.emacs.lisp"
+            },
+            "3": {
+              "name": "support.constant.background-type.emacs.lisp"
+            },
+            "4": {
+              "name": "punctuation.section.expression.end.emacs.lisp"
+            }
+          }
+        },
+        {
+          "name": "meta.expression.display-prerequisite.emacs.lisp",
+          "begin": "(\\()(min-colors|supports)(?=[\\s()]|$)",
+          "end": "\\)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.section.expression.begin.emacs.lisp"
+            },
+            "2": {
+              "name": "variable.language.display-prerequisite.emacs.lisp"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.expression.end.emacs.lisp"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "formatting": {
+      "name": "meta.string-formatting.expression.emacs.lisp",
+      "begin": "(\\()(format|format-message|message|error)(?=\\s|$|\")",
+      "end": "\\)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.section.expression.begin.emacs.lisp"
+        },
+        "2": {
+          "name": "support.function.$2.emacs.lisp"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.expression.end.emacs.lisp"
+        }
+      },
+      "patterns": [
+        {
+          "begin": "\\G\\s*(\")",
+          "end": "\"",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.string.begin.emacs.lisp"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.emacs.lisp"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#format"
+            }
+          ]
+        },
+        {
+          "begin": "\\G\\s*$\\n?",
+          "end": "\"|(?<!^)$|[\\s\"](?=[^\\s\"])",
+          "patterns": [
+            {
+              "match": "^\\s*$\\n?"
+            },
+            {
+              "match": "(?:^|\\G)\\s*(\")",
+              "captures": {
+                "1": {
+                  "name": "punctuation.definition.string.begin.emacs.lisp"
+                }
+              }
+            },
+            {
+              "begin": "(?<=\")",
+              "end": "\"",
+              "patterns": [
+                {
+                  "include": "#format"
+                }
+              ],
+              "endCaptures": {
+                "0": {
+                  "name": "punctuation.definition.string.end.emacs.lisp"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "format": {
+      "contentName": "string.quoted.double.emacs.lisp",
+      "begin": "\\G",
+      "end": "(?=\")",
+      "patterns": [
+        {
+          "match": "(%[%cdefgosSxX])|(%.)",
+          "captures": {
+            "1": {
+              "name": "constant.other.placeholder.emacs.lisp"
+            },
+            "2": {
+              "name": "invalid.illegal.placeholder.emacs.lisp"
+            }
+          }
+        },
+        {
+          "include": "#string-innards"
+        }
+      ]
+    },
+    "functions": {
+      "name": "keyword.control.function.$1.emacs.lisp",
+      "match": "(?x)\\b(?<=[\\s()\\[]|^)\n(abs|append|apply|assoc|butlast|c[ad]{1,2}r|c[ad]r-safe|consp?|copy-alist|copy-tree\n|dolist|funcall|last|length|listp?|load|make-list|mapc|mapcar|max|min|member|nbutlast\n|nconc|nreverse|nth|nthcdr|null|pop|prin[1ct]|push|quote|rassoc|reverse|rplac[ad]\n|safe-length|setcar|setcdr)\n(?=[\\s()]|$)\\b"
+    },
+    "keyword": {
+      "name": "constant.keyword.emacs.lisp",
+      "match": "(?<=[\\s()\\[]|^)(:)[-+=*/\\w~!@$%^&:<>{}?]+",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.keyword.emacs.lisp"
+        }
+      }
+    },
+    "lambda": {
+      "name": "meta.lambda.expression.emacs.lisp",
+      "begin": "(\\()(lambda|function)\\s+",
+      "end": "\\)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.section.expression.begin.emacs.lisp"
+        },
+        "2": {
+          "name": "storage.type.lambda.function.emacs.lisp"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.expression.end.emacs.lisp"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#defun-innards"
+        }
+      ]
+    },
+    "loop": {
+      "name": "meta.cl-lib.loop.emacs.lisp",
+      "begin": "(\\()(cl-loop)(?=[\\s()]|$)",
+      "end": "\\)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.section.expression.begin.emacs.lisp"
+        },
+        "2": {
+          "name": "support.function.cl-lib.emacs.lisp"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.expression.end.emacs.lisp"
+        }
+      },
+      "patterns": [
+        {
+          "name": "keyword.control.emacs.lisp",
+          "match": "(?x)(?<=[\\s()\\[]|^)\n(above|across|across-ref|always|and|append|as|below|by|collect|concat\n|count|do|each|finally|for|from|if|in|in-ref|initially|into|maximize\n|minimize|named|nconc|never|of|of-ref|on|repeat|return|sum|then|thereis\n|sum|to|unless|until|using|vconcat|when|while|with|(?:\n\t\n\tbeing    \\s+\n\t(?:the)? \\s+\n\t\n\t(?:element|hash-key|hash-value|key-code|key-binding\n\t|key-seq|overlay|interval|symbols|frame|window|buffer)\n\ts?\n\n))(?=[\\s()]|$)"
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "modeline": {
+      "name": "meta.modeline.emacs.lisp",
+      "match": "(-\\*-)(.*)(-\\*-)",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.modeline.begin.emacs.lisp"
+        },
+        "2": {
+          "patterns": [
+            {
+              "include": "#modeline-innards"
+            }
+          ]
+        },
+        "3": {
+          "name": "punctuation.definition.modeline.end.emacs.lisp"
+        }
+      }
+    },
+    "modeline-innards": {
+      "patterns": [
+        {
+          "name": "meta.modeline.variable.emacs.lisp",
+          "match": "([^\\s:;]+)\\s*(:)\\s*([^;]*)",
+          "captures": {
+            "1": {
+              "name": "variable.assignment.modeline.emacs.lisp"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.emacs.lisp"
+            },
+            "3": {
+              "patterns": [
+                {
+                  "include": "#modeline-innards"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "punctuation.terminator.statement.emacs.lisp",
+          "match": ";"
+        },
+        {
+          "name": "punctuation.separator.key-value.emacs.lisp",
+          "match": ":"
+        },
+        {
+          "name": "string.other.modeline.emacs.lisp",
+          "match": "\\S+"
+        }
+      ]
+    },
+    "number": {
+      "patterns": [
+        {
+          "name": "constant.numeric.integer.binary.emacs.lisp",
+          "match": "(?<=[\\s()\\[]|^)(#)[Bb][01]+",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.binary.emacs.lisp"
+            }
+          }
+        },
+        {
+          "name": "constant.numeric.integer.hex.viml",
+          "match": "(?<=[\\s()\\[]|^)(#)[Xx][0-9A-Fa-f]+",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.hex.emacs.lisp"
+            }
+          }
+        },
+        {
+          "name": "constant.numeric.float.emacs.lisp",
+          "match": "(?<=[\\s()\\[]|^)[-+]?\\d*\\.\\d+(?:[Ee][-+]?\\d+|[Ee]\\+(?:INF|NaN))?(?=[\\s()]|$)"
+        },
+        {
+          "name": "constant.numeric.integer.emacs.lisp",
+          "match": "(?<=[\\s()\\[]|^)[-+]?\\d+(?:[Ee][-+]?\\d+|[Ee]\\+(?:INF|NaN))?(?=[\\s()]|$)"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.control.$1.emacs.lisp",
+          "match": "(?x)(?<=[()]|^)\n(and|catch|cond|condition-case(?:-unless-debug)?|dotimes|eql?\n|equal|if|not|or|pcase|prog[12n]|throw|unless|unwind-protect\n|when|while)\n(?=[\\s()]|$)"
+        },
+        {
+          "match": "(?<=\\(|\\s|^)(interactive)(?=\\s|\\(|\\))",
+          "name": "storage.modifier.interactive.function.emacs.lisp"
+        },
+        {
+          "name": "keyword.operator.numeric.emacs.lisp",
+          "match": "(?<=\\(|\\s|^)[-*+/%](?=\\s|\\)|$)"
+        },
+        {
+          "name": "keyword.operator.comparison.emacs.lisp",
+          "match": "(?<=\\(|\\s|^)[=<>]|[/<>]=(?=\\s|\\)|$)"
+        },
+        {
+          "name": "keyword.operator.pair-separator.emacs.lisp",
+          "match": "(?<=\\s)\\.(?=\\s|$)"
+        }
+      ]
+    },
+    "quote": {
+      "patterns": [
+        {
+          "name": "constant.other.symbol.emacs.lisp",
+          "match": "(')([-+=*/\\w~!@$%^&:<>{}?]+)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.quote.emacs.lisp"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "$self"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "string": {
+      "name": "string.quoted.double.emacs.lisp",
+      "begin": "\"",
+      "end": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.emacs.lisp"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.emacs.lisp"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#string-innards"
+        }
+      ]
+    },
+    "string-innards": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.newline.emacs.lisp",
+          "match": "(\\\\)$\\n?"
+        },
+        {
+          "match": "(\\\\).",
+          "name": "constant.character.escape.emacs.lisp",
+          "captures": {
+            "1": {
+              "name": "punctuation.escape.backslash.emacs.lisp"
+            }
+          }
+        }
+      ]
+    },
+    "symbols": {
+      "patterns": [
+        {
+          "name": "constant.other.interned.blank.symbol.emacs.lisp",
+          "match": "(?<=[\\s()\\[]|^)##",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.symbol.emacs.lisp"
+            }
+          }
+        },
+        {
+          "name": "constant.other.symbol.emacs.lisp",
+          "match": "(?<=[\\s()\\[]|^)(#)((?:[-'+=*/\\w~!@$%^&:<>{}?]|\\\\.)+)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.symbol.emacs.lisp"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "$self"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "constant.other.spliced.symbol.emacs.lisp",
+          "match": "(,@)([-+=*/\\w~!@$%^&:<>{}?]+)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.spliced.symbol.emacs.lisp"
+            }
+          }
+        }
+      ]
+    },
+    "vectors": {
+      "patterns": [
+        {
+          "match": "\\[",
+          "name": "punctuation.section.vector.begin.emacs.lisp"
+        },
+        {
+          "match": "\\]",
+          "name": "punctuation.section.vector.end.emacs.lisp"
+        }
+      ]
+    },
+    "stdlib": {
+      "patterns": [
+        {
+          "name": "support.function.emacs.lisp",
+          "match": "(?x)(?<=[()]|^)\n\t(abbrev-all-caps|abbrev-expand-function|abbrev-expansion|abbrev-file-name|abbrev-get|abbrev-insert|abbrev-map|abbrev-minor-mode-table-alist\n\t|abbrev-prefix-mark|abbrev-put|abbrev-start-location|abbrev-start-location-buffer|abbrev-symbol|abbrev-table-get|abbrev-table-name-list\n\t|abbrev-table-p|abbrev-table-put|abbreviate-file-name|abbrevs-changed|abort-recursive-edit|accept-change-group|accept-process-output\n\t|access-file|accessible-keymaps|acos|activate-change-group|activate-mark-hook|active-minibuffer-window|adaptive-fill-first-line-regexp\n\t|adaptive-fill-function|adaptive-fill-mode|adaptive-fill-regexp|add-face-text-property|add-function|add-hook|add-name-to-file\n\t|add-text-properties|add-to-history|add-to-invisibility-spec|add-to-list|add-to-ordered-list|adjust-window-trailing-edge|advice-add\n\t|advice-eval-interactive-spec|advice-function-mapc|advice-function-member-p|advice-mapc|advice-member-p|advice-remove|after-change-functions\n\t|after-change-major-mode-hook|after-find-file|after-init-hook|after-init-time|after-insert-file-functions|after-load-functions\n\t|after-make-frame-functions|after-revert-hook|after-save-hook|after-setting-font-hook|all-completions|append-to-file|apply-partially|apropos\n\t|aref|argv|arrayp|ascii-case-table|aset|ash|asin|ask-user-about-lock|ask-user-about-supersession-threat|assoc-default|assoc-string|assq\n\t|assq-delete-all|atan|atom|auto-coding-alist|auto-coding-functions|auto-coding-regexp-alist|auto-fill-chars|auto-fill-function|auto-hscroll-mode\n\t|auto-mode-alist|auto-raise-tool-bar-buttons|auto-resize-tool-bars|auto-save-default|auto-save-file-name-p|auto-save-hook|auto-save-interval\n\t|auto-save-list-file-name|auto-save-list-file-prefix|auto-save-mode|auto-save-timeout|auto-save-visited-file-name|auto-window-vscroll|autoload\n\t|autoload-do-load|autoloadp|back-to-indentation|backtrace|backtrace-debug|backtrace-frame|backup-buffer|backup-by-copying|backup-by-copying-when-linked\n\t|backup-by-copying-when-mismatch|backup-by-copying-when-privileged-mismatch|backup-directory-alist|backup-enable-predicate|backup-file-name-p\n\t|backup-inhibited|backward-button|backward-char|backward-delete-char-untabify|backward-delete-char-untabify-method|backward-list|backward-prefix-chars\n\t|backward-sexp|backward-to-indentation|backward-word|balance-windows|balance-windows-area|barf-if-buffer-read-only|base64-decode-region\n\t|base64-decode-string|base64-encode-region|base64-encode-string|batch-byte-compile|baud-rate|beep|before-change-functions|before-hack-local-variables-hook\n\t|before-init-hook|before-init-time|before-make-frame-hook|before-revert-hook|before-save-hook|beginning-of-buffer|beginning-of-defun\n\t|beginning-of-defun-function|beginning-of-line|bidi-display-reordering|bidi-paragraph-direction|bidi-string-mark-left-to-right\n\t|bindat-get-field|bindat-ip-to-string|bindat-length|bindat-pack|bindat-unpack|bitmap-spec-p|blink-cursor-alist|blink-matching-delay\n\t|blink-matching-open|blink-matching-paren|blink-matching-paren-distance|blink-paren-function|bobp|bolp|bool-vector-count-consecutive\n\t|bool-vector-count-population|bool-vector-exclusive-or|bool-vector-intersection|bool-vector-not|bool-vector-p|bool-vector-set-difference\n\t|bool-vector-subsetp|bool-vector-union|booleanp|boundp|buffer-access-fontified-property|buffer-access-fontify-functions|buffer-auto-save-file-format\n\t|buffer-auto-save-file-name|buffer-backed-up|buffer-base-buffer|buffer-chars-modified-tick|buffer-disable-undo|buffer-display-count|buffer-display-table\n\t|buffer-display-time|buffer-enable-undo|buffer-end|buffer-file-coding-system|buffer-file-format|buffer-file-name|buffer-file-number|buffer-file-truename\n\t|buffer-invisibility-spec|buffer-list|buffer-list-update-hook|buffer-live-p|buffer-local-value|buffer-local-variables|buffer-modified-p|buffer-modified-tick\n\t|buffer-name|buffer-name-history|buffer-narrowed-p|buffer-offer-save|buffer-quit-function|buffer-read-only|buffer-save-without-query|buffer-saved-size\n\t|buffer-size|buffer-stale-function|buffer-string|buffer-substring|buffer-substring-filters|buffer-substring-no-properties|buffer-swap-text|buffer-undo-list\n\t|bufferp|bury-buffer|button-activate|button-at|button-end|button-get|button-has-type-p|button-label|button-put|button-start|button-type|button-type-get\n\t|button-type-put|button-type-subtype-p|byte-boolean-vars|byte-code-function-p|byte-compile|byte-compile-dynamic|byte-compile-dynamic-docstrings\n\t|byte-compile-file|byte-recompile-directory|byte-to-position|byte-to-string|call-interactively|call-process|call-process-region|call-process-shell-command\n\t|called-interactively-p|cancel-change-group|cancel-debug-on-entry|cancel-timer|capitalize|capitalize-region|capitalize-word|case-fold-search|case-replace\n\t|case-table-p|category-docstring|category-set-mnemonics|category-table|category-table-p|ceiling|change-major-mode-after-body-hook|change-major-mode-hook\n\t|char-after|char-before|char-category-set|char-charset|char-code-property-description|char-displayable-p|char-equal|char-or-string-p|char-property-alias-alist\n\t|char-script-table|char-syntax|char-table-extra-slot|char-table-p|char-table-parent|char-table-range|char-table-subtype|char-to-string|char-width\n\t|char-width-table|characterp|charset-after|charset-list|charset-plist|charset-priority-list|charsetp|check-coding-system|check-coding-systems-region\n\t|checkdoc-minor-mode|cl|clear-abbrev-table|clear-image-cache|clear-string|clear-this-command-keys|clear-visited-file-modtime|clone-indirect-buffer\n\t|clrhash|coding-system-aliases|coding-system-change-eol-conversion|coding-system-change-text-conversion|coding-system-charset-list|coding-system-eol-type\n\t|coding-system-for-read|coding-system-for-write|coding-system-get|coding-system-list|coding-system-p|coding-system-priority-list|collapse-delayed-warnings\n\t|color-defined-p|color-gray-p|color-supported-p|color-values|combine-after-change-calls|combine-and-quote-strings|command-debug-status|command-error-function\n\t|command-execute|command-history|command-line|command-line-args|command-line-args-left|command-line-functions|command-line-processed|command-remapping\n\t|command-switch-alist|commandp|compare-buffer-substrings|compare-strings|compare-window-configurations|compile-defun|completing-read|completing-read-function\n\t|completion-at-point|completion-at-point-functions|completion-auto-help|completion-boundaries|completion-category-overrides|completion-extra-properties\n\t|completion-ignore-case|completion-ignored-extensions|completion-in-region|completion-regexp-list|completion-styles|completion-styles-alist\n\t|completion-table-case-fold|completion-table-dynamic|completion-table-in-turn|completion-table-merge|completion-table-subvert|completion-table-with-cache\n\t|completion-table-with-predicate|completion-table-with-quoting|completion-table-with-terminator|compute-motion|concat|cons-cells-consed|constrain-to-field\n\t|continue-process|controlling-tty-p|convert-standard-filename|coordinates-in-window-p|copy-abbrev-table|copy-category-table|copy-directory|copy-file\n\t|copy-hash-table|copy-keymap|copy-marker|copy-overlay|copy-region-as-kill|copy-sequence|copy-syntax-table|copysign|cos|count-lines|count-loop\n\t|count-screen-lines|count-words|create-file-buffer|create-fontset-from-fontset-spec|create-image|create-lockfiles|current-active-maps\n\t|current-bidi-paragraph-direction|current-buffer|current-case-table|current-column|current-fill-column|current-frame-configuration|current-global-map\n\t|current-idle-time|current-indentation|current-input-method|current-input-mode|current-justification|current-kill|current-left-margin|current-local-map\n\t|current-message|current-minor-mode-maps|current-prefix-arg|current-time|current-time-string|current-time-zone|current-window-configuration|current-word\n\t|cursor-in-echo-area|cursor-in-non-selected-windows|cursor-type|cust-print|custom-add-frequent-value|custom-initialize-delay|custom-known-themes\n\t|custom-reevaluate-setting|custom-set-faces|custom-set-variables|custom-theme-p|custom-theme-set-faces|custom-theme-set-variables\n\t|custom-unlispify-remove-prefixes|custom-variable-p|customize-package-emacs-version-alist|cygwin-convert-file-name-from-windows\n\t|cygwin-convert-file-name-to-windows|data-directory|date-leap-year-p|date-to-time|deactivate-mark|deactivate-mark-hook|debug|debug-ignored-errors\n\t|debug-on-entry|debug-on-error|debug-on-event|debug-on-message|debug-on-next-call|debug-on-quit|debug-on-signal|debugger|debugger-bury-or-kill|declare\n\t|declare-function|decode-char|decode-coding-inserted-region|decode-coding-region|decode-coding-string|decode-time|def-edebug-spec|defalias|default-boundp\n\t|default-directory|default-file-modes|default-frame-alist|default-input-method|default-justification|default-minibuffer-frame|default-process-coding-system\n\t|default-text-properties|default-value|define-abbrev|define-abbrev-table|define-alternatives|define-button-type|define-category|define-derived-mode\n\t|define-error|define-fringe-bitmap|define-generic-mode|define-globalized-minor-mode|define-hash-table-test|define-key|define-key-after|define-minor-mode\n\t|define-obsolete-face-alias|define-obsolete-function-alias|define-obsolete-variable-alias|define-package|define-prefix-command|defined-colors\n\t|defining-kbd-macro|defun-prompt-regexp|defvar-local|defvaralias|delay-mode-hooks|delayed-warnings-hook|delayed-warnings-list|delete\n\t|delete-and-extract-region|delete-auto-save-file-if-necessary|delete-auto-save-files|delete-backward-char|delete-blank-lines|delete-by-moving-to-trash\n\t|delete-char|delete-directory|delete-dups|delete-exited-processes|delete-field|delete-file|delete-frame|delete-frame-functions|delete-horizontal-space\n\t|delete-indentation|delete-minibuffer-contents|delete-old-versions|delete-other-windows|delete-overlay|delete-process|delete-region|delete-terminal\n\t|delete-terminal-functions|delete-to-left-margin|delete-trailing-whitespace|delete-window|delete-windows-on|delq|derived-mode-p|describe-bindings\n\t|describe-buffer-case-table|describe-categories|describe-current-display-table|describe-display-table|describe-mode|describe-prefix-bindings\n\t|describe-syntax|desktop-buffer-mode-handlers|desktop-save-buffer|destroy-fringe-bitmap|detect-coding-region|detect-coding-string|digit-argument\n\t|ding|dir-locals-class-alist|dir-locals-directory-cache|dir-locals-file|dir-locals-set-class-variables|dir-locals-set-directory-class\n\t|directory-file-name|directory-files|directory-files-and-attributes|dired-kept-versions|disable-command|disable-point-adjustment|disable-theme\n\t|disabled|disabled-command-function|disassemble|discard-input|display-backing-store|display-buffer|display-buffer-alist|display-buffer-at-bottom\n\t|display-buffer-base-action|display-buffer-below-selected|display-buffer-fallback-action|display-buffer-in-previous-window|display-buffer-no-window\n\t|display-buffer-overriding-action|display-buffer-pop-up-frame|display-buffer-pop-up-window|display-buffer-reuse-window|display-buffer-same-window\n\t|display-buffer-use-some-window|display-color-cells|display-color-p|display-completion-list|display-delayed-warnings|display-graphic-p|display-grayscale-p\n\t|display-images-p|display-message-or-buffer|display-mm-dimensions-alist|display-mm-height|display-mm-width|display-monitor-attributes-list|display-mouse-p\n\t|display-pixel-height|display-pixel-width|display-planes|display-popup-menus-p|display-save-under|display-screens|display-selections-p\n\t|display-supports-face-attributes-p|display-table-slot|display-visual-class|display-warning|dnd-protocol-alist|do-auto-save|doc-directory|documentation\n\t|documentation-property|dotimes-with-progress-reporter|double-click-fuzz|double-click-time|down-list|downcase|downcase-region|downcase-word|dump-emacs\n\t|dynamic-library-alist|easy-menu-define|easy-mmode-define-minor-mode|echo-area-clear-hook|echo-keystrokes|edebug|edebug-all-defs|edebug-all-forms\n\t|edebug-continue-kbd-macro|edebug-defun|edebug-display-freq-count|edebug-eval-macro-args|edebug-eval-top-level-form|edebug-global-break-condition\n\t|edebug-initial-mode|edebug-on-error|edebug-on-quit|edebug-print-circle|edebug-print-length|edebug-print-level|edebug-print-trace-after|edebug-print-trace-before\n\t|edebug-save-displayed-buffer-points|edebug-save-windows|edebug-set-global-break-condition|edebug-setup-hook|edebug-sit-for-seconds|edebug-temp-display-freq-count\n\t|edebug-test-coverage|edebug-trace|edebug-tracing|edebug-unwrap-results|edit-and-eval-command|electric-future-map|elt|emacs-build-time|emacs-init-time\n\t|emacs-lisp-docstring-fill-column|emacs-major-version|emacs-minor-version|emacs-pid|emacs-save-session-functions|emacs-session-restore|emacs-startup-hook\n\t|emacs-uptime|emacs-version|emulation-mode-map-alists|enable-command|enable-dir-local-variables|enable-local-eval|enable-local-variables\n\t|enable-multibyte-characters|enable-recursive-minibuffers|enable-theme|encode-char|encode-coding-region|encode-coding-string|encode-time|end-of-buffer\n\t|end-of-defun|end-of-defun-function|end-of-file|end-of-line|eobp|eolp|equal-including-properties|erase-buffer|error|error-conditions|error-message-string\n\t|esc-map|ESC-prefix|eval|eval-and-compile|eval-buffer|eval-current-buffer|eval-expression-debug-on-error|eval-expression-print-length\n\t|eval-expression-print-level|eval-minibuffer|eval-region|eval-when-compile|event-basic-type|event-click-count|event-convert-list|event-end|event-modifiers\n\t|event-start|eventp|ewoc-buffer|ewoc-collect|ewoc-create|ewoc-data|ewoc-delete|ewoc-enter-after|ewoc-enter-before|ewoc-enter-first|ewoc-enter-last\n\t|ewoc-filter|ewoc-get-hf|ewoc-goto-next|ewoc-goto-node|ewoc-goto-prev|ewoc-invalidate|ewoc-locate|ewoc-location|ewoc-map|ewoc-next|ewoc-nth|ewoc-prev\n\t|ewoc-refresh|ewoc-set-data|ewoc-set-hf|exec-directory|exec-path|exec-suffixes|executable-find|execute-extended-command|execute-kbd-macro|executing-kbd-macro\n\t|exit|exit-minibuffer|exit-recursive-edit|exp|expand-abbrev|expand-file-name|expt|extended-command-history|extra-keyboard-modifiers|face-all-attributes\n\t|face-attribute|face-attribute-relative-p|face-background|face-bold-p|face-differs-from-default-p|face-documentation|face-equal|face-font\n\t|face-font-family-alternatives|face-font-registry-alternatives|face-font-rescale-alist|face-font-selection-order|face-foreground|face-id|face-inverse-video-p\n\t|face-italic-p|face-list|face-name-history|face-remap-add-relative|face-remap-remove-relative|face-remap-reset-base|face-remap-set-base|face-remapping-alist\n\t|face-spec-set|face-stipple|face-underline-p|facemenu-keymap|facep|fboundp|fceiling|feature-unload-function|featurep|features|fetch-bytecode|ffloor\n\t|field-beginning|field-end|field-string|field-string-no-properties|file-accessible-directory-p|file-acl|file-already-exists|file-attributes|file-chase-links\n\t|file-coding-system-alist|file-directory-p|file-equal-p|file-error|file-executable-p|file-exists-p|file-expand-wildcards|file-extended-attributes\n\t|file-in-directory-p|file-local-copy|file-local-variables-alist|file-locked|file-locked-p|file-modes|file-modes-symbolic-to-number|file-name-absolute-p\n\t|file-name-all-completions|file-name-as-directory|file-name-base|file-name-coding-system|file-name-completion|file-name-directory|file-name-extension\n\t|file-name-handler-alist|file-name-history|file-name-nondirectory|file-name-sans-extension|file-name-sans-versions|file-newer-than-file-p|file-newest-backup\n\t|file-nlinks|file-notify-add-watch|file-notify-rm-watch|file-ownership-preserved-p|file-precious-flag|file-readable-p|file-regular-p|file-relative-name\n\t|file-remote-p|file-selinux-context|file-supersession|file-symlink-p|file-truename|file-writable-p|fill-column|fill-context-prefix\n\t|fill-forward-paragraph-function|fill-individual-paragraphs|fill-individual-varying-indent|fill-nobreak-predicate|fill-paragraph|fill-paragraph-function\n\t|fill-prefix|fill-region|fill-region-as-paragraph|fillarray|filter-buffer-substring|filter-buffer-substring-function|filter-buffer-substring-functions\n\t|find-auto-coding|find-backup-file-name|find-buffer-visiting|find-charset-region|find-charset-string|find-coding-systems-for-charsets|find-coding-systems-region\n\t|find-coding-systems-string|find-file|find-file-hook|find-file-literally|find-file-name-handler|find-file-noselect|find-file-not-found-functions|find-file-other-window\n\t|find-file-read-only|find-file-wildcards|find-font|find-image|find-operation-coding-system|first-change-hook|fit-frame-to-buffer|fit-frame-to-buffer-margins\n\t|fit-frame-to-buffer-sizes|fit-window-to-buffer|fit-window-to-buffer-horizontally|fixup-whitespace|float|float-e|float-output-format|float-pi|float-time\n\t|floatp|floats-consed|floor|fmakunbound|focus-follows-mouse|focus-in-hook|focus-out-hook|following-char|font-at|font-face-attributes|font-family-list|font-get\n\t|font-lock-add-keywords|font-lock-beginning-of-syntax-function|font-lock-builtin-face|font-lock-comment-delimiter-face|font-lock-comment-face\n\t|font-lock-constant-face|font-lock-defaults|font-lock-doc-face|font-lock-extend-after-change-region-function|font-lock-extra-managed-props\n\t|font-lock-fontify-buffer-function|font-lock-fontify-region-function|font-lock-function-name-face|font-lock-keyword-face|font-lock-keywords\n\t|font-lock-keywords-case-fold-search|font-lock-keywords-only|font-lock-mark-block-function|font-lock-multiline|font-lock-negation-char-face\n\t|font-lock-preprocessor-face|font-lock-remove-keywords|font-lock-string-face|font-lock-syntactic-face-function|font-lock-syntax-table|font-lock-type-face\n\t|font-lock-unfontify-buffer-function|font-lock-unfontify-region-function|font-lock-variable-name-face|font-lock-warning-face|font-put|font-spec\n\t|font-xlfd-name|fontification-functions|fontp|for|force-mode-line-update|force-window-update|format|format-alist|format-find-file|format-insert-file\n\t|format-mode-line|format-network-address|format-seconds|format-time-string|format-write-file|forward-button|forward-char|forward-comment|forward-line\n\t|forward-list|forward-sexp|forward-to-indentation|forward-word|frame-alpha-lower-limit|frame-auto-hide-function|frame-char-height|frame-char-width\n\t|frame-current-scroll-bars|frame-first-window|frame-height|frame-inherited-parameters|frame-list|frame-live-p|frame-monitor-attributes|frame-parameter\n\t|frame-parameters|frame-pixel-height|frame-pixel-width|frame-pointer-visible-p|frame-resize-pixelwise|frame-root-window|frame-selected-window|frame-terminal\n\t|frame-title-format|frame-visible-p|frame-width|framep|frexp|fringe-bitmaps-at-pos|fringe-cursor-alist|fringe-indicator-alist|fringes-outside-margins|fround\n\t|fset|ftp-login|ftruncate|function-get|functionp|fundamental-mode|fundamental-mode-abbrev-table|gap-position|gap-size|garbage-collect|garbage-collection-messages\n\t|gc-cons-percentage|gc-cons-threshold|gc-elapsed|gcs-done|generate-autoload-cookie|generate-new-buffer|generate-new-buffer-name|generated-autoload-file|get\n\t|get-buffer|get-buffer-create|get-buffer-process|get-buffer-window|get-buffer-window-list|get-byte|get-char-code-property|get-char-property\n\t|get-char-property-and-overlay|get-charset-property|get-device-terminal|get-file-buffer|get-internal-run-time|get-largest-window|get-load-suffixes\n\t|get-lru-window|get-pos-property|get-process|get-register|get-text-property|get-unused-category|get-window-with-predicate|getenv|gethash|global-abbrev-table\n\t|global-buffers-menu-map|global-disable-point-adjustment|global-key-binding|global-map|global-mode-string|global-set-key|global-unset-key|glyph-char|glyph-face\n\t|glyph-table|glyphless-char-display|glyphless-char-display-control|goto-char|goto-map|group-gid|group-real-gid|gv-define-expander|gv-define-setter\n\t|gv-define-simple-setter|gv-letplace|hack-dir-local-variables|hack-dir-local-variables-non-file-buffer|hack-local-variables|hack-local-variables-hook\n\t|handle-shift-selection|handle-switch-frame|hash-table-count|hash-table-p|hash-table-rehash-size|hash-table-rehash-threshold|hash-table-size|hash-table-test\n\t|hash-table-weakness|header-line-format|help-buffer|help-char|help-command|help-event-list|help-form|help-map|help-setup-xref|help-window-select\n\t|Helper-describe-bindings|Helper-help|Helper-help-map|history-add-new-input|history-delete-duplicates|history-length|icon-title-format|iconify-frame\n\t|identity|ignore|ignore-errors|ignore-window-parameters|ignored-local-variables|image-animate|image-animate-timer|image-cache-eviction-delay\n\t|image-current-frame|image-default-frame-delay|image-flush|image-format-suffixes|image-load-path|image-load-path-for-library|image-mask-p|image-minimum-frame-delay\n\t|image-multi-frame-p|image-show-frame|image-size|image-type-available-p|image-types|imagemagick-enabled-types|imagemagick-types|imagemagick-types-inhibit\n\t|imenu-add-to-menubar|imenu-case-fold-search|imenu-create-index-function|imenu-extract-index-name-function|imenu-generic-expression\n\t|imenu-prev-index-position-function|imenu-syntax-alist|inc|indent-according-to-mode|indent-code-rigidly|indent-for-tab-command|indent-line-function\n\t|indent-region|indent-region-function|indent-relative|indent-relative-maybe|indent-rigidly|indent-tabs-mode|indent-to|indent-to-left-margin|indicate-buffer-boundaries\n\t|indicate-empty-lines|indirect-function|indirect-variable|inhibit-default-init|inhibit-eol-conversion|inhibit-field-text-motion|inhibit-file-name-handlers\n\t|inhibit-file-name-operation|inhibit-iso-escape-detection|inhibit-local-variables-regexps|inhibit-modification-hooks|inhibit-null-byte-detection\n\t|inhibit-point-motion-hooks|inhibit-quit|inhibit-read-only|inhibit-splash-screen|inhibit-startup-echo-area-message|inhibit-startup-message|inhibit-startup-screen\n\t|inhibit-x-resources|init-file-user|initial-buffer-choice|initial-environment|initial-frame-alist|initial-major-mode|initial-scratch-message|initial-window-system\n\t|input-decode-map|input-method-alist|input-method-function|input-pending-p|insert|insert-abbrev-table-description|insert-and-inherit|insert-before-markers\n\t|insert-before-markers-and-inherit|insert-buffer|insert-buffer-substring|insert-buffer-substring-as-yank|insert-buffer-substring-no-properties|insert-button\n\t|insert-char|insert-default-directory|insert-directory|insert-directory-program|insert-file-contents|insert-file-contents-literally|insert-for-yank|insert-image\n\t|insert-register|insert-sliced-image|insert-text-button|installation-directory|integer-or-marker-p|integerp|interactive-form|intern|intern-soft|interpreter-mode-alist\n\t|interprogram-cut-function|interprogram-paste-function|interrupt-process|intervals-consed|invalid-function|invalid-read-syntax|invalid-regexp|invert-face\n\t|invisible-p|invocation-directory|invocation-name|isnan|jit-lock-register|jit-lock-unregister|just-one-space|justify-current-line|kbd|kbd-macro-termination-hook\n\t|kept-new-versions|kept-old-versions|key-binding|key-description|key-translation-map|keyboard-coding-system|keyboard-quit|keyboard-translate|keyboard-translate-table\n\t|keymap-parent|keymap-prompt|keymapp|keywordp|kill-all-local-variables|kill-append|kill-buffer|kill-buffer-hook|kill-buffer-query-functions|kill-emacs|kill-emacs-hook\n\t|kill-emacs-query-functions|kill-local-variable|kill-new|kill-process|kill-read-only-ok|kill-region|kill-ring|kill-ring-max|kill-ring-yank-pointer|kmacro-keymap\n\t|last-abbrev|last-abbrev-location|last-abbrev-text|last-buffer|last-coding-system-used|last-command|last-command-event|last-event-frame|last-input-event\n\t|last-kbd-macro|last-nonmenu-event|last-prefix-arg|last-repeatable-command|lax-plist-get|lax-plist-put|lazy-completion-table|ldexp|left-fringe-width|left-margin\n\t|left-margin-width|lexical-binding|libxml-parse-html-region|libxml-parse-xml-region|line-beginning-position|line-end-position|line-move-ignore-invisible\n\t|line-number-at-pos|line-prefix|line-spacing|lisp-mode-abbrev-table|list-buffers-directory|list-charset-chars|list-fonts|list-load-path-shadows|list-processes\n\t|list-system-processes|listify-key-sequence|ln|load-average|load-file|load-file-name|load-file-rep-suffixes|load-history|load-in-progress|load-library|load-path\n\t|load-prefer-newer|load-read-function|load-suffixes|load-theme|local-abbrev-table|local-function-key-map|local-key-binding|local-set-key|local-unset-key\n\t|local-variable-if-set-p|local-variable-p|locale-coding-system|locale-info|locate-file|locate-library|locate-user-emacs-file|lock-buffer|log|logand|logb|logior\n\t|lognot|logxor|looking-at|looking-at-p|looking-back|lookup-key|lower-frame|lsh|lwarn|macroexpand|macroexpand-all|macrop|magic-fallback-mode-alist|magic-mode-alist\n\t|mail-host-address|major-mode|make-abbrev-table|make-auto-save-file-name|make-backup-file-name|make-backup-file-name-function|make-backup-files|make-bool-vector|make-button\n\t|make-byte-code|make-category-set|make-category-table|make-char-table|make-composed-keymap|make-directory|make-display-table|make-frame|make-frame-invisible\n\t|make-frame-on-display|make-frame-visible|make-glyph-code|make-hash-table|make-help-screen|make-indirect-buffer|make-keymap|make-local-variable|make-marker\n\t|make-network-process|make-obsolete|make-obsolete-variable|make-overlay|make-progress-reporter|make-ring|make-serial-process|make-sparse-keymap|make-string\n\t|make-symbol|make-symbolic-link|make-syntax-table|make-temp-file|make-temp-name|make-text-button|make-translation-table|make-translation-table-from-alist\n\t|make-translation-table-from-vector|make-variable-buffer-local|make-vector|makehash|makunbound|map-char-table|map-charset-chars|map-keymap|map-y-or-n-p|mapatoms\n\t|mapconcat|maphash|mark|mark-active|mark-even-if-inactive|mark-marker|mark-ring|mark-ring-max|marker-buffer|marker-insertion-type|marker-position|markerp|match-beginning\n\t|match-data|match-end|match-string|match-string-no-properties|match-substitute-replacement|max-char|max-image-size|max-lisp-eval-depth|max-mini-window-height\n\t|max-specpdl-size|maximize-window|md5|member-ignore-case|memory-full|memory-limit|memory-use-counts|memq|memql|menu-bar-file-menu|menu-bar-final-items|menu-bar-help-menu\n\t|menu-bar-options-menu|menu-bar-tools-menu|menu-bar-update-hook|menu-item|menu-prompt-more-char|merge-face-attribute|message|message-box|message-log-max|message-or-box\n\t|message-truncate-lines|messages-buffer|meta-prefix-char|minibuffer-allow-text-properties|minibuffer-auto-raise|minibuffer-complete|minibuffer-complete-and-exit\n\t|minibuffer-complete-word|minibuffer-completion-confirm|minibuffer-completion-help|minibuffer-completion-predicate|minibuffer-completion-table|minibuffer-confirm-exit-commands\n\t|minibuffer-contents|minibuffer-contents-no-properties|minibuffer-depth|minibuffer-exit-hook|minibuffer-frame-alist|minibuffer-help-form|minibuffer-history\n\t|minibuffer-inactive-mode|minibuffer-local-completion-map|minibuffer-local-filename-completion-map|minibuffer-local-map|minibuffer-local-must-match-map\n\t|minibuffer-local-ns-map|minibuffer-local-shell-command-map|minibuffer-message|minibuffer-message-timeout|minibuffer-prompt|minibuffer-prompt-end\n\t|minibuffer-prompt-width|minibuffer-scroll-window|minibuffer-selected-window|minibuffer-setup-hook|minibuffer-window|minibuffer-window-active-p|minibufferp\n\t|minimize-window|minor-mode-alist|minor-mode-key-binding|minor-mode-list|minor-mode-map-alist|minor-mode-overriding-map-alist|misc-objects-consed|mkdir|mod\n\t|mode-line-buffer-identification|mode-line-client|mode-line-coding-system-map|mode-line-column-line-number-mode-map|mode-line-format|mode-line-frame-identification\n\t|mode-line-input-method-map|mode-line-modes|mode-line-modified|mode-line-mule-info|mode-line-position|mode-line-process|mode-line-remote|mode-name|mode-specific-map\n\t|modify-all-frames-parameters|modify-category-entry|modify-frame-parameters|modify-syntax-entry|momentary-string-display|most-negative-fixnum|most-positive-fixnum\n\t|mouse-1-click-follows-link|mouse-appearance-menu-map|mouse-leave-buffer-hook|mouse-movement-p|mouse-on-link-p|mouse-pixel-position|mouse-position|mouse-position-function\n\t|mouse-wheel-down-event|mouse-wheel-up-event|move-marker|move-overlay|move-point-visually|move-to-column|move-to-left-margin|move-to-window-line|movemail|mule-keymap\n\t|multi-query-replace-map|multibyte-char-to-unibyte|multibyte-string-p|multibyte-syntax-as-symbol|multiple-frames|narrow-map|narrow-to-page|narrow-to-region|natnump\n\t|negative-argument|network-coding-system-alist|network-interface-info|network-interface-list|newline|newline-and-indent|next-button|next-char-property-change\n\t|next-complete-history-element|next-frame|next-history-element|next-matching-history-element|next-overlay-change|next-property-change|next-screen-context-lines\n\t|next-single-char-property-change|next-single-property-change|next-window|nlistp|no-byte-compile|no-catch|no-redraw-on-reenter|noninteractive|noreturn\n\t|normal-auto-fill-function|normal-backup-enable-predicate|normal-mode|not-modified|notifications-close-notification|notifications-get-capabilities\n\t|notifications-get-server-information|notifications-notify|num-input-keys|num-nonmacro-input-events|number-or-marker-p|number-sequence|number-to-string\n\t|numberp|obarray|one-window-p|only-global-abbrevs|open-dribble-file|open-network-stream|open-paren-in-column-0-is-defun-start|open-termscript|other-buffer\n\t|other-window|other-window-scroll-buffer|overflow-newline-into-fringe|overlay-arrow-position|overlay-arrow-string|overlay-arrow-variable-list|overlay-buffer\n\t|overlay-end|overlay-get|overlay-properties|overlay-put|overlay-recenter|overlay-start|overlayp|overlays-at|overlays-in|overriding-local-map\n\t|overriding-local-map-menu-flag|overriding-terminal-local-map|overwrite-mode|package-archive-upload-base|package-archives|package-initialize|package-upload-buffer\n\t|package-upload-file|page-delimiter|paragraph-separate|paragraph-start|parse-colon-path|parse-partial-sexp|parse-sexp-ignore-comments|parse-sexp-lookup-properties\n\t|path-separator|perform-replace|play-sound|play-sound-file|play-sound-functions|plist-get|plist-member|plist-put|point|point-marker|point-max|point-max-marker\n\t|point-min|point-min-marker|pop-mark|pop-to-buffer|pop-up-frame-alist|pop-up-frame-function|pop-up-frames|pop-up-windows|pos-visible-in-window-p|position-bytes\n\t|posix-looking-at|posix-search-backward|posix-search-forward|posix-string-match|posn-actual-col-row|posn-area|posn-at-point|posn-at-x-y|posn-col-row|posn-image\n\t|posn-object|posn-object-width-height|posn-object-x-y|posn-point|posn-string|posn-timestamp|posn-window|posn-x-y|posnp|post-command-hook|post-gc-hook\n\t|post-self-insert-hook|pp|pre-command-hook|pre-redisplay-function|preceding-char|prefix-arg|prefix-help-command|prefix-numeric-value|preloaded-file-list\n\t|prepare-change-group|previous-button|previous-char-property-change|previous-complete-history-element|previous-frame|previous-history-element\n\t|previous-matching-history-element|previous-overlay-change|previous-property-change|previous-single-char-property-change|previous-single-property-change\n\t|previous-window|primitive-undo|prin1-to-string|print-circle|print-continuous-numbering|print-escape-multibyte|print-escape-newlines|print-escape-nonascii\n\t|print-gensym|print-length|print-level|print-number-table|print-quoted|printable-chars|process-adaptive-read-buffering|process-attributes|process-buffer\n\t|process-coding-system|process-coding-system-alist|process-command|process-connection-type|process-contact|process-datagram-address|process-environment\n\t|process-exit-status|process-file|process-file-shell-command|process-file-side-effects|process-filter|process-get|process-id|process-kill-buffer-query-function\n\t|process-lines|process-list|process-live-p|process-mark|process-name|process-plist|process-put|process-query-on-exit-flag|process-running-child-p|process-send-eof\n\t|process-send-region|process-send-string|process-sentinel|process-status|process-tty-name|process-type|processp|prog-mode|prog-mode-hook|progress-reporter-done\n\t|progress-reporter-force-update|progress-reporter-update|propertize|provide|provide-theme|pure-bytes-used|purecopy|purify-flag|push-button|push-mark|put\n\t|put-char-code-property|put-charset-property|put-image|put-text-property|puthash|query-replace-history|query-replace-map|quietly-read-abbrev-file|quit-flag\n\t|quit-process|quit-restore-window|quit-window|raise-frame|random|rassq|rassq-delete-all|re-builder|re-search-backward|re-search-forward|read|read-buffer\n\t|read-buffer-completion-ignore-case|read-buffer-function|read-char|read-char-choice|read-char-exclusive|read-circle|read-coding-system|read-color\n\t|read-command|read-directory-name|read-event|read-expression-history|read-file-modes|read-file-name|read-file-name-completion-ignore-case\n\t|read-file-name-function|read-from-minibuffer|read-from-string|read-input-method-name|read-kbd-macro|read-key|read-key-sequence|read-key-sequence-vector\n\t|read-minibuffer|read-no-blanks-input|read-non-nil-coding-system|read-only-mode|read-passwd|read-quoted-char|read-regexp|read-regexp-defaults-function\n\t|read-shell-command|read-string|read-variable|real-last-command|recent-auto-save-p|recent-keys|recenter|recenter-positions|recenter-redisplay\n\t|recenter-top-bottom|recursion-depth|recursive-edit|redirect-frame-focus|redisplay|redraw-display|redraw-frame|regexp-history|regexp-opt|regexp-opt-charset\n\t|regexp-opt-depth|regexp-quote|region-beginning|region-end|register-alist|register-read-with-preview|reindent-then-newline-and-indent|remhash\n\t|remote-file-name-inhibit-cache|remove|remove-from-invisibility-spec|remove-function|remove-hook|remove-images|remove-list-of-text-properties\n\t|remove-overlays|remove-text-properties|remq|rename-auto-save-file|rename-buffer|rename-file|replace-buffer-in-windows|replace-match|replace-re-search-function\n\t|replace-regexp-in-string|replace-search-function|require|require-final-newline|restore-buffer-modified-p|resume-tty|resume-tty-functions|revert-buffer\n\t|revert-buffer-function|revert-buffer-in-progress-p|revert-buffer-insert-file-contents-function|revert-without-query|right-fringe-width|right-margin-width\n\t|ring-bell-function|ring-copy|ring-elements|ring-empty-p|ring-insert|ring-insert-at-beginning|ring-length|ring-p|ring-ref|ring-remove|ring-size\n\t|risky-local-variable-p|rm|round|run-at-time|run-hook-with-args|run-hook-with-args-until-failure|run-hook-with-args-until-success|run-hooks\n\t|run-mode-hooks|run-with-idle-timer|safe-local-eval-forms|safe-local-variable-p|safe-local-variable-values|same-window-buffer-names|same-window-p\n\t|same-window-regexps|save-abbrevs|save-buffer|save-buffer-coding-system|save-current-buffer|save-excursion|save-match-data|save-restriction\n\t|save-selected-window|save-some-buffers|save-window-excursion|scalable-fonts-allowed|scan-lists|scan-sexps|scroll-bar-event-ratio|scroll-bar-mode\n\t|scroll-bar-scale|scroll-bar-width|scroll-conservatively|scroll-down|scroll-down-aggressively|scroll-down-command|scroll-error-top-bottom|scroll-left\n\t|scroll-margin|scroll-other-window|scroll-preserve-screen-position|scroll-right|scroll-step|scroll-up|scroll-up-aggressively|scroll-up-command\n\t|search-backward|search-failed|search-forward|search-map|search-spaces-regexp|seconds-to-time|secure-hash|select-frame|select-frame-set-input-focus\n\t|select-safe-coding-system|select-safe-coding-system-accept-default-p|select-window|selected-frame|selected-window|selection-coding-system\n\t|selective-display|selective-display-ellipses|self-insert-and-exit|self-insert-command|send-string-to-terminal|sentence-end|sentence-end-double-space\n\t|sentence-end-without-period|sentence-end-without-space|sequencep|serial-process-configure|serial-term|set-advertised-calling-convention|set-auto-coding\n\t|set-auto-mode|set-buffer|set-buffer-auto-saved|set-buffer-major-mode|set-buffer-modified-p|set-buffer-multibyte|set-case-syntax|set-case-syntax-delims\n\t|set-case-syntax-pair|set-case-table|set-category-table|set-char-table-extra-slot|set-char-table-parent|set-char-table-range|set-charset-priority\n\t|set-coding-system-priority|set-default|set-default-file-modes|set-display-table-slot|set-face-attribute|set-face-background|set-face-bold|set-face-font\n\t|set-face-foreground|set-face-inverse-video|set-face-italic|set-face-stipple|set-face-underline|set-file-acl|set-file-extended-attributes|set-file-modes\n\t|set-file-selinux-context|set-file-times|set-fontset-font|set-frame-configuration|set-frame-height|set-frame-parameter|set-frame-position|set-frame-selected-window\n\t|set-frame-size|set-frame-width|set-fringe-bitmap-face|set-input-method|set-input-mode|set-keyboard-coding-system|set-keymap-parent|set-left-margin|set-mark|set-marker\n\t|set-marker-insertion-type|set-match-data|set-minibuffer-window|set-mouse-pixel-position|set-mouse-position|set-network-process-option|set-process-buffer\n\t|set-process-coding-system|set-process-datagram-address|set-process-filter|set-process-plist|set-process-query-on-exit-flag|set-process-sentinel\n\t|set-register|set-right-margin|set-standard-case-table|set-syntax-table|set-terminal-coding-system|set-terminal-parameter|set-text-properties|set-transient-map\n\t|set-visited-file-modtime|set-visited-file-name|set-window-buffer|set-window-combination-limit|set-window-configuration|set-window-dedicated-p|set-window-display-table\n\t|set-window-fringes|set-window-hscroll|set-window-margins|set-window-next-buffers|set-window-parameter|set-window-point|set-window-prev-buffers|set-window-scroll-bars\n\t|set-window-start|set-window-vscroll|setenv|setplist|setq-default|setq-local|shell-command-history|shell-command-to-string|shell-quote-argument|show-help-function\n\t|shr-insert-document|shrink-window-if-larger-than-buffer|signal|signal-process|sin|single-key-description|sit-for|site-run-file|skip-chars-backward|skip-chars-forward\n\t|skip-syntax-backward|skip-syntax-forward|sleep-for|small-temporary-file-directory|smie-bnf->prec2|smie-close-block|smie-config|smie-config-guess|smie-config-local\n\t|smie-config-save|smie-config-set-indent|smie-config-show-indent|smie-down-list|smie-merge-prec2s|smie-prec2->grammar|smie-precs->prec2|smie-rule-bolp|smie-rule-hanging-p\n\t|smie-rule-next-p|smie-rule-parent|smie-rule-parent-p|smie-rule-prev-p|smie-rule-separator|smie-rule-sibling-p|smie-setup|Snarf-documentation|sort|sort-columns|sort-fields\n\t|sort-fold-case|sort-lines|sort-numeric-base|sort-numeric-fields|sort-pages|sort-paragraphs|sort-regexp-fields|sort-subr|special-event-map|special-form-p|special-mode\n\t|special-variable-p|split-height-threshold|split-string|split-string-and-unquote|split-string-default-separators|split-width-threshold|split-window|split-window-below\n\t|split-window-keep-point|split-window-preferred-function|split-window-right|split-window-sensibly|sqrt|standard-case-table|standard-category-table|standard-display-table\n\t|standard-input|standard-output|standard-syntax-table|standard-translation-table-for-decode|standard-translation-table-for-encode|start-file-process\n\t|start-file-process-shell-command|start-process|start-process-shell-command|stop-process|store-match-data|store-substring|string|string-as-multibyte|string-as-unibyte\n\t|string-bytes|string-chars-consed|string-equal|string-lessp|string-match|string-match-p|string-or-null-p|string-prefix-p|string-suffix-p|string-to-char|string-to-int\n\t|string-to-multibyte|string-to-number|string-to-syntax|string-to-unibyte|string-width|string<|string=|stringp|strings-consed|subr-arity|subrp|subst-char-in-region\n\t|substitute-command-keys|substitute-in-file-name|substitute-key-definition|substring|substring-no-properties|suppress-keymap|suspend-emacs|suspend-frame|suspend-hook\n\t|suspend-resume-hook|suspend-tty|suspend-tty-functions|switch-to-buffer|switch-to-buffer-other-frame|switch-to-buffer-other-window|switch-to-buffer-preserve-window-point\n\t|switch-to-next-buffer|switch-to-prev-buffer|switch-to-visible-buffer|sxhash|symbol-file|symbol-function|symbol-name|symbol-plist|symbol-value|symbolp|symbols-consed\n\t|syntax-after|syntax-begin-function|syntax-class|syntax-ppss|syntax-ppss-flush-cache|syntax-ppss-toplevel-pos|syntax-propertize-extend-region-functions|syntax-propertize-function\n\t|syntax-table|syntax-table-p|system-configuration|system-groups|system-key-alist|system-messages-locale|system-name|system-time-locale|system-type|system-users|tab-always-indent\n\t|tab-stop-list|tab-to-tab-stop|tab-width|tabulated-list-entries|tabulated-list-format|tabulated-list-init-header|tabulated-list-mode|tabulated-list-print|tabulated-list-printer\n\t|tabulated-list-revert-hook|tabulated-list-sort-key|tan|temacs|temp-buffer-setup-hook|temp-buffer-show-function|temp-buffer-show-hook|temp-buffer-window-setup-hook\n\t|temp-buffer-window-show-hook|temporary-file-directory|term-file-prefix|terminal-coding-system|terminal-list|terminal-live-p|terminal-name|terminal-parameter\n\t|terminal-parameters|terpri|test-completion|testcover-mark-all|testcover-next-mark|testcover-start|text-char-description|text-mode|text-mode-abbrev-table\n\t|text-properties-at|text-property-any|text-property-default-nonsticky|text-property-not-all|thing-at-point|this-command|this-command-keys|this-command-keys-shift-translated\n\t|this-command-keys-vector|this-original-command|three-step-help|time-add|time-less-p|time-subtract|time-to-day-in-year|time-to-days|timer-max-repeats\n\t|toggle-enable-multibyte-characters|tool-bar-add-item|tool-bar-add-item-from-menu|tool-bar-border|tool-bar-button-margin|tool-bar-button-relief\n\t|tool-bar-local-item-from-menu|tool-bar-map|top-level|tq-close|tq-create|tq-enqueue|track-mouse|transient-mark-mode|translate-region|translation-table-for-input\n\t|transpose-regions|truncate|truncate-lines|truncate-partial-width-windows|truncate-string-to-width|try-completion|tty-color-alist|tty-color-approximate|tty-color-clear\n\t|tty-color-define|tty-color-translate|tty-erase-char|tty-setup-hook|tty-top-frame|type-of|unbury-buffer|undefined|underline-minimum-offset|undo-ask-before-discard\n\t|undo-boundary|undo-in-progress|undo-limit|undo-outer-limit|undo-strong-limit|unhandled-file-name-directory|unibyte-char-to-multibyte|unibyte-string|unicode-category-table\n\t|unintern|universal-argument|universal-argument-map|unload-feature|unload-feature-special-hooks|unlock-buffer|unread-command-events|unsafep|up-list|upcase|upcase-initials\n\t|upcase-region|upcase-word|update-directory-autoloads|update-file-autoloads|use-empty-active-region|use-global-map|use-hard-newlines|use-local-map|use-region-p\n\t|user-emacs-directory|user-error|user-full-name|user-init-file|user-login-name|user-mail-address|user-real-login-name|user-real-uid|user-uid|values|vc-mode\n\t|vc-prefix-map|vconcat|vector|vector-cells-consed|vectorp|verify-visited-file-modtime|version-control|vertical-motion|vertical-scroll-bar|view-register\n\t|visible-bell|visible-frame-list|visited-file-modtime|void-function|void-text-area-pointer|waiting-for-user-input-p|walk-windows|warn|warning-fill-prefix\n\t|warning-levels|warning-minimum-level|warning-minimum-log-level|warning-prefix-function|warning-series|warning-suppress-log-types|warning-suppress-types\n\t|warning-type-format|where-is-internal|while-no-input|wholenump|widen|window-absolute-pixel-edges|window-at|window-body-height|window-body-size\n\t|window-body-width|window-bottom-divider-width|window-buffer|window-child|window-combination-limit|window-combination-resize|window-combined-p\n\t|window-configuration-change-hook|window-configuration-frame|window-configuration-p|window-current-scroll-bars|window-dedicated-p|window-display-table\n\t|window-edges|window-end|window-frame|window-fringes|window-full-height-p|window-full-width-p|window-header-line-height|window-hscroll|window-in-direction\n\t|window-inside-absolute-pixel-edges|window-inside-edges|window-inside-pixel-edges|window-left-child|window-left-column|window-line-height|window-list\n\t|window-live-p|window-margins|window-min-height|window-min-size|window-min-width|window-minibuffer-p|window-mode-line-height|window-next-buffers\n\t|window-next-sibling|window-parameter|window-parameters|window-parent|window-persistent-parameters|window-pixel-edges|window-pixel-height\n\t|window-pixel-left|window-pixel-top|window-pixel-width|window-point|window-point-insertion-type|window-prev-buffers|window-prev-sibling\n\t|window-resizable|window-resize|window-resize-pixelwise|window-right-divider-width|window-scroll-bar-width|window-scroll-bars|window-scroll-functions\n\t|window-setup-hook|window-size-change-functions|window-size-fixed|window-start|window-state-get|window-state-put|window-system\n\t|window-system-initialization-alist|window-text-change-functions|window-text-pixel-size|window-top-child|window-top-line|window-total-height\n\t|window-total-size|window-total-width|window-tree|window-valid-p|window-vscroll|windowp|with-case-table|with-coding-priority|with-current-buffer\n\t|with-current-buffer-window|with-demoted-errors|with-eval-after-load|with-help-window|with-local-quit|with-no-warnings|with-output-to-string\n\t|with-output-to-temp-buffer|with-selected-window|with-syntax-table|with-temp-buffer|with-temp-buffer-window|with-temp-file|with-temp-message\n\t|with-timeout|word-search-backward|word-search-backward-lax|word-search-forward|word-search-forward-lax|word-search-regexp|words-include-escapes\n\t|wrap-prefix|write-abbrev-file|write-char|write-contents-functions|write-file|write-file-functions|write-region|write-region-annotate-functions\n\t|write-region-post-annotation-function|wrong-number-of-arguments|wrong-type-argument|x-alt-keysym|x-alternatives-map|x-bitmap-file-path\n\t|x-close-connection|x-color-defined-p|x-color-values|x-defined-colors|x-display-color-p|x-display-list|x-dnd-known-types|x-dnd-test-function\n\t|x-dnd-types-alist|x-family-fonts|x-get-resource|x-get-selection|x-hyper-keysym|x-list-fonts|x-meta-keysym|x-open-connection|x-parse-geometry\n\t|x-pointer-shape|x-popup-dialog|x-popup-menu|x-resource-class|x-resource-name|x-sensitive-text-pointer-shape|x-server-vendor|x-server-version\n\t|x-set-selection|x-setup-function-keys|x-super-keysym|y-or-n-p|y-or-n-p-with-timeout|yank|yank-excluded-properties|yank-handled-properties\n\t|yank-pop|yank-undo-function|yes-or-no-p|zerop|zlib-available-p|zlib-decompress-region)\n(?=[\\s()]|$)"
+        },
+        {
+          "name": "support.function.cl-lib.emacs.lisp",
+          "match": "(?x)(?<=[()]|^)(?:\n\tdefine-modify-macro|define-setf-method|defsetf|eval-when-compile|flet|labels|lexical-let\\*?|\n\t\n\tcl-(?:acons|adjoin|assert|assoc|assoc-if|assoc-if-not|block|caddr|callf|callf2|case|ceiling|check-type|coerce\n\t|compiler-macroexpand|concatenate|copy-list|count|count-if|count-if-not|decf|declaim|declare|define-compiler-macro\n\t|defmacro|defstruct|defsubst|deftype|defun|delete|delete-duplicates|delete-if|delete-if-not|destructuring-bind\n\t|do\\*?|do-all-symbols|do-symbols|dolist|dotimes|ecase|endp|equalp|etypecase|eval-when|evenp|every|fill|find|find-if\n\t|find-if-not|first|flet|float-limits|floor|function|gcd|gensym|gentemp|getf?|incf|intersection|isqrt|labels\n\t|lcm|ldiff|letf\\*?|list\\*|list-length|load-time-value|locally|loop|macrolet|make-random-state|map|mapc|mapcan\n\t|mapcar|mapcon|mapl|maplist|member|member-if|member-if-not|merge|minusp|mismatch|mod|multiple-value-bind\n\t|multiple-value-setq|nintersection|notany|notevery|nset-difference|nset-exclusive-or|nsublis|nsubst|nsubst-if\n\t|nsubst-if-not|nsubstitute|nsubstitute-if|nsubstitute-if-not|nunion|oddp|pairlis|plusp|position|position-if\n\t|position-if-not|prettyexpand|proclaim|progv|psetf|psetq|pushnew|random|random-state-p|rassoc|rassoc-if|rassoc-if-not\n\t|reduce|remf?|remove|remove-duplicates|remove-if|remove-if-not|remprop|replace|rest|return|return-from|rotatef\n\t|round|search|set-difference|set-exclusive-or|shiftf|some|sort|stable-sort|sublis|subseq|subsetp|subst|subst-if\n\t|subst-if-not|substitute|substitute-if|substitute-if-not|symbol-macrolet|tagbody|tailp|the|tree-equal|truncate\n\t|typecase|typep|union)\n)(?=[\\s()]|$)"
+        }
+      ]
+    }
+  }
+}

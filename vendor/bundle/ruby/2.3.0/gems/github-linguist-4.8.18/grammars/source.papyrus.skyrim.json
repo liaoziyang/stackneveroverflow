@@ -1,0 +1,1348 @@
+{
+  "fileTypes": [
+    "psc"
+  ],
+  "name": "Papyrus - Skyrim",
+  "patterns": [
+    {
+      "comment": "Empty line",
+      "match": "^\\s*$",
+      "name": "meta.emptyline.papyrus"
+    },
+    {
+      "include": "#commentDocumentation"
+    },
+    {
+      "include": "#commentBlock"
+    },
+    {
+      "include": "#commentLine"
+    },
+    {
+      "include": "#scriptHeader"
+    },
+    {
+      "include": "#import"
+    },
+    {
+      "include": "#state"
+    },
+    {
+      "include": "#endState"
+    },
+    {
+      "include": "#event"
+    },
+    {
+      "include": "#endEvent"
+    },
+    {
+      "include": "#return"
+    },
+    {
+      "include": "#if"
+    },
+    {
+      "include": "#elseif"
+    },
+    {
+      "include": "#else"
+    },
+    {
+      "include": "#endIf"
+    },
+    {
+      "include": "#while"
+    },
+    {
+      "include": "#endWhile"
+    },
+    {
+      "include": "#property"
+    },
+    {
+      "include": "#endProperty"
+    },
+    {
+      "include": "#function"
+    },
+    {
+      "include": "#endFunction"
+    },
+    {
+      "include": "#variable"
+    },
+    {
+      "include": "#assign"
+    },
+    {
+      "include": "#expression"
+    },
+    {
+      "include": "#whitespace"
+    },
+    {
+      "include": "#unmatched"
+    }
+  ],
+  "repository": {
+    "addExpression": {
+      "patterns": [
+        {
+          "comment": "Addition or subtraction",
+          "match": "(\\+|\\-)",
+          "name": "keyword.operator.papyrus"
+        },
+        {
+          "include": "#multExpression"
+        }
+      ]
+    },
+    "andExpression": {
+      "patterns": [
+        {
+          "comment": "AND",
+          "match": "\\&\\&",
+          "name": "keyword.operator.papyrus"
+        },
+        {
+          "include": "#boolExpression"
+        }
+      ]
+    },
+    "arrayAtom": {
+      "patterns": [
+        {
+          "begin": "\\[",
+          "comment": "Array",
+          "end": "\\]",
+          "name": "meta.array.papyrus",
+          "patterns": [
+            {
+              "include": "#expression"
+            }
+          ]
+        },
+        {
+          "include": "#atom"
+        }
+      ]
+    },
+    "arrayFuncOrId": {
+      "patterns": [
+        {
+          "include": "#funcOrId"
+        },
+        {
+          "begin": "\\[",
+          "comment": "Array element access",
+          "end": "\\]",
+          "name": "meta.arrayelement.papyrus",
+          "patterns": [
+            {
+              "include": "#expression"
+            }
+          ]
+        }
+      ]
+    },
+    "assign": {
+      "patterns": [
+        {
+          "begin": "^\\s*",
+          "comment": "Assign statement",
+          "end": "([\\n\\r])",
+          "name": "meta.assign.papyrus",
+          "patterns": [
+            {
+              "include": "#assignmentOperators"
+            },
+            {
+              "include": "#expression"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "assignmentOperators": {
+      "patterns": [
+        {
+          "comment": "Assignment operators",
+          "match": "(\\=|\\+\\=|\\-\\=|\\*\\=|\\/\\=|\\%\\=)",
+          "name": "keyword.operator.papyrus"
+        }
+      ]
+    },
+    "atom": {
+      "patterns": [
+        {
+          "begin": "(?i)\\b(new)\\s+([_a-z][0-9_a-z]*)\\[",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.operator.papyrus"
+            },
+            "2": {
+              "name": "storage.type.papyrus"
+            }
+          },
+          "comment": "New array",
+          "end": "\\]",
+          "name": "meta.newarray.papyrus",
+          "patterns": [
+            {
+              "include": "#integer"
+            }
+          ]
+        },
+        {
+          "begin": "\\(",
+          "comment": "Parenthesis",
+          "end": "(\\)|[\\n\\r])",
+          "name": "meta.parenthesis.papyrus",
+          "patterns": [
+            {
+              "include": "#expression"
+            }
+          ]
+        },
+        {
+          "include": "#funcOrId"
+        }
+      ]
+    },
+    "baseTypes": {
+      "patterns": [
+        {
+          "comment": "Type",
+          "match": "(?i)\\b(bool|float|int|string)\\b",
+          "name": "storage.type.papyrus"
+        }
+      ]
+    },
+    "bool": {
+      "patterns": [
+        {
+          "comment": "Boolean literal",
+          "match": "(?i)\\b(true|false|none)\\b",
+          "name": "constant.language.boolean.papyrus"
+        }
+      ]
+    },
+    "boolExpression": {
+      "patterns": [
+        {
+          "comment": "Comparison operators",
+          "match": "(\\=\\=|\\!\\=|\\<\\=|\\>\\=|\\<|\\>)",
+          "name": "keyword.operator.papyrus"
+        },
+        {
+          "include": "#addExpression"
+        }
+      ]
+    },
+    "brackets": {
+      "patterns": [
+        {
+          "comment": "Brackets",
+          "match": "\\[\\]",
+          "name": "meta.array.papyrus"
+        }
+      ]
+    },
+    "castAtom": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.operator.papyrus"
+            },
+            "2": {
+              "name": "storage.type.papyrus"
+            }
+          },
+          "comment": "Cast",
+          "match": "(?i)\\b(as)\\s+([_a-z][0-9_a-z]*)\\b",
+          "name": "meta.cast.papyrus"
+        },
+        {
+          "include": "#dotAtom"
+        }
+      ]
+    },
+    "comma": {
+      "patterns": [
+        {
+          "comment": "Comma",
+          "match": "\\,",
+          "name": "meta.comma.papyrus"
+        }
+      ]
+    },
+    "commentBlock": {
+      "patterns": [
+        {
+          "begin": ";/",
+          "comment": "Comment block",
+          "end": "/;",
+          "name": "comment.block.papyrus"
+        }
+      ]
+    },
+    "commentDocumentation": {
+      "patterns": [
+        {
+          "begin": "^\\s*\\{",
+          "comment": "Documentation comment",
+          "end": "\\}",
+          "name": "comment.documentation.papyrus"
+        }
+      ]
+    },
+    "commentLine": {
+      "patterns": [
+        {
+          "comment": "Single line comment",
+          "match": ";.*$",
+          "name": "comment.line.papyrus"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "include": "#commentBlock"
+        },
+        {
+          "include": "#commentLine"
+        },
+        {
+          "include": "#commentDocumentation"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "include": "#bool"
+        },
+        {
+          "include": "#float"
+        },
+        {
+          "include": "#integer"
+        },
+        {
+          "include": "#string"
+        }
+      ]
+    },
+    "dotAtom": {
+      "patterns": [
+        {
+          "comment": "Dot",
+          "match": "\\.",
+          "name": "keyword.operator.papyrus"
+        },
+        {
+          "include": "#constants"
+        },
+        {
+          "include": "#arrayAtom"
+        },
+        {
+          "include": "#arrayFuncOrId"
+        }
+      ]
+    },
+    "else": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(else)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "Else statement",
+          "end": "([\\n\\r])",
+          "name": "meta.else.papyrus",
+          "patterns": [
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "elseif": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(elseif)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "ElseIf statement",
+          "end": "([\\n\\r])",
+          "name": "meta.elseif.papyrus",
+          "patterns": [
+            {
+              "include": "#expression"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "endEvent": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(endevent)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "EndEvent statement",
+          "end": "([\\n\\r])",
+          "name": "meta.endevent.papyrus",
+          "patterns": [
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "endFunction": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(endfunction)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "EndFunction statement",
+          "end": "([\\n\\r])",
+          "name": "meta.endfunction.papyrus",
+          "patterns": [
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "endIf": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(endif)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "EndIf statement",
+          "end": "([\\n\\r])",
+          "name": "meta.endif.papyrus",
+          "patterns": [
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "endOfLine": {
+      "patterns": [
+        {
+          "include": "#commentBlock"
+        },
+        {
+          "include": "#commentLine"
+        },
+        {
+          "include": "#whitespace"
+        },
+        {
+          "include": "#multiline"
+        },
+        {
+          "include": "#unmatched"
+        }
+      ]
+    },
+    "endProperty": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(endproperty)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "EndProperty statement",
+          "end": "([\\n\\r])",
+          "name": "meta.endproperty.papyrus",
+          "patterns": [
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "endState": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(endstate)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "EndState statement",
+          "end": "([\\n\\r])",
+          "name": "meta.endstate.papyrus",
+          "patterns": [
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "endWhile": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(endwhile)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "EndWhile statement",
+          "end": "([\\n\\r])",
+          "name": "meta.endwhile.papyrus",
+          "patterns": [
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(event)\\s+",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.eventstart.papyrus"
+            },
+            "2": {
+              "name": "entity.name.function.papyrus"
+            }
+          },
+          "comment": "Event declaration",
+          "end": "([\\n\\r])",
+          "name": "meta.event.papyrus",
+          "patterns": [
+            {
+              "include": "#eventParameters"
+            },
+            {
+              "include": "#eventFlags"
+            },
+            {
+              "include": "#illegalKeywords"
+            },
+            {
+              "include": "#illegalSpecialVariables"
+            },
+            {
+              "include": "#illegalBaseTypes"
+            },
+            {
+              "include": "#functionIdentifier"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "eventFlags": {
+      "patterns": [
+        {
+          "comment": "Event flags",
+          "match": "(?i)(?<=\\))\\s*(native)\\b",
+          "name": "keyword.other.papyrus"
+        }
+      ]
+    },
+    "eventParameter": {
+      "patterns": [
+        {
+          "include": "#eventParameterIdentifier"
+        },
+        {
+          "include": "#typeIdentifier"
+        },
+        {
+          "include": "#brackets"
+        }
+      ]
+    },
+    "eventParameterIdentifier": {
+      "patterns": [
+        {
+          "comment": "Event parameter identifier",
+          "match": "(?i)\\b([_a-z][0-9_a-z]*)\\s*(?=(\\,|\\)))",
+          "name": "variable.parameter.papyrus"
+        }
+      ]
+    },
+    "eventParameters": {
+      "patterns": [
+        {
+          "begin": "\\(",
+          "comment": "Event parameters",
+          "end": "\\)",
+          "name": "meta.eventparameters.papyrus",
+          "patterns": [
+            {
+              "include": "#illegalKeywords"
+            },
+            {
+              "include": "#illegalSpecialVariables"
+            },
+            {
+              "include": "#eventParameter"
+            },
+            {
+              "include": "#comma"
+            },
+            {
+              "include": "#multiline"
+            },
+            {
+              "include": "#whitespace"
+            },
+            {
+              "include": "#unmatched"
+            }
+          ]
+        }
+      ]
+    },
+    "expression": {
+      "patterns": [
+        {
+          "comment": "OR",
+          "match": "\\|\\|",
+          "name": "keyword.operator.papyrus"
+        },
+        {
+          "include": "#andExpression"
+        },
+        {
+          "include": "#endOfLine"
+        }
+      ]
+    },
+    "float": {
+      "patterns": [
+        {
+          "include": "#unaryMinus"
+        },
+        {
+          "comment": "Float literal",
+          "match": "\\b(\\d+\\.\\d+)\\b",
+          "name": "constant.numeric.float.papyrus"
+        }
+      ]
+    },
+    "funcOrId": {
+      "patterns": [
+        {
+          "comment": "Length",
+          "match": "(?i)\\b(length)\\b",
+          "name": "keyword.other.papyrus"
+        },
+        {
+          "include": "#functionCall"
+        },
+        {
+          "include": "#illegalKeywords"
+        },
+        {
+          "include": "#illegalBaseTypes"
+        },
+        {
+          "include": "#specialVariables"
+        },
+        {
+          "include": "#identifier"
+        }
+      ]
+    },
+    "function": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(?:([_a-z][0-9_a-z]*)(?:\\[\\])?\\s+)?(function)\\s+",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.papyrus"
+            },
+            "2": {
+              "name": "keyword.control.functionstart.papyrus"
+            },
+            "3": {
+              "name": "entity.name.function.papyrus"
+            }
+          },
+          "comment": "Function declaration",
+          "end": "([\\n\\r])",
+          "name": "meta.function.papyrus",
+          "patterns": [
+            {
+              "include": "#functionParameters"
+            },
+            {
+              "include": "#functionFlags"
+            },
+            {
+              "include": "#illegalKeywords"
+            },
+            {
+              "include": "#illegalSpecialVariables"
+            },
+            {
+              "include": "#illegalBaseTypes"
+            },
+            {
+              "include": "#functionIdentifier"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "functionCall": {
+      "patterns": [
+        {
+          "begin": "(?i)\\b([_a-z][0-9_a-z]*)\\(",
+          "beginCaptures": {
+            "1": {
+              "name": "variable.other.papyrus"
+            }
+          },
+          "comment": "Function call",
+          "end": "\\)",
+          "name": "meta.functioncall.papyrus",
+          "patterns": [
+            {
+              "include": "#functionCallParameters"
+            }
+          ]
+        }
+      ]
+    },
+    "functionCallParameter": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "variable.parameter.papyrus"
+            },
+            "2": {
+              "name": "keyword.operator.papyrus"
+            }
+          },
+          "comment": "Specific parameter",
+          "match": "(?i)\\b(?:([_a-z][0-9_a-z]*)\\s*(\\=)(?!\\=))?",
+          "name": "meta.functioncallparameter.papyrus"
+        },
+        {
+          "include": "#expression"
+        }
+      ]
+    },
+    "functionCallParameters": {
+      "patterns": [
+        {
+          "include": "#comma"
+        },
+        {
+          "include": "#functionCallParameter"
+        }
+      ]
+    },
+    "functionFlags": {
+      "patterns": [
+        {
+          "comment": "Function flags",
+          "match": "(?i)\\b(native|global)\\b",
+          "name": "keyword.other.papyrus"
+        }
+      ]
+    },
+    "functionIdentifier": {
+      "patterns": [
+        {
+          "comment": "Function/event identifier",
+          "match": "(?i)\\b([_a-z][0-9_a-z]*)\\s*(?=\\()",
+          "name": "entity.name.function.papyrus"
+        }
+      ]
+    },
+    "functionParameter": {
+      "patterns": [
+        {
+          "include": "#functionParameterIdentifier"
+        },
+        {
+          "include": "#typeIdentifier"
+        },
+        {
+          "include": "#brackets"
+        }
+      ]
+    },
+    "functionParameterIdentifier": {
+      "patterns": [
+        {
+          "comment": "Event parameter identifier",
+          "match": "(?i)\\b([_a-z][0-9_a-z]*)\\s*(?=(\\,|\\)|\\=))",
+          "name": "variable.parameter.papyrus"
+        }
+      ]
+    },
+    "functionParameters": {
+      "patterns": [
+        {
+          "begin": "\\(",
+          "comment": "Function parameters",
+          "end": "\\)",
+          "name": "meta.functionparameters.papyrus",
+          "patterns": [
+            {
+              "comment": "Assignment operator",
+              "match": "(\\=)",
+              "name": "keyword.operator.assignment.papyrus"
+            },
+            {
+              "include": "#constants"
+            },
+            {
+              "include": "#illegalKeywords"
+            },
+            {
+              "include": "#illegalSpecialVariables"
+            },
+            {
+              "include": "#functionParameter"
+            },
+            {
+              "include": "#comma"
+            },
+            {
+              "include": "#multiline"
+            },
+            {
+              "include": "#whitespace"
+            },
+            {
+              "include": "#unmatched"
+            }
+          ]
+        }
+      ]
+    },
+    "identifier": {
+      "patterns": [
+        {
+          "comment": "Identifier",
+          "match": "(?i)\\b([_a-z][0-9_a-z]*)\\b",
+          "name": "variable.other.papyrus"
+        }
+      ]
+    },
+    "if": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(if)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "If statement",
+          "end": "([\\n\\r])",
+          "name": "meta.if.papyrus",
+          "patterns": [
+            {
+              "include": "#expression"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "illegalBaseTypes": {
+      "patterns": [
+        {
+          "comment": "Type",
+          "match": "(?i)\\b(bool|float|int|string)\\b",
+          "name": "meta.invalid.papyrus"
+        }
+      ]
+    },
+    "illegalKeywords": {
+      "patterns": [
+        {
+          "comment": "Keywords",
+          "match": "(?i)\\b(as|auto|autoreadonly|else|elseif|endevent|endfunction|endif|endproperty|endstate|endwhile|event|extends|false|function|global|if|import|length|native|new|none|property|return|scriptname|state|true|while)\\b",
+          "name": "meta.invalid.papyrus"
+        }
+      ]
+    },
+    "illegalSpecialVariables": {
+      "patterns": [
+        {
+          "comment": "Special variables",
+          "match": "(?i)\\b(parent|self)\\b",
+          "name": "meta.invalid.papyrus"
+        }
+      ]
+    },
+    "import": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(import)\\s+",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "Import statement",
+          "end": "([\\n\\r])",
+          "name": "meta.import.papyrus",
+          "patterns": [
+            {
+              "include": "#illegalKeywords"
+            },
+            {
+              "include": "#illegalSpecialVariables"
+            },
+            {
+              "include": "#illegalBaseTypes"
+            },
+            {
+              "include": "#typeIdentifier"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "integer": {
+      "patterns": [
+        {
+          "include": "#unaryMinus"
+        },
+        {
+          "comment": "Integer literal",
+          "match": "(?i)\\b(0x[0-9a-f]+|\\d+)\\b",
+          "name": "constant.numeric.integer.papyrus"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "comment": "Keywords",
+          "match": "(?i)\\b(as|auto|autoreadonly|else|elseif|endevent|endfunction|endif|endproperty|endstate|endwhile|event|extends|false|function|global|if|import|length|native|new|none|property|return|scriptname|state|true|while)\\b",
+          "name": "keyword.other.papyrus"
+        }
+      ]
+    },
+    "multExpression": {
+      "patterns": [
+        {
+          "comment": "Multiplication, division, or modulus",
+          "match": "(\\*|/|\\%)",
+          "name": "keyword.operator.papyrus"
+        },
+        {
+          "include": "#unaryExpression"
+        }
+      ]
+    },
+    "multiline": {
+      "patterns": [
+        {
+          "begin": "\\\\",
+          "beginCaptures": {
+            "0": {
+              "name": "keyword.operator.papyrus"
+            }
+          },
+          "comment": "Multiline",
+          "end": "([\\n\\r])",
+          "name": "meta.multiline.papyrus",
+          "patterns": [
+            {
+              "include": "#commentBlock"
+            },
+            {
+              "include": "#commentLine"
+            },
+            {
+              "include": "#whitespace"
+            },
+            {
+              "include": "#unmatched"
+            }
+          ]
+        }
+      ]
+    },
+    "parameterIdentifier": {
+      "patterns": [
+        {
+          "comment": "Parameter identifier",
+          "match": "(?i)\\b([_a-z][0-9_a-z]*)\\b",
+          "name": "variable.parameter.papyrus"
+        }
+      ]
+    },
+    "property": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*([_a-z][0-9_a-z]*)(?:\\[\\])?\\s+(property)\\s+",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.papyrus"
+            },
+            "2": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "Property declaration",
+          "end": "([\\n\\r])",
+          "name": "meta.property.papyrus",
+          "patterns": [
+            {
+              "comment": "Assignment operator",
+              "match": "(\\=)",
+              "name": "keyword.operator.assignment.papyrus"
+            },
+            {
+              "include": "#constants"
+            },
+            {
+              "include": "#propertyFlags"
+            },
+            {
+              "include": "#illegalKeywords"
+            },
+            {
+              "include": "#illegalSpecialVariables"
+            },
+            {
+              "include": "#illegalBaseTypes"
+            },
+            {
+              "include": "#identifier"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "propertyFlags": {
+      "patterns": [
+        {
+          "comment": "Property flags",
+          "match": "(?i)\\b(auto|autoreadonly|conditional|hidden)\\b",
+          "name": "keyword.other.papyrus"
+        }
+      ]
+    },
+    "return": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(return)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "Return statements",
+          "end": "([\\n\\r])",
+          "name": "meta.return.papyrus",
+          "patterns": [
+            {
+              "include": "#expression"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "scriptHeader": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(scriptname)\\s+",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "Scriptheader",
+          "end": "([\\n\\r])",
+          "name": "meta.scriptheader.papyrus",
+          "patterns": [
+            {
+              "comment": "Script parent declaration",
+              "match": "(?i)\\b(extends)\\b",
+              "name": "keyword.other.papyrus"
+            },
+            {
+              "comment": "Script flags",
+              "match": "(?i)\\b(hidden|conditional)\\b",
+              "name": "keyword.other.papyrus"
+            },
+            {
+              "include": "#illegalKeywords"
+            },
+            {
+              "include": "#illegalSpecialVariables"
+            },
+            {
+              "include": "#illegalBaseTypes"
+            },
+            {
+              "include": "#typeIdentifier"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "specialVariables": {
+      "patterns": [
+        {
+          "comment": "Special variables",
+          "match": "(?i)\\b(parent|self)\\b",
+          "name": "keyword.other.papyrus"
+        }
+      ]
+    },
+    "state": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(?:(auto)\\s+)?(state)\\s+",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            },
+            "2": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "State declaration",
+          "end": "([\\n\\r])",
+          "name": "meta.state.papyrus",
+          "patterns": [
+            {
+              "include": "#illegalKeywords"
+            },
+            {
+              "include": "#illegalSpecialVariables"
+            },
+            {
+              "include": "#illegalBaseTypes"
+            },
+            {
+              "include": "#identifier"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "string": {
+      "patterns": [
+        {
+          "begin": "\\\"",
+          "comment": "String literal",
+          "end": "\\\"",
+          "name": "string.quoted.double",
+          "patterns": [
+            {
+              "comment": "Escape sequences",
+              "match": "(\\\\.)",
+              "name": "constant.character.escape.papyrus"
+            }
+          ]
+        }
+      ]
+    },
+    "typeIdentifier": {
+      "patterns": [
+        {
+          "comment": "Type identifier",
+          "match": "(?i)\\b([_a-z][0-9_a-z]*)\\b",
+          "name": "storage.type.papyrus"
+        }
+      ]
+    },
+    "unaryExpression": {
+      "patterns": [
+        {
+          "comment": "Unary minus or NOT",
+          "match": "(\\-|\\!)",
+          "name": "keyword.operator.papyrus"
+        },
+        {
+          "include": "#castAtom"
+        }
+      ]
+    },
+    "unaryMinus": {
+      "patterns": [
+        {
+          "comment": "Unary minus",
+          "match": "\\-(?=\\d)",
+          "name": "keyword.operator.papyrus"
+        }
+      ]
+    },
+    "unmatched": {
+      "patterns": [
+        {
+          "comment": "Unmatched",
+          "match": "([^\\n\\r])",
+          "name": "meta.invalid.papyrus"
+        }
+      ]
+    },
+    "variable": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*([_a-z][0-9_a-z]*)(?:\\[\\])?\\s+([_a-z][0-9_a-z]*)(?:\\s*(\\=)\\s*)",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.papyrus"
+            },
+            "2": {
+              "name": "variable.other.papyrus"
+            },
+            "3": {
+              "name": "keyword.operator.papyrus"
+            }
+          },
+          "comment": "Variable declaration with a default value",
+          "end": "([\\n\\r])",
+          "name": "meta.variable.papyrus",
+          "patterns": [
+            {
+              "include": "#constants"
+            },
+            {
+              "match": "(?i)(?:\\b(conditional)\\b)",
+              "name": "keyword.other.papyrus"
+            },
+            {
+              "include": "#expression"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        },
+        {
+          "begin": "(?i)^\\s*([_a-z][0-9_a-z]*)(?:\\[\\])?\\s+([_a-z][0-9_a-z]*)(?:\\s+(conditional)\\b)?",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.papyrus"
+            },
+            "2": {
+              "name": "variable.other.papyrus"
+            },
+            "3": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "Scriptwide variable declaration without a default value",
+          "end": "([\\n\\r])",
+          "name": "meta.variable.papyrus",
+          "patterns": [
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "while": {
+      "patterns": [
+        {
+          "begin": "(?i)^\\s*(while)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.papyrus"
+            }
+          },
+          "comment": "While statement",
+          "end": "([\\n\\r])",
+          "name": "meta.while.papyrus",
+          "patterns": [
+            {
+              "include": "#expression"
+            },
+            {
+              "include": "#endOfLine"
+            }
+          ]
+        }
+      ]
+    },
+    "whitespace": {
+      "patterns": [
+        {
+          "comment": "Whitespace",
+          "match": "([ \\t])",
+          "name": "meta.whitespace.papyrus"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.papyrus.skyrim",
+  "uuid": "01a6e257-d5f5-46f0-8795-b04ebd6eeaa7"
+}

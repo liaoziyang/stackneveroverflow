@@ -1,0 +1,65 @@
+{
+  "fileTypes": [
+
+  ],
+  "name": "OpenCOBOL",
+  "patterns": [
+    {
+      "begin": "(?i:EXEC\\s*CICS)",
+      "end": "(?i:END-EXEC|end\\s*exec)",
+      "name": "invalid.illegal.cobol",
+      "patterns": [
+        {
+          "match": "\\:([a-zA-Z\\-])*",
+          "name": "variable.cobol"
+        }
+      ]
+    },
+    {
+      "begin": "(?i:EXEC\\s*ADO)",
+      "end": "(?i:END-EXEC|end\\s*exec)",
+      "name": "invalid.illegal.cobol",
+      "patterns": [
+        {
+          "match": "\\:([a-zA-Z\\-])*",
+          "name": "variable.cobol"
+        }
+      ]
+    },
+    {
+      "begin": "(?i:EXEC\\s*HTML)",
+      "end": "(?i:END-EXEC|end\\s*exec)",
+      "name": "invalid.illegal.cobol",
+      "patterns": [
+        {
+          "match": "\\:([a-zA-Z\\-])*",
+          "name": "variable.cobol"
+        }
+      ]
+    },
+    {
+      "match": "(\\s|^)(?i)(?i:invoke|end-invoke|class-id|end class|property|try|catch|end property|exit method|method|create|ready|trace|reset|instance|delegate|exception-object)(?=\\s|\\.|$)",
+      "name": "invalid.illegal.cobol"
+    },
+    {
+      "match": "(?:^|\\s)((?i)\\$\\s*set)(?:$|\\s.*$)",
+      "name": "invalid.illegal.cobol"
+    },
+    {
+      "match": "(?:^|\\s)(?i:.*>>SOURCE)(?:$|\\s.*$)",
+      "name": "comment.line.set.cobol"
+    },
+    {
+      "match": "(?:^|\\s)>>(?i:if|else|elif|end-if|define)(?:$|\\s.*$)",
+      "name": "meta.preprocessor"
+    },
+    {
+      "match": "(\\s|^)(?i)(?i:active-class|aligned|anycase|attribute|b-and|b-or|b-not|b-xor|bit|capacity|chain|conversion|end-chain|float-binary-128|float-binary-32|float-binary-64|float-extended|float-infinity|float-not-a-number|indirect|intermediate|left-justify|pic\\s*n|picture\\s*n|prefixed|raise|raising|right-justify|rounding|standrd-binary|standard-decimal|symbol|trailing-sign|zero-fil|boolean-of-integer|char-national|display-of|exception-file-n|exception-location-n|formatted-current-date|formatted-date|formatted-datetime|formatted-time|integer-of-boolean|integer-of-formatted-date|length-an|locale-compare|national-of|standard-compare|test-formatted-datetime|test-numval-c|test-numval-f|display\\s*message.*)(?=\\s|\\.|$)",
+      "name": "invalid.illegal.cobol"
+    },
+    {
+      "include": "source.cobol"
+    }
+  ],
+  "scopeName": "source.opencobol"
+}

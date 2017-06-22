@@ -1,0 +1,71 @@
+{
+  "fileTypes": [
+    "ll",
+    "s"
+  ],
+  "foldingStartMarker": "/\\*\\*|\\{\\s*$",
+  "foldingStopMarker": "\\*\\*/|^\\s*\\}",
+  "keyEquivalent": "^~L",
+  "name": "LLVM",
+  "patterns": [
+    {
+      "comment": "llvm instructions",
+      "match": "\\b(add|alloca|and|ashr|atomic|atomicrmw|bitcast|br|call|cmpxchg|eq|exact|extractelement|extractvalue|fadd|fcmp|fdiv|fence|fmul|fpext|fptosi|fptoui|fptrunc|frem|fsub|getelementptr|icmp|inbounds|indirectbr|insertelement|insertvalue|inttoptr|invoke|landingpad|load|lshr|mul|ne|nsw|nuw|oeq|oge|ogt|ole|olt|one|or|ord|phi|ptrtoint|resume|ret|sdiv|select|sext|sge|sgt|shl|shufflevector|sitofp|sle|slt|srem|store|sub|switch|to|trunc|udiv|ueq|uge|uge|ugt|ugt|uitofp|ule|ule|ult|ult|une|uno|unreachable|unwind|urem|va_arg|xor|zext)\\b(?!\\s*:)",
+      "name": "keyword.instruction.llvm"
+    },
+    {
+      "comment": "llvm keywords",
+      "match": "\\b(acq_rel|acquire|addrspace|alias|align|alignstack|alwaysinline|appending|attributes|asm|blockaddress|byval|c|cc|ccc|coldcc|common|constant|datalayout|declare|default|define|deplibs|dllexport|dllimport|except|extern_weak|external|false|fastcc|gc|global|hidden|inlinehint|inreg|internal|linkonce|linkonce_odr|metadata|module|monotonic|naked|nest|noalias|nocapture|noimplicitfloat|noinline|noredzone|noreturn|nounwind|null|opaque|optsize|personality|private|protected|ptx_device|ptx_kernel|readnone|readonly|release|section|seq_cst|sideeffect|signext|sret|ssp|sspreq|tail|target|thread_local|triple|true|type|undef|unnamed_addr|unordered|uwtable|volatile|weak|weak_odr|x86_fastcallcc|x86_stdcallcc|zeroext|zeroinitializer)\\b(?!\\s*:)",
+      "name": "storage.modifier.llvm"
+    },
+    {
+      "match": "([%@][-a-zA-Z$._][-a-zA-Z$._0-9]*(\\s*\\*)+)",
+      "name": "storage.type.llvm"
+    },
+    {
+      "match": "\\b(void|i\\d+\\**|half|float|double|fp128|x86_fp80|ppc_fp128|x86mmx|label|metadata)",
+      "name": "storage.type.language.llvm"
+    },
+    {
+      "match": "([%@][-a-zA-Z$._][-a-zA-Z$._0-9]*)",
+      "name": "variable.language.llvm"
+    },
+    {
+      "match": "([%]\\d+)",
+      "name": "variable.language.llvm"
+    },
+    {
+      "match": "(!\\d+)",
+      "name": "variable.metadata.llvm"
+    },
+    {
+      "match": "(![-a-zA-Z$._][-a-zA-Z$._0-9]*)",
+      "name": "variable.metadata.llvm"
+    },
+    {
+      "match": ";.*$",
+      "name": "comment.llvm"
+    },
+    {
+      "match": "\\b\\d+\\.\\d+\\b",
+      "name": "constant.numeric.float.llvm"
+    },
+    {
+      "match": "\\b(\\d+|0(x|X)[a-fA-F0-9]+)\\b",
+      "name": "constant.numeric.integer.llvm"
+    },
+    {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.llvm",
+      "patterns": [
+        {
+          "match": "\\\\..",
+          "name": "constant.character.escape.lvvm"
+        }
+      ]
+    }
+  ],
+  "scopeName": "source.llvm",
+  "uuid": "BA22CCD7-4BFB-434E-9D80-79FB1758A944"
+}

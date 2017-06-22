@@ -1,0 +1,73 @@
+{
+  "comment": "\n    Robot Framework syntax highlighting for txt files.\n    ",
+  "fileTypes": [
+    "txt"
+  ],
+  "keyEquivalent": "^~R",
+  "name": "Robot Framework .txt",
+  "patterns": [
+    {
+      "begin": "(?i)^\\*+\\s*(settings?|metadata|(user )?keywords?|test ?cases?|variables?)",
+      "comment": "start of a table",
+      "end": "$",
+      "name": "string.robot.header"
+    },
+    {
+      "begin": "(?i)^\\s*\\[?Documentation\\]?",
+      "end": "^(?!\\s*+\\.\\.\\.)",
+      "name": "comment"
+    },
+    {
+      "comment": "testcase settings",
+      "match": "(?i)\\[(Arguments|Setup|Teardown|Precondition|Postcondition|Template|Return|Timeout)\\]",
+      "name": "storage.type.method.robot"
+    },
+    {
+      "begin": "(?i)\\[Tags\\]",
+      "comment": "test tags",
+      "end": "^(?!\\s*+\\.\\.\\.)",
+      "name": "storage.type.method.robot",
+      "patterns": [
+        {
+          "match": "^\\s*\\.\\.\\.",
+          "name": "comment"
+        }
+      ]
+    },
+    {
+      "match": "\\b([0-9]*(\\.[0-9]+)?)\\b",
+      "name": "constant.numeric.robot"
+    },
+    {
+      "begin": "((?<!\\\\)|(?<=\\\\\\\\))[$@&%]\\{",
+      "comment": "${variables}. one backslash escapes the variable, two do not",
+      "end": "\\}",
+      "name": "entity.name.class",
+      "patterns": [
+        {
+          "include": "$self"
+        },
+        {
+          "match": ".",
+          "name": "entity.name.class"
+        }
+      ]
+    },
+    {
+      "begin": "(^| {2,}|\t|\\| {1,})(?<!\\\\)#",
+      "end": "$",
+      "name": "comment.robot"
+    },
+    {
+      "begin": "(^[^ \\t\\*\\n\\|]+)|((?<=^\\|)\\s+[^ \\t\\*\\n\\|]+)",
+      "end": "(?=\\s{2})|\\t|$|\\s+(?=\\|)",
+      "name": "keyword.control.robot"
+    },
+    {
+      "match": "(?i)^\\s*(Given|And|Then|When|But)",
+      "name": "keyword.control.robot"
+    }
+  ],
+  "scopeName": "text.robot",
+  "uuid": "E54BFAB1-E5A0-4524-9FFC-FC08B20F21E4"
+}

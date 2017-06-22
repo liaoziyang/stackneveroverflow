@@ -1,0 +1,23 @@
+{
+  "fileTypes": [
+    "lid"
+  ],
+  "name": "Lid File",
+  "patterns": [
+    {
+      "begin": "([\\x{21}-\\x{39}\\x{3B}-\\x{7E}]+)(:)\\s*",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.mail"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.mail"
+        }
+      },
+      "end": "^(?![ \\t\\v])",
+      "name": "meta.header.mail"
+    }
+  ],
+  "scopeName": "source.lid",
+  "uuid": "7E074E76-1515-4B0D-BFAB-E0D9D8854163"
+}

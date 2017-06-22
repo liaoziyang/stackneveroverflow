@@ -1,0 +1,47 @@
+{
+  "fileTypes": [
+    "axs.erb",
+    "axi.erb"
+  ],
+  "firstLineMatch": "-[*]-( Mode:)? C -[*]-",
+  "foldingStartMarker": "(?x)\r\n\t\t /\\*\\*(?!\\*)\r\n\t\t|^(?![^{]*?//|[^{]*?/\\*(?!.*?\\*/.*?\\{)).*?\\{\\s*($|//|/\\*(?!.*?\\*/.*\\S))\r\n\t",
+  "foldingStopMarker": "(?<!\\*)\\*\\*/|^\\s*\\}",
+  "keyEquivalent": "^~C",
+  "name": "NetLinx ERB",
+  "patterns": [
+    {
+      "include": "#erb"
+    },
+    {
+      "include": "source.netlinx"
+    }
+  ],
+  "repository": {
+    "erb": {
+      "begin": "<%",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.scope.netlinx.erb"
+        }
+      },
+      "comment": "Ruby ERB blocks nested in NetLinx code",
+      "end": "%>",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.scope.netlinx.erb"
+        }
+      },
+      "name": "meta.block.netlinx.erb",
+      "patterns": [
+        {
+          "include": "source.ruby"
+        },
+        {
+          "include": "meta.define.event"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.netlinx.erb",
+  "uuid": "25066DC2-6B1D-11D9-9D5B-000D93589AF6"
+}

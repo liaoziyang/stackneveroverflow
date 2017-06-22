@@ -1,0 +1,254 @@
+{
+  "scopeName": "source.ninja",
+  "name": "Ninja",
+  "fileTypes": [
+    "ninja"
+  ],
+  "firstLineMatch": "(?xi)\n# Emacs modeline\n-\\*-(?:\\s*(?=[^:;\\s]+\\s*-\\*-)|(?:.*?[;\\s]|(?<=-\\*-))mode\\s*:\\s*)\n  ninja\n(?=[\\s;]|(?<![-*])-\\*-).*?-\\*-\n|\n# Vim modeline\n(?:(?:\\s|^)vi(?:m[<=>]?\\d+|m)?|\\sex)(?=:(?=\\s*set?\\s[^\\n:]+:)|:(?!\\s*set?\\s))(?:(?:\\s|\\s*:\\s*)\\w*(?:\\s*=(?:[^\\n\\\\\\s]|\\\\.)*)?)*[\\s:](?:filetype|ft|syntax)\\s*=\n  ninja\n(?=\\s|:|$)",
+  "foldingStartMarker": "^rule",
+  "foldingStopMarker": "^\\S",
+  "patterns": [
+    {
+      "name": "comment.line.number-sign.ninja",
+      "begin": "#",
+      "end": "$",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.ninja"
+        }
+      }
+    },
+    {
+      "name": "meta.$1.ninja",
+      "begin": "^(rule|pool)\\s+(\\S+)",
+      "end": "^(?=\\S)",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.$1.ninja"
+        },
+        "2": {
+          "name": "entity.name.function.$1.ninja",
+          "patterns": [
+            {
+              "include": "#escapes"
+            }
+          ]
+        }
+      },
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "name": "meta.build.ninja",
+      "begin": "(?x)\n^ (build) \\s+\n((?:[^\\s:|$]|\\$.)+)\n(?:\n  (\\|{1,2})\n  ((?:[^:$]|\\$.)*)\n  (?=:)\n)?",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.build.ninja"
+        },
+        "2": {
+          "name": "entity.name.function.build.ninja",
+          "patterns": [
+            {
+              "include": "#escapes"
+            }
+          ]
+        },
+        "3": {
+          "name": "keyword.operator.build.ninja"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#escapes"
+            },
+            {
+              "match": "(?:[^\\s:|$]|\\$.)+",
+              "name": "variable.reference.ninja",
+              "captures": {
+                "0": {
+                  "patterns": [
+                    {
+                      "include": "#escapes"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "end": "(?<!\\$)$",
+      "patterns": [
+        {
+          "match": "\\|{2}",
+          "name": "keyword.operator.build.ninja"
+        },
+        {
+          "match": "(?:[^\\s:|$]|\\$.)+",
+          "name": "variable.reference.ninja"
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "match": "(?<=:)\\s*(phony)\\b",
+      "captures": {
+        "1": {
+          "name": "storage.modifier.phony.build.ninja"
+        }
+      }
+    },
+    {
+      "match": "(?<==)\\s*(\\.\\d+|\\d+(?:\\.\\d+)?)",
+      "captures": {
+        "1": {
+          "name": "constant.numeric.ninja"
+        }
+      }
+    },
+    {
+      "name": "meta.default.ninja",
+      "begin": "^(default)(?=\\s|$)",
+      "end": "(?<!\\$)$",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.build.default.ninja"
+        }
+      },
+      "patterns": [
+        {
+          "match": "\\S+",
+          "name": "entity.name.function.build.ninja"
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "name": "meta.command.ninja",
+      "begin": "^\\s*(command)\\s*(=)",
+      "beginCaptures": {
+        "1": {
+          "name": "variable.language.rule.ninja"
+        },
+        "2": {
+          "name": "keyword.operator.assignment.ninja"
+        }
+      },
+      "end": "(?<!\\$)$",
+      "patterns": [
+        {
+          "include": "$self"
+        },
+        {
+          "match": "(?:\\G|^)(.+)(?=$)",
+          "captures": {
+            "1": {
+              "name": "embedded.source.shell",
+              "patterns": [
+                {
+                  "include": "source.shell"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "meta.property.ninja",
+      "match": "(?x) ^ \\s* (depfile|deps|msvc_deps_prefix|description|generator|in |in_newline|out|restat|rspfile|rspfile_content) \\s* (=)",
+      "captures": {
+        "1": {
+          "name": "support.variable.language.rule.ninja"
+        },
+        "2": {
+          "name": "keyword.operator.assignment.ninja"
+        }
+      }
+    },
+    {
+      "name": "meta.$1.ninja",
+      "begin": "^(subninja|include)\\s+",
+      "end": "(?<!\\$)$",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.$1.ninja"
+        }
+      },
+      "contentName": "string.unquoted.filename.ninja",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "match": ":",
+      "name": "punctuation.separator.dictionary.key-value.ninja"
+    },
+    {
+      "match": "^\\s*(\\w+)\\s*(=)",
+      "captures": {
+        "1": {
+          "name": "variable.parameter.reference.ninja"
+        },
+        "2": {
+          "name": "keyword.operator.assignment.ninja"
+        }
+      }
+    },
+    {
+      "match": "(\\$)\\w+",
+      "name": "variable.parameter.reference.ninja",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.variable.ninja"
+        }
+      }
+    },
+    {
+      "match": "\\$$\\n?",
+      "name": "constant.character.escape.newline.ninja"
+    },
+    {
+      "name": "variable.other.bracket.ninja",
+      "match": "(\\${)\\s*[^{}]+\\s*(})",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.variable.begin.ninja"
+        },
+        "2": {
+          "name": "punctuation.definition.variable.end.ninja"
+        }
+      }
+    },
+    {
+      "include": "#escapes"
+    }
+  ],
+  "repository": {
+    "escapes": {
+      "patterns": [
+        {
+          "match": "\\${2}",
+          "name": "constant.character.escape.dollar-sign.ninja"
+        },
+        {
+          "match": "\\$[ \\t]",
+          "name": "constant.character.escape.whitespace.ninja"
+        },
+        {
+          "match": "\\$:",
+          "name": "constant.character.escape.colon.ninja"
+        }
+      ]
+    }
+  }
+}

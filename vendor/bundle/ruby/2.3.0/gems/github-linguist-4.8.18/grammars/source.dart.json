@@ -1,0 +1,763 @@
+{
+  "fileTypes": [
+    "dart"
+  ],
+  "name": "Dart",
+  "patterns": [
+    {
+      "match": "^(#!.*)$",
+      "name": "meta.preprocessor.script.dart"
+    },
+    {
+      "begin": "^\\s*\\b(library|import|export|part of|part)\\b",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.other.import.dart"
+        }
+      },
+      "end": ";",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.terminator.dart"
+        }
+      },
+      "name": "meta.declaration.dart",
+      "patterns": [
+        {
+          "include": "#strings"
+        },
+        {
+          "match": "\\b(as|show|hide|deferred)\\b",
+          "name": "keyword.other.import.dart"
+        }
+      ]
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#constants-and-special-vars"
+    },
+    {
+      "include": "#annotations"
+    },
+    {
+      "include": "#decl-typedef"
+    },
+    {
+      "include": "#decl-class"
+    },
+    {
+      "include": "#decl-enum"
+    },
+    {
+      "include": "#decl-function"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    }
+  ],
+  "repository": {
+    "annotations": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "annotation.dart"
+            },
+            "2": {
+              "name": "entity.name.function.annotation.dart"
+            },
+            "3": {
+              "name": "support.type.dart"
+            }
+          },
+          "match": "^(?:\\s*)((@)([a-zA-Z0-9_]+))"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.dart"
+            }
+          },
+          "match": "/\\*\\*/",
+          "name": "comment.block.empty.dart"
+        },
+        {
+          "include": "#comments-inline"
+        }
+      ]
+    },
+    "comments-inline": {
+      "patterns": [
+        {
+          "begin": "/\\*",
+          "end": "\\*/",
+          "name": "comment.block.dart",
+          "patterns": [
+            {
+              "include": "text.dart-doccomments"
+            }
+          ]
+        },
+        {
+          "begin": "(///)",
+          "beginCaptures": {
+            "1": {
+              "name": "marker.dart"
+            }
+          },
+          "end": "$",
+          "name": "comment.line.triple-slash.dart",
+          "patterns": [
+            {
+              "include": "text.dart-doccomments"
+            }
+          ]
+        },
+        {
+          "begin": "(//)",
+          "beginCaptures": {
+            "1": {
+              "name": "marker.dart"
+            }
+          },
+          "end": "$",
+          "name": "comment.line.double-slash.dart",
+          "patterns": [
+            {
+              "include": "text.dart-doccomments"
+            }
+          ]
+        }
+      ]
+    },
+    "constants-and-special-vars": {
+      "patterns": [
+        {
+          "match": "\\b(true|false|null)\\b",
+          "name": "constant.language.dart"
+        },
+        {
+          "match": "\\b(this|super)\\b",
+          "name": "variable.language.dart"
+        },
+        {
+          "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)\\b",
+          "name": "constant.numeric.dart"
+        }
+      ]
+    },
+    "decl-class": {
+      "patterns": [
+        {
+          "begin": "\\bclass\\b",
+          "beginCaptures": {
+            "0": {
+              "name": "keyword.control.new.dart"
+            }
+          },
+          "end": "(?={)",
+          "name": "meta.declaration.class.dart",
+          "patterns": [
+            {
+              "include": "#keywords"
+            },
+            {
+              "match": "[A-Za-z_][A-Za-z0-9_]*",
+              "name": "class.name.dart"
+            }
+          ]
+        }
+      ]
+    },
+    "decl-enum": {
+      "patterns": [
+        {
+          "begin": "\\benum\\b",
+          "beginCaptures": {
+            "0": {
+              "name": "keyword.declaration.dart"
+            }
+          },
+          "end": "(?={)",
+          "name": "meta.declaration.enum.dart",
+          "patterns": [
+            {
+              "include": "#keywords"
+            },
+            {
+              "match": "[A-Za-z_][A-Za-z0-9_]*",
+              "name": "enum.name.dart"
+            }
+          ]
+        }
+      ]
+    },
+    "decl-function": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "storage.type.primitive.dart"
+            },
+            "2": {
+              "name": "keyword.declaration.dart"
+            },
+            "3": {
+              "name": "function.name.dart"
+            }
+          },
+          "comment": "A getter with a primitive return type.",
+          "match": "^\\s*(?:\\b(void|bool|num|int|double|dynamic|var|String|List|Map)\\b)\\s+(get)\\s+(\\w+)\\s+(?==>)",
+          "name": "meta.declaration.function.dart"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "type.user-defined.dart"
+            },
+            "2": {
+              "name": "keyword.declaration.dart"
+            },
+            "3": {
+              "name": "function.name.dart"
+            }
+          },
+          "comment": "A getter with a user-defined return type or no return type.",
+          "match": "^\\s*(?:\\b(\\w+)\\b\\s+)?(get)\\s+(\\w+)\\s+(?==>)",
+          "name": "meta.declaration.function.dart"
+        },
+        {
+          "begin": "^\\s*(set)\\s+(\\w+)(?=\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.declaration.dart"
+            },
+            "2": {
+              "name": "function.name.dart"
+            }
+          },
+          "comment": "A setter.",
+          "end": "\\)",
+          "name": "meta.declaration.function.dart",
+          "patterns": [
+            {
+              "include": "#comments-inline"
+            },
+            {
+              "include": "#decl-function-parameter"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#keywords"
+            }
+          ]
+        },
+        {
+          "begin": "^\\s*(?:\\b(void|bool|num|int|double|dynamic|var|String|List|Map)\\b)\\s+(\\w+)(?=\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.primitive.dart"
+            },
+            "2": {
+              "name": "function.name.dart"
+            }
+          },
+          "comment": "A function with a primitive return type.",
+          "end": "\\)",
+          "name": "meta.declaration.function.dart",
+          "patterns": [
+            {
+              "include": "#comments-inline"
+            },
+            {
+              "include": "#decl-function-parameter"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#keywords"
+            }
+          ]
+        },
+        {
+          "begin": "^\\s*(?:\\b(return)\\b)\\s+(\\w+)(?=\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.dart"
+            },
+            "2": {
+              "name": "function.name.dart"
+            }
+          },
+          "comment": "A function invocation after 'return'",
+          "end": "\\)",
+          "name": "meta.invocation.function.dart",
+          "patterns": [
+            {
+              "include": "#comments-inline"
+            },
+            {
+              "include": "#decl-function-parameter"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#keywords"
+            }
+          ]
+        },
+        {
+          "begin": "^\\s*\\b(new)\\b\\s+(\\w+)(?=\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.declaration.dart"
+            },
+            "2": {
+              "name": "function.name.dart"
+            }
+          },
+          "comment": "A class instantiation after 'new'",
+          "end": "\\)",
+          "name": "meta.invocation.function.dart",
+          "patterns": [
+            {
+              "include": "#comments-inline"
+            },
+            {
+              "include": "#decl-function-parameter"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#keywords"
+            }
+          ]
+        }
+      ]
+    },
+    "decl-function-parameter": {
+      "patterns": [
+        {
+          "include": "#constants-and-special-vars"
+        },
+        {
+          "begin": "(?:\\b(void|bool|num|int|double|dynamic|var|String|List|Map)\\b)\\s+(\\w+)(?=\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.primitive.dart"
+            },
+            "2": {
+              "name": "function.name.dart"
+            }
+          },
+          "comment": "A function with a primitive return type.",
+          "end": "\\)",
+          "name": "meta.parameter.function.dart",
+          "patterns": [
+            {
+              "include": "#decl-function-parameter"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#keywords"
+            }
+          ]
+        },
+        {
+          "begin": "\\b(new)\\b\\s+(\\w+)(?=\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.declaration.dart"
+            },
+            "2": {
+              "name": "function.name.dart"
+            }
+          },
+          "comment": "A class instantiation after 'new'",
+          "end": "\\)",
+          "name": "meta.invocation.function.dart",
+          "patterns": [
+            {
+              "include": "#decl-function-parameter"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#keywords"
+            }
+          ]
+        },
+        {
+          "begin": "(?:\\b(\\w+)\\b)\\s+(\\w+)(?=\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "type.user-defined.dart"
+            },
+            "2": {
+              "name": "function.name.dart"
+            }
+          },
+          "comment": "A function with a user-defined return type.",
+          "end": "\\)",
+          "name": "meta.parameter.function.dart",
+          "patterns": [
+            {
+              "include": "#decl-function-parameter"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#keywords"
+            }
+          ]
+        },
+        {
+          "begin": "(\\w+)(?=\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "function.name.dart"
+            }
+          },
+          "comment": "A function with no return type.",
+          "end": "\\)",
+          "name": "meta.parameter.function.dart",
+          "patterns": [
+            {
+              "include": "#decl-function-parameter"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#keywords"
+            }
+          ]
+        }
+      ]
+    },
+    "decl-typedef": {
+      "patterns": [
+        {
+          "begin": "typedef",
+          "beginCaptures": {
+            "0": {
+              "name": "keyword.control.new.dart"
+            }
+          },
+          "end": ";",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.terminator.dart"
+            }
+          },
+          "name": "meta.declaration.typedef.dart",
+          "patterns": [
+            {
+              "captures": {
+                "1": {
+                  "name": "storage.type.primitive.dart"
+                },
+                "2": {
+                  "name": "typedef.return.dart"
+                },
+                "3": {
+                  "name": "typedef.name.dart"
+                }
+              },
+              "match": "(?:\\b(void|bool|num|int|double|dynamic|var|String|List|Map)\\b|([a-zA-Z_][a-zA-Z0-9_]*))\\s+([a-zA-Z_][a-zA-Z0-9_]+)"
+            },
+            {
+              "begin": "\\(",
+              "end": "\\)",
+              "name": "typedef.params.dart",
+              "patterns": [
+                {
+                  "include": "#keywords"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "\\bassert\\b",
+          "name": "keyword.control.assert.dart"
+        },
+        {
+          "match": "\\bas\\b",
+          "name": "keyword.cast.dart"
+        },
+        {
+          "match": "\\b(try|catch|finally|throw|on|rethrow)\\b",
+          "name": "keyword.control.catch-exception.dart"
+        },
+        {
+          "match": "\\s+\\?\\s+|\\s+:\\s+",
+          "name": "keyword.control.ternary.dart"
+        },
+        {
+          "match": "\\b(break|case|continue|default|do|else|for|if|in|return|switch|while)\\b",
+          "name": "keyword.control.dart"
+        },
+        {
+          "match": "\\b(async\\*|async|await\\*|await|yield)\\b",
+          "name": "keyword.control.async.dart"
+        },
+        {
+          "match": "\\b(new)\\b",
+          "name": "keyword.control.new.dart"
+        },
+        {
+          "match": "\\b(abstract|extends|external|factory|implements|with|interface|get|native|operator|set|typedef)\\b",
+          "name": "keyword.declaration.dart"
+        },
+        {
+          "match": "\\b(is\\!?)\\b",
+          "name": "keyword.operator.dart"
+        },
+        {
+          "match": "(<<|>>>?|~|\\^|\\||&)",
+          "name": "keyword.operator.bitwise.dart"
+        },
+        {
+          "match": "((&|\\^|\\||<<|>>>?)=)",
+          "name": "keyword.operator.assignment.bitwise.dart"
+        },
+        {
+          "match": "(===?|!==?|<=?|>=?)",
+          "name": "keyword.operator.comparison.dart"
+        },
+        {
+          "match": "(([+*/%-]|\\~)=)",
+          "name": "keyword.operator.assignment.arithmetic.dart"
+        },
+        {
+          "match": "(=)",
+          "name": "keyword.operator.assignment.dart"
+        },
+        {
+          "match": "(\\-\\-|\\+\\+)",
+          "name": "keyword.operator.increment-decrement.dart"
+        },
+        {
+          "match": "(\\-|\\+|\\*|\\/|\\~\\/|%)",
+          "name": "keyword.operator.arithmetic.dart"
+        },
+        {
+          "match": "(!|&&|\\|\\|)",
+          "name": "keyword.operator.logical.dart"
+        },
+        {
+          "match": ";",
+          "name": "punctuation.terminator.dart"
+        },
+        {
+          "match": "\\b(static|final|const)\\b",
+          "name": "storage.modifier.dart"
+        },
+        {
+          "match": "\\b(?:void|bool|num|int|double|dynamic|var|String|List|Map)\\b",
+          "name": "storage.type.primitive.dart"
+        }
+      ]
+    },
+    "regexp": {
+      "patterns": [
+        {
+          "match": "\\\\[^'\"]",
+          "name": "constant.character.escaped.regex.dart"
+        },
+        {
+          "begin": "\\(",
+          "contentName": "meta.capture.regex.dart",
+          "end": "\\)",
+          "patterns": [
+            {
+              "match": "\\?(:|=|!)",
+              "name": "ignore.capture.regex.dart"
+            },
+            {
+              "include": "#regex.dart"
+            }
+          ]
+        },
+        {
+          "match": "\\*|\\+|\\?|\\.|\\|",
+          "name": "keyword.other.regex.dart"
+        },
+        {
+          "match": "\\^|\\$",
+          "name": "keyword.other.regex.dart"
+        },
+        {
+          "match": "\\.",
+          "name": "constant.other.regex.dart"
+        },
+        {
+          "begin": "\\[(\\^)?",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.negation.regex.dart"
+            }
+          },
+          "end": "\\]",
+          "name": "constant.character.range.regex.dart",
+          "patterns": [
+            {
+              "match": "\\\\[^\"']",
+              "name": "constant.character.escaped.regex.dart"
+            }
+          ]
+        },
+        {
+          "match": "\\{(?:\\d+)?,(?:\\d+)?\\}",
+          "name": "keyword.other.regex.dart"
+        }
+      ]
+    },
+    "string-interp": {
+      "patterns": [
+        {
+          "begin": "(\\$)(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.dart"
+            },
+            "2": {
+              "name": "keyword.other.dart"
+            }
+          },
+          "contentName": "source.dart",
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "keyword.other.dart"
+            }
+          },
+          "name": "interpolation.dart",
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.other.dart"
+            },
+            "2": {
+              "name": "variable.parameter.dart"
+            }
+          },
+          "match": "(\\$)(\\w+)"
+        },
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.dart"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "(?<!r)\"\"\"",
+          "end": "\"\"\"(?!\")",
+          "name": "string.interpolated.triple.double.dart",
+          "patterns": [
+            {
+              "include": "#string-interp"
+            }
+          ]
+        },
+        {
+          "begin": "(?<!r)'''",
+          "end": "'''(?!')",
+          "name": "string.interpolated.triple.single.dart",
+          "patterns": [
+            {
+              "include": "#string-interp"
+            }
+          ]
+        },
+        {
+          "begin": "r\"\"\"",
+          "end": "\"\"\"(?!\")",
+          "name": "string.quoted.triple.double.dart"
+        },
+        {
+          "begin": "r'''",
+          "end": "'''(?!')",
+          "name": "string.quoted.triple.single.dart"
+        },
+        {
+          "begin": "(?<!\\\\|r)\"",
+          "end": "\"",
+          "name": "string.interpolated.double.dart",
+          "patterns": [
+            {
+              "match": "\\n",
+              "name": "invalid.string.newline"
+            },
+            {
+              "include": "#string-interp"
+            }
+          ]
+        },
+        {
+          "begin": "r\"",
+          "end": "\"",
+          "name": "string.quoted.double.dart",
+          "patterns": [
+            {
+              "include": "#regexp"
+            }
+          ]
+        },
+        {
+          "begin": "(?<!\\|r)'",
+          "end": "'",
+          "name": "string.interpolated.single.dart",
+          "patterns": [
+            {
+              "include": "#string-interp"
+            }
+          ]
+        },
+        {
+          "begin": "r'",
+          "end": "'",
+          "name": "string.quoted.single.dart",
+          "patterns": [
+            {
+              "include": "#regexp"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "scopeName": "source.dart",
+  "uuid": "958518BC-799F-477A-99F9-5B28EBF230F6"
+}

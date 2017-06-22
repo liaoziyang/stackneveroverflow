@@ -1,0 +1,23 @@
+{
+  "fileTypes": [
+    "sparql"
+  ],
+  "keyEquivalent": "^~S",
+  "name": "SPARQL",
+  "patterns": [
+    {
+      "include": "source.turtle#sparqlKeywords"
+    },
+    {
+      "include": "source.turtle#sparqlFilterFns"
+    },
+    {
+      "include": "source.turtle#sparqlLangConsts"
+    },
+    {
+      "include": "source.turtle"
+    }
+  ],
+  "scopeName": "source.sparql",
+  "uuid": "A66816FF-6EF0-46F7-8F67-438339EF61C9"
+}

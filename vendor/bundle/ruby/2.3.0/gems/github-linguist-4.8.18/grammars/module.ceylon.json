@@ -1,0 +1,54 @@
+{
+  "fileTypes": [
+    "module.ceylon"
+  ],
+  "foldingStartMarker": "(\\{\\s*(//.*)?$|^\\s*// \\{\\{\\{)",
+  "foldingStopMarker": "^\\s*(\\}|// \\}\\}\\}$)",
+  "keyEquivalent": "^~C",
+  "name": "Ceylon Module",
+  "patterns": [
+    {
+      "begin": "/\\*",
+      "end": "\\*/",
+      "name": "comment.multiline.ceylon"
+    },
+    {
+      "match": "//.*$",
+      "name": "comment.singleline.ceylon"
+    },
+    {
+      "match": "^#!/.*$",
+      "name": "comment.shebang.ceylon"
+    },
+    {
+      "match": "\\b(module|import)\\b",
+      "name": "keyword.control.ceylon"
+    },
+    {
+      "match": "\\b(doc|by|license|see|throws|tagged|deprecated|shared|optional|suppressWarnings)\\b",
+      "name": "keyword.other.ceylon"
+    },
+    {
+      "match": "([A-Z][a-zA-Z0-9_]*|\\\\I[a-zA-Z0-9_]+)",
+      "name": "storage.type.upcase.ceylon"
+    },
+    {
+      "match": "([a-z][a-zA-Z0-9_]*|\\\\i[a-zA-Z0-9_]+)(\\.([a-z][a-zA-Z0-9_]*|\\\\i[a-zA-Z0-9_]+))+",
+      "name": "variable.parameter.package.ceylon"
+    },
+    {
+      "match": "([a-z][a-zA-Z0-9_]*|\\\\i[a-zA-Z0-9_]+)",
+      "name": "variable.other.lowercase.ceylon"
+    },
+    {
+      "match": "([a-z][a-zA-Z0-9_]*|\\\\i[a-zA-Z0-9_]+)",
+      "name": "variable.other.ceylon"
+    },
+    {
+      "begin": "(\"\"\"|\"|')",
+      "end": "\\1",
+      "name": "string.ceylon"
+    }
+  ],
+  "scopeName": "module.ceylon"
+}

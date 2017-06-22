@@ -1,0 +1,31 @@
+{
+  "name": "GDB Disassembly",
+  "patterns": [
+    {
+      "match": ".+:([0-9]+)$",
+      "name": "string.filename"
+    },
+    {
+      "match": "\\b0x[0-9a-f]+",
+      "name": "constant.other.hex.disasm"
+    },
+    {
+      "match": "\\b[0-9]+",
+      "name": "constant.other.disasm"
+    },
+    {
+      "match": "[\\w]+",
+      "name": "keyword.variable"
+    },
+    {
+      "match": " \\b([a-z\\.]+) ",
+      "name": "support.function.disasm"
+    },
+    {
+      "match": "(;|#)[^\\d].*$",
+      "name": "comment"
+    }
+  ],
+  "scopeName": "source.disasm",
+  "uuid": "932CA89E-7D79-4406-9F53-8BC58525560C"
+}

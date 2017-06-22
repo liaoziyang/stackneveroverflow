@@ -1,0 +1,22 @@
+{
+  "name": "Elm Documentation",
+  "scopeName": "text.html.mediawiki.elm-documentation",
+  "fileTypes": [
+
+  ],
+  "uuid": "c4a06e11-4259-4698-aeb2-1e87799984cc",
+  "patterns": [
+    {
+      "comment": "Code Block",
+      "name": "markup.raw.block.elm-documentation",
+      "contentName": "markup.raw.block.elm-documentation",
+      "begin": "\\x{FEFF}",
+      "end": "\\x{FEFF}",
+      "patterns": [
+        {
+          "include": "source.elm"
+        }
+      ]
+    }
+  ]
+}

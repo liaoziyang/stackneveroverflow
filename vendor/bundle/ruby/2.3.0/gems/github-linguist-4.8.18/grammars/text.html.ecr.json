@@ -1,0 +1,52 @@
+{
+  "fileType": [
+    "ecr",
+    "html.ecr"
+  ],
+  "injections": {
+    "text.html.ecr": {
+      "patterns": [
+        {
+          "include": "#tags"
+        }
+      ]
+    }
+  },
+  "name": "HTML (Crystal - ECR)",
+  "patterns": [
+    {
+      "include": "text.html.basic"
+    }
+  ],
+  "repository": {
+    "tags": {
+      "patterns": [
+        {
+          "begin": "(<%)(=)?",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.ecr"
+            },
+            "2": {
+              "name": "punctuation.section.embedded.return.ecr"
+            }
+          },
+          "contentName": "source.crystal.embedded.ecr",
+          "end": "%>",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.ecr"
+            }
+          },
+          "name": "meta.embedded.line.ecr",
+          "patterns": [
+            {
+              "include": "source.crystal"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "scopeName": "text.html.ecr"
+}

@@ -1,0 +1,13 @@
+{
+  "fileTypes": [
+    "Makegen"
+  ],
+  "name": "Makegen",
+  "patterns": [
+    {
+      "include": "source.perl"
+    }
+  ],
+  "scopeName": "source.makegen",
+  "uuid": "5C4C476C-9AB1-4CCF-B7A8-89921315E3B9"
+}

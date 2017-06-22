@@ -1,0 +1,170 @@
+{
+  "fileTypes": [
+    "cfc"
+  ],
+  "firstLineMatch": "",
+  "foldingStartMarker": "",
+  "foldingStopMarker": "",
+  "keyEquivalent": "",
+  "name": "ColdFusion Component",
+  "patterns": [
+    {
+      "begin": "(?:^\\s+)?(<)((?i:cfcomponent))(?![^>]*/>)",
+      "captures": {
+        "0": {
+          "name": "meta.tag.block.cf.component.cfml"
+        },
+        "1": {
+          "name": "punctuation.definition.tag.cf.begin.cfml"
+        },
+        "2": {
+          "name": "entity.name.tag.cf.component.cfml"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.cf.end.cfml"
+        }
+      },
+      "end": "(</)((?i:cfcomponent))(>)(?:\\s*\\n)?",
+      "contentName": "text.html.cfm.embedded.cfml",
+      "patterns": [
+        {
+          "begin": "(?<=cfcomponent)\\s",
+          "end": "(?=>)",
+          "name": "meta.tag.block.cf.component.cfml",
+          "patterns": [
+            {
+              "include": "#tag-stuff"
+            }
+          ]
+        },
+        {
+          "begin": "(>)",
+          "beginCaptures": {
+            "0": {
+              "name": "meta.tag.block.cf.component.cfml"
+            },
+            "1": {
+              "name": "punctuation.definition.tag.cf.end.cfml"
+            }
+          },
+          "end": "(?=</(?i:cfcomponent))",
+          "patterns": [
+            {
+              "include": "text.html.cfm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "include": "#cfcomments"
+    },
+    {
+      "include": "source.cfscript"
+    }
+  ],
+  "repository": {
+    "cfcomments": {
+      "patterns": [
+        {
+          "match": "<!---.*--->",
+          "name": "comment.line.cfml"
+        },
+        {
+          "begin": "<!---",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.cfml"
+            }
+          },
+          "end": "--->",
+          "name": "comment.block.cfml",
+          "patterns": [
+            {
+              "include": "#cfcomments"
+            }
+          ]
+        }
+      ]
+    },
+    "tag-stuff": {
+      "patterns": [
+        {
+          "include": "#tag-generic-attribute"
+        },
+        {
+          "include": "#string-double-quoted"
+        },
+        {
+          "include": "#string-single-quoted"
+        }
+      ]
+    },
+    "tag-generic-attribute": {
+      "match": "\\b([a-zA-Z\\-:]+)",
+      "name": "entity.other.attribute-name.html"
+    },
+    "string-double-quoted": {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.html"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.html"
+        }
+      },
+      "name": "string.quoted.double.html",
+      "patterns": [
+        {
+          "include": "#entities"
+        }
+      ]
+    },
+    "string-single-quoted": {
+      "begin": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.html"
+        }
+      },
+      "end": "'",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.html"
+        }
+      },
+      "name": "string.quoted.single.html",
+      "patterns": [
+        {
+          "include": "#entities"
+        }
+      ]
+    },
+    "entities": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.entity.html"
+            },
+            "3": {
+              "name": "punctuation.definition.entity.html"
+            }
+          },
+          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
+          "name": "constant.character.entity.html"
+        },
+        {
+          "match": "&",
+          "name": "invalid.illegal.bad-ampersand.html"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.cfscript.cfc",
+  "uuid": "B7AC5320-4226-11E1-B86C-0800200C9A66"
+}

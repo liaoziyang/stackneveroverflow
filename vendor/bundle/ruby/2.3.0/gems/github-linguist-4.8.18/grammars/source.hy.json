@@ -1,0 +1,270 @@
+{
+  "scopeName": "source.hy",
+  "fileTypes": [
+    "hy"
+  ],
+  "foldingStartMarker": "\\(\\s*$",
+  "foldingStopMarker": "^\\s*\\)",
+  "name": "Hy",
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#shebang-comment"
+    },
+    {
+      "include": "#quoted-sexp"
+    },
+    {
+      "include": "#sexp"
+    },
+    {
+      "include": "#keyfn"
+    },
+    {
+      "include": "#string"
+    },
+    {
+      "include": "#list"
+    },
+    {
+      "include": "#set"
+    },
+    {
+      "include": "#dict"
+    },
+    {
+      "include": "#regexp"
+    },
+    {
+      "include": "#var"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#symbol"
+    },
+    {
+      "include": "#whitespace"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.hy"
+        }
+      },
+      "match": "(;).*$\\n?",
+      "name": "comment.line.semicolon.hy"
+    },
+    "constants": {
+      "patterns": [
+        {
+          "match": "(None|nil|null)(?=(\\s|\\)|\\]|\\}))",
+          "name": "constant.language.nil.hy"
+        },
+        {
+          "match": "(true|false)",
+          "name": "constant.language.boolean.hy"
+        },
+        {
+          "match": "(\\d+/\\d+)",
+          "name": "constant.numeric.ratio.hy"
+        },
+        {
+          "match": "(\\d+r\\d+)",
+          "name": "constant.numeric.arbitrary-radix.hy"
+        },
+        {
+          "match": "(0x\\d+)",
+          "name": "constant.numeric.hexidecimal.hy"
+        },
+        {
+          "match": "(0\\d+)",
+          "name": "constant.numeric.octal.hy"
+        },
+        {
+          "match": "(\\d+)",
+          "name": "constant.numeric.decimal.hy"
+        },
+        {
+          "match": "(?<=(\\s|\\(|\\[|\\{)):[a-zA-Z0-9\\#\\.\\-\\_\\:\\+\\=\\>\\<\\/\\!\\?\\*]+(?=(\\s|\\)|\\]|\\}))",
+          "name": "constant.keyword.hy"
+        }
+      ]
+    },
+    "keyfn": {
+      "patterns": [
+        {
+          "match": "(?<=(\\s|\\(|\\[|\\{))(if(-[-a-z\\?]*)?|if-not(-[-a-z\\?]*)?|when(-[-a-z]*)?|for(-[-a-z]*)?|for\\*(-[-a-z]*)?|unless(-[-a-z]*)?|with(-[-a-z]*)?|with-decorator(-[-a-z]*)?|with-gensyms(-[-a-z]*)?|cond|do|doto|progn|continue|break|yield|yield-from|let(-[-a-z\\?]*)?|loop|recur|raise[a-z\\-]*|throw[a-z\\-]*|try|catch|finally|([a-z]*case))(?=(\\s|\\)|\\]|\\}))",
+          "name": "storage.control.hy"
+        },
+        {
+          "match": "(?<=(\\s|\\(|\\[|\\{))(import|require|setv|print|get|global|and|or|not|genexpr|list|list-comp|set-comp|slice|partition|lambda|fn|(def[a-z\\-]*))(?=(\\s|\\)|\\]|\\}))",
+          "name": "keyword.control.hy"
+        },
+        {
+          "match": "(?<=(\\s|\\(|\\[|\\{))(butlast|coll\\?|cons|cons\\?|keyword\\?|dec|disassemble|distinct|filterfalse|zip-longest|filter|map|zip|range|input|reduce|cycle|repeat|drop-while|take-while|zipwith|remove|drop|drop-last|empty\\?|even\\?|every\\?|fake-source-positions|flatten|float\\?|gensym|calling-module-name|first|identity|inc|instance\\?|integer|integer\\?|integer-char\\?|interleave|interpose|iterable\\?|iterate|iterator\\?|list\\*|macroexpand|macroexpand-1|merge-with|neg\\?|none\\?|nil\\?|numeric\\?|nth|odd\\?|pos\\?|rest|repeatedly|second|some|string|string\\?|take|take-nth|zero\\?|read|hyify|keyword|name|fraction|last|read-str|symbol)(?=(\\s|\\)|\\]|\\}))",
+          "name": "keyword.other.hy"
+        }
+      ]
+    },
+    "dict": {
+      "begin": "(\\{)",
+      "end": "(\\})",
+      "name": "meta.dict.hy",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "quoted-sexp": {
+      "begin": "(['``]\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.section.expression.begin.hy"
+        }
+      },
+      "end": "(\\))(\\n)?",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.section.expression.end.hy"
+        },
+        "2": {
+          "name": "meta.after-expression.hy"
+        }
+      },
+      "name": "meta.quoted-expression.hy",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "regexp": {
+      "begin": "#\\\"",
+      "end": "\\\"",
+      "name": "string.regexp.hy",
+      "patterns": [
+        {
+          "include": "#regexp_escaped_char"
+        }
+      ]
+    },
+    "regexp_escaped_char": {
+      "match": "\\\\(\\\")",
+      "name": "string.regexp.hy"
+    },
+    "set": {
+      "begin": "(\\#\\{)",
+      "end": "(\\})",
+      "name": "meta.set.hy",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "sexp": {
+      "begin": "(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.section.expression.begin.hy"
+        }
+      },
+      "end": "(\\))(\\n)?",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.section.expression.end.hy"
+        },
+        "2": {
+          "name": "meta.after-expression.hy"
+        }
+      },
+      "name": "meta.expression.hy",
+      "patterns": [
+        {
+          "begin": "(?<=\\()(ns|def|def-|defn|defn-|defvar|defvar-|defmacro|defmacro-|deftest)\\s+(.+?)(?=\\s|\\))",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.hy"
+            },
+            "2": {
+              "name": "entity.global.hy"
+            }
+          },
+          "end": "(?=\\))",
+          "name": "meta.definition.global.hy",
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "shebang-comment": {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.shebang.hy"
+        }
+      },
+      "match": "^(\\#!).*$\\n?",
+      "name": "comment.line.semicolon.hy"
+    },
+    "string": {
+      "begin": "(\")",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.begin.hy"
+        }
+      },
+      "end": "(\")",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.hy"
+        }
+      },
+      "name": "string.quoted.double.hy",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.hy"
+        }
+      ]
+    },
+    "symbol": {
+      "patterns": [
+        {
+          "match": "(\\w[\\w\\d]+)",
+          "name": "meta.symbol.hy"
+        }
+      ]
+    },
+    "var": {
+      "match": "(?<=(\\s|\\(|\\[|\\{)\\#)'[a-zA-Z0-9\\.\\-\\_\\:\\+\\=\\>\\<\\/\\!\\?\\*]+(?=(\\s|\\)|\\]|\\}))",
+      "name": "meta.var.hy"
+    },
+    "list": {
+      "begin": "(\\[)",
+      "end": "(\\])",
+      "name": "meta.list.hy",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "whitespace": {
+      "match": "\\s+$",
+      "name": "invalid.trailing-whitespace"
+    }
+  }
+}

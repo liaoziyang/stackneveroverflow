@@ -1,0 +1,43 @@
+{
+  "fileTypes": [
+    "ur",
+    "urs",
+    "urp"
+  ],
+  "name": "UrWeb",
+  "patterns": [
+    {
+      "comment": "UrWeb keywords",
+      "match": "\\b(EQUAL|GREATER|LESS|NONE|SOME|abstraction|abstype|and|andalso|array|as|before|bool|case|char|datatype|do|else|end|eqtype|exception|exn|false|fn|fun|functor|handle|if|in|include|infix|infixr|int|let|list|local|nil|nonfix|not|o|of|op|open|option|orelse|overload|print|raise|real|rec|ref|sharing|sig|signature|string|struct|structure|substring|then|true|type|unit|val|vector|where|while|with|withtype|word)\\b",
+      "name": "keyword.source.ur"
+    },
+    {
+      "comment": "Numeric constants",
+      "match": "\\b[0-9]+\\b",
+      "name": "constant.numeric.ur"
+    },
+    {
+      "comment": "Built in types",
+      "match": "\\b[A-Z]([A-z0-9]*)\\b",
+      "name": "support.type.ur"
+    },
+    {
+      "comment": "String constant",
+      "match": "\"(\\\\\"|[^\"])*\"",
+      "name": "string.ur"
+    },
+    {
+      "begin": "\\(\\*",
+      "comment": "Comment",
+      "end": "\\*\\)",
+      "name": "comment.ur"
+    },
+    {
+      "comment": "Character",
+      "match": "(\\(\\)|=>|::|\\[\\]|->|:>)",
+      "name": "constant.character.ur"
+    }
+  ],
+  "scopeName": "source.ur",
+  "uuid": "65be9466-98df-11e4-b8aa-123b93f75cba"
+}

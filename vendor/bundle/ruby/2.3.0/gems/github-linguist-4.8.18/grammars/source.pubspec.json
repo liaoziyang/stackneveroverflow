@@ -1,0 +1,13 @@
+{
+  "fileTypes": [
+    "pubspec.yaml"
+  ],
+  "name": "Pubspec",
+  "patterns": [
+    {
+      "include": "source.yaml"
+    }
+  ],
+  "scopeName": "source.pubspec",
+  "uuid": "6ee48569-820e-4e1f-9f5c-71ed9516ecc5"
+}

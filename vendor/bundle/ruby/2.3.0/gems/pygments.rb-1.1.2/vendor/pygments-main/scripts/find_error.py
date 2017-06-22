@@ -1,0 +1,1 @@
+/Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/pygments.rb-1.1.2/vendor/pygments-main/scripts/debug_lexer.py

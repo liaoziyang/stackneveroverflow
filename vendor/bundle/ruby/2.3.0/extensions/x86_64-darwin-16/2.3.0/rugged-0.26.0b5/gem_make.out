@@ -1,0 +1,71 @@
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/rugged-0.26.0b5/ext/rugged
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20170622-9218-7cr7q3.rb extconf.rb
+checking for gmake... no
+checking for make... yes
+checking for cmake... yes
+checking for pkg-config... yes
+ -- cmake .. -DBUILD_CLAR=OFF -DTHREADSAFE=ON -DBUILD_SHARED_LIBS=OFF -DCMAKE_C_FLAGS=-fPIC -DCMAKE_BUILD_TYPE=RelWithDebInfo  
+ -- /usr/bin/make
+checking for main() in -lgit2... yes
+checking for git2.h... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0/rugged-0.26.0b5/mkmf.log
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/rugged-0.26.0b5/ext/rugged
+make "DESTDIR=" clean
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/rugged-0.26.0b5/ext/rugged
+make "DESTDIR="
+compiling rugged.c
+compiling rugged_backend.c
+compiling rugged_blame.c
+compiling rugged_blob.c
+compiling rugged_branch.c
+compiling rugged_branch_collection.c
+compiling rugged_commit.c
+rugged_commit.c:497:15: warning: implicit conversion loses integer precision: 'VALUE' (aka 'unsigned long') to 'int' [-Wshorten-64-to-32]
+        if ((error = parse_commit_options(&commit_data, repo, rb_data)) < 0)
+                   ~ ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_commit.c:747:15: warning: implicit conversion loses integer precision: 'VALUE' (aka 'unsigned long') to 'int' [-Wshorten-64-to-32]
+        if ((error = parse_commit_options(&commit_data, repo, rb_data)) < 0)
+                   ~ ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2 warnings generated.
+compiling rugged_config.c
+compiling rugged_cred.c
+compiling rugged_diff.c
+compiling rugged_diff_delta.c
+compiling rugged_diff_hunk.c
+compiling rugged_diff_line.c
+compiling rugged_index.c
+compiling rugged_note.c
+compiling rugged_object.c
+compiling rugged_patch.c
+compiling rugged_rebase.c
+compiling rugged_reference.c
+compiling rugged_reference_collection.c
+compiling rugged_remote.c
+compiling rugged_remote_collection.c
+compiling rugged_repo.c
+compiling rugged_revwalk.c
+compiling rugged_settings.c
+compiling rugged_signature.c
+compiling rugged_submodule.c
+compiling rugged_submodule_collection.c
+compiling rugged_tag.c
+compiling rugged_tag_collection.c
+compiling rugged_tree.c
+rugged_tree.c:616:13: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        nupdates = RARRAY_LEN(rb_updates);
+                 ~ ^~~~~~~~~~~~~~~~~~~~~~
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/include/ruby-2.3.0/ruby/ruby.h:1037:23: note: expanded from macro 'RARRAY_LEN'
+#define RARRAY_LEN(a) rb_array_len(a)
+                      ^~~~~~~~~~~~~~~
+1 warning generated.
+linking shared-object rugged/rugged.bundle
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/rugged-0.26.0b5/ext/rugged
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 rugged.bundle ./.gem.20170622-9218-xd7ohi/rugged

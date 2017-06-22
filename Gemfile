@@ -34,7 +34,12 @@ gem 'less-rails'
 gem 'therubyracer'
 # JavaScriptコードを実行するためのエンジン
 gem 'execjs'
-
+gem 'devise-bootstrap-views'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'qiita-markdown'
+gem 'github-linguist'
+gem 'gemoji'
 # Twitter社が提供しているCSSとJavaScriptのフレームワーク
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -42,6 +47,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'rails_admin'
+gem 'omniauth-twitter'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,0 +1,194 @@
+{
+  "scopeName": "source.batchfile",
+  "name": "Batch File",
+  "fileTypes": [
+    "bat",
+    "cmd"
+  ],
+  "foldingStartMarker": ".*\\(\\s*$",
+  "foldingStopMarker": "^\\s*\\)\\s*$",
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#constant"
+    },
+    {
+      "include": "#keyword"
+    },
+    {
+      "include": "#label"
+    },
+    {
+      "include": "#redirection"
+    },
+    {
+      "include": "#string"
+    },
+    {
+      "include": "#variable"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {
+          "captures": {
+            "1": "keyword.command.rem.batchfile"
+          },
+          "match": "^\\s*((?i)rem)(?:$|\\s.*$)",
+          "name": "comment.line.rem.batchfile"
+        },
+        {
+          "match": "^\\s*::.*$",
+          "name": "comment.line.colons.batchfile"
+        }
+      ]
+    },
+    "constant": {
+      "patterns": [
+        {
+          "match": "\\b(?i)nul\\b",
+          "name": "constant.language.nul.batchfile"
+        },
+        {
+          "match": "\\^",
+          "name": "constant.character.escape.batchfile"
+        }
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "match": "\\b(?i)(?:append|assoc|at|attrib|break|cacls|cd|chcp|chdir|chkdsk|chkntfs|cls|cmd|color|comp|compact|convert|copy|date|del|dir|diskcomp|diskcopy|doskey|endlocal|erase|fc|find|findstr|format|ftype|graftabl|help|keyb|label|md|mkdir|mode|more|move|path|pause|popd|print|prompt|pushd|rd|recover|rem|ren|rename|replace|restore|rmdir|set|setlocal|shift|sort|start|subst|time|title|tree|type|ver|verify|vol|xcopy)\\b",
+          "name": "keyword.command.batchfile"
+        },
+        {
+          "match": "\\b(?i)(echo)\\b(.*)\\n",
+          "captures": {
+            "1": {
+              "name": "keyword.command.batchfile"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "#variable"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "\\b(?i)(?:goto|call|exit)\\b",
+          "name": "keyword.control.statement.batchfile"
+        },
+        {
+          "match": "\\b(?i)if\\s+((not)\\s+)?(exist|defined|errorlevel|cmdextversion)\\b",
+          "name": "keyword.control.conditional.if.batchfile"
+        },
+        {
+          "match": "\\b(?i)(?:if|else)\\b",
+          "name": "keyword.control.conditional.batchfile"
+        },
+        {
+          "match": "\\b(?i)for\\b",
+          "name": "keyword.control.repeat.batchfile"
+        },
+        {
+          "match": "\\b(?i)(?:equ|neq|lss|leq|gtr|geq)\\b",
+          "name": "keyword.operator.batchfile"
+        },
+        {
+          "begin": "^\\s*(@)",
+          "beginCaptures": {
+            "1": "punctuation.definition.bold.silent.batchfile"
+          },
+          "end": "\\s+",
+          "name": "keyword.other.silent.batchfile",
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "label": {
+      "patterns": [
+        {
+          "match": ":[\\w][\\w -]+\\s",
+          "name": "keyword.other.special-method.batchfile"
+        }
+      ]
+    },
+    "redirection": {
+      "patterns": [
+        {
+          "match": "&>|\\d*>&\\d*|\\d*(>>|>|<)|\\d*<&|\\d*<>",
+          "name": "keyword.operator.redirect.batchfile"
+        }
+      ]
+    },
+    "string": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "beginCaptures": {
+            "0": "punctuation.definition.string.begin.batchfile"
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": "punctuation.definition.string.end.batchfile"
+          },
+          "name": "string.quoted.double.batchfile",
+          "patterns": [
+            {
+              "include": "#variable"
+            }
+          ]
+        },
+        {
+          "begin": "'",
+          "beginCaptures": {
+            "0": "punctuation.definition.string.begin.batchfile"
+          },
+          "end": "'",
+          "endCaptures": {
+            "0": "punctuation.definition.string.end.batchfile"
+          },
+          "name": "string.quoted.single.batchfile",
+          "patterns": [
+            {
+              "include": "#variable"
+            }
+          ]
+        }
+      ]
+    },
+    "variable": {
+      "patterns": [
+        {
+          "match": "%[\\d\\*]",
+          "name": "variable.other.argument.batchfile"
+        },
+        {
+          "match": "%%[A-Za-z]",
+          "name": "variable.other.local.batchfile"
+        },
+        {
+          "match": "%{1,2}~[fdpnxsatz]*(\\$[\\w]+:)?[A-Za-z0-9]",
+          "name": "variable.other.expanded.batchfile"
+        },
+        {
+          "match": "%[\\w -]+?(:~\\-?\\d+(,\\-?\\d+)?|:.+?=.*?)?%",
+          "name": "variable.other.environment.batchfile"
+        },
+        {
+          "match": "![\\w -]+?!",
+          "name": "variable.other.environment.batchfile"
+        }
+      ]
+    }
+  }
+}

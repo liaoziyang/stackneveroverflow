@@ -1,0 +1,136 @@
+{
+  "fileTypes": [
+
+  ],
+  "firstLineMatch": "^\\\\documentclass(\\[.*\\])?\\{memoir\\}",
+  "keyEquivalent": "^~M",
+  "name": "LaTeX Memoir",
+  "patterns": [
+    {
+      "begin": "(?:\\s*)((\\\\)begin)(\\{)(framed|shaded|leftbar)(\\})",
+      "captures": {
+        "1": {
+          "name": "support.function.be.latex"
+        },
+        "2": {
+          "name": "punctuation.definition.function.latex"
+        },
+        "3": {
+          "name": "punctuation.definition.arguments.begin.latex"
+        },
+        "4": {
+          "name": "variable.parameter.function.latex"
+        },
+        "5": {
+          "name": "punctuation.definition.arguments.end.latex"
+        }
+      },
+      "end": "((\\\\)end)(\\{)(\\4)(\\})",
+      "name": "meta.function.memoir-fbox.latex",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "begin": "(?:\\s*)((\\\\)begin)(\\{)((?:fboxv|boxedv|V)erbatim)(\\})",
+      "captures": {
+        "1": {
+          "name": "support.function.be.latex"
+        },
+        "2": {
+          "name": "punctuation.definition.function.latex"
+        },
+        "3": {
+          "name": "punctuation.definition.arguments.begin.latex"
+        },
+        "4": {
+          "name": "variable.parameter.function.latex"
+        },
+        "5": {
+          "name": "punctuation.definition.arguments.end.latex"
+        }
+      },
+      "contentName": "markup.raw.verbatim.latex",
+      "end": "((\\\\)end)(\\{)(\\4)(\\})",
+      "name": "meta.function.memoir-verbatim.latex"
+    },
+    {
+      "begin": "(?:\\s*)((\\\\)begin)(\\{)(alltt)(\\})",
+      "captures": {
+        "1": {
+          "name": "support.function.be.latex"
+        },
+        "2": {
+          "name": "punctuation.definition.function.latex"
+        },
+        "3": {
+          "name": "punctuation.definition.arguments.begin.latex"
+        },
+        "4": {
+          "name": "variable.parameter.function.latex"
+        },
+        "5": {
+          "name": "punctuation.definition.arguments.end.latex"
+        }
+      },
+      "contentName": "markup.raw.verbatim.latex",
+      "end": "((\\\\)end)(\\{)(alltt)(\\})",
+      "name": "meta.function.memoir-alltt.latex",
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.function.tex"
+            }
+          },
+          "match": "(\\\\)[A-Za-z]+",
+          "name": "support.function.general.tex"
+        }
+      ]
+    },
+    {
+      "begin": "(?x)\n\t\t\t\t(\t\t\t\t\t\t\t\t\t\t\t\t\t    # Capture 1\n\t\t\t\t\t(\\\\)\t\t\t\t\t\t\t\t\t\t\t  # Marker\n\t\t\t\t\t(\n\t\t\t\t\t\t(?:sub){0,2}section\t\t\t  # Functions\n\t\t\t\t\t  | (?:sub)?paragraph\n\t\t\t\t\t  | chapter|part|addpart\n\t\t\t\t\t  | addchap|addsec|minisec\n\t\t\t\t\t)\n\t\t\t\t\t(?:\\*)?\t\t\t\t\t\t\t\t\t\t\t# Optional Unnumbered\n\t\t\t\t)\n\t\t\t\t(?:\n\t\t\t\t\t(\\[)([^\\[]*?)(\\])\t\t\t\t\t\t# Options for TOC- and Header-Name\n\t\t\t\t){0,2}?\n\t\t\t\t(\\{)\t\t\t\t\t\t\t\t\t\t\t\t  # Opening Bracket\n\t\t\t\t",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.section.latex"
+        },
+        "2": {
+          "name": "punctuation.definition.function.latex"
+        },
+        "4": {
+          "name": "punctuation.definition.arguments.optional.begin.latex"
+        },
+        "5": {
+          "name": "entity.name.section.latex"
+        },
+        "6": {
+          "name": "punctuation.definition.arguments.optional.end.latex"
+        },
+        "7": {
+          "name": "punctuation.definition.arguments.begin.latex"
+        }
+      },
+      "comment": "This definition is a copy of the one for the main LaTeX grammar. The only difference is that the Memoir document class supports *two optional arguments* instead of only one.",
+      "contentName": "entity.name.section.latex",
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.arguments.end.latex"
+        }
+      },
+      "name": "meta.function.section.$3.latex",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    {
+      "include": "text.tex.latex"
+    }
+  ],
+  "scopeName": "text.tex.latex.memoir",
+  "uuid": "D0853B20-ABFF-48AB-8AB9-3D8BA0755C05"
+}

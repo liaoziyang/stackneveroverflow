@@ -1,0 +1,104 @@
+{
+  "fileTypes": [
+    "LS"
+  ],
+  "name": "Fanuc (Ls)",
+  "patterns": [
+    {
+      "captures": {
+        "1": {
+          "name": "support.constant.LS"
+        }
+      },
+      "comment": "CNT Moves: CNT100",
+      "match": "((CNT|ACC)([A-Za-z0-9_]+))|(FINE)",
+      "name": "support.constant.LS"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.constant.LS"
+        }
+      },
+      "comment": "Motion C J L",
+      "match": "([0-9]+)(:)(C|J|L|\\s)",
+      "name": "support.constant.LS"
+    },
+    {
+      "comment": "GP#",
+      "match": "(GP)([0-9]+)(:)",
+      "name": "keyword.LS"
+    },
+    {
+      "comment": "Keywords",
+      "match": "(mm/sec|mm|deg|MNEDITOR)",
+      "name": "keyword.LS"
+    },
+    {
+      "comment": "Number",
+      "match": "((-)?(\\d+)((.|,)\\d)?(%)?)",
+      "name": "constant.numeric.LS"
+    },
+    {
+      "begin": "(P)(\\[)([0-9]+)",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.LS"
+        },
+        "3": {
+          "name": "variable.parameter.LS"
+        }
+      },
+      "comment": "P[45654]",
+      "end": "(\\])",
+      "name": "entity.name.function.LS"
+    },
+    {
+      "comment": "Comment",
+      "match": "(!.*$)",
+      "name": "comment.number-sign.LS"
+    },
+    {
+      "comment": "Constants ",
+      "match": "\\s(READ_WRITE)",
+      "name": "support.variable.LS"
+    },
+    {
+      "comment": "Variables provided by the framework (set1)",
+      "match": "\\s?(UFRAME_NUM|UTOOL_NUM|CONFIG|CONTROL_CODE|DEFAULT_GROUP|PAUSE_REQUEST|ABORT_REQUEST|BUSY_LAMP_OFF|TIME_SLICE|TASK_PRIORITY|STACK_SIZE|PROTECT|MEMORY_SIZE|LINE_COUNT|VERSION|FILE_NAME|MODIFIED|CREATE|PROG_SIZE|COMMENT|OWNER)\\s",
+      "name": "support.variable.LS"
+    },
+    {
+      "comment": "Variables provided by the framework (set2)",
+      "match": "\\s?(X|Y|Z|W|P|R|J1|J2|J3|J4|J5|J6|UF|UT)\\s",
+      "name": "support.variable.LS"
+    },
+    {
+      "comment": "Actions",
+      "match": "\\s(ABORT|Assignment|CANCEL|CONTINUE|DISABLE|ENABLE|HOLD|NOABORT|NOMESSAGE|NOPAUSE|PAUSE|Port_Id|PULSE|RESUME|SIGNAL|EVENT|SEMAPHORE|STOP|UNHOLD|UNPAUSE)\\s",
+      "name": "keyword.LS"
+    },
+    {
+      "comment": "Clauses",
+      "match": "\\s(EVAL|FROM|IN|NOWAIT|UNTIL|VIA|WHEN|WITH)\\s",
+      "name": "keyword.LS"
+    },
+    {
+      "comment": "Data types",
+      "match": "\\s?(ARRAY|BOOLEAN|BYTE|CONFIG|DISP_DAT_T|FILE|GROUP_ASSOC|INTEGER|JOINTPOS|PATH|POSITION|QUEUE_TYPE|REAL|SHORT|STD_PTH_NODE|STRING|VECTOR|XYZWPR|XYZWPREXT)\\s",
+      "name": "entity.name.type.LS"
+    },
+    {
+      "comment": "String",
+      "match": "\".*?\"",
+      "name": "string.quoted.double.LS"
+    },
+    {
+      "comment": "String",
+      "match": "\\'.*?\\'",
+      "name": "string.quoted.single.LS"
+    }
+  ],
+  "scopeName": "source.LS",
+  "uuid": "e208226c-4aad-4333-87d3-f89de3fb8965"
+}

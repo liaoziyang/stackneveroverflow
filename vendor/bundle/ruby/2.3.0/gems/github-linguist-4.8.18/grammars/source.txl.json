@@ -1,0 +1,62 @@
+{
+  "fileTypes": [
+    "txl",
+    "grm"
+  ],
+  "name": "TXL",
+  "patterns": [
+    {
+      "comment": "Main keywords",
+      "match": "\\b(?<!')(define|end|function|keys|compounds|tokens|comments|replace|construct|by|replace|rule|deconstruct|not|where|all|not|assert|export|import|redefine|external|match|skipping|include|then)\\b",
+      "name": "keyword.control"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.control"
+        }
+      },
+      "comment": "Preprocessor keywords",
+      "match": "(?<!')#\\s*(pragma|endif|else|define|undef|undefine|ifn|elifn|elifdef|elifndef|ifndef|ifdef|if|end)",
+      "name": "meta.preprocessor"
+    },
+    {
+      "begin": "(?<!')%[\\({]",
+      "comment": "Multi-line comments",
+      "end": "(?<!')[\\)}]%",
+      "name": "comment"
+    },
+    {
+      "comment": "Comments",
+      "match": "(?<!')%.*",
+      "name": "comment"
+    },
+    {
+      "comment": "Built in functions, conditionals, repeats, etc",
+      "match": "(?<!')\\[(not|opt|repeat|list|see|push|pop|\\+|-|/|\\*|=|<|>|\\^|\\.|div|rem|:|#|index|_|length|select|head|tail|,|~=|>=|<=|grep|\\$|quote|unquote|parse|unparse|reparse|typeof|istype|read|write|fget|getp|fput|putp|fputp|fputs|fclose|fopen|fgets|message|pragma|quit|system|pipe|attr) .+?\\]",
+      "name": "entity.name.function"
+    },
+    {
+      "comment": "Formatting hints",
+      "match": "(?<!')\\[(NL|EX(_\\d+)?|IN(_\\d+)?|SP(_\\d+)?|TAB(_\\d+)?|SPON|SPOFF|\\!|round|trunc|toupper|tolower|get|put|gets|print|printattr|debug|breakpoint)\\]",
+      "name": "constant.language"
+    },
+    {
+      "comment": "Regular non-terminals",
+      "match": "(?<!')\\[.+?\\]",
+      "name": "storage.type"
+    },
+    {
+      "comment": "Numbers (including floating point)",
+      "match": "\\b(\\d+)|(\\d+\\.\\d+([\\+-][Ee]\\d+)?)\\b",
+      "name": "constant.numeric"
+    },
+    {
+      "comment": "String literals",
+      "match": "\".*\"",
+      "name": "string.quoted.double"
+    }
+  ],
+  "scopeName": "source.txl",
+  "uuid": "fd861065-7297-4ca1-bd27-2568e7d7a654"
+}

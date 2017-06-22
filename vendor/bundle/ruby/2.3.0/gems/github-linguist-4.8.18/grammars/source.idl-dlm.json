@@ -1,0 +1,112 @@
+{
+  "fileTypes": [
+    "dlm"
+  ],
+  "name": "IDL DLM",
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#header_keyword"
+    },
+    {
+      "include": "#routine_declaration"
+    },
+    {
+      "include": "#structure_declaration"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "meta.toc-list.banner.divider.idl-dlm"
+            }
+          },
+          "match": "^#(=)\\s*$\\n",
+          "name": "comment.line.banner.divider.idl-dlm"
+        },
+        {
+          "captures": {
+            "0": {
+              "name": "meta.toc-list.banner.line.idl-dlm"
+            }
+          },
+          "match": "^#=\\s*(.*?)\\s*$\\n?",
+          "name": "comment.line.banner.idl-dlm"
+        },
+        {
+          "begin": "(^[ \\t]+)?(?<!\\S)(?=#)(?!#\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.idl-dlm"
+            }
+          },
+          "end": "(?!\\G)",
+          "patterns": [
+            {
+              "begin": "#",
+              "beginCaptures": {
+                "0": {
+                  "name": "punctuation.definition.comment.idl-dlm"
+                }
+              },
+              "end": "\\n",
+              "name": "comment.line.idl-dlm"
+            }
+          ]
+        }
+      ]
+    },
+    "header_keyword": {
+      "captures": {
+        "0": {
+          "name": "meta.toc-list.banner.line.idl-dlm"
+        },
+        "1": {
+          "name": "keyword.control.idl-dlm"
+        }
+      },
+      "comment": "Header keywords",
+      "match": "(?i)\\b(module|description|version|source|build_date|checksum)(.*)\\b"
+    },
+    "routine_declaration": {
+      "captures": {
+        "1": {
+          "name": "keyword.control.idl-dlm"
+        },
+        "2": {
+          "name": "entity.name.function.idl"
+        },
+        "3": {
+          "name": "constant.numeric.idl"
+        },
+        "4": {
+          "name": "constant.numeric.idl"
+        },
+        "5": {
+          "name": "entity.other.attribute"
+        }
+      },
+      "comment": "Routine declaration",
+      "match": "(?i)^\\s*(function|procedure)\\s+([a-zA-Z0-9_$]+:?:?[a-zA-Z0-9_$]*)\\s+([0-9]+)\\s+([0-9]+|IDL_MAXPARAMS)\\s+(((keywords|obsolete)\\s+)*)"
+    },
+    "structure_declaration": {
+      "captures": {
+        "1": {
+          "name": "keyword.control.idl-dlm"
+        },
+        "2": {
+          "name": "support.function.idl"
+        }
+      },
+      "comment": "Structure declaration",
+      "match": "(?i)^\\s*(structure)\\s+([a-zA-Z0-9_$]+)"
+    }
+  },
+  "scopeName": "source.idl-dlm",
+  "uuid": "7FC8175C-9E9A-49F0-B81E-A49C57775A7F"
+}

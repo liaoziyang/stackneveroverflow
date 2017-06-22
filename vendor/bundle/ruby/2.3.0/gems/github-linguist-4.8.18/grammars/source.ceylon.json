@@ -1,0 +1,77 @@
+{
+  "fileTypes": [
+    "ceylon"
+  ],
+  "foldingStartMarker": "(\\{\\s*(//.*)?$|^\\s*// \\{\\{\\{)",
+  "foldingStopMarker": "^\\s*(\\}|// \\}\\}\\}$)",
+  "keyEquivalent": "^~C",
+  "name": "Ceylon",
+  "patterns": [
+    {
+      "begin": "/\\*",
+      "end": "\\*/",
+      "name": "comment.multiline.ceylon"
+    },
+    {
+      "match": "//.*$",
+      "name": "comment.singleline.ceylon"
+    },
+    {
+      "match": "^#!/.*$",
+      "name": "comment.shebang.ceylon"
+    },
+    {
+      "begin": "^\\s*(import)",
+      "end": "\\{",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.ceylon"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "pontuation.import.ceylon"
+        }
+      },
+      "contentName": "variable.parameter.package.ceylon"
+    },
+    {
+      "match": "\\b(assembly|module|package|import|alias|class|interface|object|given|value|assign|void|function|new|of|extends|satisfies|adapts|abstracts|in|out|return|break|continue|throw|assert|dynamic|if|else|switch|case|for|while|try|catch|finally|then|let|this|outer|super|is|exists|nonempty)\\b",
+      "name": "keyword.control.ceylon"
+    },
+    {
+      "match": "\\b(doc|by|license|see|throws|tagged|shared|abstract|formal|default|actual|variable|late|native|deprecated|final|sealed|annotation|suppressWarnings)\\b",
+      "name": "keyword.other.ceylon"
+    },
+    {
+      "match": "([A-Z][a-zA-Z0-9_]*|\\\\I[a-zA-Z0-9_]+)",
+      "name": "entity.name.class.ceylon"
+    },
+    {
+      "match": "([a-z][a-zA-Z0-9_]*|\\\\i[a-zA-Z0-9_]+)",
+      "name": "variable.other.ceylon"
+    },
+    {
+      "begin": "(\"\"\"|\"|')",
+      "end": "\\1",
+      "name": "string.ceylon"
+    },
+    {
+      "match": "\\$(([01]+(_[01]+)+)|[01]+)",
+      "name": "constant.numeric.binary.ceylon"
+    },
+    {
+      "match": "#(([0-9ABCDEF]+(_[0-9ABCDEF]+)+)|[0-9ABCDEF]+)",
+      "name": "constant.numeric.hexa.ceylon"
+    },
+    {
+      "match": "-?(([0-9]+(_[0-9]+)+)|[0-9]+)\\.(([0-9]+(_[0-9]+)+)|[0-9]+)(([eE]-?(([0-9]+(_[0-9]+)+)|[0-9]+))|[kmgtpKMGTP])?",
+      "name": "constant.numeric.floating.ceylon"
+    },
+    {
+      "match": "-?(([0-9]+(_[0-9]+)+)|[0-9]+)[kmgtpKMGTP]?",
+      "name": "constant.numeric.decimal.ceylon"
+    }
+  ],
+  "scopeName": "source.ceylon"
+}

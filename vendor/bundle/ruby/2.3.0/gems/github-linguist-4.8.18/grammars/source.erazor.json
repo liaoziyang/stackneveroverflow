@@ -1,0 +1,126 @@
+{
+  "fileTypes": [
+    "erazor",
+    "ehtml",
+    "erazor.html"
+  ],
+  "foldingStartMarker": "\\{\\s*$",
+  "foldingStopMarker": "^\\s*\\}",
+  "name": "Erazor (HTML)",
+  "patterns": [
+    {
+      "include": "#controlblock"
+    },
+    {
+      "include": "#function"
+    },
+    {
+      "include": "#else"
+    },
+    {
+      "include": "#variables"
+    },
+    {
+      "include": "#scriptblock"
+    },
+    {
+      "include": "text.html.basic"
+    }
+  ],
+  "repository": {
+    "scriptblock": {
+      "begin": "@\\{",
+      "end": "\\}",
+      "name": "source.hscript",
+      "beginCaptures": {
+        "0": {
+          "name": "entity.name.tag.erazor"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "entity.name.tag.erazor"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#codeblock"
+        },
+        {
+          "include": "source.haxe.2"
+        }
+      ]
+    },
+    "function": {
+      "begin": "(@([a-zA-Z.]+)?)(\\()",
+      "end": "\\)",
+      "name": "source.erazor",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.erazor"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.haxe.2"
+        }
+      ]
+    },
+    "controlblock": {
+      "begin": "(@(if|else|while|for))(\\()",
+      "end": "\\)",
+      "name": "source.erazor",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.haxe.flow-control.2"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.haxe.2"
+        }
+      ]
+    },
+    "codeblock": {
+      "begin": "\\{",
+      "end": "\\}",
+      "name": "source.erazor",
+      "patterns": [
+        {
+          "include": "#codeblock"
+        },
+        {
+          "include": "source.haxe.2"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "match": "(@[A-Za-z0-9_.]+)",
+          "name": "source.erazor",
+          "captures": {
+            "1": {
+              "name": "entity.name.variable.erazor"
+            }
+          }
+        }
+      ]
+    },
+    "else": {
+      "patterns": [
+        {
+          "match": "\\}(else)\\{",
+          "name": "source.erazor",
+          "captures": {
+            "1": {
+              "name": "keyword.control.haxe.flow-control.2"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "scopeName": "source.erazor",
+  "uuid": "93706aaa-9b66-4e9e-bb64-31a8ffcfb00e"
+}

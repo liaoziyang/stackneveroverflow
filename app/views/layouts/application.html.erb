@@ -18,18 +18,28 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Q&A</a>
+            <%= link_to "Q&A", root_path, class: "navbar-brand" %>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li><a href="questions/index.html">Questions</a></li>
+              <li><%= link_to "Question", questions_path %></li>
             </ul>
+            <% if user_signed_in? %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><%= current_user.email %><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Settings", edit_user_registration_path %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+              </ul>
+            </li>
+            <% else %>
             <ul class="navbar-form navbar-right">
               <%= link_to (button_tag "Sign up", type: 'button', :class => 'btn btn-default'), new_user_registration_path %>
               <%= link_to (button_tag "Sign in", type: 'button', :class => 'btn btn-default'), new_user_session_path %>
             </ul>
+            <% end %>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>

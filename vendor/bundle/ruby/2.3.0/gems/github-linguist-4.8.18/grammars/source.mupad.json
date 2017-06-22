@@ -1,0 +1,149 @@
+{
+  "comment": "MuPAD code -- christopher.creutzig@mathworks.com, based on Pascal mode by chris@cjack.com.",
+  "fileTypes": [
+    "mu",
+    "tst"
+  ],
+  "foldingStartMarker": "\\b(proc|domain|case|if|%if|for|while|repeat)\\b",
+  "foldingStopMarker": "\\b(end|end_proc|end_domain|end_case|end_if|end_for|end_while|end_repeat)\\b",
+  "highlightPairs": [
+    [
+      "(",
+      ")"
+    ],
+    [
+      "[",
+      "]"
+    ],
+    [
+      "{",
+      "}"
+    ]
+  ],
+  "name": "MuPAD",
+  "patterns": [
+    {
+      "match": "\\b(axiom|end_axiom|category|end_category|begin|break|case|do|downto|elif|else|end_case|end_for|end_if|end_proc|end_repeat|end_while|for|from|if|%if|local|name|next|of|option|otherwise|proc|quit|repeat|save|step|then|to|until|while|domain|end|inherits|end_domain)\\b",
+      "name": "keyword.control.mupad"
+    },
+    {
+      "match": "\\b(and|div|in|intersect|minus|mod|not|or|union|xor|->|-->|\\+|-|\\*|/|>|<|<>|=|<=>|<==|==>|\\|)\\b",
+      "name": "keyword.operator.mupad"
+    },
+    {
+      "match": "\\b(E|FAIL|FALSE|I|NIL|TRUE|UNKNOWN|PI|EULER|CATALAN|infinity|undefined)\\b",
+      "name": "constant.language.mupad"
+    },
+    {
+      "match": "(\\b[a-zA-Z_#]\\w*\\b|`.*?`)",
+      "name": "entity.name.variable.mupad"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "entity.name.function.mupad"
+        },
+        "2": {
+          "name": "variable.parameter.mupad"
+        }
+      },
+      "match": "(?:\\b([a-zA-Z_]w+(?:::\\w+)*|`.*?`)\\s*:=\\s*)\\bproc\\b\\s*\\((.*?)\\)",
+      "name": "declaration.function.mupad.one"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "entity.name.function.mupad"
+        },
+        "2": {
+          "name": "variable.parameter.mupad"
+        }
+      },
+      "match": "(?:\\b([a-zA-Z_]w+(?:::\\w+)*|`.*?`)\\s*:=\\s*)\\s*\\((.*?)\\)\\s*--?>",
+      "name": "declaration.function.mupad.two"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "entity.name.function.mupad"
+        },
+        "2": {
+          "name": "variable.parameter.mupad"
+        }
+      },
+      "match": "(?:\\b([a-zA-Z_]w+(?:::\\w+)*|`.*?`)\\s*:=\\s*)\\s*(\\w+)\\s*--?>",
+      "name": "declaration.function.mupad.three"
+    },
+    {
+      "match": "\\b(([0-9]+\\.?[0-9]*)((e|E)(\\+|-)?[0-9]+)?)\\b",
+      "name": "constant.numeric.mupad"
+    },
+    {
+      "begin": "//",
+      "end": "$",
+      "name": "comment.line.double-slash.mupad",
+      "patterns": [
+        {
+          "include": "text.plain"
+        }
+      ]
+    },
+    {
+      "include": "#blockcomment"
+    },
+    {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.mupad",
+      "patterns": [
+        {
+          "include": "#string_escaped_char"
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "blockcomment": {
+      "begin": "/\\*",
+      "end": "\\*/",
+      "name": "comment.block.mupad",
+      "patterns": [
+        {
+          "include": "#blockcomment"
+        }
+      ]
+    },
+    "string_escaped_char": {
+      "patterns": [
+        {
+          "match": "\\\\(\\\\|[bntr\"])",
+          "name": "constant.character.escape.mupad"
+        },
+        {
+          "match": "\\\\.",
+          "name": "invalid.illegal.unknown-escape.mupad"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.mupad",
+  "smartTypingPairs": [
+    [
+      "(",
+      ")"
+    ],
+    [
+      "[",
+      "]"
+    ],
+    [
+      "{",
+      "}"
+    ],
+    [
+      "\"",
+      "\""
+    ]
+  ],
+  "uuid": "341D8B40-5DAB-476A-B0CD-90D87D735E33"
+}

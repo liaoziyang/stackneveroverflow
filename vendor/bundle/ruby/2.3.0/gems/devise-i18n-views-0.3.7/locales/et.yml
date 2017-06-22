@@ -1,0 +1,67 @@
+et:
+  activerecord:
+    attributes:
+      user:
+        current_password: Praegune parool
+        email: E-post
+        password: Parool
+        password_confirmation: Parooli kinnitus
+        remember_me: Hoia mind meeles
+    models:
+      user: Kasutaja
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: Saada kinnitusjuhend uuesti
+    mailer:
+      confirmation_instructions:
+        action: Kinnita konto
+        greeting: Teretulemast %{recipient}!
+        instruction: 'Oma konto saad kinnitada alloleva lingi kaudu:'
+      reset_password_instructions:
+        action: Muuda parooli
+        greeting: Tere %{recipient}!
+        instruction: Keegi on soovinud muuta sinu parooli, saad seda teha alloleva lingi kaudu.
+        instruction_2: Kui sa ei ole seda soovinud, palun ignoreeri seda kirja.
+        instruction_3: Sinu parool ei muutu enne kui sa oled külastanud eelolevat linki ja uue parooli sisestanud.
+      unlock_instructions:
+        action: Ava konto
+        greeting: Tere %{recipient}!
+        instruction: Vajuta allolevale lingile, et oma konto avada
+        message: Sinu konto on lukustatud liigsete ebaõnnestunud sisselogimiskatsete tõttu
+    passwords:
+      edit:
+        change_my_password: Muuda parooli
+        change_your_password: Muuda oma parool
+        confirm_new_password: Kinnita uus parool
+        new_password: Uus parool
+      new:
+        forgot_your_password: Unustasid oma parooli?
+        send_me_reset_password_instructions: Saada parooli ennistamise juhend
+    registrations:
+      edit:
+        are_you_sure: Oled sa kindel?
+        cancel_my_account: Kustuta konto
+        currently_waiting_confirmation_for_email: 'Kinnituse ootel: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: jäta tühjaks, kui sa ei soovi seda muuta
+        title: Muuda %{resource}
+        unhappy: "Õnnetu"
+        update: Uuenda
+        we_need_your_current_password_to_confirm_your_changes: meil on vaja sinu praegust parooli, et muutused kinnitada
+      new:
+        sign_up: Loo konto
+    sessions:
+      new:
+        sign_in: Logi sisse
+    shared:
+      links:
+        back: Tagasi
+        didn_t_receive_confirmation_instructions: Ei saanud kinnitusjuhiseid?
+        didn_t_receive_unlock_instructions: Ei saanud konto avamise juhiseid?
+        forgot_your_password: Unustasid oma parooli?
+        sign_in: Logi sisse
+        sign_in_with_provider: Logi sisse %{provider}-ga
+        sign_up: Loo konto
+    unlocks:
+      new:
+        resend_unlock_instructions: Saada konto avamise juhised uuesti

@@ -1,0 +1,13 @@
+prefix=/usr/local
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libgit2
+Description: The git library, take 2
+Version: 0.25.0
+
+Libs: -L"${libdir}" -lgit2
+Libs.private: -framework Security -framework CoreFoundation -lcurl -lz -L/usr/lib -liconv
+Requires.private: 
+
+Cflags: -I${includedir}

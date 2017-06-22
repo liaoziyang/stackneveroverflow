@@ -1,0 +1,73 @@
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/greenmat-3.2.2.3/ext/greenmat
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20170622-9218-24c9k2.rb extconf.rb
+creating Makefile
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/greenmat-3.2.2.3/ext/greenmat
+make "DESTDIR=" clean
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/greenmat-3.2.2.3/ext/greenmat
+make "DESTDIR="
+compiling autolink.c
+compiling buffer.c
+compiling gm_markdown.c
+compiling gm_render.c
+compiling houdini_href_e.c
+compiling houdini_html_e.c
+compiling html.c
+html.c:129:4: warning: variable 'cls' is uninitialized when used here [-Wuninitialized]
+                        cls++;
+                        ^~~
+html.c:126:16: note: initialize the variable 'cls' to silence this warning
+                size_t i, cls;
+                             ^
+                              = 0
+html.c:290:57: warning: passing 'const struct buf *' to parameter of type 'struct buf *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+                bufprintf(ob, "<h%d id=\"%s\">", level, header_anchor(text));
+                                                                      ^~~~
+html.c:268:33: note: passing argument to parameter 'text' here
+char *header_anchor(struct buf *text)
+                                ^
+html.c:638:51: warning: passing 'const struct buf *' to parameter of type 'struct buf *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+                bufprintf(ob, "<a href=\"#%s\">", header_anchor(text));
+                                                                ^~~~
+html.c:268:33: note: passing argument to parameter 'text' here
+char *header_anchor(struct buf *text)
+                                ^
+3 warnings generated.
+compiling html_smartypants.c
+html_smartypants.c:92:39: warning: initializing 'char *' with an expression of type 'const char [2]' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+        static char* single_quote_list[] = { "'", "&#39;", "&#x27;", "&apos;", NULL };
+                                             ^~~
+html_smartypants.c:92:44: warning: initializing 'char *' with an expression of type 'const char [6]' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+        static char* single_quote_list[] = { "'", "&#39;", "&#x27;", "&apos;", NULL };
+                                                  ^~~~~~~
+html_smartypants.c:92:53: warning: initializing 'char *' with an expression of type 'const char [7]' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+        static char* single_quote_list[] = { "'", "&#39;", "&#x27;", "&apos;", NULL };
+                                                           ^~~~~~~~
+html_smartypants.c:92:63: warning: initializing 'char *' with an expression of type 'const char [7]' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+        static char* single_quote_list[] = { "'", "&#39;", "&#x27;", "&apos;", NULL };
+                                                                     ^~~~~~~~
+html_smartypants.c:133:25: warning: implicit conversion loses integer precision: 'size_t' (aka 'unsigned long') to 'int' [-Wshorten-64-to-32]
+                int next_squote_len = squote_len(text+1, size-1);
+                    ~~~~~~~~~~~~~~~   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+html_smartypants.c:137:30: warning: comparison of integers of different signs: 'size_t' (aka 'unsigned long') and 'int' [-Wsign-compare]
+                        uint8_t next_char = (size > 1+next_squote_len) ? text[1+next_squote_len] : 0;
+                                             ~~~~ ^ ~~~~~~~~~~~~~~~~~
+html_smartypants.c:238:12: warning: implicit conversion loses integer precision: 'size_t' (aka 'unsigned long') to 'int' [-Wshorten-64-to-32]
+        int len = squote_len(text, size);
+            ~~~   ^~~~~~~~~~~~~~~~~~~~~~
+7 warnings generated.
+compiling markdown.c
+markdown.c:90:15: warning: unused function 'char_underline' [-Wunused-function]
+static size_t char_underline(struct buf *ob, struct sd_markdown *rndr, uint8_t *data, size_t offset, size_t size);
+              ^
+markdown.c:91:15: warning: unused function 'char_highlight' [-Wunused-function]
+static size_t char_highlight(struct buf *ob, struct sd_markdown *rndr, uint8_t *data, size_t offset, size_t size);
+              ^
+2 warnings generated.
+compiling stack.c
+linking shared-object greenmat.bundle
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/greenmat-3.2.2.3/ext/greenmat
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 greenmat.bundle ./.gem.20170622-9218-1rewwsq

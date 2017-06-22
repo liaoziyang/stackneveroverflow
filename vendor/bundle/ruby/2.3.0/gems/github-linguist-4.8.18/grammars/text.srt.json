@@ -1,0 +1,169 @@
+{
+  "name": "SRT Subtitle",
+  "scopeName": "text.srt",
+  "fileTypes": [
+    "srt"
+  ],
+  "patterns": [
+    {
+      "include": "#subtitle"
+    }
+  ],
+  "repository": {
+    "subtitle": {
+      "begin": "\\b\\d+$",
+      "beginCaptures": {
+        "0": {
+          "name": "entity.name.section.srt"
+        }
+      },
+      "end": "^\\s*$",
+      "patterns": [
+        {
+          "include": "#time"
+        },
+        {
+          "include": "#sound"
+        },
+        {
+          "include": "#person"
+        },
+        {
+          "include": "#bold"
+        },
+        {
+          "include": "#italic"
+        },
+        {
+          "include": "#underline"
+        },
+        {
+          "include": "#font"
+        }
+      ],
+      "name": "meta.subtitle.srt"
+    },
+    "time": {
+      "match": "^(\\d{2}:\\d{2}:\\d{2},\\d{3})\\s*(-->)\\s*(\\d{2}:\\d{2}:\\d{2},\\d{3})$",
+      "captures": {
+        "1": {
+          "name": "constant.numeric.time.srt"
+        },
+        "2": {
+          "name": "punctuation.definition.separator.srt"
+        },
+        "3": {
+          "name": "constant.numeric.time.srt"
+        }
+      }
+    },
+    "sound": {
+      "match": "\\[.*?\\]|\\(.*?\\)",
+      "name": "string.quoted.other.sound.srt"
+    },
+    "person": {
+      "match": "^\\w+:",
+      "name": "entity.name.tag.srt"
+    },
+    "bold": {
+      "begin": "(?i)<b>",
+      "end": "(?i)</b>",
+      "patterns": [
+        {
+          "include": "#sound"
+        },
+        {
+          "include": "#person"
+        },
+        {
+          "include": "#bold"
+        },
+        {
+          "include": "#italic"
+        },
+        {
+          "include": "#underline"
+        },
+        {
+          "include": "#font"
+        }
+      ],
+      "name": "markup.bold.srt"
+    },
+    "italic": {
+      "begin": "(?i)<i>",
+      "end": "(?i)</i>",
+      "patterns": [
+        {
+          "include": "#sound"
+        },
+        {
+          "include": "#person"
+        },
+        {
+          "include": "#bold"
+        },
+        {
+          "include": "#italic"
+        },
+        {
+          "include": "#underline"
+        },
+        {
+          "include": "#font"
+        }
+      ],
+      "name": "markup.italic.srt"
+    },
+    "underline": {
+      "begin": "(?i)<u>",
+      "end": "(?i)</u>",
+      "patterns": [
+        {
+          "include": "#sound"
+        },
+        {
+          "include": "#person"
+        },
+        {
+          "include": "#bold"
+        },
+        {
+          "include": "#italic"
+        },
+        {
+          "include": "#underline"
+        },
+        {
+          "include": "#font"
+        }
+      ],
+      "name": "markup.underline.srt"
+    },
+    "font": {
+      "begin": "(?i)<font\\b.*?>",
+      "end": "(?i)</font>",
+      "patterns": [
+        {
+          "include": "#sound"
+        },
+        {
+          "include": "#person"
+        },
+        {
+          "include": "#bold"
+        },
+        {
+          "include": "#italic"
+        },
+        {
+          "include": "#underline"
+        },
+        {
+          "include": "#font"
+        }
+      ],
+      "name": "markup.link.font.srt"
+    }
+  }
+}

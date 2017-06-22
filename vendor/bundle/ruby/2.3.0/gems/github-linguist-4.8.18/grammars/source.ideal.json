@@ -1,0 +1,356 @@
+{
+  "scopeName": "source.ideal",
+  "patterns": [
+    {
+      "include": "#external"
+    },
+    {
+      "include": "#main"
+    }
+  ],
+  "repository": {
+    "external": {
+      "patterns": [
+        {
+          "include": "source.pic#tags"
+        },
+        {
+          "begin": "^(?=[.'][ \t]*(?:\\w|\\\\))",
+          "end": "(?<!\\\\)$|(\\\\\".*)$",
+          "patterns": [
+            {
+              "include": "text.roff"
+            }
+          ],
+          "endCaptures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "text.roff"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "tags": {
+      "begin": "^([.'])[ \t]*(IS)\\b\\s*(\\\\[\"#].*$)?",
+      "end": "^([.'])[ \t]*(IE)\\b",
+      "contentName": "source.embedded.ideal",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ],
+      "beginCaptures": {
+        "0": {
+          "name": "meta.function.begin.ideal.section.macro.roff"
+        },
+        "1": {
+          "name": "punctuation.definition.macro.roff"
+        },
+        "2": {
+          "name": "entity.function.name.roff"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "text.roff#escapes"
+            }
+          ]
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "meta.function.end.ideal.section.macro.roff"
+        },
+        "1": {
+          "name": "punctuation.definition.macro.roff"
+        },
+        "2": {
+          "name": "entity.function.name.roff"
+        }
+      }
+    },
+    "main": {
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#libfile"
+        },
+        {
+          "include": "#variables"
+        },
+        {
+          "include": "#box"
+        },
+        {
+          "include": "#function-call"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#operators"
+        },
+        {
+          "include": "#punctuation"
+        }
+      ]
+    },
+    "box": {
+      "begin": "(\\w+)[ \t]*(\\{)",
+      "end": "\\}",
+      "beginCaptures": {
+        "0": {
+          "name": "meta.box.definition.ideal"
+        },
+        "1": {
+          "name": "entity.function.box.name.ideal"
+        },
+        "2": {
+          "name": "punctuation.definition.bracket.curly.ideal"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.bracket.curly.ideal"
+        }
+      },
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "comment": {
+      "name": "comment.block.ideal",
+      "begin": "/\\*",
+      "end": "\\*/"
+    },
+    "function-call": {
+      "name": "meta.function-call.ideal",
+      "begin": "(\\w+)(\\()",
+      "end": "(?=\\))",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.function.name.ideal"
+        },
+        "2": {
+          "name": "punctuation.definition.bracket.round.ideal"
+        }
+      },
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "libfile": {
+      "name": "meta.libfile.include.ideal",
+      "match": "((\\.{3})libfile)\\b",
+      "captures": {
+        "1": {
+          "name": "keyword.control.directive.include.ideal"
+        },
+        "2": {
+          "name": "punctuation.definition.directive.include.ideal"
+        }
+      }
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.operator.$1.ideal",
+          "match": "\\b(at|box|conn|construct|to|put|using|opaque(?:\\s+exterior)?)\\b(?:\\s+(?:\\w+)\\s*(:)\\s*?)?",
+          "captures": {
+            "2": {
+              "name": "punctuation.separator.dictionary.key-value.ideal"
+            }
+          }
+        },
+        {
+          "name": "entity.function.box.name.ideal",
+          "match": "\\b(left|right|spline)\\b"
+        }
+      ]
+    },
+    "number": {
+      "name": "constant.numeric.ideal",
+      "match": "(?<![A-Za-z])\\d+(?:\\.\\d+)?"
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.assignment.ideal",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.arithmetic.ideal",
+          "match": "[-+*/~]"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.delimiter.full-stop.period.ideal",
+          "match": "\\."
+        },
+        {
+          "name": "punctuation.delimiter.object.comma.ideal",
+          "match": ","
+        },
+        {
+          "name": "punctuation.terminator.statement.ideal",
+          "match": ";"
+        },
+        {
+          "name": "punctuation.definition.bracket.round.ideal",
+          "match": "\\)"
+        },
+        {
+          "name": "punctuation.definition.bracket.square.ideal",
+          "match": "\\]"
+        },
+        {
+          "name": "punctuation.definition.bracket.curly.ideal",
+          "match": "\\}"
+        },
+        {
+          "begin": "\\(",
+          "end": "\\)",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.round.ideal"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.round.ideal"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "begin": "\\[",
+          "end": "\\]",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.square.ideal"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.square.ideal"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "begin": "\\{",
+          "end": "\\}",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.curly.ideal"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.curly.ideal"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "begin": "<",
+          "end": ">",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.angle.ideal"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.angle.ideal"
+            }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.ideal",
+          "begin": "'",
+          "end": "'",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.ideal"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.ideal"
+            }
+          }
+        },
+        {
+          "name": "string.quoted.double.ideal",
+          "begin": "\"",
+          "end": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.ideal"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.ideal"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#escapes"
+            }
+          ]
+        }
+      ]
+    },
+    "variables": {
+      "begin": "\\b(var)\\b",
+      "end": "(?=;)",
+      "patterns": [
+        {
+          "include": "#punctuation"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.var.ideal"
+        }
+      }
+    }
+  }
+}

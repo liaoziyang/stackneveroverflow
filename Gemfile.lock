@@ -38,11 +38,14 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.5.1)
+      public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
     bcrypt (3.1.11)
     bindex (0.5.0)
     builder (3.2.3)
     byebug (9.0.6)
+    charlock_holmes (0.7.3)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -52,22 +55,38 @@ GEM
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
     concurrent-ruby (1.0.5)
+    crass (1.0.2)
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    devise-bootstrap-views (0.0.11)
+    devise-i18n (1.1.2)
+    devise-i18n-views (0.3.7)
     erubis (2.7.0)
+    escape_utils (1.1.1)
     execjs (2.7.0)
     ffi (1.9.18)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
+    gemoji (3.0.0)
+    github-linguist (4.8.18)
+      charlock_holmes (~> 0.7.3)
+      escape_utils (~> 1.1.0)
+      mime-types (>= 1.19)
+      rugged (>= 0.23.0b)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    greenmat (3.2.2.3)
     haml (5.0.1)
       temple (>= 0.8.0)
       tilt
+    hashie (3.5.5)
+    html-pipeline (2.6.0)
+      activesupport (>= 2)
+      nokogiri (>= 1.4)
     i18n (0.8.4)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -106,6 +125,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.5)
       mime-types (>= 1.16, < 4)
+    mem (0.1.5)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -117,9 +137,33 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
+    nokogumbo (1.4.13)
+      nokogiri
+    oauth (0.5.3)
+    omniauth (1.6.1)
+      hashie (>= 3.4.6, < 3.6.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-oauth (1.1.0)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-twitter (1.4.0)
+      omniauth-oauth (~> 1.1)
+      rack
     orm_adapter (0.5.0)
     pg (0.20.0)
+    public_suffix (2.0.5)
     puma (3.9.1)
+    pygments.rb (1.1.2)
+      multi_json (>= 1.0.0)
+    qiita-markdown (0.20.1)
+      addressable
+      gemoji
+      github-linguist (~> 4.0)
+      greenmat (= 3.2.2.3)
+      html-pipeline (~> 2.0)
+      mem
+      pygments.rb (~> 1.0)
+      sanitize
     rack (2.0.3)
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
@@ -172,6 +216,11 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rugged (0.26.0b5)
+    sanitize (4.5.0)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.4.4)
+      nokogumbo (~> 1.4.1)
     sass (3.4.24)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -233,13 +282,20 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise
+  devise-bootstrap-views
+  devise-i18n
+  devise-i18n-views
   execjs
+  gemoji
+  github-linguist
   jbuilder (~> 2.5)
   jquery-rails
   less-rails
   listen (~> 3.0.5)
+  omniauth-twitter
   pg
   puma (~> 3.0)
+  qiita-markdown
   rails (~> 5.0.0, >= 5.0.0.1)
   rails_admin
   sass-rails (~> 5.0)

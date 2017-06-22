@@ -1,0 +1,1607 @@
+{
+  "name": "reStructuredText",
+  "scopeName": "text.restructuredtext",
+  "fileTypes": [
+    "rst",
+    "rest"
+  ],
+  "patterns": [
+    {
+      "include": "#all"
+    }
+  ],
+  "repository": {
+    "all": {
+      "patterns": [
+        {
+          "include": "#escape"
+        },
+        {
+          "include": "#line-blocks"
+        },
+        {
+          "include": "#tables"
+        },
+        {
+          "include": "#headings"
+        },
+        {
+          "include": "#substitution-definition"
+        },
+        {
+          "include": "#directives"
+        },
+        {
+          "include": "#raw-blocks"
+        },
+        {
+          "include": "#inlines"
+        },
+        {
+          "include": "#tag-name"
+        },
+        {
+          "include": "#doctests"
+        },
+        {
+          "include": "#domains"
+        },
+        {
+          "include": "#comments"
+        }
+      ]
+    },
+    "inlines": {
+      "patterns": [
+        {
+          "include": "#escape"
+        },
+        {
+          "include": "#emphasis"
+        },
+        {
+          "include": "#link-definition"
+        },
+        {
+          "include": "#substitution"
+        },
+        {
+          "include": "#literal"
+        },
+        {
+          "include": "#math-inline"
+        },
+        {
+          "include": "#interpreted-line"
+        },
+        {
+          "include": "#anonymous-link"
+        },
+        {
+          "include": "#link-reference"
+        },
+        {
+          "include": "#interpreted-block"
+        },
+        {
+          "include": "#link-text"
+        },
+        {
+          "include": "#footnotes"
+        },
+        {
+          "include": "#citations"
+        }
+      ]
+    },
+    "escape": {
+      "match": "\\\\.",
+      "name": "constant.character.escape.backslash.restructuredtext"
+    },
+    "uri": {
+      "name": "string.other.uri.restructuredtext",
+      "match": "\\S+",
+      "captures": {
+        "0": {
+          "name": "markup.link.underline.restructuredtext"
+        }
+      }
+    },
+    "length": {
+      "name": "constant.numeric.length.restructuredtext",
+      "match": "[\\d.]+\\s*(?i:(em|ex|px|in|cm|mm|pt|pc)|(%))?",
+      "captures": {
+        "1": {
+          "name": "keyword.other.${1:/downcase}-unit.restructuredtext"
+        },
+        "2": {
+          "name": "keyword.other.percentile-unit.restructuredtext"
+        }
+      }
+    },
+    "headings": {
+      "name": "markup.heading.restructuredtext",
+      "match": "^[-=~`#\"^+*:.'_]{3,}\\s*$",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.heading.restructuredtext"
+        }
+      }
+    },
+    "line-blocks": {
+      "name": "meta.line-block.restructuredtext",
+      "begin": "^(\\s*)(\\|)(?!.*?(?<=\\S)\\|)",
+      "end": "^(?=\\s*$\\n?)",
+      "beginCaptures": {
+        "2": {
+          "name": "punctuation.separator.line-block.restructuredtext"
+        }
+      },
+      "patterns": [
+        {
+          "match": "^\\s*(\\|)",
+          "captures": {
+            "0": {
+              "name": "punctuation.separator.line-block.restructuredtext"
+            }
+          }
+        },
+        {
+          "include": "#inlines"
+        }
+      ]
+    },
+    "emphasis": {
+      "patterns": [
+        {
+          "name": "markup.bold.restructuredtext",
+          "match": "(\\*\\*)[^\\*\\s][^*]*(\\*\\*)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.bold.restructuredtext"
+            },
+            "2": {
+              "name": "punctuation.definition.bold.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "markup.italic.restructuredtext",
+          "match": "(?<!\\\\)(\\*)[^\\*\\s][^*]*(?<!\\\\)(\\*)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.italic.restructuredtext"
+            },
+            "2": {
+              "name": "punctuation.definition.italic.restructuredtext"
+            }
+          }
+        }
+      ]
+    },
+    "literal": {
+      "name": "markup.raw.restructuredtext",
+      "begin": "``",
+      "end": "``((?=[^`\\w\\d])|$)",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.raw.restructuredtext"
+        }
+      }
+    },
+    "interpreted-block": {
+      "name": "markup.other.command.restructuredtext",
+      "contentName": "string.other.interpreted.restructuredtext",
+      "begin": "(:)([-A-z0-9:_.]*)(:)(`)",
+      "end": "(`)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.intepreted.restructuredtext"
+        },
+        "2": {
+          "name": "entity.name.role.restructuredtext"
+        },
+        "3": {
+          "name": "punctuation.definition.intepreted.restructuredtext"
+        },
+        "4": {
+          "name": "punctuation.definition.intepreted.restructuredtext"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.intepreted.restructuredtext"
+        }
+      }
+    },
+    "interpreted-line": {
+      "name": "markup.other.command.restructuredtext",
+      "match": "(`)[^`]+(`)(?!_)",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.intepreted.restructuredtext"
+        },
+        "2": {
+          "name": "punctuation.definition.intepreted.restructuredtext"
+        }
+      }
+    },
+    "anonymous-link": {
+      "name": "meta.link.restructuredtext",
+      "match": "\\s*(__)\\s+(.+)",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.link.restructuredtext"
+        },
+        "2": {
+          "name": "markup.underline.link.restructuredtext"
+        }
+      }
+    },
+    "link-text": {
+      "name": "meta.link.inline.restructuredtext",
+      "match": "(`)([^<`]+)\\s+(<)(.*?)(>)(`_)",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.link.restructuredtext"
+        },
+        "2": {
+          "name": "string.other.link.title.restructuredtext"
+        },
+        "3": {
+          "name": "punctuation.definition.location.restructuredtext"
+        },
+        "4": {
+          "name": "markup.underline.link.restructuredtext"
+        },
+        "5": {
+          "name": "punctuation.definition.location.restructuredtext"
+        },
+        "6": {
+          "name": "punctuation.definition.link.restructuredtext"
+        }
+      }
+    },
+    "citations": {
+      "patterns": [
+        {
+          "name": "meta.link.citation.def.restructuredtext",
+          "match": "^(\\.\\.)\\s+((\\[)[A-z][A-z0-9]*(\\]))(_)\\s+(.*)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.link.restructuredtext"
+            },
+            "2": {
+              "name": "constant.other.citation.link.restructuredtext"
+            },
+            "3": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "5": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "6": {
+              "name": "string.other.citation.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "meta.link.citation.restructuredtext",
+          "match": "((\\[)[A-z][A-z0-9_-]*(\\]))(_)",
+          "captures": {
+            "1": {
+              "name": "constant.other.citation.link.restructuredtext"
+            },
+            "2": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "3": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            }
+          }
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.empty-start.double-dot.restructuredtext",
+          "begin": "^(\\.\\.)[\\t ]*$\\n?",
+          "end": "^(?<=\\G)\\s*$\\n?|^(?=\\S)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.comment.restructuredtext"
+            }
+          },
+          "patterns": [
+            {
+              "begin": "^(\\s+).*?\\S+\\s*$\\n",
+              "end": "^\\s*$\\n|^(?=\\S)"
+            }
+          ]
+        },
+        {
+          "name": "comment.block.empty-start.double-dot.restructuredtext",
+          "begin": "^([\\t ]*)(\\.\\.)[\\t ]*$\\n?",
+          "end": "^(?!\\1\\s*\\S)|^(?<!\\G)\\s*$\\n?|^(?=\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.comment.restructuredtext"
+            }
+          },
+          "patterns": [
+            {
+              "begin": "^(\\s+).*?\\S+\\s*$\\n",
+              "end": "^\\s*$\\n|^\\s*(?=\\S)"
+            }
+          ]
+        },
+        {
+          "name": "comment.block.double-dot.restructuredtext",
+          "begin": "^(\\s*)(\\.\\.)(?=\\s|$)",
+          "end": "^(?!\\1[\\t\\s]+\\S|\\s*$)|^(?=\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.comment.restructuredtext"
+            }
+          }
+        }
+      ]
+    },
+    "footnotes": {
+      "patterns": [
+        {
+          "name": "meta.link.footnote.def.restructuredtext",
+          "begin": "^(\\s*)(\\.\\.)\\s+((\\[)(((#?)[^\\]]*?)|\\*)(\\]))\\s+",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "patterns": [
+            {
+              "include": "#inlines"
+            }
+          ],
+          "contentName": "string.other.footnote.restructuredtext",
+          "captures": {
+            "2": {
+              "name": "punctuation.definition.link.restructuredtext"
+            },
+            "3": {
+              "name": "constant.other.footnote.link.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "7": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "8": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "meta.link.footnote.numeric.restructuredtext",
+          "match": "((\\[)[0-9]+(\\]))(_)",
+          "captures": {
+            "1": {
+              "name": "constant.other.footnote.link"
+            },
+            "2": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "3": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "meta.link.footnote.auto.restructuredtext",
+          "match": "((\\[#)[A-z0-9_]*(\\]))(_)",
+          "captures": {
+            "1": {
+              "name": "constant.other.footnote.link"
+            },
+            "2": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "3": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "meta.link.footnote.symbol.auto.restructuredtext",
+          "match": "((\\[)\\*(\\]))(_)",
+          "captures": {
+            "1": {
+              "name": "constant.other.footnote.link.restructuredtext"
+            },
+            "2": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "3": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.definition.constant.restructuredtext"
+            }
+          }
+        }
+      ]
+    },
+    "link-definition": {
+      "patterns": [
+        {
+          "name": "meta.link.reference.def.restructuredtext",
+          "match": "(\\.\\.)\\s+(_)([-.\\d\\w\\s()/]+)(:)\\s+(.*)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.link.restructuredtext"
+            },
+            "2": {
+              "name": "punctuation.definition.string.restructuredtext"
+            },
+            "3": {
+              "name": "string.other.link.title.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "patterns": [
+                {
+                  "include": "#uri"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.link.reference.def.restructuredtext",
+          "match": "(\\.\\.)\\s+(_`)([^`]+)(`:)\\s+(.*)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.link.restructuredtext"
+            },
+            "2": {
+              "name": "punctuation.definition.string.restructuredtext"
+            },
+            "3": {
+              "name": "string.other.link.title.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "patterns": [
+                {
+                  "include": "#uri"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "link-reference": {
+      "patterns": [
+        {
+          "name": "meta.link.reference",
+          "match": "\\b([-.:+_\\d\\w]+)(_)\\b",
+          "captures": {
+            "1": {
+              "name": "string.other.link.title.restructuredtext"
+            },
+            "2": {
+              "name": "punctuation.definition.link.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "meta.link.reference",
+          "begin": "(`)",
+          "end": "(`_)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.link.restructuredtext"
+            }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.link.restructuredtext"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.other.link.title.restructuredtext",
+              "match": "[^`]+"
+            }
+          ]
+        }
+      ]
+    },
+    "raw-blocks": {
+      "contentName": "meta.raw.block.restructuredtext",
+      "patterns": [
+        {
+          "name": "markup.raw.inner.restructuredtext",
+          "match": ".+"
+        }
+      ],
+      "begin": "^(?!\\s*\\.\\.\\s\\w+)(\\s*)(.*)(::)$",
+      "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+      "beginCaptures": {
+        "2": {
+          "patterns": [
+            {
+              "include": "#inlines"
+            }
+          ]
+        },
+        "3": {
+          "name": "punctuation.section.raw.restructuredtext"
+        }
+      }
+    },
+    "doctests": {
+      "name": "meta.doctest.restructuredtext",
+      "begin": "^(\\s*)(>>>)\\s+(.*)$\\n",
+      "end": "^\\s*$|^(?=\\1>>> )|^(?=>>>)|^(?!\\1)\\s+\\S",
+      "contentName": "markup.raw.restructuredtext",
+      "beginCaptures": {
+        "2": {
+          "name": "punctuation.separator.prompt.doctest.restructuredtext"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "source.python"
+            }
+          ]
+        }
+      }
+    },
+    "tables": {
+      "patterns": [
+        {
+          "name": "meta.table.grid-table.restructuredtext",
+          "contentName": "markup.other.table.restructuredtext",
+          "begin": "(?=((\\+-[+-]+))|((\\+=[+=]+))\\s*$)",
+          "end": "^\\s*$",
+          "patterns": [
+            {
+              "include": "#table-borders"
+            },
+            {
+              "include": "#inlines"
+            }
+          ]
+        },
+        {
+          "name": "punctuation.definition.table.simple-divider.restructuredtext",
+          "match": "(?x)\n^\\s*-{2,}\\s+-{2,}(?:\\s+-{2,})*\\s*$\n|\n^\\s*={2,}\\s+={2,}(?:\\s+={2,})*\\s*$"
+        }
+      ]
+    },
+    "table-borders": {
+      "patterns": [
+        {
+          "begin": "\\+(?=-+(?=\\+|$))",
+          "end": "(?=\\+(?=-)|$)|\\+(?=\\s|$)",
+          "contentName": "punctuation.definition.table.row-divider.restructuredtext",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.table.joint.restructuredtext"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.table.joint.restructuredtext"
+            }
+          }
+        },
+        {
+          "begin": "\\+(?==+(?=\\+|$))",
+          "end": "(?=\\+(?==)|$)|\\+\\s*$",
+          "contentName": "punctuation.definition.table.header.row-divider.restructuredtext",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.table.joint.restructuredtext"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.table.joint.restructuredtext"
+            }
+          }
+        },
+        {
+          "match": "\\|",
+          "name": "punctuation.definition.table.header.column-divider.restructuredtext"
+        }
+      ]
+    },
+    "tag-name": {
+      "name": "entity.name.tag.restructuredtext",
+      "match": "(:)[A-Za-z][\\w\\s=.-]*(:)",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.field.restructuredtext"
+        },
+        "2": {
+          "name": "punctuation.definition.field.restructuredtext"
+        }
+      }
+    },
+    "substitution": {
+      "name": "support.variable.substitution.restructuredtext",
+      "match": "(?<!\\\\)(\\|)[^|]+(?<!\\\\)(\\|_{0,2})",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.substitution.restructuredtext"
+        },
+        "2": {
+          "name": "punctuation.definition.substitution.restructuredtext"
+        }
+      }
+    },
+    "substitution-definition": {
+      "patterns": [
+        {
+          "name": "meta.substitution-definition.image.restructuredtext",
+          "begin": "^(\\s*)(\\.\\.)\\s(\\|)(?=\\S)([^\\|]+)((?<=\\S)\\|)\\s+(image)(::)\\s*(\\S+)",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "patterns": [
+            {
+              "include": "#image-options"
+            }
+          ],
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "punctuation.definition.substitution.start.restructuredtext"
+            },
+            "4": {
+              "name": "entity.name.substitution.restructuredtext"
+            },
+            "5": {
+              "name": "punctuation.definition.substitution.end.restructuredtext"
+            },
+            "6": {
+              "name": "support.directive.restructuredtext"
+            },
+            "7": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "8": {
+              "patterns": [
+                {
+                  "include": "#uri"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.substitution-definition.restructuredtext",
+          "begin": "^(\\s*)(\\.\\.)\\s(\\|)(?=\\S)([^\\|]+)((?<=\\S)\\|)\\s+(\\S+.*(?=::))(::)(.*)",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "patterns": [
+            {
+              "include": "#directive-options"
+            }
+          ],
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "punctuation.definition.substitution.start.restructuredtext"
+            },
+            "4": {
+              "name": "entity.name.substitution.restructuredtext"
+            },
+            "5": {
+              "name": "punctuation.definition.substitution.end.restructuredtext"
+            },
+            "6": {
+              "name": "support.directive.restructuredtext"
+            },
+            "7": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "8": {
+              "name": "string.unquoted.substitution.data.restructuredtext"
+            }
+          }
+        }
+      ]
+    },
+    "math-inline": {
+      "name": "markup.other.command.restructuredtext",
+      "contentName": "markup.math.inline.restructuredtext",
+      "patterns": [
+        {
+          "include": "text.tex#math"
+        }
+      ],
+      "begin": "(:)(math)(:)(`)",
+      "end": "(`)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.intepreted.restructuredtext"
+        },
+        "2": {
+          "name": "entity.name.role.restructuredtext"
+        },
+        "3": {
+          "name": "punctuation.definition.intepreted.restructuredtext"
+        },
+        "4": {
+          "name": "punctuation.definition.intepreted.restructuredtext"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.intepreted.restructuredtext"
+        }
+      }
+    },
+    "directives": {
+      "patterns": [
+        {
+          "name": "meta.image.restructuredtext",
+          "begin": "^(\\s*)(\\.\\.)\\s(image)(::)\\s*(\\S+)",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "patterns": [
+            {
+              "include": "#image-options"
+            }
+          ],
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "patterns": [
+                {
+                  "include": "#uri"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.figure.restructuredtext",
+          "begin": "^(\\s*)(\\.\\.)\\s(figure)(::)\\s*(\\S+)",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "patterns": [
+            {
+              "include": "#image-options"
+            },
+            {
+              "include": "#all"
+            }
+          ],
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "patterns": [
+                {
+                  "include": "#uri"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "begin": "^([ \\t]*)(\\.\\.)\\s(raw)(::)\\s+(html)\\s*$",
+          "end": "^(?!\\1[ \\t])",
+          "patterns": [
+            {
+              "include": "text.html.basic"
+            }
+          ],
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.coffee",
+          "patterns": [
+            {
+              "include": "source.coffee"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(coffee-?script)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.js",
+          "patterns": [
+            {
+              "include": "source.js"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(js|javascript)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.json",
+          "patterns": [
+            {
+              "include": "source.json"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(json)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.css",
+          "patterns": [
+            {
+              "include": "source.css"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(css)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.xml",
+          "patterns": [
+            {
+              "include": "text.xml"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(xml)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.ruby",
+          "patterns": [
+            {
+              "include": "source.ruby"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(ruby)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.java",
+          "patterns": [
+            {
+              "include": "source.java"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(java)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.erlang",
+          "patterns": [
+            {
+              "include": "source.erlang"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(erlang)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.cs",
+          "patterns": [
+            {
+              "include": "source.cs"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(csharp|c#)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.php",
+          "patterns": [
+            {
+              "include": "source.php"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(php[3-5]?)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.shell",
+          "patterns": [
+            {
+              "include": "source.shell"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(shell|(ba|k)?sh)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.python",
+          "patterns": [
+            {
+              "include": "source.python"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(py(thon)?|sage)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.objc",
+          "patterns": [
+            {
+              "include": "source.objc"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(objective-?c|obj-?c)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "contentName": "source.embedded.yaml",
+          "patterns": [
+            {
+              "include": "source.yaml"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(code(?:-block)?)(::)\\s+(yaml)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "source.embedded.latex",
+          "contentName": "markup.math.block.restructuredtext",
+          "patterns": [
+            {
+              "include": "text.tex#math"
+            }
+          ],
+          "begin": "^([ \\t]*)(\\.\\.)\\s(math)(::)\\s*$",
+          "end": "^(?!\\s*$|\\1[ \\t]+\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "meta.other.directive.restructuredtext",
+          "match": "^\\s*(\\.\\.)\\s([A-z][-A-z0-9_]+)(::)\\s*$",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "2": {
+              "name": "support.directive.restructuredtext"
+            },
+            "3": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "meta.other.directive.restructuredtext",
+          "match": "^\\s*(\\.\\.)\\s([A-z][-A-z0-9_]+)(::)\\s+(.+?)\\s*$",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "2": {
+              "name": "support.directive.restructuredtext"
+            },
+            "3": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "4": {
+              "name": "entity.name.directive.restructuredtext"
+            }
+          }
+        }
+      ]
+    },
+    "directive-options": {
+      "patterns": [
+        {
+          "name": "meta.directive-option.restructuredtext",
+          "match": "(:[^:]+:)\\s*(.*)",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#tag-name"
+                }
+              ]
+            },
+            "2": {
+              "name": "string.other.tag-value.restructuredtext"
+            }
+          }
+        }
+      ]
+    },
+    "image-options": {
+      "patterns": [
+        {
+          "name": "meta.image-option.alt.restructuredtext",
+          "match": "(:alt:)\\s*(.*)",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#tag-name"
+                }
+              ]
+            },
+            "2": {
+              "name": "string.other.tag-value.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "meta.image-option.height.restructuredtext",
+          "match": "(:height:)\\s*(.*)",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#tag-name"
+                }
+              ]
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "#length"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.image-option.width.restructuredtext",
+          "match": "(:width:)\\s*(.*)",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#tag-name"
+                }
+              ]
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "#length"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.image-option.scale.restructuredtext",
+          "match": "(:scale:)\\s*(.*)",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#tag-name"
+                }
+              ]
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "#length"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.image-option.align.restructuredtext",
+          "match": "(:align:)\\s*(?:(top|middle|bottom|left|center|right)\\b)?",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#tag-name"
+                }
+              ]
+            },
+            "2": {
+              "name": "keyword.language.image-alignment.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "meta.image-option.target.restructuredtext",
+          "match": "(:target:)\\s*(.*)?",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#tag-name"
+                }
+              ]
+            },
+            "2": {
+              "name": "string.other.target.restructuredtext"
+            }
+          }
+        },
+        {
+          "include": "#doctree-options"
+        },
+        {
+          "include": "#directive-options"
+        }
+      ]
+    },
+    "doctree-options": {
+      "patterns": [
+        {
+          "name": "meta.doctree-option.class.restructuredtext",
+          "match": "(:class:)\\s*(.*)",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#tag-name"
+                }
+              ]
+            },
+            "2": {
+              "name": "string.other.class-list.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "meta.doctree-option.name.restructuredtext",
+          "match": "(:name:)\\s*(.*)",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#tag-name"
+                }
+              ]
+            },
+            "2": {
+              "name": "string.other.name.restructuredtext"
+            }
+          }
+        }
+      ]
+    },
+    "domains": {
+      "patterns": [
+        {
+          "name": "meta.sphinx-domain.restructuredtext",
+          "contentName": "source.embedded.python",
+          "begin": "^(\\s*)(\\.\\.)\\s+(py)(:)([^:]+)(::)",
+          "end": "^(?!\\s*$|\\1[ \\t]{6,}\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "support.directive.restructuredtext"
+            },
+            "6": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            }
+          },
+          "patterns": [
+            {
+              "match": "(?:\\G|^)([^(]*)(\\()([^\\\\)]*\\\\[^)]*)(\\))",
+              "captures": {
+                "1": {
+                  "patterns": [
+                    {
+                      "include": "source.python"
+                    }
+                  ]
+                },
+                "2": {
+                  "name": "punctuation.parenthesis.begin.python"
+                },
+                "3": {
+                  "patterns": [
+                    {
+                      "match": "\\\\.",
+                      "name": "constant.character.escape.restructuredtext"
+                    },
+                    {
+                      "include": "source.python"
+                    }
+                  ]
+                },
+                "4": {
+                  "name": "punctuation.parenthesis.end.python"
+                }
+              }
+            },
+            {
+              "include": "source.python"
+            }
+          ]
+        },
+        {
+          "name": "meta.sphinx-domain.restructuredtext",
+          "contentName": "source.embedded.c",
+          "patterns": [
+            {
+              "include": "source.c"
+            }
+          ],
+          "begin": "^(\\s*)(\\.\\.)\\s+(c)(:)([^:]+)(::)",
+          "end": "^(?!\\s*$|\\1[ \\t]{5,}\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "support.directive.restructuredtext"
+            },
+            "6": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            }
+          }
+        },
+        {
+          "name": "meta.sphinx-domain.restructuredtext",
+          "begin": "^(\\s*)(\\.\\.)\\s+(cpp)(::?)([^:]+)(::)",
+          "end": "^(?!\\s*$|\\1[ \\t]{5,}\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "support.directive.restructuredtext"
+            },
+            "6": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            }
+          },
+          "patterns": [
+            {
+              "match": "(.+)(\\\\?)$",
+              "captures": {
+                "1": {
+                  "name": "source.embedded.cpp",
+                  "patterns": [
+                    {
+                      "include": "source.cpp"
+                    }
+                  ]
+                },
+                "2": {
+                  "name": "constant.character.escape.newline.restructuredtext"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "meta.sphinx-domain.restructuredtext",
+          "begin": "^(\\s*)(\\.\\.)\\s+(js)(:)([^:]+)(::)",
+          "end": "^(?!\\s*$|\\1[ \\t]{5,}\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "support.directive.restructuredtext"
+            },
+            "6": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            }
+          },
+          "patterns": [
+            {
+              "match": "(.+)(\\\\?)$",
+              "captures": {
+                "1": {
+                  "name": "source.embedded.js",
+                  "patterns": [
+                    {
+                      "include": "source.js"
+                    }
+                  ]
+                },
+                "2": {
+                  "name": "constant.character.escape.newline.restructuredtext"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "meta.sphinx-domain.restructuredtext",
+          "contentName": "string.unquoted.domain.restructuredtext",
+          "begin": "^(\\s*)(\\.\\.)\\s+([^:]+)(::?)([^:]+)(::)",
+          "end": "^(?!\\s*$|\\1[ \\t]{5,}\\S)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.directive.restructuredtext"
+            },
+            "3": {
+              "name": "support.directive.restructuredtext"
+            },
+            "4": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            },
+            "5": {
+              "name": "support.directive.restructuredtext"
+            },
+            "6": {
+              "name": "punctuation.separator.key-value.restructuredtext"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

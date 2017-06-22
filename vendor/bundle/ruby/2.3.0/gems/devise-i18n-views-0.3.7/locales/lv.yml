@@ -1,0 +1,67 @@
+lv:
+  activerecord:
+    attributes:
+      user:
+        current_password: Tagadējā parole
+        email: Epasts
+        password: Parole
+        password_confirmation: Apstiprināt paroli
+        remember_me: Atcerēties mani
+    models:
+      user: Lietotājs
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: Atkārtoti atsūtīt instrukcijas apstiprinājumu
+    mailer:
+      confirmation_instructions:
+        action: Apstiprināt kontu
+        greeting: Sveicināti, %{recipient}!
+        instruction: 'Jūs varat apstiprināt, Jūsu konta epastu caur saiti zemāk:'
+      reset_password_instructions:
+        action: Veikt paroles maiņu
+        greeting: Sveicināti, %{recipient}!
+        instruction: Kāds ir nosūtijis pieprasijumu, Jūsu paroles maiņai, to var veikt caur saiti zemāk.
+        instruction_2: Ja Jūs neveicāt šo pieprasījumu, lūdzu ignorējiet šo ziņu.
+        instruction_3: Jūsu parole netiks mainīta, kamēr Jūs neapstiprināsiet saiti augstāk un neizveidosiet jaunu.
+      unlock_instructions:
+        action: Atbloķēt kontu
+        greeting: Sveicināti, %{recipient}!
+        instruction: 'Nospiežiet uz saites zemāk, lai atbloķētu kontu:'
+        message: Jūsu konts tika bloķēts vairāku kļūdainu datu ievadīšanas rezultātā.
+    passwords:
+      edit:
+        change_my_password: Mainīt paroli
+        change_your_password: Paroles maiņa
+        confirm_new_password: Apstiprināt jauno paroli
+        new_password: Jauna parole
+      new:
+        forgot_your_password: Aizmirsāt paroli?
+        send_me_reset_password_instructions: Atsūtīt paroles maiņas instrukciju
+    registrations:
+      edit:
+        are_you_sure: Vai Jūs esat pārliecināts/-ta?
+        cancel_my_account: Atcelt kontu
+        currently_waiting_confirmation_for_email: 'Pašlaik gaida apstiprinājumu epastam: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: atstājiet tukšu šo lauku, ja nevēlaties veikt izmaiņas
+        title: Rediģēt %{resource}
+        unhappy: Neapmierināts
+        update: Izmainīt
+        we_need_your_current_password_to_confirm_your_changes: mums ir nepieciešama Jūsu tagadējā parole, lai veiktu izmaiņas
+      new:
+        sign_up: Reģistrēties
+    sessions:
+      new:
+        sign_in: Pievienoties
+    shared:
+      links:
+        back: Atpakaļ
+        didn_t_receive_confirmation_instructions: Nesaņēmāt apstiprināšanas instrukciju?
+        didn_t_receive_unlock_instructions: Nesaņēmāt atbloķēšanas instrukciju?
+        forgot_your_password: Aizmirsāt paroli?
+        sign_in: Pievienoties
+        sign_in_with_provider: Pievienoties ar %{provider}
+        sign_up: Reģistrēties
+    unlocks:
+      new:
+        resend_unlock_instructions: Atkārtoti atsūtīt atbloķēšanas instrukciju

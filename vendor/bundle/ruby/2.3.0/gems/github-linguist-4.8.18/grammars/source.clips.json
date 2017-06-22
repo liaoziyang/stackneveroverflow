@@ -1,0 +1,80 @@
+{
+  "fileTypes": [
+    "clp"
+  ],
+  "name": "CLIPS",
+  "patterns": [
+    {
+      "begin": ";",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.clips"
+        }
+      },
+      "comment": "Comments line",
+      "end": "$\n?",
+      "name": "comment.line.double-slash.clips"
+    },
+    {
+      "comment": "Keywords",
+      "match": "\\b(type|default|allowed-values|slot|not|or|and|assert|retract|gensym|printout|declare|salience|modify|export)\\b",
+      "name": "keyword.control.clips"
+    },
+    {
+      "comment": "RHD",
+      "match": "=>",
+      "name": "constant.language.clips"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.clips"
+        },
+        "2": {
+          "name": "variable.parameter"
+        }
+      },
+      "comment": "Functions",
+      "match": "(\\?)([a-zA-Z0-9_\\-]*)",
+      "name": "meta.function.clips"
+    },
+    {
+      "captures": {
+        "2": {
+          "name": "entity.name.function.clips"
+        },
+        "3": {
+          "name": "variable.clips"
+        }
+      },
+      "comment": "Definitions",
+      "match": "(^.*(defrule|deffacts|defmodule|deftemplate)[ \\t]+)([a-zA-Z0-9_\\-]+)"
+    },
+    {
+      "comment": "Constant A",
+      "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)\\b",
+      "name": "constant.other.color.rgb-value.css"
+    },
+    {
+      "comment": "Constant B",
+      "match": "(<-|~|%)",
+      "name": "constant.language.clips"
+    },
+    {
+      "comment": "Operators",
+      "match": "(|=|>|\\+|\\*|\\/|~|%|neq|eq)",
+      "name": "entity.name.function.clips"
+    },
+    {
+      "captures": {
+        "2": {
+          "name": "entity.name.function.clips"
+        }
+      },
+      "comment": "Operators",
+      "match": "(\\()(\\-)"
+    }
+  ],
+  "scopeName": "source.clips",
+  "uuid": "1b2ecbe9-9ccb-401d-8707-9440305081df"
+}

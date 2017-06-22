@@ -1,0 +1,67 @@
+sk:
+  activerecord:
+    attributes:
+      user:
+        current_password: Súčasné heslo
+        email: Email
+        password: Heslo
+        password_confirmation: Potvrdenie hesla
+        remember_me: Zapamätať si ma
+    models:
+      user: Používateľ
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: Preposlať potvrdzovacie inštrukcie
+    mailer:
+      confirmation_instructions:
+        action: Potvrdiť môj účet
+        greeting: Vitaj %{recipient}!
+        instruction: 'Môžete potvrdiť emailovú adresu vášho účtu pomocou odkazu nižšie:'
+      reset_password_instructions:
+        action: Zmeniť moje heslo
+        greeting: Ahoj %{recipient}!
+        instruction: Niekto požiadal o zmenu vášho hesla a môžete to spraviť pomocou odkazu nižšie.
+        instruction_2: Ak ste o toto nepožiadali, prosím ignorujte tento email.
+        instruction_3: Vaše heslo sa nezmení, pokým nenavštívite odkaz vyššie a nezadáte nové.
+      unlock_instructions:
+        action: Odomknúť môj účet
+        greeting: Ahoj %{recipient}!
+        instruction: 'Pre odomknutie vášho účtu kliknite na odkaz nižšie:'
+        message: Vaše konto bolo zamknuté kvôli nadmernému počtu neúspešných prihlásení.
+    passwords:
+      edit:
+        change_my_password: Zmeniť moje heslo
+        change_your_password: Zmeniť vaše heslo
+        confirm_new_password: Potvrdiť nové heslo
+        new_password: Nové heslo
+      new:
+        forgot_your_password: Zabudli ste heslo?
+        send_me_reset_password_instructions: Pošlite mi inštrukcie na obnovu hesla
+    registrations:
+      edit:
+        are_you_sure: Ste si istý?
+        cancel_my_account: Zrušiť môj účet
+        currently_waiting_confirmation_for_email: 'Momentálne sa čaká na potvrdenie pre: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: nechajte prázdne ak to nechcete zmeniť
+        title: Upraviť %{resource}
+        unhappy: Nešťastný
+        update: Aktualizovať
+        we_need_your_current_password_to_confirm_your_changes: na potvrdenie vašich zmien potrebujeme vaše súčasné heslo
+      new:
+        sign_up: Zaregistrovať sa
+    sessions:
+      new:
+        sign_in: Prihlásiť sa
+    shared:
+      links:
+        back: Späť
+        didn_t_receive_confirmation_instructions: Nedostali ste potvrdzovacie inštrukcie?
+        didn_t_receive_unlock_instructions: Nedostali ste inštrukcie na odomknutie účtu?
+        forgot_your_password: Zabudli ste heslo?
+        sign_in: Prihlásiť sa
+        sign_in_with_provider: Prihlásiť sa cez %{provider}
+        sign_up: Zaregistrovať sa
+    unlocks:
+      new:
+        resend_unlock_instructions: Poslať znovu inštrukcie na odomknutie účtu

@@ -1,0 +1,28 @@
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/escape_utils-1.1.1/ext/escape_utils
+/Users/liaoziyang/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20170622-9218-1itxy34.rb extconf.rb
+creating Makefile
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/escape_utils-1.1.1/ext/escape_utils
+make "DESTDIR=" clean
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/escape_utils-1.1.1/ext/escape_utils
+make "DESTDIR="
+compiling buffer.c
+compiling escape_utils.c
+compiling houdini_href_e.c
+compiling houdini_html_e.c
+compiling houdini_html_u.c
+houdini_html_u.c:75:62: warning: implicit conversion loses integer precision: 'size_t' (aka 'unsigned long') to 'unsigned int' [-Wshorten-64-to-32]
+                                const struct html_ent *entity = find_entity((char *)src, i);
+                                                                ~~~~~~~~~~~              ^
+1 warning generated.
+compiling houdini_js_e.c
+compiling houdini_js_u.c
+compiling houdini_uri_e.c
+compiling houdini_uri_u.c
+compiling houdini_xml_e.c
+linking shared-object escape_utils/escape_utils.bundle
+
+current directory: /Users/liaoziyang/dev/Rails_QA/kyoma/vendor/bundle/ruby/2.3.0/gems/escape_utils-1.1.1/ext/escape_utils
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 escape_utils.bundle ./.gem.20170622-9218-bleqvb/escape_utils

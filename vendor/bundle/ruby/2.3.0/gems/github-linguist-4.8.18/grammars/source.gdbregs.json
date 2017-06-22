@@ -1,0 +1,15 @@
+{
+  "name": "GDB Registers",
+  "patterns": [
+    {
+      "match": "\\b.+:",
+      "name": "keyword.gdbregs"
+    },
+    {
+      "match": "\\b[-$]*[0-9a-fx]+",
+      "name": "constant.other.gdbregs"
+    }
+  ],
+  "scopeName": "source.gdbregs",
+  "uuid": "04501C9F-007A-423E-8409-4560143F190E"
+}

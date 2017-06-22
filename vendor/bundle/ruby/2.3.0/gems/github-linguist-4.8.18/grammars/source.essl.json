@@ -1,0 +1,50 @@
+{
+  "fileTypes": [
+    "essl",
+    "f.essl",
+    "v.essl",
+    "_v.essl",
+    "_f.essl",
+    "_vs.essl",
+    "_fs.essl"
+  ],
+  "foldingStartMarker": "/\\*\\*|\\{\\s*$",
+  "foldingStopMarker": "\\*\\*/|^\\s*\\}",
+  "keyEquivalent": "^~G",
+  "name": "ESSL",
+  "patterns": [
+    {
+      "match": "\\b(break|continue|discard|do|else|for|if|return|while)\\b",
+      "name": "keyword.control.essl"
+    },
+    {
+      "match": "\\b(void|mat2|mat3|mat4|vec2|vec3|vec4|ivec2|ivec3|ivec4|bvec2|bvec3|bvec4|sampler2D|samplerCube|struct)\\b",
+      "name": "storage.type.essl"
+    },
+    {
+      "match": "\\b(attribute|const|in|inout|out|uniform|varying|invariant|lowp|mediump|highp|precision)\\b",
+      "name": "storage.modifier.essl"
+    },
+    {
+      "match": "\\b(gl_Position|gl_PointSize|gl_FragCoord|gl_FrontFacing|gl_FragColor|gl_FragData|gl_PointCoord)\\b",
+      "name": "support.variable.essl"
+    },
+    {
+      "match": "\\b(gl_MaxVertexAttribs|gl_MaxVertexUniformVectors|gl_MaxVaryingVectors|gl_MaxVertexTextureImageUnits|gl_MaxCombinedTextureImageUnits|gl_MaxTextureImageUnits|gl_MaxFragmentUniformVectors|gl_MaxDrawBuffers|gl_DepthRange|__VERSION__|GL_ES)\\b",
+      "name": "support.constant.essl"
+    },
+    {
+      "match": "\\b(radians|degrees|sin|cos|tan|asin|acos|atan|atan|pow|exp|log|exp2|log2|sqrt|inversesqrt|abs|sign|floor|ceil|fract|mod|mod|min|max|clamp|mix|step|smoothstep|length|distance|dot|cross|normalize|faceforward|reflect|refract|matrixCompMult|lessThan|lessThanEqual|greaterThan|greaterThanEqual|equal|notEqual|any|all|not|texture2D|texture2DProj|texture2DLod|texture2DProjLod|textureCube|textureCubeLod)\\b",
+      "name": "support.function.essl"
+    },
+    {
+      "match": "\\b(asm|class|union|enum|typedef|template|this|packed|goto|switch|default|inline|noinline|volatile|public|static|extern|external|interface|flat|long|short|double|half|fixed|unsigned|superp|input|output|hvec2|hvec3|hvec4|dvec2|dvec3|dvec4|fvec2|fvec3|fvec4|sampler1D|sampler3D|sampler1DShadow|sampler2DShadow|sampler2DRect|sampler3DRect|sampler2DRectShadow|sizeof|cast|namespace|using)\\b",
+      "name": "invalid.illegal.essl"
+    },
+    {
+      "include": "source.c"
+    }
+  ],
+  "scopeName": "source.essl",
+  "uuid": "5370EFAA-07AA-4597-962E-D051A99C57A9"
+}

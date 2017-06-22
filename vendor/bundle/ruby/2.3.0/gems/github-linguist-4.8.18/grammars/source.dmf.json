@@ -1,0 +1,99 @@
+{
+  "fileTypes": [
+    "dmf"
+  ],
+  "name": "Dream Maker Interface",
+  "patterns": [
+    {
+      "match": "((#?\\b[0-9a-fA-F]*)|\\b(([0-9]+(,|x)?[0-9]*)|(\\.[0-9]+)))\\b",
+      "name": "constant.numeric.dm"
+    },
+    {
+      "match": "(^(macro|menu)|(\\b(window|elem)))\\b",
+      "name": "storage.type.dm"
+    },
+    {
+      "match": "\\b(true|false|none)\\b",
+      "name": "variable.language.dm"
+    },
+    {
+      "match": "\\b([A-Z_]+)\\b",
+      "name": "constant.language.dm"
+    },
+    {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.dm"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.dm"
+        }
+      },
+      "name": "string.quoted.double.dm",
+      "patterns": [
+        {
+          "include": "#string_escaped_char"
+        },
+        {
+          "include": "#string_embedded_expression"
+        }
+      ]
+    },
+    {
+      "begin": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.dm"
+        }
+      },
+      "end": "'",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.dm"
+        }
+      },
+      "name": "string.quoted.single.dm",
+      "patterns": [
+        {
+          "include": "#string_escaped_char"
+        }
+      ]
+    },
+    {
+      "begin": "(?x)\n    \t\t(?:  ^                                 # begin-of-line\n    \t\t  |\n    \t\t     (?: (?= \\s )           (?<!else|new|return) (?<=\\w)      #  or word + space before name\n    \t\t       | (?= \\s*[A-Za-z_] ) (?<!&&)       (?<=[*&>])   #  or type modifier before name\n    \t\t     )\n    \t\t)\n    \t\t(\\s*) (?!(while|for|do|if|else|switch|catch|enumerate|return|r?iterate)\\s*\\()\n    \t\t(\n    \t\t\t(?: [A-Za-z_][A-Za-z0-9_]*+ | :: )++ |                  # actual name\n    \t\t\t(?: (?<=operator) (?: [-*&<>=+!]+ | \\(\\) | \\[\\] ) )  # if it is a C++ operator\n    \t\t)\n    \t\t \\s*(?=\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.whitespace.function.leading.dm"
+        },
+        "3": {
+          "name": "entity.name.function.dm"
+        },
+        "4": {
+          "name": "punctuation.definition.parameters.dm"
+        }
+      },
+      "end": "(?<=\\})|(?=#)|(;)?",
+      "name": "meta.function.dm",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#parens"
+        },
+        {
+          "match": "\\bconst\\b",
+          "name": "storage.modifier.dm"
+        },
+        {
+          "include": "#block"
+        }
+      ]
+    }
+  ],
+  "scopeName": "source.dmf"
+}

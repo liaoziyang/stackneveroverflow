@@ -1,0 +1,249 @@
+{
+  "fileTypes": [
+    "gd"
+  ],
+  "name": "GDScript (Godot Engine)",
+  "patterns": [
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.number-sign.gdscript"
+        }
+      },
+      "match": "(#).*$\\n?",
+      "name": "comment.line.number-sign.gdscript"
+    },
+    {
+      "begin": "^(\"\"\")",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.comment.triple-quote.gdscript"
+        }
+      },
+      "end": "(\"\"\")",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.comment.triple-quote.gdscript"
+        }
+      },
+      "name": "comment.block.triple-quote"
+    },
+    {
+      "begin": "\"",
+      "end": "(?<!\\\\)\"",
+      "name": "string.quoted.double.gdscript"
+    },
+    {
+      "begin": "'",
+      "end": "(?<!\\\\)'",
+      "name": "string.quoted.single.gdscript"
+    },
+    {
+      "begin": "\"\"\"",
+      "end": "(?<!\\\\)\"\"\"",
+      "name": "string.quoted.triple.gdscript"
+    },
+    {
+      "begin": "@\"",
+      "end": "(?<!\\\\)\"",
+      "name": "string.quoted.double.node-path.gdscript"
+    },
+    {
+      "match": "\\b(?i:0x\\h*)\\b",
+      "name": "constant.numeric.integer.hexadecimal.gdscript"
+    },
+    {
+      "match": "\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))\\b",
+      "name": "constant.numeric.float.gdscript"
+    },
+    {
+      "match": "\\b(?i:(\\.\\d+(e[\\-\\+]?\\d+)?))\\b",
+      "name": "constant.numeric.float.gdscript"
+    },
+    {
+      "match": "\\b(?i:(\\d+e[\\-\\+]?\\d+))\\b",
+      "name": "constant.numeric.float.gdscript"
+    },
+    {
+      "match": "\\b\\d+\\b",
+      "name": "constant.numeric.integer.gdscript"
+    },
+    {
+      "match": "\\b(?i:elif|else|for|if|while|break|continue|pass|return)\\b",
+      "name": "keyword.control.flow.gdscript"
+    },
+    {
+      "match": "\\b(?i:&&|and|in|is|!|not|\\|\\||or)\\b",
+      "name": "keyword.operator.logical.gdscript"
+    },
+    {
+      "match": "<=|>=|==|<|>|!=",
+      "name": "keyword.operator.comparison.gdscript"
+    },
+    {
+      "match": "\\+=|-=|\\*=|/=|%=|&=|\\|=|\\*|/|%|\\+|-|<<|>>|&|\\||\\^|~",
+      "name": "keyword.operator.arithmetic.gdscript"
+    },
+    {
+      "match": "=",
+      "name": "keyword.operator.assignment.gdscript"
+    },
+    {
+      "match": "\\b(bool|int|float|String|funcref)\\b",
+      "name": "support.type.basic.gdscript"
+    },
+    {
+      "match": "\\b(Vector[23]|Rect2|Matrix32?|Plane|Quat|AABB|Transform)\\b",
+      "name": "support.type.vector.gdscript"
+    },
+    {
+      "match": "\\b(Color|Image|NodePath|RID|Object|InputEvent)\\b",
+      "name": "support.type.engine.gdscript"
+    },
+    {
+      "match": "\\b(Array|Dictionary|ByteArray|IntArray|FloatArray|StringArray|Vector[23]Array|ColorArray)\\b",
+      "name": "support.type.container.gdscript"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "storage.type.class.gdscript"
+        },
+        "2": {
+          "name": "entity.name.type.class.gdscript"
+        }
+      },
+      "match": "^\\s*(?i:(class))\\s+([a-zA-Z_][a-zA-Z_0-9]*)\\s*:"
+    },
+    {
+      "begin": "^\\s*(?i:(?:(static)\\s+)?(func))\\s+([a-zA-Z_][a-zA-Z_0-9]*)\\s*\\(",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.static-function.gdscript"
+        },
+        "2": {
+          "name": "storage.type.function.gdscript"
+        },
+        "3": {
+          "name": "entity.name.function.gdscript"
+        }
+      },
+      "end": "\\)\\s*:",
+      "patterns": [
+        {
+          "match": "[a-zA-Z_][a-zA-Z_0-9]*",
+          "name": "variable.parameter.gdscript"
+        }
+      ]
+    },
+    {
+      "begin": "^\\s*(?i:(signal))\\s+([a-zA-Z_][a-zA-Z_0-9]*)\\s*\\(",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.signal.gdscript"
+        },
+        "2": {
+          "name": "entity.name.function.siglan.gdscript"
+        }
+      },
+      "end": "\\)\\s*:",
+      "patterns": [
+        {
+          "match": "[a-zA-Z_][a-zA-Z_0-9]*",
+          "name": "variable.parameter.gdscript"
+        }
+      ]
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.other.onready.gdscript"
+        },
+        "2": {
+          "name": "storage.type.var.gdscript"
+        },
+        "3": {
+          "name": "variable.other.gdscript"
+        }
+      },
+      "match": "(?i:\\b(?:(onready)\\s+)?(var))\\s+([a-zA-Z_][a-zA-Z_0-9]*)"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "storage.type.const.gdscript"
+        },
+        "2": {
+          "name": "variable.other.gdscript"
+        }
+      },
+      "match": "\\b(?i:(const))\\s+([a-zA-Z_][a-zA-Z_0-9]*)"
+    },
+    {
+      "match": "\\b(?i:extends|assert|breakpoint)\\b",
+      "name": "keyword.other.gdscript"
+    },
+    {
+      "match": "(?<=extends)\\s+[a-zA-Z_][a-zA-Z_0-9]*(\\.([a-zA-Z_][a-zA-Z_0-9]*))?",
+      "name": "entity.other.inherited-class.gdscript"
+    },
+    {
+      "match": "\\b(?i:true|false|null)\\b",
+      "name": "constant.language.gdscript"
+    },
+    {
+      "match": "\\b(?i:export|tool)\\b",
+      "name": "storage.modifier.static.gdscript"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.operator.setget.gdscript"
+        },
+        "2": {
+          "name": "entity.name.function.gdscript"
+        },
+        "3": {
+          "name": "entity.name.function.gdscript"
+        },
+        "4": {
+          "name": "entity.name.function.gdscript"
+        }
+      },
+      "match": "\\b((?i:setget))\\b\\s+(?:,?([a-zA-Z_][a-zA-Z_0-9]*)|([a-zA-Z_][a-zA-Z_0-9]*)\\s*,\\s*([a-zA-Z_][a-zA-Z_0-9]*))"
+    },
+    {
+      "match": "\\b(?i:yield)\\b",
+      "name": "keyword.control.flow.yield.gdscript"
+    },
+    {
+      "match": "\\b(?i:var|const|onready|class|func|signal)\\b",
+      "name": "invalid.illegal"
+    },
+    {
+      "match": "([A-Z][a-zA-Z_0-9]*)",
+      "name": "entity.name.type.class-type.gdscript"
+    },
+    {
+      "match": "([a-z_][a-zA-Z_0-9]*)",
+      "name": "entity.name.type.variant.gdscript"
+    },
+    {
+      "begin": "([a-z][a-zA-Z_0-9]*)\\s*\\(",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.reference.gdscript"
+        }
+      },
+      "end": "\\)",
+      "patterns": [
+        {
+          "match": "([a-zA-Z_][a-zA-Z_0-9]*)",
+          "name": "variable.parameter.gdscript"
+        }
+      ]
+    }
+  ],
+  "scopeName": "source.gdscript",
+  "uuid": "e08b7d98-5d50-4aa9-8935-7c759a4a8fdd"
+}

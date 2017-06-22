@@ -1,0 +1,73 @@
+{
+  "fileTypes": [
+    "gradle"
+  ],
+  "name": "Gradle Build Script",
+  "patterns": [
+    {
+      "include": "#gradle"
+    }
+  ],
+  "repository": {
+    "blocks": {
+      "patterns": [
+        {
+          "begin": "(?!<project\\.)(\\w+)\\s*{",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.block.groovy.gradle"
+            }
+          },
+          "end": "}",
+          "name": "meta.definition.block.groovy.gradle",
+          "patterns": [
+            {
+              "include": "#gradle-groovy"
+            }
+          ]
+        }
+      ]
+    },
+    "gradle": {
+      "patterns": [
+        {
+          "include": "#tasks"
+        },
+        {
+          "include": "#blocks"
+        },
+        {
+          "include": "source.groovy"
+        }
+      ]
+    },
+    "gradle-groovy": {
+      "patterns": [
+        {
+          "include": "source.groovy"
+        }
+      ]
+    },
+    "tasks": {
+      "patterns": [
+        {
+          "begin": "task\\s+(\\w+)\\s*(?=[\\({])",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.task.groovy.gradle"
+            }
+          },
+          "end": "^",
+          "name": "meta.definition.task.groovy.gradle",
+          "patterns": [
+            {
+              "include": "#gradle-groovy"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "scopeName": "source.groovy.gradle",
+  "uuid": "D7E70EBB-ED68-4F09-A5AF-9126624AE319"
+}

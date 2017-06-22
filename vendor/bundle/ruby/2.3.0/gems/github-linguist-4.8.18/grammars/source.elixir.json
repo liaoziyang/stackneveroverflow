@@ -1,0 +1,980 @@
+{
+  "comment": "Textmate bundle for Elixir Programming Language.",
+  "fileTypes": [
+    "ex",
+    "exs"
+  ],
+  "firstLineMatch": "^#!/.*\\belixir",
+  "foldingStartMarker": "(after|else|catch|rescue|\\-\\>|\\{|\\[|do)\\s*$",
+  "foldingStopMarker": "^\\s*((\\}|\\]|after|else|catch|rescue)\\s*$|end\\b)",
+  "keyEquivalent": "^~E",
+  "name": "Elixir",
+  "patterns": [
+    {
+      "begin": "\\b(fn)\\b(?!.*->)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.elixir"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#core_syntax"
+        },
+        {
+          "match": "\\b[a-z_]\\w*(?!\\()\\b",
+          "name": "variable.parameter.function.anonymous.elixir"
+        }
+      ]
+    },
+    {
+      "begin": "\\b(fn)\\b(?=.*->)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.elixir"
+        }
+      },
+      "end": "(?>(->)|(when)|(\\)))",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.operator.other.elixir"
+        },
+        "2": {
+          "name": "keyword.control.elixir"
+        },
+        "3": {
+          "name": "punctuation.definition.parameters.elixir"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#core_syntax"
+        },
+        {
+          "match": "\\b[a-z_]\\w*(?!\\()\\b",
+          "name": "variable.parameter.function.anonymous.elixir"
+        }
+      ]
+    },
+    {
+      "include": "#core_syntax"
+    },
+    {
+      "begin": "^(?=.*->)((?![^\"']*(\"|')[^\"']*->)|(?=.*->[^\"']*(\"|')[^\"']*->))((?!.*\\([^\\)]*->)|(?=[^\\(\\)]*->)|(?=\\s*\\(.*\\).*->))((?!.*\\b(fn)\\b)|(?=.*->.*\\bfn\\b))",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.elixir"
+        }
+      },
+      "end": "(?>(->)|(when)|(\\)))",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.operator.other.elixir"
+        },
+        "2": {
+          "name": "keyword.control.elixir"
+        },
+        "3": {
+          "name": "punctuation.definition.parameters.elixir"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#core_syntax"
+        },
+        {
+          "match": "\\b[a-z_]\\w*(?!\\()\\b",
+          "name": "variable.parameter.function.anonymous.elixir"
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "core_syntax": {
+      "patterns": [
+        {
+          "begin": "^\\s*(defmodule)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.module.elixir"
+            }
+          },
+          "end": "\\b(do)\\b",
+          "endCaptures": {
+            "1": {
+              "name": "keyword.control.module.elixir"
+            }
+          },
+          "name": "meta.module.elixir",
+          "patterns": [
+            {
+              "match": "\\b[A-Z]\\w*\\b",
+              "name": "entity.name.class.elixir"
+            }
+          ]
+        },
+        {
+          "begin": "^\\s*(def)\\s+((?>[a-zA-Z_]\\w*(?>\\.|::))?(?>[a-zA-Z_]\\w*(?>[?!]|=(?!>))?|===?|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\]=?))((\\()|\\s*)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.module.elixir"
+            },
+            "2": {
+              "name": "entity.name.function.public.elixir"
+            },
+            "4": {
+              "name": "punctuation.definition.parameters.elixir"
+            }
+          },
+          "end": "(\\bdo:)|(\\bdo\\b)|$",
+          "endCaptures": {
+            "1": {
+              "name": "constant.other.keywords.elixir"
+            },
+            "2": {
+              "name": "keyword.control.module.elixir"
+            }
+          },
+          "name": "meta.function.public.elixir",
+          "patterns": [
+            {
+              "include": "$self"
+            },
+            {
+              "begin": "\\s(\\\\\\\\)",
+              "beginCaptures": {
+                "1": {
+                  "name": "keyword.operator.other.elixir"
+                }
+              },
+              "end": ",|$",
+              "patterns": [
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "(\\b[a-z_]\\w*)(\\\\\\\\)",
+              "beginCaptures": {
+                "1": {
+                  "name": "variable.parameter.function.public.elixir"
+                },
+                "2": {
+                  "name": "keyword.operator.other.elixir"
+                }
+              },
+              "end": ",|$",
+              "patterns": [
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "match": "\\b[a-z_]\\w*\\b",
+              "name": "variable.parameter.function.public.elixir"
+            }
+          ]
+        },
+        {
+          "begin": "^\\s*(defp)\\s+((?>[a-zA-Z_]\\w*(?>\\.|::))?(?>[a-zA-Z_]\\w*(?>[?!]|=(?!>))?|===?|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\]=?))((\\()|\\s*)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.module.elixir"
+            },
+            "2": {
+              "name": "entity.name.function.private.elixir"
+            },
+            "4": {
+              "name": "punctuation.definition.parameters.elixir"
+            }
+          },
+          "end": "(\\bdo:)|(\\bdo\\b)|$",
+          "endCaptures": {
+            "1": {
+              "name": "constant.other.keywords.elixir"
+            },
+            "2": {
+              "name": "keyword.control.module.elixir"
+            }
+          },
+          "name": "meta.function.private.elixir",
+          "patterns": [
+            {
+              "include": "$self"
+            },
+            {
+              "begin": "\\s(\\\\\\\\)",
+              "beginCaptures": {
+                "1": {
+                  "name": "keyword.operator.other.elixir"
+                }
+              },
+              "end": ",|$",
+              "patterns": [
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "(\\b[a-z_]\\w*)(\\\\\\\\)",
+              "beginCaptures": {
+                "1": {
+                  "name": "variable.parameter.function.private.elixir"
+                },
+                "2": {
+                  "name": "keyword.operator.other.elixir"
+                }
+              },
+              "end": ",|$",
+              "patterns": [
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "match": "\\b[a-z_]\\w*\\b",
+              "name": "variable.parameter.function.private.elixir"
+            }
+          ]
+        },
+        {
+          "begin": "@(module|type)?doc (~[a-z])?\"\"\"",
+          "comment": "@doc with heredocs is treated as documentation",
+          "end": "\\s*\"\"\"",
+          "name": "comment.documentation.heredoc",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "@(module|type)?doc ~[A-Z]\"\"\"",
+          "comment": "@doc with heredocs is treated as documentation",
+          "end": "\\s*\"\"\"",
+          "name": "comment.documentation.heredoc"
+        },
+        {
+          "begin": "@(module|type)?doc (~[a-z])?'''",
+          "comment": "@doc with heredocs is treated as documentation",
+          "end": "\\s*'''",
+          "name": "comment.documentation.heredoc",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "@(module|type)?doc ~[A-Z]'''",
+          "comment": "@doc with heredocs is treated as documentation",
+          "end": "\\s*'''",
+          "name": "comment.documentation.heredoc"
+        },
+        {
+          "comment": "@doc false is treated as documentation",
+          "match": "@(module|type)?doc false",
+          "name": "comment.documentation.false"
+        },
+        {
+          "begin": "@(module|type)?doc \"",
+          "comment": "@doc with string is treated as documentation",
+          "end": "\"",
+          "name": "comment.documentation.string",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "(::)",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.binary.elixir"
+            }
+          },
+          "end": "(,|>>|$)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.binary.elixir"
+            }
+          },
+          "patterns": [
+            {
+              "match": "\\b[a-z]\\w*\\b",
+              "name": "support.type.binary.elixir"
+            },
+            {
+              "match": "\\b(0x\\h(?>_?\\h)*|\\d(?>_?\\d)*(\\.(?![^[:space:][:digit:]])(?>_?\\d)*)?([eE][-+]?\\d(?>_?\\d)*)?|0b[01]+|0o[0-7]+)\\b",
+              "name": "constant.numeric.elixir"
+            }
+          ]
+        },
+        {
+          "match": "(?<!\\.)\\b(do|end|case|bc|lc|for|if|cond|unless|try|receive|fn|defmodule|defp?|defprotocol|defimpl|defrecord|defstruct|defmacrop?|defdelegate|defcallback|defmacrocallback|defexception|defoverridable|exit|after|rescue|catch|else|raise|throw|import|require|alias|use|quote|unquote|super|with)\\b(?![?!:])",
+          "name": "keyword.control.elixir"
+        },
+        {
+          "comment": " as above, just doesn't need a 'end' and does a logic operation",
+          "match": "(?<!\\.)\\b(and|not|or|when|xor|in|inlist|inbits)\\b",
+          "name": "keyword.operator.elixir"
+        },
+        {
+          "match": "\\b[A-Z]\\w*\\b",
+          "name": "entity.name.class.elixir"
+        },
+        {
+          "match": "\\b(nil|true|false)\\b(?![?!])",
+          "name": "constant.language.elixir"
+        },
+        {
+          "match": "\\b(__(CALLER|ENV|MODULE|DIR)__)\\b(?![?!])",
+          "name": "variable.language.elixir"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.elixir"
+            }
+          },
+          "match": "(@)[a-zA-Z_]\\w*",
+          "name": "variable.other.readwrite.module.elixir"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.elixir"
+            }
+          },
+          "match": "(&)\\d+",
+          "name": "variable.other.anonymous.elixir"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.elixir"
+            }
+          },
+          "match": "\\^[a-z_]\\w*",
+          "name": "variable.other.capture.elixir"
+        },
+        {
+          "match": "\\b(0x\\h(?>_?\\h)*|\\d(?>_?\\d)*(\\.(?![^[:space:][:digit:]])(?>_?\\d)*)?([eE][-+]?\\d(?>_?\\d)*)?|0b[01]+|0o[0-7]+)\\b",
+          "name": "constant.numeric.elixir"
+        },
+        {
+          "begin": ":'",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.constant.elixir"
+            }
+          },
+          "end": "'",
+          "name": "constant.other.symbol.single-quoted.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": ":\"",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.constant.elixir"
+            }
+          },
+          "end": "\"",
+          "name": "constant.other.symbol.double-quoted.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "(?>''')",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "Single-quoted heredocs",
+          "end": "^\\s*'''",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.quoted.single.heredoc.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "'",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "single quoted string (allows for interpolation)",
+          "end": "'",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.quoted.single.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "(?>\"\"\")",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "Double-quoted heredocs",
+          "end": "^\\s*\"\"\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.quoted.double.heredoc.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "double quoted string (allows for interpolation)",
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.quoted.double.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "~[a-z](?>\"\"\")",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "Double-quoted heredocs sigils",
+          "end": "^\\s*\"\"\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.quoted.double.heredoc.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "~[a-z]\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "sigil (allow for interpolation)",
+          "end": "\\}[a-z]*",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.interpolated.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "~[a-z]\\[",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "sigil (allow for interpolation)",
+          "end": "\\][a-z]*",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.interpolated.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "~[a-z]\\<",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "sigil (allow for interpolation)",
+          "end": "\\>[a-z]*",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.interpolated.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "~[a-z]\\(",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "sigil (allow for interpolation)",
+          "end": "\\)[a-z]*",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.interpolated.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "~[a-z]([^\\w])",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "sigil (allow for interpolation)",
+          "end": "\\1[a-z]*",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.interpolated.elixir",
+          "patterns": [
+            {
+              "include": "#interpolated_elixir"
+            },
+            {
+              "include": "#escaped_char"
+            },
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "~[A-Z](?>\"\"\")",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "Double-quoted heredocs sigils",
+          "end": "^\\s*\"\"\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.quoted.other.literal.upper.elixir"
+        },
+        {
+          "begin": "~[A-Z]\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "sigil (without interpolation)",
+          "end": "\\}[a-z]*",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.quoted.other.literal.upper.elixir"
+        },
+        {
+          "begin": "~[A-Z]\\[",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "sigil (without interpolation)",
+          "end": "\\][a-z]*",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.quoted.other.literal.upper.elixir"
+        },
+        {
+          "begin": "~[A-Z]\\<",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "sigil (without interpolation)",
+          "end": "\\>[a-z]*",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.quoted.other.literal.upper.elixir"
+        },
+        {
+          "begin": "~[A-Z]\\(",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "sigil (without interpolation)",
+          "end": "\\)[a-z]*",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.quoted.other.literal.upper.elixir"
+        },
+        {
+          "begin": "~[A-Z]([^\\w])",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.elixir"
+            }
+          },
+          "comment": "sigil (without interpolation)",
+          "end": "\\1[a-z]*",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.elixir"
+            }
+          },
+          "name": "string.quoted.other.literal.upper.elixir"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.constant.elixir"
+            }
+          },
+          "comment": "symbols",
+          "match": "(?<!:)(:)(?>[a-zA-Z_][\\w@]*(?>[?!]|=(?![>=]))?|\\<\\>|===?|!==?|<<>>|<<<|>>>|~~~|::|<\\-|\\|>|=>|~|~=|=|/|\\\\\\\\|\\*\\*?|\\.\\.?\\.?|>=?|<=?|&&?&?|\\+\\+?|\\-\\-?|\\|\\|?\\|?|\\!|@|\\%?\\{\\}|%|\\[\\]|\\^(\\^\\^)?)",
+          "name": "constant.other.symbol.elixir"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.constant.elixir"
+            }
+          },
+          "comment": "symbols",
+          "match": "(?>[a-zA-Z_][\\w@]*(?>[?!])?)(:)(?!:)",
+          "name": "constant.other.keywords.elixir"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.comment.elixir"
+            }
+          },
+          "match": "^\\s*(##).*$\\n?",
+          "name": "comment.line.section.elixir"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.comment.elixir"
+            }
+          },
+          "match": "(?:^[ \\t]+)?(#).*$\\n?",
+          "name": "comment.line.number-sign.elixir"
+        },
+        {
+          "comment": "\n\t\t\tmatches questionmark-letters.\n\n\t\t\texamples (1st alternation = hex):\n\t\t\t?\\x1     ?\\x61\n\n\t\t\texamples (2rd alternation = escaped):\n\t\t\t?\\n      ?\\b\n\n\t\t\texamples (3rd alternation = normal):\n\t\t\t?a       ?A       ?0 \n\t\t\t?*       ?\"       ?( \n\t\t\t?.       ?#\n\t\t\t\n\t\t\tthe negative lookbehind prevents against matching\n\t\t\tp(42.tainted?)\n\t\t\t",
+          "match": "(?<!\\w)\\?(\\\\(x\\h{1,2}(?!\\h)\\b|[^xMC])|[^\\s\\\\])",
+          "name": "constant.numeric.elixir"
+        },
+        {
+          "match": "\\+=|\\-=|\\|\\|=|~=|&&=",
+          "name": "keyword.operator.assignment.augmented.elixir"
+        },
+        {
+          "match": "===?|!==?|<=?|>=?",
+          "name": "keyword.operator.comparison.elixir"
+        },
+        {
+          "match": "(\\|\\|\\||&&&|^^^|<<<|>>>|~~~)",
+          "name": "keyword.operator.bitwise.elixir"
+        },
+        {
+          "match": "(?<=[ \\t])!+|\\bnot\\b|&&|\\band\\b|\\|\\||\\bor\\b|\\bxor\\b",
+          "name": "keyword.operator.logical.elixir"
+        },
+        {
+          "match": "(\\*|\\+|\\-|/)",
+          "name": "keyword.operator.arithmetic.elixir"
+        },
+        {
+          "match": "\\||\\+\\+|\\-\\-|\\*\\*|\\\\\\\\|\\<\\-|\\<\\>|\\<\\<|\\>\\>|\\:\\:|\\.\\.|\\|>|~|=>",
+          "name": "keyword.operator.other.elixir"
+        },
+        {
+          "match": "=",
+          "name": "keyword.operator.assignment.elixir"
+        },
+        {
+          "match": ":",
+          "name": "punctuation.separator.other.elixir"
+        },
+        {
+          "match": "\\;",
+          "name": "punctuation.separator.statement.elixir"
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.object.elixir"
+        },
+        {
+          "match": "\\.",
+          "name": "punctuation.separator.method.elixir"
+        },
+        {
+          "match": "\\{|\\}",
+          "name": "punctuation.section.scope.elixir"
+        },
+        {
+          "match": "\\[|\\]",
+          "name": "punctuation.section.array.elixir"
+        },
+        {
+          "match": "\\(|\\)",
+          "name": "punctuation.section.function.elixir"
+        }
+      ]
+    },
+    "escaped_char": {
+      "match": "\\\\(x[\\da-fA-F]{1,2}|.)",
+      "name": "constant.character.escaped.elixir"
+    },
+    "interpolated_elixir": {
+      "patterns": [
+        {
+          "captures": {
+            "0": {
+              "name": "punctuation.section.embedded.elixir"
+            },
+            "1": {
+              "name": "source.elixir.embedded.source.empty"
+            }
+          },
+          "match": "#\\{(\\})",
+          "name": "source.elixir.embedded.source"
+        },
+        {
+          "begin": "#\\{",
+          "captures": {
+            "0": {
+              "name": "punctuation.section.embedded.elixir"
+            }
+          },
+          "end": "\\}",
+          "name": "source.elixir.embedded.source",
+          "patterns": [
+            {
+              "include": "#nest_curly_and_self"
+            },
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "nest_curly_and_self": {
+      "patterns": [
+        {
+          "begin": "\\{",
+          "captures": {
+            "0": {
+              "name": "punctuation.section.scope.elixir"
+            }
+          },
+          "end": "\\}",
+          "patterns": [
+            {
+              "include": "#nest_curly_and_self"
+            }
+          ]
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "regex_sub": {
+      "patterns": [
+        {
+          "include": "#interpolated_elixir"
+        },
+        {
+          "include": "#escaped_char"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.arbitrary-repitition.elixir"
+            },
+            "3": {
+              "name": "punctuation.definition.arbitrary-repitition.elixir"
+            }
+          },
+          "match": "(\\{)\\d+(,\\d+)?(\\})",
+          "name": "string.regexp.arbitrary-repitition.elixir"
+        },
+        {
+          "begin": "\\[(?:\\^?\\])?",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.character-class.elixir"
+            }
+          },
+          "end": "\\]",
+          "name": "string.regexp.character-class.elixir",
+          "patterns": [
+            {
+              "include": "#escaped_char"
+            }
+          ]
+        },
+        {
+          "begin": "\\(",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.group.elixir"
+            }
+          },
+          "end": "\\)",
+          "name": "string.regexp.group.elixir",
+          "patterns": [
+            {
+              "include": "#regex_sub"
+            }
+          ]
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.comment.elixir"
+            }
+          },
+          "comment": "We are restrictive in what we allow to go after the comment character to avoid false positives, since the availability of comments depend on regexp flags.",
+          "match": "(?<=^|\\s)(#)\\s[[a-zA-Z0-9,. \\t?!-][^\\x{00}-\\x{7F}]]*$",
+          "name": "comment.line.number-sign.elixir"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.elixir",
+  "uuid": "D00C06B9-71B2-4FEB-A0E3-37237F579456"
+}

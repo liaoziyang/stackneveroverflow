@@ -1,0 +1,41 @@
+inherit_from: .rubocop_todo.yml
+
+Metrics/ClassLength:
+  Enabled: false
+
+Style/AsciiComments:
+  Exclude:
+    - benchmark/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyCaseCondition:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/PredicateName:
+  NamePrefixBlacklist:
+    - is_
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/UnneededPercentQ:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - qiita-markdown.gemspec
+    - spec/**/*

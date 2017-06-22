@@ -1,0 +1,86 @@
+{
+  "scopeName": "source.nant-build",
+  "name": "NAnt Build File",
+  "fileTypes": [
+    "build"
+  ],
+  "foldingStartMarker": "<[^!?/>]+|<!--",
+  "foldingStopMarker": "/>|</[^?>]+|-->",
+  "patterns": [
+    {
+      "begin": "<!--",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.nant"
+        }
+      },
+      "end": "-->",
+      "name": "comment.block.nant"
+    },
+    {
+      "begin": "(</?)([-_a-zA-Z0-9:]+)",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.tag.nant"
+        },
+        "2": {
+          "name": "entity.name.tag.nant"
+        }
+      },
+      "end": "(/?>)",
+      "name": "meta.tag.nant",
+      "patterns": [
+        {
+          "match": " ([a-zA-Z-]+)",
+          "name": "entity.other.attribute-name.nant"
+        },
+        {
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.nant"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.nant"
+            }
+          },
+          "name": "string.quoted.double.nant"
+        },
+        {
+          "begin": "'",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.nant"
+            }
+          },
+          "end": "'",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.nant"
+            }
+          },
+          "name": "string.quoted.single.nant"
+        }
+      ]
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.constant.nant"
+        },
+        "3": {
+          "name": "punctuation.definition.constant.nant"
+        }
+      },
+      "match": "(&)([a-zA-Z]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
+      "name": "constant.character.entity.nant"
+    },
+    {
+      "match": "&",
+      "name": "invalid.illegal.bad-ampersand.nant"
+    }
+  ]
+}

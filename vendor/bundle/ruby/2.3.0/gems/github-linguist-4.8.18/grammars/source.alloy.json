@@ -1,0 +1,44 @@
+{
+  "fileTypes": [
+    "src"
+  ],
+  "name": "text.alloy",
+  "patterns": [
+    {
+      "match": "\\b(run|check)\\b",
+      "name": "keyword.control.alloy"
+    },
+    {
+      "match": "\\b(implies|or|and|let|else)\\b",
+      "name": "keyword.operator.alloy"
+    },
+    {
+      "match": "\\b(fact|abstract|sig|extends|some|one|lone|set|all|no|none|open|module|not|in|pred|assert|for|but exactly|disj)\\b",
+      "name": "keyword.other.alloy"
+    },
+    {
+      "match": "\\/\\/.*",
+      "name": "comment.line.double-slash.alloy"
+    },
+    {
+      "match": "\\/\\*(.)*\\*\\/|\\s\\*\\s(.)*\\n|\\*/|\\/\\*(.)*",
+      "name": "comment.block.empty.alloy"
+    },
+    {
+      "match": "\\b(fact|sig|module|pred|fun|enum)\\b",
+      "name": "storage.type.alloy"
+    },
+    {
+      "begin": "pred \\w*\\[(.)*]{",
+      "end": "}",
+      "name": "entity.name.function.predicate.alloy",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    }
+  ],
+  "scopeName": "source.alloy",
+  "uuid": "4E96158C-0507-4FFC-87D7-76A2E89DE7FB"
+}

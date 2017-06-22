@@ -1,0 +1,67 @@
+he:
+  activerecord:
+    attributes:
+      user:
+        current_password: "סיסמא נוכחית"
+        email: "אימייל"
+        password: "סיסמא"
+        password_confirmation: "אישור סיסמא"
+        remember_me: "זכור אותי"
+    models:
+      user: "משתמש"
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: "שלח מחדש הוראות אישור"
+    mailer:
+      confirmation_instructions:
+        action: "אשר את החשבון שלי"
+        greeting: "ברוך הבא %{recipient}!"
+        instruction: "אתה יכול לאשר את כתובת האימייל שלך בעזרת הקישור הנֿֿ״ל:"
+      reset_password_instructions:
+        action: "שנה סיסמא"
+        greeting: "שלום %{recipient}!"
+        instruction: "נתקבלה בקשה לשינוי הסיסמא שלך וביכולתך לעשות זאת בעזרת הקישור המוצג למטה."
+        instruction_2: "אם אתה לא ביקשת זאת, אנא התעלם מאימייל זה."
+        instruction_3: "סיסמאתך תוחלף רק אם תלחץ על הקישור המוצג מעל ותיצור סיסמא חדשה."
+      unlock_instructions:
+        action: "בטל נעילת חשבון"
+        greeting: "שלום %{recipient}!"
+        instruction: "לחץ על הלינק המוצג למטה בכדי לבטל את נעילת חשבונך:"
+        message: "חשבונך ננעל עקב מספר רב של ניסיונות כניסה כושלים."
+    passwords:
+      edit:
+        change_my_password: "שנה סיסמא"
+        change_your_password: "שינוי סיסמא"
+        confirm_new_password: "אישור סיסמא חדשה"
+        new_password: "סיסמא חדשה"
+      new:
+        forgot_your_password: "שכחת סיסמא?"
+        send_me_reset_password_instructions: "שלח לי הוראות שיחזור סיסמא"
+    registrations:
+      edit:
+        are_you_sure: "האם את בטוח?"
+        cancel_my_account: "בטל את החשבון שלי"
+        currently_waiting_confirmation_for_email: "ממתין לאישור של הכתובת: %{email}"
+        leave_blank_if_you_don_t_want_to_change_it: "השאר ריק אם אין ברצונך לשנותו"
+        title: "ערוך %{resource}"
+        unhappy: "לא מרוצה"
+        update: "עדכן"
+        we_need_your_current_password_to_confirm_your_changes: "אנחנו זקוקים לסיסמאתך הנוכחית על מנת לבצע את השינויים שביקשת"
+      new:
+        sign_up: "הרשמה"
+    sessions:
+      new:
+        sign_in: "כניסה"
+    shared:
+      links:
+        back: "חזור"
+        didn_t_receive_confirmation_instructions: "לא קיבלת את הוראות האישור?"
+        didn_t_receive_unlock_instructions: "לא קיבלת את הוראות ביטול הנעילה?"
+        forgot_your_password: "שכחת סיסמא?"
+        sign_in: "כניסה"
+        sign_in_with_provider: "כניסה באמצעות %{provider}"
+        sign_up: "הרשמה"
+    unlocks:
+      new:
+        resend_unlock_instructions: "שלח שוב הוראות ביטול נעילה"

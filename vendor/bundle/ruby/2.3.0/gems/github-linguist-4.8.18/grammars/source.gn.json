@@ -1,0 +1,248 @@
+{
+  "scopeName": "source.gn",
+  "name": "gn",
+  "fileTypes": [
+    "gn",
+    "gni"
+  ],
+  "injections": {
+    "source.gn": {
+      "patterns": [
+        {
+          "include": "#comment"
+        }
+      ]
+    }
+  },
+  "patterns": [
+    {
+      "include": "#assignment"
+    },
+    {
+      "include": "#function"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "name": "punctuation.comment.gn",
+      "match": "#[^\\n]*\\n"
+    },
+    "string": {
+      "patterns": [
+        {
+          "begin": "\"\"\"",
+          "end": "\"\"\"",
+          "name": "string.quoted.triple.gn"
+        },
+        {
+          "match": "(')([^']*)(')",
+          "captures": {
+            "0": {
+              "name": "punctuation.string.single.begin.gn"
+            },
+            "1": {
+              "name": "string.quoted.single.gn"
+            },
+            "2": {
+              "name": "punctuation.string.single.end.gn"
+            }
+          }
+        },
+        {
+          "match": "(\")([^\"]*)(\")",
+          "captures": {
+            "0": {
+              "name": "punctuation.string.double.begin.gn"
+            },
+            "1": {
+              "name": "string.quoted.double.gn"
+            },
+            "2": {
+              "name": "punctuation.string.double.end.gn"
+            }
+          }
+        }
+      ]
+    },
+    "number": {
+      "match": "\\d+",
+      "captures": {
+        "0": {
+          "name": "constant.numeric.gn"
+        }
+      }
+    },
+    "variable": {
+      "match": "\\w+",
+      "captures": {
+        "0": {
+          "name": "variable.other.gn"
+        }
+      }
+    },
+    "function": {
+      "name": "meta.function.gn",
+      "begin": "(\\w+)\\s*(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.function.gn"
+        },
+        "2": {
+          "name": "punctuation.function.parameters.begin.gn"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.function.parameters.end.gn"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#argument"
+        }
+      ]
+    },
+    "argument": {
+      "patterns": [
+        {
+          "name": "mata.argument.gn",
+          "begin": "(\\w+)\\s*(=)\\s*",
+          "beginCaptures": {
+            "1": {
+              "name": "variable.parameter.gn"
+            },
+            "2": {
+              "name": "keyword.operator.assignment.gn"
+            }
+          },
+          "end": ",|\\n",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.separator.gn"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#expression"
+            }
+          ]
+        },
+        {
+          "include": "#expression"
+        }
+      ]
+    },
+    "assignment": {
+      "name": "meta.assignment.gn",
+      "begin": "(\\w+)\\s*(=)\\s*",
+      "beginCaptures": {
+        "1": {
+          "name": "variable.other.gn"
+        },
+        "2": {
+          "name": "keyword.operator.assignment.gn"
+        }
+      },
+      "end": "(;|\\n)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.statement.end.gn"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#expression"
+        }
+      ]
+    },
+    "array": {
+      "name": "meta.array.gn",
+      "begin": "\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.array.begin.gn"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.array.end.gn"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#expression"
+        },
+        {
+          "match": "\\s*([,])\\s*",
+          "captures": {
+            "1": {
+              "name": "punctuation.separator.gn"
+            }
+          }
+        }
+      ]
+    },
+    "dictionary": {
+      "name": "meta.dictionary.gn",
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.dictionary.begin.gn"
+        }
+      },
+      "end": "\\s*\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.dictionary.end.gn"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#expression"
+        },
+        {
+          "match": "\\s*([,:])\\s*",
+          "captures": {
+            "1": {
+              "name": "punctuation.separator.gn"
+            }
+          }
+        }
+      ]
+    },
+    "expression": {
+      "name": "meta.expression.gn",
+      "contentName": "meta.expression.gn",
+      "patterns": [
+        {
+          "include": "#function"
+        },
+        {
+          "include": "#array"
+        },
+        {
+          "include": "#dictionary"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#variable"
+        },
+        {
+          "include": "#string"
+        },
+        {
+          "match": "\\+|\\-|\\%",
+          "captures": {
+            "0": {
+              "name": "operator.gn"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

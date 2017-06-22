@@ -1,0 +1,254 @@
+{
+  "fileTypes": [
+    "agda"
+  ],
+  "keyEquivalent": "^~A",
+  "name": "Agda",
+  "patterns": [
+    {
+      "begin": "\\b(module)\\s+([^\\(\\)\\{\\}[:space:]=→λ∀?][^\\(\\)\\{\\}[:space:]]*)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.agda"
+        },
+        "2": {
+          "name": "storage.module.agda"
+        }
+      },
+      "end": "(\\bwhere\\b|=)",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.other.agda"
+        }
+      },
+      "name": "meta.declaration.module.agda",
+      "patterns": [
+        {
+          "include": "#module_param"
+        },
+        {
+          "include": "#module_params"
+        },
+        {
+          "include": "#module_params_implicit"
+        }
+      ]
+    },
+    {
+      "begin": "^\\s*(import|open(\\s+import)?)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.agda"
+        }
+      },
+      "end": "$",
+      "name": "meta.import.agda",
+      "patterns": [
+        {
+          "match": "\\b(as|using|renaming|hiding|public)\\b",
+          "name": "keyword.other.agda"
+        }
+      ]
+    },
+    {
+      "begin": "^\\s*(record)\\s+([^\\(\\)\\{\\}[:space:]=→λ∀?][^\\(\\)\\{\\}[:space:]]*)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.agda"
+        },
+        "2": {
+          "name": "storage.record.agda"
+        }
+      },
+      "end": "\\b(where)\\b",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.other.agda"
+        }
+      },
+      "name": "meta.declaration.record.agda",
+      "patterns": [
+
+      ]
+    },
+    {
+      "begin": "\\b(data)\\s+([^\\(\\)\\{\\}[:space:]=→λ∀?][^\\(\\)\\{\\}[:space:]]*)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.agda"
+        },
+        "2": {
+          "name": "storage.data.agda"
+        }
+      },
+      "end": "\\b(where)\\b",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.other.agda"
+        }
+      },
+      "name": "meta.declaration.record.agda",
+      "patterns": [
+
+      ]
+    },
+    {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.agda",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.agda"
+        }
+      ]
+    },
+    {
+      "match": "\\binfix[lr]\\b",
+      "name": "keyword.operator.agda"
+    },
+    {
+      "match": "\\b(where|as|case|field|constructor|record|private|public|abstract|mutual)\\b",
+      "name": "keyword.other.agda"
+    },
+    {
+      "match": "(?<=\\s)[=→λ∀?]",
+      "name": "keyword.operator.agda"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "entity.name.function.agda"
+        },
+        "2": {
+          "name": "keyword.other.colon.agda"
+        }
+      },
+      "match": "^\\s*([^\\(\\)\\{\\}[:space:]=→λ∀?][^\\(\\)\\{\\}[:space:]]*)\\s*(:)(?=\\s|$)",
+      "name": "meta.function.type-declaration.agda"
+    },
+    {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.agda"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.agda"
+        }
+      },
+      "name": "string.quoted.double.agda",
+      "patterns": [
+        {
+          "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&])",
+          "name": "constant.character.escape.agda"
+        },
+        {
+          "match": "\\\\o[0-7]+|\\\\x[0-9A-Fa-f]+|\\\\[0-9]+",
+          "name": "constant.character.escape.octal.agda"
+        },
+        {
+          "match": "\\^[A-Z@\\[\\]\\\\\\^_]",
+          "name": "constant.character.escape.control.agda"
+        }
+      ]
+    },
+    {
+      "match": "\\b([0-9]+|0([xX][0-9a-fA-F]+))\\b",
+      "name": "constant.numeric.agda"
+    },
+    {
+      "include": "#dashComment"
+    },
+    {
+      "include": "#pragma"
+    },
+    {
+      "include": "#blockComment"
+    }
+  ],
+  "repository": {
+    "blockComment": {
+      "begin": "{-",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.agda"
+        }
+      },
+      "end": "-}",
+      "name": "comment.block.agda"
+    },
+    "dashComment": {
+      "begin": "(--) ",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.agda"
+        }
+      },
+      "end": "$",
+      "name": "comment.line.double-dash.agda"
+    },
+    "identifier": {
+      "comment": "not so much here to be used as to be a reference",
+      "match": "\\b[^\\(\\)\\{\\}[:space:]=→λ∀?][^\\(\\)\\{\\}[:space:]]*",
+      "name": "entity.name.function.agda"
+    },
+    "module_param": {
+      "match": "\\b[^\\(\\)\\{\\}[:space:]=→λ∀?][^\\(\\)\\{\\}[:space:]]*",
+      "name": "entity.name.parameter.agda"
+    },
+    "module_params": {
+      "begin": "\\(",
+      "end": "\\)",
+      "name": "meta.declaration.module.params.agda",
+      "patterns": [
+        {
+          "include": "#module_param"
+        },
+        {
+          "include": "#type_sig_rhs"
+        }
+      ]
+    },
+    "module_params_implicit": {
+      "begin": "\\{",
+      "end": "\\}",
+      "name": "meta.declaration.module.params.agda",
+      "patterns": [
+        {
+          "include": "#module_param"
+        },
+        {
+          "include": "#type_sig_rhs"
+        }
+      ]
+    },
+    "pragma": {
+      "applyEndPatternLast": 1,
+      "begin": "\\{-#",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.pragma.agda"
+        }
+      },
+      "end": "#-\\}",
+      "name": "support.pragma.block.agda"
+    },
+    "type_sig_rhs": {
+      "begin": ":",
+      "end": "(?=[\\)\\}])",
+      "name": "meta.declaration.module.params.typesig.agda",
+      "patterns": [
+        {
+          "match": "\\b[^\\(\\)\\{\\}[:space:]=→λ∀?][^\\(\\)\\{\\}[:space:]]*",
+          "name": "storage.type.agda"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.agda",
+  "uuid": "F9829CA7-1CEB-4A7E-AD45-0C1622729B8A"
+}

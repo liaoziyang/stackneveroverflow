@@ -1,0 +1,75 @@
+{
+  "fileTypes": [
+    "w",
+    "html"
+  ],
+  "name": "HTML (ABL)",
+  "patterns": [
+    {
+      "begin": ".*(<)(script) (language)(=)(\"SpeedScript\")(>)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.html"
+        },
+        "2": {
+          "name": "entity.name.tag.script.html"
+        },
+        "3": {
+          "name": "entity.other.attribute-name.html"
+        },
+        "4": {
+          "name": "meta.tag.inline.any.html"
+        },
+        "5": {
+          "name": "string.double.quoted.html"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.html"
+        }
+      },
+      "end": ".*(</)(script)(>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.html"
+        },
+        "2": {
+          "name": "entity.name.tag.script.html"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.html"
+        }
+      },
+      "name": "source.abl",
+      "patterns": [
+        {
+          "include": "source.abl"
+        }
+      ]
+    },
+    {
+      "begin": "\\`",
+      "beginCaptures": {
+        "0": {
+          "name": "string.double.quoted.html"
+        }
+      },
+      "end": "\\`",
+      "endCaptures": {
+        "0": {
+          "name": "string.double.quoted.html"
+        }
+      },
+      "name": "source.abl",
+      "patterns": [
+        {
+          "include": "source.abl"
+        }
+      ]
+    },
+    {
+      "include": "text.html.basic"
+    }
+  ],
+  "scopeName": "text.html.abl",
+  "uuid": "043f4cd2-a6ba-49fc-b269-0fbf41acb7e5"
+}

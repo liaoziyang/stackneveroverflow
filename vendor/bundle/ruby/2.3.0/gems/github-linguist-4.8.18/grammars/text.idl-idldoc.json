@@ -1,0 +1,14 @@
+{
+  "fileTypes": [
+    "idldoc"
+  ],
+  "name": "IDLdoc file",
+  "patterns": [
+    {
+      "match": ".*",
+      "name": "comment.idl.idldoc"
+    }
+  ],
+  "scopeName": "text.idl-idldoc",
+  "uuid": "E18B4441-7323-45BF-B481-DA48DC11C65A"
+}

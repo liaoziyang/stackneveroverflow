@@ -1,0 +1,67 @@
+bg:
+  activerecord:
+    attributes:
+      user:
+        current_password: "Текуща парола"
+        email: "Емейл"
+        password: "Парола"
+        password_confirmation: "Потвърждаване на паролата"
+        remember_me: "Запомни ме"
+    models:
+      user: "Потребител"
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: "Повторно изпращане на инструкции за потвърждаване"
+    mailer:
+      confirmation_instructions:
+        action: "Потвърждаване на профил"
+        greeting: "Добре дошли, %{recipient}!"
+        instruction: "Можете да потвърдите Вашия имейл адрес чрез долния линка:"
+      reset_password_instructions:
+        action: "Смяна на парола"
+        greeting: "Здравей, %{recipient}!"
+        instruction: "Някой е поискал линк за смяна на парола. Можете да смените паролата си чрез долния линк."
+        instruction_2: "В случай, че не сте поискали смяна на паролата, моля игнорирайте настоящия имейл."
+        instruction_3: "Паролата Ви няма да бъде сменена докато не използвате горния линк, за да създадете новва."
+      unlock_instructions:
+        action: "Отключване на профил"
+        greeting: "Здравей, %{recipient}!"
+        instruction: "Натиснете върху донлия линк, за да отключите профила си:"
+        message: "Профилът Ви е заключен поради надвишаване броя на неуспешните опити за вход."
+    passwords:
+      edit:
+        change_my_password: "Смяна на парола"
+        change_your_password: "Смяна на парола"
+        confirm_new_password: "Потвърждение на нова парола"
+        new_password: "Нова парола"
+      new:
+        forgot_your_password: "Забравена парола?"
+        send_me_reset_password_instructions: "Изпрати инструкции за възстановяване на парола"
+    registrations:
+      edit:
+        are_you_sure: "Сигурни ли сте?"
+        cancel_my_account: "Закриване на профил"
+        currently_waiting_confirmation_for_email: "Очаква се потвърждение за: %{email}"
+        leave_blank_if_you_don_t_want_to_change_it: "оставете празно, ако не искате да го променяте"
+        title: "Редакция на %{resource}"
+        unhappy: "Недоволни"
+        update: "Обновяване"
+        we_need_your_current_password_to_confirm_your_changes: "въведете настоящата си парола за потвърждаване на промените"
+      new:
+        sign_up: "Регистрация"
+    sessions:
+      new:
+        sign_in: "Вход"
+    shared:
+      links:
+        back: "Назад"
+        didn_t_receive_confirmation_instructions: "Не сте получили инструкции за потвърждаване?"
+        didn_t_receive_unlock_instructions: "Не сте получили инструкции за отключване?"
+        forgot_your_password: "Забравена парола?"
+        sign_in: "Вход"
+        sign_in_with_provider: "Вход с %{provider}"
+        sign_up: "Регистрация"
+    unlocks:
+      new:
+        resend_unlock_instructions: "Повторно изпращане на инструкции за отключване"

@@ -1,0 +1,138 @@
+{
+  "fileTypes": [
+    "w",
+    "p",
+    "i"
+  ],
+  "name": "OpenEdge ABL",
+  "patterns": [
+    {
+      "begin": "/\\*",
+      "end": "\\*/(?![^/]*?\\*/)",
+      "name": "comment.block.source.abl"
+    },
+    {
+      "match": "('(?:'|.)*?')",
+      "name": "string.single.source.abl"
+    },
+    {
+      "match": "\\\"\\\"[a-zA-Z0-9_\\.\\-]+\\\"\\\"",
+      "name": "string.double.source.abl"
+    },
+    {
+      "begin": "(\\\"(?!\\\"[a-zA-Z]+)|\\\"\\\"[a-zA-Z]+)",
+      "end": "\\\"(?!\\\")",
+      "name": "string.double.complex.abl",
+      "patterns": [
+        {
+          "match": "(~(x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)|\\\"\\\")",
+          "name": "constant.character.escape.abl"
+        }
+      ]
+    },
+    {
+      "match": "(?<!\\w)((0(x|X)[0-9a-fA-F]+)|([0-9]+(\\.[0-9]+)?))",
+      "name": "constant.numeric.source.abl"
+    },
+    {
+      "match": "(?i)\\b(true|false|yes|no(?!-))\\b",
+      "name": "constant.language.source.abl"
+    },
+    {
+      "match": "(?i)(\\b(or|and|not|is)\\b|(=|\\+| - |/|<|>|,|\\.))",
+      "name": "keyword.operator.source.abl"
+    },
+    {
+      "match": "(?i)(\\b(return|function|return(s)?|forward|input|output|like|new|no-undo|no-box|no-labels|(share|no|exclusive)-lock|no-error|format|colon|label|init(ial)?|side-labels|width|primary|use-index)\\b|@)",
+      "name": "keyword.option.source.abl"
+    },
+    {
+      "match": "(?i)\\b(disp(lay)?|for|do|repeat|delete|create|update|empty|assign|import( unformatted)?|input\\s+(from|close)|with|skip)\\b",
+      "name": "keyword.statement.source.abl"
+    },
+    {
+      "match": "(?i)\\b(as|for(?!\\s+(each|first|last)))\\b",
+      "name": "keyword.type.source.abl"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.type.source.abl"
+        },
+        "2": {
+          "name": "storage.type.source.abl"
+        }
+      },
+      "match": "(?i)\\b(like)\\s+([a-zA-Z0-9_\\.-]+),"
+    },
+    {
+      "match": "(?i)(\\b(if|avail(able)?|down|where|else( if)?|each|first|last|while|find( first|last)?|then( do( transaction)?)?|next|page|quit)\\b|(?<!-)(\\bend\\b(?!\\s+procedure)))",
+      "name": "keyword.control.source.abl"
+    },
+    {
+      "match": "(?i)\\b(def(ine)?\\s+(((new\\s+)?shared\\s+)?(var(iable)?|stream|buffer)|((input|input-output|output)\\s+param(eter)?)|temp-table|query)|form)\\b",
+      "name": "storage.type.define.abl"
+    },
+    {
+      "match": "(?i)\\b(?<!&)(char(acter)?|(?<!-)handle|dataset(-handle)?|field|(?<!-)index|log(ical)?|int(eger|64)?|dec(imal)?|stream|temp-table|frame [a-z]+)(?!\\s*\\()\\b",
+      "name": "storage.type.source.abl"
+    },
+    {
+      "match": "(?i)(end (procedure|function))",
+      "name": "storage.type.function.abl"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "support.function.source.abl"
+        }
+      },
+      "match": "(?i)(\\b[a-z][a-z0-9_-]*?\\b\\s*)(?=\\s*\\(.*?\\))",
+      "name": "support.function.abl"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.statement.source.abl"
+        },
+        "2": {
+          "name": "support.function.source.abl"
+        }
+      },
+      "match": "(?i)\\b(run) ([a-z][a-z0-9_-]*)\\b(\\s*\\(.*?\\))?",
+      "name": "support.function.abl"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "storage.type.function.abl"
+        },
+        "2": {
+          "name": "entity.name.function.abl"
+        }
+      },
+      "match": "(?i)(procedure)\\s+([a-z0-9_-]+)",
+      "name": "meta.function.source.abl"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "support.function.source.abl"
+        }
+      },
+      "match": "(?i)(\\{[a-z0-9_\\./-]+)",
+      "name": "meta.function.bracket.abl"
+    },
+    {
+      "captures": {
+        "0": {
+          "name": "support.function.source.abl"
+        }
+      },
+      "match": "\\}",
+      "name": "meta.function.bracket.abl"
+    }
+  ],
+  "scopeName": "source.abl",
+  "uuid": "075bb86e-03ea-4fea-bac0-e11b9dc73e03"
+}

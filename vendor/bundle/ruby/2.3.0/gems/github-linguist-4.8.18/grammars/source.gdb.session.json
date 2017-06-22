@@ -1,0 +1,71 @@
+{
+  "name": "GDB Session",
+  "repository": {
+    "string_escaped_char": {
+      "patterns": [
+        {
+          "match": "\\\\(\\\\|[abefnprtv'\"?]|[0-3]\\d{,2}|[4-7]\\d?|x[a-fA-F0-9]{,2}|u[a-fA-F0-9]{,4}|U[a-fA-F0-9]{,8})",
+          "name": "constant.character.escape.c"
+        },
+        {
+          "match": "\\\\.",
+          "name": "invalid.illegal.unknown-escape.c"
+        }
+      ]
+    }
+  },
+  "patterns": [
+    {
+      "match": "^([0-9]+)(-\\S+)",
+      "captures": {
+        "1": {
+          "name": "constant.other.gdb.command"
+        },
+        "2": {
+          "name": "entity.name.function"
+        }
+      }
+    },
+    {
+      "match": "^~.*$",
+      "name": "comment"
+    },
+    {
+      "match": "^([0-9]+)(\\^[^,]+)",
+      "captures": {
+        "1": {
+          "name": "constant.other.gdb.command"
+        },
+        "2": {
+          "name": "keyword.gdb.returncode"
+        }
+      }
+    },
+    {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.gdb"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.gdb"
+        }
+      },
+      "name": "string.quoted.double.gdb",
+      "patterns": [
+        {
+          "include": "#string_escaped_char"
+        }
+      ]
+    },
+    {
+      "match": "[^{,=]+(?==)",
+      "name": "storage.type.gdb"
+    }
+  ],
+  "scopeName": "source.gdb.session",
+  "uuid": "36F30C2C-0443-4944-9FA4-3940126FD71A"
+}

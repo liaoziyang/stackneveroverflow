@@ -1,0 +1,58 @@
+{
+  "fileTypes": [
+    "asp"
+  ],
+  "keyEquivalent": "^~A",
+  "name": "HTML (ASP)",
+  "patterns": [
+    {
+      "begin": "<%--",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.begin.asp"
+        }
+      },
+      "end": "--%>",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.end.asp"
+        }
+      },
+      "name": "comment.block.asp.server"
+    },
+    {
+      "begin": "<%=?",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.embedded.begin.asp"
+        }
+      },
+      "end": "%>",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.embedded.end.asp"
+        }
+      },
+      "name": "source.asp.embedded.html",
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.comment.asp"
+            }
+          },
+          "match": "(').*?(?=%>)",
+          "name": "comment.line.apostrophe.asp"
+        },
+        {
+          "include": "source.asp"
+        }
+      ]
+    },
+    {
+      "include": "text.html.basic"
+    }
+  ],
+  "scopeName": "text.html.asp",
+  "uuid": "27798CC6-6B1D-11D9-B8FA-000D93589AF6"
+}

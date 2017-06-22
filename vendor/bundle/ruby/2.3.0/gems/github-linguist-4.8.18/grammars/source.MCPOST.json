@@ -1,0 +1,68 @@
+{
+  "fileTypes": [
+    "MCPOST"
+  ],
+  "name": "Mastercam (mcpost)",
+  "patterns": [
+    {
+      "comment": "Comment",
+      "match": "(#.*$)",
+      "name": "comment.number-sign.MCPOST"
+    },
+    {
+      "comment": "Number",
+      "match": "(\\b)(zero|one|two|three|four|five|six|seven|height|nine)(\\b)",
+      "name": "constant.numeric.MCPOST"
+    },
+    {
+      "comment": "Number",
+      "match": "(\\b)(-?[0-9]+)(.[0-9]+)?(\\b)",
+      "name": "constant.numeric.MCPOST"
+    },
+    {
+      "comment": "Framework variable",
+      "match": "([a-zA-Z0-9]+)(\\$)",
+      "name": "variable.language.MCPOST"
+    },
+    {
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.MCPOST"
+        },
+        "3": {
+          "name": "variable.parametere.MCPOST"
+        }
+      },
+      "comment": "function",
+      "match": "([a-zA-Z0-9]+)(\\()(.*)(\\))",
+      "name": "entity.name.function.MCPOST"
+    },
+    {
+      "comment": "function",
+      "match": "(\\b)(^p[a-zA-Z]+)(_?([a-zA-Z]+)?)(_?)([a-zA-Z]+)(\\b)",
+      "name": "entity.name.function.MCPOST"
+    },
+    {
+      "comment": "keywords Attributes",
+      "match": "^\\[[a-zA-Z0-9]((_?|\\-?)[a-zA-Z0-9\\s])*(_?|\\-?)[a-zA-Z0-9]\\]",
+      "name": "keyword.MCPOST"
+    },
+    {
+      "comment": "keywords",
+      "match": "(\\b)(if|else|while|for|return)(\\b)",
+      "name": "keyword.control.MCPOST"
+    },
+    {
+      "comment": "String",
+      "match": "\".*?\"",
+      "name": "string.quoted.double.MCPOST"
+    },
+    {
+      "comment": "String",
+      "match": "\\'.*?\\'",
+      "name": "string.quoted.single.MCPOST"
+    }
+  ],
+  "scopeName": "source.MCPOST",
+  "uuid": "f25b4ea3-22a6-4cd4-abe1-114a2a850c5a"
+}

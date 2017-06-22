@@ -1,0 +1,162 @@
+{
+  "name": "Dart Analysis Output",
+  "patterns": [
+    {
+      "captures": {
+        "1": {
+          "name": "analysis.severity.error.dart-analysis-output"
+        },
+        "10": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "11": {
+          "name": "message.dart-analysis-output"
+        },
+        "2": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "3": {
+          "name": "analysis.type.dart-analysis-output"
+        },
+        "4": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "5": {
+          "name": "file.name.dart-analysis-output"
+        },
+        "6": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "7": {
+          "name": "row.dart-analysis-output"
+        },
+        "8": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "9": {
+          "name": "column.dart-analysis-output"
+        }
+      },
+      "match": "^(ERROR)(\\|)(\\w+)(\\|)(.+)(\\|)(\\d+)(\\|)(\\d+)(\\|)(.+)$",
+      "name": "analysis.result.dart-analysis-output"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "analysis.severity.warning.dart-analysis-output"
+        },
+        "10": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "11": {
+          "name": "message.dart-analysis-output"
+        },
+        "2": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "3": {
+          "name": "analysis.type.dart-analysis-output"
+        },
+        "4": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "5": {
+          "name": "file.name.dart-analysis-output"
+        },
+        "6": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "7": {
+          "name": "row.dart-analysis-output"
+        },
+        "8": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "9": {
+          "name": "column.dart-analysis-output"
+        }
+      },
+      "match": "^(WARNING)(\\|)(\\w+)(\\|)(.+)(\\|)(\\d+)(\\|)(\\d+)(\\|)(.+)$",
+      "name": "analysis.result.dart-analysis-output"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "analysis.severity.info.dart-analysis-output"
+        },
+        "10": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "11": {
+          "name": "message.dart-analysis-output"
+        },
+        "2": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "3": {
+          "name": "analysis.type.dart-analysis-output"
+        },
+        "4": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "5": {
+          "name": "file.name.dart-analysis-output"
+        },
+        "6": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "7": {
+          "name": "row.dart-analysis-output"
+        },
+        "8": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "9": {
+          "name": "column.dart-analysis-output"
+        }
+      },
+      "match": "^(INFO)(\\|)(\\w+)(\\|)(.+)(\\|)(\\d+)(\\|)(\\d+)(\\|)(.+)$",
+      "name": "analysis.result.dart-analysis-output"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "analysis.severity.unknown.dart-analysis-output"
+        },
+        "10": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "11": {
+          "name": "message.dart-analysis-output"
+        },
+        "2": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "3": {
+          "name": "analysis.type.dart-analysis-output"
+        },
+        "4": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "5": {
+          "name": "file.name.dart-analysis-output"
+        },
+        "6": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "7": {
+          "name": "row.dart-analysis-output"
+        },
+        "8": {
+          "name": "field.separator.dart-analysis-output"
+        },
+        "9": {
+          "name": "column.dart-analysis-output"
+        }
+      },
+      "match": "^(\\w+)(\\|)(\\w+)(\\|)(.+)(\\|)(\\d+)(\\|)(\\d+)(\\|)(.+)$",
+      "name": "analysis.result.dart-analysis-output"
+    }
+  ],
+  "scopeName": "text.dart-analysis-output"
+}

@@ -1,0 +1,913 @@
+{
+  "name": "Pic",
+  "scopeName": "source.pic",
+  "fileTypes": [
+    "chem",
+    "pic"
+  ],
+  "firstLineMatch": "^#[!/].*\\bpic2plot\\b",
+  "patterns": [
+    {
+      "include": "#binary"
+    },
+    {
+      "include": "#tags"
+    },
+    {
+      "include": "#embedded-roff"
+    },
+    {
+      "include": "#embedded-latex"
+    },
+    {
+      "include": "#main"
+    }
+  ],
+  "repository": {
+    "main": {
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#backref"
+        },
+        {
+          "include": "#macros"
+        },
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#escaped-newline"
+        },
+        {
+          "include": "#operators"
+        },
+        {
+          "include": "#brackets"
+        },
+        {
+          "include": "#punctuation"
+        },
+        {
+          "include": "#primitives"
+        },
+        {
+          "include": "#attributes"
+        },
+        {
+          "include": "#globals"
+        },
+        {
+          "include": "#function-call"
+        },
+        {
+          "include": "#label"
+        },
+        {
+          "include": "#name"
+        }
+      ]
+    },
+    "attributes": {
+      "name": "variable.other.property.$1.pic",
+      "match": "(?x)\\b\n(cw|dashed|diameter|diam|dotted|down|height|ht|invisible\n|invis|left|radius|rad|right|same|up|width|wid)\\b"
+    },
+    "backref": {
+      "name": "variable.language.backreference.pic",
+      "match": "\\b(last|(?:\\d*1[1-3]th|\\d*0th|(?:(?!11st)\\d)*1st|\\d*2nd|(?:(?!13rd)\\d*)3rd|\\d*[4-9]th)(?:[ \t]+last)?)\\b",
+      "captures": {
+        "0": {
+          "name": "entity.name.pic"
+        }
+      }
+    },
+    "binary": {
+      "name": "raw.binary.data",
+      "begin": "^(?=.*[\\x00-\\x06\\x{FFFD}])",
+      "end": "(?=A)B"
+    },
+    "boolean": {
+      "name": "constant.boolean.$1.dformat.pic",
+      "match": "\\b(true|false|on|off)\\b"
+    },
+    "brackets": {
+      "patterns": [
+        {
+          "begin": "\\(",
+          "end": "(?=\\))|^(?=\\.P[EF]\\b)",
+          "patterns": [
+            {
+              "include": "#main"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.round.pic"
+            }
+          }
+        },
+        {
+          "begin": "\\[",
+          "end": "(?=\\])|^(?=\\.P[EF]\\b)",
+          "patterns": [
+            {
+              "include": "#main"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.square.pic"
+            }
+          }
+        },
+        {
+          "begin": "\\{",
+          "end": "(?=\\})|^(?=\\.P[EF]\\b)",
+          "patterns": [
+            {
+              "include": "#main"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.curly.pic"
+            }
+          }
+        }
+      ]
+    },
+    "chem": {
+      "patterns": [
+        {
+          "include": "#label"
+        },
+        {
+          "name": "keyword.function.bond.pic.chem",
+          "match": "\\b((?:(?:double|triple|front|back)[ \t]+)?\\bbond)\\b",
+          "captures": {
+            "0": {
+              "name": "support.function.pic.chem"
+            },
+            "1": {
+              "name": "entity.name.function.pic.chem"
+            }
+          }
+        },
+        {
+          "name": "keyword.function.ring.pic.chem",
+          "match": "(?:\\baromatic[ \t]+)?\\b(?:benzene|(?:flat)?ring\\d*)",
+          "captures": {
+            "0": {
+              "name": "entity.name.function.pic.chem"
+            }
+          }
+        },
+        {
+          "name": "keyword.operator.direction.pic.chem",
+          "match": "\\b(pointing)\\b"
+        },
+        {
+          "name": "keyword.function.set-size.pic.chem",
+          "match": "\\b(size)\\b[ \t]*(\\d+)",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.pic.chem"
+            },
+            "2": {
+              "name": "constant.numeric.parameter.pic.chem"
+            }
+          }
+        },
+        {
+          "name": "keyword.control.branch-point.pic.chem",
+          "match": "\\bBP\\b"
+        },
+        {
+          "name": "string.unquoted.group-name.pic.chem",
+          "match": "(?=[A-Z])(?!BP)([\\w\\(\\).]+)",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#punctuation"
+                },
+                {
+                  "match": "\\.",
+                  "name": "punctuation.delimiter.period.full-stop.chem.pic"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "begin": "\\(",
+          "end": "(?=\\))|^(?=\\.P[EF]\\b|^[.']\\s*cend\\b)",
+          "patterns": [
+            {
+              "include": "#chem"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.round.chem.pic"
+            }
+          }
+        },
+        {
+          "begin": "\\[",
+          "end": "(?=\\])|^(?=\\.P[EF]\\b|^[.']\\s*cend\\b)",
+          "patterns": [
+            {
+              "include": "#chem"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.square.chem.pic"
+            }
+          }
+        },
+        {
+          "begin": "\\{",
+          "end": "(?=\\})|^(?=\\.P[EF]\\b|^[.']\\s*cend\\b)",
+          "patterns": [
+            {
+              "include": "#chem"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.curly.chem.pic"
+            }
+          }
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "comment": {
+      "name": "comment.line.pic",
+      "begin": "#",
+      "end": "$",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.pic"
+        }
+      }
+    },
+    "dformat": {
+      "patterns": [
+        {
+          "include": "#pic-line"
+        },
+        {
+          "name": "meta.format.dformat.pic",
+          "begin": "^style\\b",
+          "end": "$",
+          "beginCaptures": {
+            "0": {
+              "name": "keyword.function.pic"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#boolean"
+            },
+            {
+              "name": "constant.language.dformat.pic",
+              "match": "(?x)\\b\n(addr|addrdelta|addrht|bitwid|charwid|fill|linedisp\n|linethrutext|recht|recspread|reset|textht)\\b"
+            },
+            {
+              "include": "#number"
+            }
+          ]
+        },
+        {
+          "name": "meta.record.dformat.pic",
+          "begin": "^\\S.*$\\n?",
+          "end": "^(?=\\S)",
+          "beginCaptures": {
+            "0": {
+              "name": "markup.bold.heading.dformat.pic"
+            }
+          },
+          "patterns": [
+            {
+              "match": "^([ \t]+[^:\\s]+:)?(?:(?<=:)|[ \t]+)(\\S+)\\s+(.*)$",
+              "captures": {
+                "0": {
+                  "name": "markup.list.unnumbered.dformat.pic"
+                },
+                "1": {
+                  "patterns": [
+                    {
+                      "include": "#main"
+                    }
+                  ]
+                },
+                "2": {
+                  "patterns": [
+                    {
+                      "match": "-",
+                      "name": "punctuation.separator.dash.dformat.pic"
+                    },
+                    {
+                      "include": "#number"
+                    }
+                  ]
+                },
+                "3": {
+                  "patterns": [
+                    {
+                      "begin": "@",
+                      "end": "@",
+                      "beginCaptures": {
+                        "0": {
+                          "name": "punctuation.definition.section.begin.eqn"
+                        }
+                      },
+                      "endCaptures": {
+                        "0": {
+                          "name": "punctuation.definition.section.end.eqn"
+                        }
+                      },
+                      "patterns": [
+                        {
+                          "include": "text.roff#eqn"
+                        }
+                      ],
+                      "contentName": "source.embedded.eqn.roff"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "embedded-latex": {
+      "name": "source.embedded.tex.pic",
+      "match": "^(?:\\\\\\w|%).*$",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "text.tex"
+            }
+          ]
+        }
+      }
+    },
+    "embedded-roff": {
+      "begin": "^(?=[.'][ \t]*(?:\\w|\\\\))",
+      "end": "(?<!\\\\)$|(\\\\\".*)$",
+      "patterns": [
+        {
+          "include": "text.roff"
+        }
+      ],
+      "endCaptures": {
+        "1": {
+          "patterns": [
+            {
+              "include": "text.roff"
+            }
+          ]
+        }
+      }
+    },
+    "escaped-newline": {
+      "name": "constant.character.escape.newline.pic",
+      "begin": "\\\\$\\n?",
+      "end": "^(?:[.'])?",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.escape.pic"
+        }
+      }
+    },
+    "function-call": {
+      "contentName": "meta.function-call.pic",
+      "begin": "\\b(?!\\d)(\\w+)(\\()",
+      "end": "\\)",
+      "patterns": [
+        {
+          "include": "#main"
+        }
+      ],
+      "beginCaptures": {
+        "0": {
+          "name": "support.function.pic"
+        },
+        "1": {
+          "name": "entity.name.function.pic"
+        },
+        "2": {
+          "name": "punctuation.definition.arguments.begin.pic"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.arguments.end.pic"
+        }
+      }
+    },
+    "globals": {
+      "name": "support.variable.global.pic",
+      "match": "(?x)\\b (arcrad|arrowhead|arrowht|arrowwid|boxht|boxwid|circlerad|dashwid |ellipseht|ellipsewid|fillval|lineht|linewid|maxpsht|maxpswid |moveht|movewid|scale|textht|textwid)\\b"
+    },
+    "grap": {
+      "patterns": [
+        {
+          "match": "\\bpid\\b",
+          "name": "variable.language.process-id.pic.grap"
+        },
+        {
+          "match": "\\bthen\\b",
+          "name": "keyword.control.then.pic.grap"
+        },
+        {
+          "match": "\\b(in|out|through)\\b",
+          "name": "keyword.operator.pic.grap"
+        },
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#boolean"
+        },
+        {
+          "include": "#punctuation"
+        },
+        {
+          "include": "#operators"
+        },
+        {
+          "include": "#function-call"
+        },
+        {
+          "include": "#macros"
+        },
+        {
+          "include": "#pic-line"
+        },
+        {
+          "name": "keyword.function.pic.grap",
+          "match": "(?x)\\b\n(assignment|circle|coord|copy|draw|for|frame|graph|grid|if|label\n|line|new|next|numberlist|pic|plot|print|sh|ticks?)\\b",
+          "captures": {
+            "0": {
+              "name": "entity.function.name.pic.grap"
+            }
+          }
+        },
+        {
+          "name": "variable.other.property.$1.pic.grap",
+          "match": "(?x)\\b\n(above|arrow|below|bot|bottom|dashed|dotted|down|ht|invis\n|left|log|radius|right|[lr]just|size|solid|top|up|wid|x|y)\\b"
+        },
+        {
+          "name": "support.function.grap.pic",
+          "match": "(?x)\\b\n(atan2|cos|exp|int|log|max|min|rand|sin|sqrt|bullet\n|plus|box|star|dot|times|htick|vtick|square|delta)\\b"
+        },
+        {
+          "begin": "\\(",
+          "end": "(?=\\))|^(?=\\.P[EF]\\b|^[.']\\s*G2\\b)",
+          "patterns": [
+            {
+              "include": "#grap"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.round.chem.pic"
+            }
+          }
+        },
+        {
+          "begin": "\\[",
+          "end": "(?=\\])|^(?=\\.P[EF]\\b|^[.']\\s*G2\\b)",
+          "patterns": [
+            {
+              "include": "#grap"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.square.chem.pic"
+            }
+          }
+        },
+        {
+          "begin": "\\{",
+          "end": "(?=\\})|^(?=\\.P[EF]\\b|^[.']\\s*G2\\b)",
+          "patterns": [
+            {
+              "include": "#grap"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.curly.chem.pic"
+            }
+          }
+        },
+        {
+          "include": "#keywords"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.$1.pic",
+          "match": "\\b(for|do|if|then(?=\\s*\\{)|else)\\b"
+        },
+        {
+          "name": "keyword.operator.$1.pic",
+          "match": "\\b(and|at|by|copy|from|reset|sh|then|thru|to|with|of\\s+the\\s+way\\s+between)\\b"
+        }
+      ]
+    },
+    "label": {
+      "match": "([A-Z][^#(\"\\s:]*)(:)",
+      "captures": {
+        "1": {
+          "name": "storage.type.label.pic"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.pic"
+        }
+      }
+    },
+    "macros": {
+      "patterns": [
+        {
+          "name": "meta.function.$1.pic",
+          "match": "(define|undef)\\b\\s*(\\w*)",
+          "captures": {
+            "1": {
+              "name": "storage.type.function.pic"
+            },
+            "2": {
+              "name": "entity.name.function.pic"
+            }
+          }
+        },
+        {
+          "name": "variable.other.positional.pic",
+          "match": "(\\$)\\d+",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable"
+            }
+          }
+        },
+        {
+          "begin": "(until)[ \t]+((\")([^\"]+)(\"))\\s*$\\n?",
+          "end": "^[ ]*(\\4)\\b",
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.until.pic"
+            },
+            "2": {
+              "name": "string.quoted.double.pic"
+            },
+            "3": {
+              "name": "punctuation.definition.string.begin.pic"
+            },
+            "5": {
+              "name": "punctuation.definition.string.end.pic"
+            }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "keyword.control.terminator.pic"
+            }
+          }
+        }
+      ]
+    },
+    "name": {
+      "name": "variable.other.pic",
+      "match": "(?!\\d)\\w+"
+    },
+    "number": {
+      "name": "constant.numeric.pic",
+      "match": "(?:(?<!\\d)[-+])?(?:\\d+(?:\\.\\d+)?|\\.\\d+|\\.(?=[Ee]))(?:[Ee][-+]?\\d+)?"
+    },
+    "operators": {
+      "patterns": [
+        {
+          "match": "<->|<-|->",
+          "name": "keyword.operator.arrow.pic"
+        },
+        {
+          "match": "[=><]=?|!=|&&|\\|\\|",
+          "name": "keyword.operator.comparison.pic"
+        },
+        {
+          "match": ":?=",
+          "name": "keyword.operator.assignment.pic"
+        },
+        {
+          "match": "[-/+*%^]",
+          "name": "keyword.operator.arithmetic.pic"
+        }
+      ]
+    },
+    "primitives": {
+      "name": "keyword.function.pic",
+      "match": "\\b(box|line|arrow|circle|ellipse|arc|move|spline|print|command|plot)\\b",
+      "captures": {
+        "0": {
+          "name": "entity.function.name.pic"
+        }
+      }
+    },
+    "pic-line": {
+      "begin": "^(pic)\\b",
+      "end": "$",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.dformat.pic"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#main"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "match": "\\}",
+          "name": "punctuation.definition.bracket.curly.pic"
+        },
+        {
+          "match": "\\)",
+          "name": "punctuation.definition.bracket.round.pic"
+        },
+        {
+          "match": "\\]",
+          "name": "punctuation.definition.bracket.square.pic"
+        },
+        {
+          "match": ";",
+          "name": "punctuation.terminator.statement.pic"
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.comma.pic"
+        },
+        {
+          "match": "<|>",
+          "name": "punctuation.definition.bracket.angle.pic"
+        },
+        {
+          "match": "\\.(?!\\d)",
+          "name": "punctuation.delimiter.period.full-stop.pic"
+        }
+      ]
+    },
+    "string": {
+      "name": "string.quoted.double.pic",
+      "begin": "\"",
+      "end": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.pic"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.pic"
+        }
+      },
+      "patterns": [
+        {
+          "name": "constant.character.escape.pic",
+          "match": "(\\\\)[\\\\\"]",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.escape.pic"
+            }
+          }
+        },
+        {
+          "match": "(?:[^\"\\\\]|\\\\[^\"])+",
+          "captures": {
+            "0": {
+              "patterns": [
+                {
+                  "include": "text.roff#escapes"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "tags": {
+      "patterns": [
+        {
+          "name": "invalid.deprecated.function.picture.macro.roff",
+          "match": "^([.'])[ \t]*(PS)[ \t]*(<)(.*)(?=$|\\\\\")",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.macro.roff"
+            },
+            "2": {
+              "name": "entity.function.name.roff"
+            },
+            "3": {
+              "name": "punctuation.definition.filename.roff"
+            },
+            "4": {
+              "patterns": [
+                {
+                  "include": "text.roff#params"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "begin": "^([.'])[ \t]*(PS)\\b([\\d \t]*(?:#.*)?)?(\\\\[#\"].*)?$",
+          "end": "^([.'])[ \t]*(P[EF])\\b",
+          "contentName": "source.embedded.pic",
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "meta.function.begin.picture.section.macro.roff"
+            },
+            "1": {
+              "name": "punctuation.definition.macro.roff"
+            },
+            "2": {
+              "name": "entity.function.name.roff"
+            },
+            "3": {
+              "patterns": [
+                {
+                  "include": "source.pic"
+                }
+              ]
+            },
+            "4": {
+              "patterns": [
+                {
+                  "include": "text.roff#escapes"
+                }
+              ]
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "meta.function.end.picture.section.macro.roff"
+            },
+            "1": {
+              "name": "punctuation.definition.macro.roff"
+            },
+            "2": {
+              "name": "entity.name.function.roff"
+            }
+          }
+        },
+        {
+          "begin": "^([.'])[ \t]*(cstart)\\b\\s*(\\S.*)?",
+          "end": "^([.'])[ \t]*(cend)\\b",
+          "contentName": "source.embedded.chem.pic",
+          "patterns": [
+            {
+              "include": "#chem"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "meta.function.begin.chemical.picture.section.macro.roff"
+            },
+            "1": {
+              "name": "punctuation.definition.macro.pic.chem"
+            },
+            "2": {
+              "name": "entity.function.name.roff"
+            },
+            "3": {
+              "name": "invalid.illegal.unexpected-characters.pic.chem"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "meta.function.end.chemical.picture.section.macro.roff"
+            },
+            "1": {
+              "name": "punctuation.definition.macro.roff"
+            },
+            "2": {
+              "name": "entity.function.name.roff"
+            }
+          }
+        },
+        {
+          "begin": "^([.'])[ \t]*(begin[ \t]+dformat)\\b",
+          "end": "^([.'])[ \t]*(end)\\b",
+          "contentName": "source.embedded.dformat.pic",
+          "patterns": [
+            {
+              "include": "#dformat"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "meta.function.begin.dformat.picture.section.macro.roff"
+            },
+            "1": {
+              "name": "punctuation.definition.macro.pic.dformat"
+            },
+            "2": {
+              "name": "entity.function.name.roff"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "meta.function.end.dformat.picture.section.macro.roff"
+            },
+            "1": {
+              "name": "punctuation.definition.macro.roff"
+            },
+            "2": {
+              "name": "entity.function.name.roff"
+            }
+          }
+        },
+        {
+          "begin": "^([.'])[ \t]*(G1)\\b(\\s*\\d+)?(\\s*\\\\\".*$)?",
+          "end": "^([.'])[ \t]*(G2)\\b",
+          "contentName": "source.embedded.grap.pic",
+          "patterns": [
+            {
+              "include": "#grap"
+            }
+          ],
+          "beginCaptures": {
+            "0": {
+              "name": "meta.function.begin.graph.picture.section.macro.roff"
+            },
+            "1": {
+              "name": "punctuation.definition.macro.pic.grap"
+            },
+            "2": {
+              "name": "entity.function.name.roff"
+            },
+            "3": {
+              "name": "constant.numeric.parameter.pic.grap"
+            },
+            "4": {
+              "patterns": [
+                {
+                  "include": "text.roff#escapes"
+                }
+              ]
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "meta.function.end.graph.picture.section.macro.roff"
+            },
+            "1": {
+              "name": "punctuation.definition.macro.pic.grap"
+            },
+            "2": {
+              "name": "entity.function.name.roff"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

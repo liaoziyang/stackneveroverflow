@@ -1,0 +1,1193 @@
+{
+  "name": "Wavefront Material",
+  "scopeName": "source.wavefront.mtl",
+  "fileTypes": [
+    "mtl"
+  ],
+  "patterns": [
+    {
+      "include": "#main"
+    }
+  ],
+  "repository": {
+    "main": {
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#newmtl"
+        },
+        {
+          "include": "#colour"
+        },
+        {
+          "include": "#texture"
+        },
+        {
+          "include": "#reflection"
+        },
+        {
+          "include": "#number"
+        }
+      ]
+    },
+    "comment": {
+      "name": "comment.line.number-sign.wavefront.mtl",
+      "begin": "#",
+      "end": "$",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.wavefront.mtl"
+        }
+      }
+    },
+    "number": {
+      "patterns": [
+        {
+          "name": "constant.numeric.integer.wavefront.mtl",
+          "match": "(?<=[\\s,]|^)-?\\d+(?![-\\d.])"
+        },
+        {
+          "name": "constant.numeric.float.wavefront.mtl",
+          "match": "(?<=[\\s,]|^)-?(\\d+)(?:(\\.)(\\d+))?\\b",
+          "captures": {
+            "1": {
+              "name": "leading.decimal"
+            },
+            "2": {
+              "name": "decimal.separator"
+            },
+            "3": {
+              "name": "trailing.decimal"
+            }
+          }
+        },
+        {
+          "name": "constant.numeric.float.no-leading-digits.wavefront.mtl",
+          "match": "(?<=[\\s,]|^)-?(\\.)(\\d+)\\b",
+          "captures": {
+            "1": {
+              "name": "decimal.separator"
+            },
+            "2": {
+              "name": "trailing.decimal"
+            }
+          }
+        }
+      ]
+    },
+    "newmtl": {
+      "name": "meta.constructor.wavefront.mtl",
+      "match": "^\\s*(newmtl)(?=\\s|$)(?:\\s+(\\w+))?",
+      "captures": {
+        "1": {
+          "name": "keyword.function.$1.wavefront.mtl"
+        },
+        "2": {
+          "name": "variable.parameter.material-name.wavefront.mtl"
+        }
+      }
+    },
+    "colour": {
+      "patterns": [
+        {
+          "include": "#ka"
+        },
+        {
+          "include": "#kd"
+        },
+        {
+          "include": "#ks"
+        },
+        {
+          "include": "#ke"
+        },
+        {
+          "include": "#tf"
+        },
+        {
+          "include": "#illum"
+        },
+        {
+          "include": "#d"
+        },
+        {
+          "include": "#tr"
+        },
+        {
+          "include": "#ns"
+        },
+        {
+          "include": "#sharpness"
+        },
+        {
+          "include": "#ni"
+        }
+      ]
+    },
+    "ka": {
+      "patterns": [
+        {
+          "name": "meta.ambient-reflectivity.spectral-curve.wavefront.mtl",
+          "match": "^\\s*(Ka)\\s+(spectral)\\s+(?!#)(\\S+)(?<!#)(?:\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "storage.modifier.$2.wavefront.mtl"
+            },
+            "3": {
+              "name": "string.filename.wavefront.mtl"
+            },
+            "4": {
+              "name": "entity.value.factor.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.ambient-reflectivity.ciexyz.wavefront.mtl",
+          "match": "^\\s*(Ka)\\s+(xyz)\\s+([-\\d.]+)(?:\\s+([-\\d.]+)\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "storage.modifier.$2.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.red.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.green.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "5": {
+              "name": "entity.value.blue.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.ambient-reflectivity.rgb.wavefront.mtl",
+          "match": "^\\s*(Ka)\\s+([-\\d.]+)(?:\\s+([-\\d.]+)\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "entity.value.red.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "3": {
+              "name": "entity.value.green.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.blue.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "kd": {
+      "patterns": [
+        {
+          "name": "meta.diffuse-reflectivity.spectral-curve.wavefront.mtl",
+          "match": "^\\s*(Kd)\\s+(spectral)\\s+(?!#)(\\S+)(?<!#)(?:\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "storage.modifier.$2.wavefront.mtl"
+            },
+            "3": {
+              "name": "string.filename.wavefront.mtl"
+            },
+            "4": {
+              "name": "entity.value.factor.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.diffuse-reflectivity.ciexyz.wavefront.mtl",
+          "match": "^\\s*(Kd)\\s+(xyz)\\s+([-\\d.]+)(?:\\s+([-\\d.]+)\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "storage.modifier.$2.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.red.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.green.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "5": {
+              "name": "entity.value.blue.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.diffuse-reflectivity.rgb.wavefront.mtl",
+          "match": "^\\s*(Kd)\\s+([-\\d.]+)(?:\\s+([-\\d.]+)\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "entity.value.red.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "3": {
+              "name": "entity.value.green.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.blue.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "ks": {
+      "patterns": [
+        {
+          "name": "meta.specular-reflectivity.spectral-curve.wavefront.mtl",
+          "match": "^\\s*(Ks)\\s+(spectral)\\s+(?!#)(\\S+)(?<!#)(?:\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "storage.modifier.$2.wavefront.mtl"
+            },
+            "3": {
+              "name": "string.filename.wavefront.mtl"
+            },
+            "4": {
+              "name": "entity.value.factor.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.specular-reflectivity.ciexyz.wavefront.mtl",
+          "match": "^\\s*(Ks)\\s+(xyz)\\s+([-\\d.]+)(?:\\s+([-\\d.]+)\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "storage.modifier.$2.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.red.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.green.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "5": {
+              "name": "entity.value.blue.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.diffuse-reflectivity.rgb.wavefront.mtl",
+          "match": "^\\s*(Ks)\\s+([-\\d.]+)(?:\\s+([-\\d.]+)\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "entity.value.red.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "3": {
+              "name": "entity.value.green.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.blue.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "ke": {
+      "patterns": [
+        {
+          "name": "meta.emissive-colour.spectral-curve.wavefront.mtl",
+          "match": "^\\s*(Ke)\\s+(spectral)\\s+(?!#)(\\S+)(?<!#)(?:\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "storage.modifier.$2.wavefront.mtl"
+            },
+            "3": {
+              "name": "string.filename.wavefront.mtl"
+            },
+            "4": {
+              "name": "entity.value.factor.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.emissive-colour.ciexyz.wavefront.mtl",
+          "match": "^\\s*(Ke)\\s+(xyz)\\s+([-\\d.]+)(?:\\s+([-\\d.]+)\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "storage.modifier.$2.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.red.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.green.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "5": {
+              "name": "entity.value.blue.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.emissive-colour.rgb.wavefront.mtl",
+          "match": "^\\s*(Ke)\\s+([-\\d.]+)(?:\\s+([-\\d.]+)\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "entity.value.red.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "3": {
+              "name": "entity.value.green.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.blue.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "tf": {
+      "patterns": [
+        {
+          "name": "meta.transmission-filter.spectral-curve.wavefront.mtl",
+          "match": "^\\s*(Tf)\\s+(spectral)\\s+(?!#)(\\S+)(?<!#)(?:\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "storage.modifier.$2.wavefront.mtl"
+            },
+            "3": {
+              "name": "string.filename.wavefront.mtl"
+            },
+            "4": {
+              "name": "entity.value.factor.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.transmission-filter.ciexyz.wavefront.mtl",
+          "match": "^\\s*(Tf)\\s+(xyz)\\s+([-\\d.]+)(?:\\s+([-\\d.]+)\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "storage.modifier.$2.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.red.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.green.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "5": {
+              "name": "entity.value.blue.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.transmission-filter.rgb.wavefront.mtl",
+          "match": "^\\s*(Tf)\\s+([-\\d.]+)(?:\\s+([-\\d.]+)\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "entity.value.red.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "3": {
+              "name": "entity.value.green.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.blue.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "illum": {
+      "name": "meta.illumination-model.wavefront.mtl",
+      "match": "^\\s*(illum)\\s+(\\d+)",
+      "captures": {
+        "1": {
+          "name": "keyword.function.$1.wavefront.mtl"
+        },
+        "2": {
+          "name": "constant.numeric.integer.wavefront.mtl"
+        }
+      }
+    },
+    "d": {
+      "name": "meta.dissolve.wavefront.mtl",
+      "match": "^\\s*(d)(?:\\s+((-)halo))?\\s+([-\\d.]+)",
+      "captures": {
+        "1": {
+          "name": "keyword.function.$1.wavefront.mtl"
+        },
+        "2": {
+          "name": "storage.modifier.halo.wavefront.mtl"
+        },
+        "3": {
+          "name": "punctuation.definition.dash.wavefront.mtl"
+        },
+        "4": {
+          "name": "entity.value.factor.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#number"
+            }
+          ]
+        }
+      }
+    },
+    "tr": {
+      "name": "meta.transparency.wavefront.mtl",
+      "match": "^\\s*(Tr)\\s+([-\\d.]+)",
+      "captures": {
+        "1": {
+          "name": "keyword.function.$1.wavefront.mtl"
+        },
+        "2": {
+          "name": "entity.value.factor.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#number"
+            }
+          ]
+        }
+      }
+    },
+    "ns": {
+      "name": "meta.specular-exponent.wavefront.mtl",
+      "match": "^\\s*(Ns)\\s+([-\\d.]+)",
+      "captures": {
+        "1": {
+          "name": "keyword.function.$1.wavefront.mtl"
+        },
+        "2": {
+          "name": "entity.value.exponent.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#number"
+            }
+          ]
+        }
+      }
+    },
+    "sharpness": {
+      "name": "meta.sharpness.wavefront.mtl",
+      "match": "^\\s*(sharpness)\\s+([-\\d.]+)",
+      "captures": {
+        "1": {
+          "name": "keyword.function.$1.wavefront.mtl"
+        },
+        "2": {
+          "name": "entity.value.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#number"
+            }
+          ]
+        }
+      }
+    },
+    "ni": {
+      "name": "meta.optical-density.ior.wavefront.mtl",
+      "match": "^\\s*(Ni)\\s+([-\\d.]+)",
+      "captures": {
+        "1": {
+          "name": "keyword.function.$1.wavefront.mtl"
+        },
+        "2": {
+          "name": "entity.value.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#number"
+            }
+          ]
+        }
+      }
+    },
+    "texture": {
+      "patterns": [
+        {
+          "name": "meta.texture-map.ambient-reflectivity.wavefront.mtl",
+          "begin": "^\\s*(map_Ka)(?=\\s|$|#)",
+          "end": "(?=$|#)",
+          "contentName": "meta.options.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#texture-options"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-map.diffuse-reflectivity.wavefront.mtl",
+          "begin": "^\\s*(map_Kd)(?=\\s|$|#)",
+          "end": "(?=$|#)",
+          "contentName": "meta.options.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#texture-options"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-map.specular-reflectivity.wavefront.mtl",
+          "begin": "^\\s*(map_Ks)(?=\\s|$|#)",
+          "end": "(?=$|#)",
+          "contentName": "meta.options.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#texture-options"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-map.emissive-colour.wavefront.mtl",
+          "begin": "^\\s*(map_Ke)(?=\\s|$|#)",
+          "end": "(?=$|#)",
+          "contentName": "meta.options.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#texture-options"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-map.specular-exponent.wavefront.mtl",
+          "begin": "^\\s*(map_Ns)(?=\\s|$|#)",
+          "end": "(?=$|#)",
+          "contentName": "meta.options.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#texture-options"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-map.dissolve.wavefront.mtl",
+          "begin": "^\\s*(map_d)(?=\\s|$|#)",
+          "end": "(?=$|#)",
+          "contentName": "meta.options.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#texture-options"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-map.antialiasing.wavefront.mtl",
+          "match": "^\\s*(map_aat)(?:\\s+(on|off)(?=\\s|$|#))?",
+          "captures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            },
+            "2": {
+              "name": "constant.language.boolean.$2.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-map.decal.wavefront.mtl",
+          "begin": "^\\s*(decal)(?=\\s|$|#)",
+          "end": "(?=$|#)",
+          "contentName": "meta.options.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#texture-options"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-map.displacement.wavefront.mtl",
+          "begin": "^\\s*(disp)(?=\\s|$|#)",
+          "end": "(?=$|#)",
+          "contentName": "meta.options.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#texture-options"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-map.bump.wavefront.mtl",
+          "begin": "^\\s*(bump)(?=\\s|$|#)",
+          "end": "(?=$|#)",
+          "contentName": "meta.options.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#texture-options"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-map.other.$2.wavefront.mtl",
+          "begin": "^\\s*(map_([-\\w]+))(?=\\s|$|#)",
+          "end": "(?=$|#)",
+          "contentName": "meta.options.wavefront.mtl",
+          "patterns": [
+            {
+              "include": "#texture-options"
+            }
+          ],
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.function.$1.wavefront.mtl"
+            }
+          }
+        }
+      ]
+    },
+    "reflection": {
+      "name": "meta.reflection-map.type-$4.wavefront.mtl",
+      "begin": "^\\s*(refl)\\s+((-)type)\\s+(sphere|cube_(?:top|bottom|front|back|left|right))(?=\\s|$|#)",
+      "end": "(?=$|#)",
+      "contentName": "meta.options.wavefront.mtl",
+      "patterns": [
+        {
+          "include": "#texture-options"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.function.$1.wavefront.mtl"
+        },
+        "2": {
+          "name": "keyword.option.type.wavefront.mtl"
+        },
+        "3": {
+          "name": "punctuation.definition.dash.wavefront.mtl"
+        },
+        "4": {
+          "name": "constant.language.mapping-type.$4.wavefront.mtl"
+        }
+      }
+    },
+    "texture-options": {
+      "patterns": [
+        {
+          "name": "meta.texture-option.horizontal-blending.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)blendu)\\s+(on|off)(?=\\s|$|#)",
+          "captures": {
+            "1": {
+              "name": "keyword.option.blendu.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "constant.language.boolean.$3.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-option.vertical-blending.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)blendv)\\s+(on|off)(?=\\s|$|#)",
+          "captures": {
+            "1": {
+              "name": "keyword.option.blendv.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "constant.language.boolean.$3.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-option.bump-multiplier.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)bm)\\s+([-\\d.]+)",
+          "captures": {
+            "1": {
+              "name": "keyword.option.bm.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.texture-option.boost.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)boost)\\s+([-\\d.]+)",
+          "captures": {
+            "1": {
+              "name": "keyword.option.boost.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.texture-option.colour-correction.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)cc)\\s+(on|off)(?=\\s|$|#)",
+          "captures": {
+            "1": {
+              "name": "keyword.option.cc.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "constant.language.boolean.$3.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-option.clamping.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)clamp)\\s+(on|off)(?=\\s|$|#)",
+          "captures": {
+            "1": {
+              "name": "keyword.option.clamp.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "constant.language.boolean.$3.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-option.channel.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)imfchan)(?:\\s+([rgbmlz])(?=\\s|$|#))?",
+          "captures": {
+            "1": {
+              "name": "keyword.option.imfchan.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "constant.language.boolean.$3.wavefront.mtl"
+            }
+          }
+        },
+        {
+          "name": "meta.texture-option.modify-range.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)mm)\\s+([-\\d.]+)(?:\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.option.mm.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.base.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.gain.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.texture-option.offset.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)o)\\s+([-\\d.]+)(?:\\s+([-\\d.]+))?(?:\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.option.o.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.u-offset.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.v-offset.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "5": {
+              "name": "entity.value.w-offset.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.texture-option.scale.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)s)\\s+([-\\d.]+)(?:\\s+([-\\d.]+))?(?:\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.option.s.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.u-scale.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.v-scale.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "5": {
+              "name": "entity.value.w-scale.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.texture-option.turbulence.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)t)\\s+([-\\d.]+)(?:\\s+([-\\d.]+))?(?:\\s+([-\\d.]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.option.t.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.u-value.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "4": {
+              "name": "entity.value.v-value.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            },
+            "5": {
+              "name": "entity.value.w-value.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.texture-option.resolution.wavefront.mtl",
+          "match": "(?<=\\s|^)((-)texres)\\s+([-\\d.]+)",
+          "captures": {
+            "1": {
+              "name": "keyword.option.texres.wavefront.mtl"
+            },
+            "2": {
+              "name": "punctuation.definition.dash.wavefront.mtl"
+            },
+            "3": {
+              "name": "entity.value.wavefront.mtl",
+              "patterns": [
+                {
+                  "include": "#number"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "string.filename.wavefront.mtl",
+          "match": "(?!#)\\S+(?<!#)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "fileTypes": [
+    "cfg"
+  ],
+  "name": "Nim Config",
+  "patterns": [
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.nimcfg"
+        },
+        "2": {
+          "name": "invalid.illegal.TODO.nimcfg"
+        }
+      },
+      "match": "(#\\s*(TODO|todo)?).*$\\n?",
+      "name": "comment.line.number-sign.nimcfg"
+    },
+    {
+      "comment": "Section declarations",
+      "match": "\\[.+\\]",
+      "name": "support.type.nimcfg"
+    },
+    {
+      "begin": "\\@\\b(if|elif|else)\\b",
+      "captures": {
+        "0": {
+          "name": "keyword.control.nimcfg"
+        }
+      },
+      "comment": "Keywords that affect program control flow or scope.",
+      "end": "\\@\\b(end)",
+      "patterns": [
+        {
+          "include": "source.nimcfg"
+        }
+      ]
+    },
+    {
+      "begin": "([a-zA-Z0-9_\\.]+)\\s*(\\=)",
+      "comment": "Key declarations",
+      "end": "\\n",
+      "patterns": [
+        {
+          "match": "\\b((\\d[_\\d]*\\.[_\\d]+([eE][\\+\\-]?\\d[_\\d]*)?)|([eE][\\+\\-]?\\d[_\\d]*))('[fF](32|64))?",
+          "name": "constant.numeric.float.decimal.nimcfg"
+        },
+        {
+          "match": "\\b(0[xX]\\h[_\\h]*)('[iIuU](8|16|32|64))?",
+          "name": "constant.numeric.integer.hexadecimal.nimcfg"
+        },
+        {
+          "comment": "For simplicity's sake, we don't enforce floats only having 32 and 64 prefix types.",
+          "match": "\\b(0o[0-7][_0-7]*)",
+          "name": "constant.numeric.integer.octal.nimcfg"
+        },
+        {
+          "match": "\\b(0(b|B)[01][_01]*)",
+          "name": "constant.numeric.integer.binary.nimcfg"
+        },
+        {
+          "match": "\\b(\\d[_\\d]*)",
+          "name": "constant.numeric.integer.decimal.nimcfg"
+        },
+        {
+          "comment": "Language Constants.",
+          "match": "\\b(true|false)\\b",
+          "name": "constant.language.nimcfg"
+        },
+        {
+          "begin": "r\\\"",
+          "comment": "Raw Double Quoted String",
+          "end": "\\\"",
+          "name": "string.quoted.double.raw.nimcfg",
+          "patterns": [
+            {
+              "match": "\\\"\\\""
+            }
+          ]
+        },
+        {
+          "begin": "\\\"",
+          "captures": {
+            "1": {
+              "name": "storage.type.function.nimcfg"
+            }
+          },
+          "comment": "Double Quoted String",
+          "end": "\\\"",
+          "name": "string.quoted.double.nimcfg",
+          "patterns": [
+            {
+              "match": "(\\\\([abenrclftv\\\\]|[\"']|[0-9])|x\\h\\h)"
+            }
+          ]
+        },
+        {
+          "comment": "Single quoted character literal",
+          "match": "\\'(\\\\\\d{1,3}|\\\\?[^\\n]?)\\'",
+          "name": "string.quoted.single.nimcfg"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "string.raw.nimcfg"
+            }
+          },
+          "comment": "Value declarations",
+          "match": "\\b(.+)\\b"
+        }
+      ]
+    }
+  ],
+  "scopeName": "source.nimcfg",
+  "uuid": "8fb54f5c-6f67-4d13-9dcc-52650ea4cb3e"
+}

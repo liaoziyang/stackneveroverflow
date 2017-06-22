@@ -1,0 +1,209 @@
+{
+  "fileTypes": [
+    "ebnf"
+  ],
+  "foldingStartMarker": "\\(\\*",
+  "foldingStopMarker": "\\*\\)",
+  "keyEquivalent": "^~E",
+  "name": "EBNF",
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "begin": "\\s*(\\b(?:\\w|\\s|[\\-_0-9])+\\b)\\s*(=)",
+      "captures": {
+        "1": {
+          "name": "entity.name.function.ebnf"
+        },
+        "2": {
+          "name": "keyword.operator.definition.ebnf"
+        }
+      },
+      "end": ";",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.terminator.syntax-rule.ebnf"
+        }
+      },
+      "name": "meta.syntax-rule.ebnf",
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#subrules"
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "comment": {
+      "begin": "\\(\\*(?!\\))",
+      "end": "\\*\\)",
+      "name": "comment.block.ebnf"
+    },
+    "double-quote-string": {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.ebnf"
+    },
+    "group": {
+      "begin": "\\(",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.other.group.begin.ebnf"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "keyword.other.group.end.ebnf"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#subrules"
+        }
+      ]
+    },
+    "invalid": {
+      "match": "\\(\\s*[*:/]\\s*\\)",
+      "name": "invalid.illegal.ebnf"
+    },
+    "non-terminal": {
+      "match": "\\w[\\w\\-_0-9]*\\w",
+      "name": "variable.other.non-terminal.ebnf"
+    },
+    "operator": {
+      "patterns": [
+        {
+          "include": "#operator-alternative"
+        },
+        {
+          "include": "#operator-concatenation"
+        },
+        {
+          "include": "#operator-exception"
+        }
+      ]
+    },
+    "operator-alternative": {
+      "match": "\\|",
+      "name": "keyword.operator.alternative.ebnf"
+    },
+    "operator-concatenation": {
+      "match": ",",
+      "name": "keyword.operator.concatenation.ebnf"
+    },
+    "operator-exception": {
+      "match": "-",
+      "name": "keyword.operator.exception.ebnf"
+    },
+    "optional": {
+      "begin": "\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.other.optional.begin.ebnf"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "keyword.other.optional.end.ebnf"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#subrules"
+        }
+      ]
+    },
+    "repetition": {
+      "begin": "{",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.other.repetition.begin.ebnf"
+        }
+      },
+      "end": "}",
+      "endCaptures": {
+        "0": {
+          "name": "keyword.other.repetition.end.ebnf"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#subrules"
+        }
+      ]
+    },
+    "repetition-numbered": {
+      "captures": {
+        "1": {
+          "name": "constant.numeric.integer.ebnf"
+        },
+        "2": {
+          "name": "keyword.operator.repetition.ebnf"
+        }
+      },
+      "match": "(\\d+)\\s*(\\*)"
+    },
+    "single-quote-string": {
+      "begin": "'",
+      "end": "'",
+      "name": "string.quoted.single.ebnf"
+    },
+    "special-sequence": {
+      "begin": "\\?",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.other.special-sequence.begin.ebnf"
+        }
+      },
+      "end": "\\?",
+      "endCaptures": {
+        "0": {
+          "name": "keyword.other.special-sequence.end.ebnf"
+        }
+      },
+      "name": "entity.other.attribute-name.ebnf"
+    },
+    "subrules": {
+      "patterns": [
+        {
+          "include": "#invalid"
+        },
+        {
+          "include": "#optional"
+        },
+        {
+          "include": "#repetition"
+        },
+        {
+          "include": "#group"
+        },
+        {
+          "include": "#repetition-numbered"
+        },
+        {
+          "include": "#non-terminal"
+        },
+        {
+          "include": "#operator"
+        },
+        {
+          "include": "#single-quote-string"
+        },
+        {
+          "include": "#double-quote-string"
+        },
+        {
+          "include": "#special-sequence"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.ebnf",
+  "uuid": "D9954069-097B-4361-818D-EF4986D442E7"
+}
