@@ -83,7 +83,6 @@ GEM
     haml (5.0.1)
       temple (>= 0.8.0)
       tilt
-    hashie (3.5.5)
     html-pipeline (2.6.0)
       activesupport (>= 2)
       nokogiri (>= 1.4)
@@ -139,16 +138,6 @@ GEM
       mini_portile2 (~> 2.2.0)
     nokogumbo (1.4.13)
       nokogiri
-    oauth (0.5.3)
-    omniauth (1.6.1)
-      hashie (>= 3.4.6, < 3.6.0)
-      rack (>= 1.6.2, < 3)
-    omniauth-oauth (1.1.0)
-      oauth
-      omniauth (~> 1.0)
-    omniauth-twitter (1.4.0)
-      omniauth-oauth (~> 1.1)
-      rack
     orm_adapter (0.5.0)
     pg (0.20.0)
     public_suffix (2.0.5)
@@ -292,7 +281,6 @@ DEPENDENCIES
   jquery-rails
   less-rails
   listen (~> 3.0.5)
-  omniauth-twitter
   pg
   puma (~> 3.0)
   qiita-markdown
