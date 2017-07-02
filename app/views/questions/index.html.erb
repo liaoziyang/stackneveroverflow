@@ -11,20 +11,13 @@
         <hr>
         <%= qiita_markdown(question.content) %>
         <%= time_ago_in_words(question.created_at) %>
-              <%= link_to t('.show', :default => t("helpers.links.show")),
-                          question_path(question), :class => 'btn btn-default btn-xs' %>
-              <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                          edit_question_path(question), :class => 'btn btn-default btn-xs' %>
-              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                          question_path(question),
-                          :method => :delete,
-                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                          :class => 'btn btn-xs btn-danger' %>
       </button>
     <% end %>
 </ul>
 
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_question_path,
-            :class => 'btn btn-primary' %>
+<nav aria-label="...">
+  <ul class="pager">
+    <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+    <li class="next"><a href="questions?search=<%=params[:search]%>"> Newer <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+</nav>
