@@ -1,4 +1,4 @@
-<%= form_for(answer) do |f| %>
+<%= form_for answer, :html => { :class => "form-horizontal question" } do |f| %>
   <% if answer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
@@ -11,22 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.text_field :content %>
+  <div class="form-group container">
+    <%= f.label :content, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :content, :size => "20x10", :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:content) %>
   </div>
 
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
-  </div>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :question_id %>
 
-  <div class="field">
-    <%= f.label :question_id %>
-    <%= f.number_field :question_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>

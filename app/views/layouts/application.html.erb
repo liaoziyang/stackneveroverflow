@@ -18,14 +18,14 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <%= link_to "Q&A", root_path, class: "navbar-brand" %>
+            <a class="navbar-brand" href="<%= root_path %>">
+              <img alt="Brand" src="<%= image_path("brand.png") %>" width="30" height="30">
+            </a>
+            <%= link_to "stackneveroverflow", root_path, class: "navbar-brand" %>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li><%= link_to "Question", questions_path %></li>
-            </ul>
             <%= form_tag questions_path, :method => 'get', :class => "navbar-form navbar-left" do %>
               <div class="form-group">
                 <%= text_field_tag :search, params[:search], :class => "form-control" %>

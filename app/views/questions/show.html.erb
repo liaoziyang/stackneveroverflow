@@ -25,9 +25,13 @@
   <div class="panel-heading">
     <%= answer.user.email %> post <%= time_ago_in_words(answer.created_at) %> ago.
   </div>
-  <div class="panel-body"><%= qiita_markdown(answer.content) %></div>
+  <div class="panel-body">
+    <%= qiita_markdown(answer.content) %>
+    <% if answer.user == current_user %>
+      <%= link_to 'Edit', edit_answer_path(answer), :class => "pull-right" %>
+    <% end %>
+  </div>
 </div>
-
 <% end %>
 
 
