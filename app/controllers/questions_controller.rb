@@ -28,6 +28,7 @@ class QuestionsController < ApplicationController
     @user = current_user
     @question = Question.find(params[:id])
     @answer = Answer.new
+    @answers = Answer.where(:question_id => @question.id)
 
     respond_to do |format|
       format.html # show.html.erb

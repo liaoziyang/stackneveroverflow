@@ -1,17 +1,14 @@
 <%- model_class = Question -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3><%=t '.title', :default => @question.title %></h3><br>
+    <%= @question.user.email %> post <%= time_ago_in_words(@question.created_at) %> ago.
+  </div>
+  <div class="panel-body"><%= qiita_markdown(@question.content) %></div>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @question.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
-  <dd><%= qiita_markdown(@question.content) %></dd>
-</dl>
-
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              questions_path, :class => 'btn btn-default'  %>
+<% if @question.user_id == current_user.id %>
+<div style="text-align: right;">
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_question_path(@question), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -19,21 +16,34 @@
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+</div>
+<% end %>
+<br>
+<hr>
+<% @answers.each do |answer| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= answer.user.email %> post <%= time_ago_in_words(answer.created_at) %> ago.
+  </div>
+  <div class="panel-body"><%= qiita_markdown(answer.content) %></div>
+</div>
 
-<%= form_for @answer, :html => { :class => "form-horizontal question" } do |f| %>      
-<div class="form-group">
+<% end %>
+
+
+<%= form_for @answer, :html => { :class => "form-horizontal question" } do |f| %>
+<div class="form-group container">
   <%= f.label :content, :class => 'control-label col-lg-2' %>
   <div class="col-lg-10">
     <%= f.text_area :content, :size => "20x10", :class => 'form-control' %>
   </div>
+  <%= f.hidden_field :question_id, :value => @question.id %>
   <%=f.error_span(:content) %>
 </div>
 
 <div class="form-group">
   <div class="col-lg-offset-2 col-lg-10">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-              answers_path, :class => 'btn btn-default' %>
   </div>
 </div>
 <% end %>
