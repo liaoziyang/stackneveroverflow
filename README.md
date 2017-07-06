@@ -24,11 +24,19 @@ To set up the database, please run:
 ### Main feature
 
 1.User sign in
+
 2.User sign out
+
 3.User rememberable
+
 4.Session
+
 5.MarkDown
+
 6.Question post
+
 7.Answer post
+
 8.Question edit/delete
+
 9.Answer edit/delete
