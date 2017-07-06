@@ -1,7 +1,8 @@
 # StackNeverOverFlow
 
 This is a simple QA platform using ruby on rails. You can post your question and get answer from other users or comment in the answer by yourself.
-Demo: stackneveroverflow.herokuapp.com
+
+Demo: https://stackneveroverflow.herokuapp.com
 
 ## Requirement
 
@@ -9,6 +10,10 @@ Demo: stackneveroverflow.herokuapp.com
 - Rails 5.0.3
 
 ## Get Start
+
+`git clone git@github.com:liaoziyang/stackneveroverflow.git`
+
+`cd stackneveroverflow`
 
 To get start, please run:
 `bundle install`
