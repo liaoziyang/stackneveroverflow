@@ -1,20 +1,10 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
-  def search
-    t = Product.arel_table
-    code = params[:code]
-    name = params[:name]
-    @products = Product.all
-    @products = @products.where(t[:code].matches("%#{code}%")) if code.present?
-    @products = @products.where(t[:name].matches("%#{name}%")) if name.present?
-    # 以下略
-  end
-
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.search(params[:search])
+    @questions = Question.search(params[:search]).latest
     @user = current_user
     respond_to do |format|
       format.html # index.html.erb
