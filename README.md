@@ -1,24 +1,34 @@
-# README
+# StackNeverOverFlow
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple QA platform using ruby on rails. You can post your question and get answer from other users or comment in the answer by yourself.
+Demo: stackneveroverflow.herokuapp.com
 
-Things you may want to cover:
+## Requirement
 
-* Ruby version
+- Ruby: 2.3.1
+- Rails 5.0.3
 
-* System dependencies
+## Get Start
 
-* Configuration
+To get start, please run:
+`bundle install`
 
-* Database creation
+if you get some error, please search the error message and install the dependencies.
 
-* Database initialization
+To set up the database, please run:
 
-* How to run the test suite
+`rake db:create`
 
-* Services (job queues, cache servers, search engines, etc.)
+`rake db:migrate`
 
-* Deployment instructions
+### Main feature
 
-* ...
+1.User sign in
+2.User sign out
+3.User rememberable
+4.Session
+5.MarkDown
+6.Question post
+7.Answer post
+8.Question edit/delete
+9.Answer edit/delete
