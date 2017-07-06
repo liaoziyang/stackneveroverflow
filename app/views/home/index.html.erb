@@ -10,7 +10,7 @@
         <div class="panel-body">
           <%= question.content %>
           <hr>
-          <%= time_ago_in_words(question.created_at) %>
+          Post <%= time_ago_in_words(question.created_at) %> ago.
         </div>
       </div>
   <% end %>
