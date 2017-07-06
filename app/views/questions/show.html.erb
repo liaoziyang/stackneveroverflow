@@ -19,6 +19,13 @@
 </div>
 <% end %>
 <br>
+<% if @answers.size > 0 %>
+  <div class="alert alert-success" role="alert">There have <%= @answers.size %> answers for this question.</div>
+<% else %>
+  <div class="alert alert-danger" role="alert">There have no answers for this question, please add your answer to help the questioner.</div>
+<% end %>
+
+<br>
 <hr>
 <% @answers.each do |answer| %>
 <div class="panel panel-default">
