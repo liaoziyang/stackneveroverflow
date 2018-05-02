@@ -7,7 +7,7 @@
   <div class="panel-body"><%= qiita_markdown(@question.content) %></div>
 </div>
 
-<% if @question.user_id == current_user.id %>
+<% if current_user.present? && @question.user_id == current_user.id %>
 <div style="text-align: right;">
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_question_path(@question), :class => 'btn btn-default' %>
@@ -41,20 +41,29 @@
 </div>
 <% end %>
 
-
-<%= form_for @answer, :html => { :class => "form-horizontal question" } do |f| %>
-<div class="form-group container">
-  <%= f.label :content, :class => 'control-label col-lg-2' %>
-  <div class="col-lg-10">
-    <%= f.text_area :content, :size => "20x10", :class => 'form-control' %>
+<% if current_user.present? %>
+  <%= form_for @answer, :html => { :class => "form-horizontal question" } do |f| %>
+  <div class="form-group container">
+    <%= f.label :content, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :content, :size => "20x10", :class => 'form-control' %>
+    </div>
+    <%= f.hidden_field :question_id, :value => @question.id %>
+    <%=f.error_span(:content) %>
   </div>
-  <%= f.hidden_field :question_id, :value => @question.id %>
-  <%=f.error_span(:content) %>
-</div>
 
-<div class="form-group">
-  <div class="col-lg-offset-2 col-lg-10">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
   </div>
+  <% end %>
+<% else %>
+<div class="text-center">
+  <h3>To post your answer, please<h3>
+  <ul class="navbar-form">
+    <%= link_to (button_tag "Sign up", type: 'button', :class => 'btn btn-default'), new_user_registration_path %>
+    <%= link_to (button_tag "Sign in", type: 'button', :class => 'btn btn-default'), new_user_session_path %>
+  </ul>
 </div>
 <% end %>
