@@ -68,7 +68,7 @@ GEM
     erubis (2.7.0)
     escape_utils (1.1.1)
     execjs (2.7.0)
-    ffi (1.9.18)
+    ffi (1.13.1)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
     gemoji (3.0.0)
