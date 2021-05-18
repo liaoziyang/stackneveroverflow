@@ -131,13 +131,14 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.5.1)
     minitest (5.14.1)
     multi_json (1.12.1)
     nested_form (0.3.2)
     nio4r (2.1.0)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.11.4)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nokogumbo (1.4.13)
       nokogiri
     orm_adapter (0.5.0)
@@ -155,6 +156,7 @@ GEM
       mem
       pygments.rb (~> 1.0)
       sanitize
+    racc (1.5.2)
     rack (2.2.3)
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
